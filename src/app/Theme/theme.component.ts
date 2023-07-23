@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./theme.component.css']
 })
 export class ThemeComponent {
-
+  showSidebar:boolean= true;
+  changeSidebar(status: boolean) {
+    this.showSidebar=status;
+  }
 }

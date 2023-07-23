@@ -1,1 +1,26 @@
-<p>header works!</p>
+<header>
+
+  <mat-toolbar>
+    <a mat-button (click)="showSidebar()">
+      <mat-icon *ngIf="sidebarStatus">menu</mat-icon>
+      <mat-icon *ngIf="!sidebarStatus">close</mat-icon>
+    </a>
+    <a mat-button [routerLink]="['RegisterUsers']" RouterLinkActive="['active']">
+      <mat-icon>person</mat-icon>
+      <span>Register</span>
+    </a>
+    <a mat-button [routerLink]="['loginUsers']" RouterLinkActive="['active']">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </a>
+    <a mat-button [matMenuTriggerFor]="dropdown">
+      <mat-icon>library_books</mat-icon>
+      <span>Course</span>
+    </a>
+    <mat-menu #dropdown>
+      <button mat-menu-item [routerLink]="['Courses']" RouterLinkActive="['active']">courses</button>
+      <button mat-menu-item [routerLink]="['CreateCourse']">New courses</button>
+    </mat-menu>
+  </mat-toolbar>
+
+</header>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
+@Output() showSidebarEmitter: EventEmitter<boolean>=new EventEmitter<boolean>()
+  sidebarStatus:boolean =true;
+  showSidebar() {
+    this.sidebarStatus =!this.sidebarStatus;
+    this.showSidebarEmitter.emit(this.sidebarStatus);
+  }
 }
