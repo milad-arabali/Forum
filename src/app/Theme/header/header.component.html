@@ -1,26 +1,33 @@
-<header>
+<header class="header">
+  <mat-toolbar class="toolbar">
+    <div  class="toolbar-right">
+      <a mat-button (click)="showSidebar()">
+        <mat-icon *ngIf="sidebarStatus">close</mat-icon>
+        <mat-icon *ngIf="!sidebarStatus">menu</mat-icon>
+      </a>
+      <p >تالار گفتگو</p>
+    </div>
+    <div  class="toolbar-left">
+      <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
+      <a mat-button [matMenuTriggerFor]="dropdown">
+        <mat-icon>person</mat-icon>
+        <span>میلادعربعلی</span>
+      </a>
+      <mat-menu #dropdown>
+        <button mat-menu-item [routerLink]="['Courses']" RouterLinkActive="['active']">
+          <mat-icon>person</mat-icon>
+          <span>ویرایش حساب</span>
+        </button>
+        <button mat-menu-item [routerLink]="['CreateCourse']">
+          <mat-icon>login</mat-icon>
+          <span>تغییر رمز عبور</span>
+        </button>
+        <button mat-menu-item [routerLink]="['CreateCourse']">
+          <mat-icon>library_books</mat-icon>
+          <span>خروج</span>
+        </button>
+      </mat-menu>
 
-  <mat-toolbar>
-    <a mat-button (click)="showSidebar()">
-      <mat-icon *ngIf="sidebarStatus">menu</mat-icon>
-      <mat-icon *ngIf="!sidebarStatus">close</mat-icon>
-    </a>
-    <a mat-button [routerLink]="['RegisterUsers']" RouterLinkActive="['active']">
-      <mat-icon>person</mat-icon>
-      <span>Register</span>
-    </a>
-    <a mat-button [routerLink]="['loginUsers']" RouterLinkActive="['active']">
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </a>
-    <a mat-button [matMenuTriggerFor]="dropdown">
-      <mat-icon>library_books</mat-icon>
-      <span>Course</span>
-    </a>
-    <mat-menu #dropdown>
-      <button mat-menu-item [routerLink]="['Courses']" RouterLinkActive="['active']">courses</button>
-      <button mat-menu-item [routerLink]="['CreateCourse']">New courses</button>
-    </mat-menu>
+    </div>
   </mat-toolbar>
-
 </header>

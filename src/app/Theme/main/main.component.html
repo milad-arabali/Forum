@@ -1,34 +1,38 @@
-<mat-sidenav-container>
-  <mat-sidenav mode="side" [(opened)]="showSidebar">
-    <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
-    <h4 class="name">john smith</h4>
-    <p class="designation">Software Engineer</p>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-Button">
-      <mat-icon>home</mat-icon>
-      <span>home</span>
-    </button>
-    <button mat-button class="menu-Button">
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
-    </button>
-    <button mat-button class="menu-Button">
-      <mat-icon>info</mat-icon>
-      <span>About</span>
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-Button">
-      <mat-icon>help</mat-icon>
-      <span>help</span>
-    </button>
+<div class="article">
+  <mat-sidenav-container >
+    <mat-sidenav mode="side" [(opened)]="showSidebar" class="sidebar">
+      <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
+      <h4 class="name">میلاد عربعلی</h4>
+      <p class="designation">Software Engineer</p>
+      <mat-divider class="divider"></mat-divider>
+      <button mat-button class="menu-Button">
+        <mat-icon>home</mat-icon>
+        <span>خانه</span>
+      </button>
+      <button mat-button class="menu-Button">
+        <mat-icon>person</mat-icon>
+        <span>پروفایل</span>
+      </button>
+      <button mat-button class="menu-Button">
+        <mat-icon>info</mat-icon>
+        <span>توضیحات</span>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+      <button mat-button class="menu-Button">
+        <mat-icon>help</mat-icon>
+        <span>راهنما</span>
+      </button>
 
-  </mat-sidenav>
-  <mat-sidenav-content>
+    </mat-sidenav>
 
-    <article class="Main mat-elevation-z4">
-      <p>Main</p>
-    </article>
+    <mat-sidenav-content>
 
-  </mat-sidenav-content>
+      <article class="main mat-elevation-z4">
+        <p>Main</p>
+      </article>
 
-</mat-sidenav-container>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+</div>
