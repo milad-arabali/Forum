@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-title>
+    <div class="title">
+      <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
+      <p>فرم ورود ثبت نام</p>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <form>
+      <p>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+      </p>
+
+      <p class="error">
+
+      </p>
+
+      <div class="button">
+        <button type="submit" mat-button>Login</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>
