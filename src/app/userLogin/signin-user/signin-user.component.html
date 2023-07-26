@@ -1,32 +1,37 @@
 <mat-card>
   <mat-card-title>
     <div class="title">
-      <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
-      <p>فرم ورود ثبت نام</p>
+      <img class="avatar " src="..\assets\img\images.jpg">
+      <p>فرم ورود به سامانه</p>
     </div>
   </mat-card-title>
   <mat-card-content>
-    <form>
-      <p>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="username">
-        </mat-form-field>
-      </p>
+    <div [formGroup]="form" class="loginForm">
 
-      <p>
-        <mat-form-field>
-          <input type="password" matInput placeholder="Password" formControlName="password">
-        </mat-form-field>
-      </p>
+      <mat-form-field class="mat-form">
+        <mat-label>نام کاربری</mat-label>
+        <input type="text" matInput formControlName="username">
+        <mat-error>نام کاربری صحیح نمی باشد</mat-error>
+      </mat-form-field>
 
-      <p class="error">
 
-      </p>
+      <mat-form-field class="mat-form">
+        <mat-label>پسورد</mat-label>
+        <input type="password" matInput formControlName="Password">
+        <mat-error>پسورد صحیح نمی باشد</mat-error>
+      </mat-form-field>
 
-      <div class="button">
-        <button type="submit" mat-button>Login</button>
+      <div class="button" >
+        <button mat-button type="submit" [disabled]="!form.valid" >ورود</button>
+        <button mat-button [routerLink]="['/signup']">ثبت نام</button>
+        <button mat-button>بازیابی پسورد</button>
       </div>
 
-    </form>
+    </div>
+
   </mat-card-content>
+  <div class="footerLoginform">
+    <p>تالار گفتگو</p>
+    <p>ورژن 1.0.0</p>
+  </div>
 </mat-card>

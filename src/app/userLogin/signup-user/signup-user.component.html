@@ -1,15 +1,37 @@
-<div class="container">
-  <div class="header-menu">
-    <img src="..\assets\img\images.jpg">
-    <p>فرم ورود به سامانه</p>
+<mat-card>
+  <mat-card-title>
+    <div class="title">
+      <img class="avatar " src="..\assets\img\images.jpg">
+      <p>فرم ثبت نام در سامانه</p>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <div [formGroup]="form" class="loginForm">
+
+      <mat-form-field class="mat-form">
+        <mat-label>نام کاربری</mat-label>
+        <input type="text" matInput formControlName="username">
+        <mat-error>نام کاربری صحیح نمی باشد</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="mat-form">
+        <mat-label>پسورد</mat-label>
+        <input type="password" matInput formControlName="Password">
+        <mat-error>پسورد صحیح نمی باشد</mat-error>
+      </mat-form-field>
+
+      <div class="button">
+        <button mat-button [routerLink]="['/signup']">ثبت نام</button>
+        <button mat-button [routerLink]="['/signin']">ورود</button>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+  <div class="footerLoginform">
+    <p>تالار گفتگو</p>
+    <p>ورژن 1.0.0</p>
   </div>
-  <div class="form-menu">
-
-  </div>
-  <div class="footer-menu">
-
-  </div>
-
-
-</div>
-<p>dwdwd</p>
+</mat-card>

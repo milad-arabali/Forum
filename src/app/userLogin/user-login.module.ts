@@ -5,6 +5,8 @@ import { SignupUserComponent } from './signup-user/signup-user.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
+import {RouterLink} from "@angular/router";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -17,7 +19,9 @@ import {MatCardModule} from "@angular/material/card";
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    RouterLink,
+    ReactiveFormsModule
   ]
 })
 export class UserLoginModule { }
