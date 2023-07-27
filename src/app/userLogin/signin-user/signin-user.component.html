@@ -22,9 +22,9 @@
       </mat-form-field>
 
       <div class="button" >
-        <button mat-button type="submit" [disabled]="!form.valid" (click)="onSubmit()" >ورود</button>
-        <button mat-button [routerLink]="['/signup']">ثبت نام</button>
-        <button mat-button>بازیابی پسورد</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()" >ورود</button>
+        <button mat-raised-button  color="accent" [routerLink]="['/signup']">ثبت نام</button>
+        <button mat-raised-button color="warn">بازیابی پسورد</button>
       </div>
 
     </div>

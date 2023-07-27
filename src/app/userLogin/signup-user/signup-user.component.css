@@ -40,10 +40,6 @@ mat-card-content {
   background-color: red;
 }
 
-.button {
-  display: flex;
-  justify-content: flex-end;
-}
 .loginForm{
   display: flex;
   flex-direction: column;
@@ -66,4 +62,8 @@ mat-card-content {
   width: 100%;
   justify-content: space-around;
   background-color: #5885AF;
+}
+.button button {
+  margin: 5px 10px;
+
 }
