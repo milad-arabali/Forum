@@ -10,6 +10,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 
 
+
+
+
+
 @NgModule({
   declarations: [
     SigninUserComponent,
@@ -21,7 +25,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     MatCardModule,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+
+
+
   ]
 })
 export class UserLoginModule { }

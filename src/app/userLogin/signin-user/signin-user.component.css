@@ -2,8 +2,8 @@
 :host {
   display: flex;
   justify-content: center;
-
-  margin: 100px 0px;
+  align-items: center;
+  height: 100vh;
   color: whitesmoke;
 }
 
@@ -67,4 +67,9 @@ mat-card-content {
   width: 100%;
   justify-content: space-around;
   background-color: #5885AF;
+}
+
+.s{
+  position: absolute !important;
+  top: 54px;
 }
