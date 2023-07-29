@@ -33,7 +33,7 @@ export class UserLoginService {
           console.log("test")
                   // this.userLogin.userLogin(username)
                   this.userLogin.logIn().then(()=>{
-                    this.router.navigate(['/users'])
+                    this.router.navigate(['/home'])
                   })
               this.snack.open(message,"",{
                 duration:3000,
@@ -44,7 +44,7 @@ export class UserLoginService {
           )
 
         }else {
-          this.snack.open("کاربر وجود ندارد","",{
+          this.snack.open("نام کاربری یا پسورد وجود ندارد","",{
 
             duration:3000,
             horizontalPosition: "end",

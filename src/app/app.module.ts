@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,6 +25,8 @@ import {CookieService} from "ngx-cookie-service";
   providers: [MatSnackBar,
       CookieService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+
 })
 export class AppModule { }

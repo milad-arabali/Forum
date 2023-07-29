@@ -8,6 +8,9 @@ import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
 import {ReactiveFormsModule} from "@angular/forms";
 
+import { LogOutComponent } from './log-out/log-out.component';
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 
 
@@ -17,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     SigninUserComponent,
-    SignupUserComponent
+    SignupUserComponent,
+    LogOutComponent
   ],
   imports: [
     CommonModule,
@@ -26,8 +30,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatCardModule,
     RouterLink,
     ReactiveFormsModule,
-
-
+    MatDialogModule,
 
 
   ]

@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {UserLoginService} from "../../userLogin/user-login.service";
+import {MatDialog} from "@angular/material/dialog";
+import {LogOutComponent} from "../../userLogin/log-out/log-out.component";
 
 @Component({
   selector: 'app-header',
@@ -22,11 +24,12 @@ username : string;
     this.sidebarStatus =!this.sidebarStatus;
     this.showSidebarEmitter.emit(this.sidebarStatus);
   }
-  constructor(private logOut: CookieService , private  route : Router,private usernameLogin: UserLoginService) {
+  constructor(private logOut: CookieService , private  route : Router,private usernameLogin: UserLoginService , private  dialog: MatDialog) {
   }
   logout() {
-    this.logOut.delete('login','true');
-    this.route.navigate(['/signin'])
+    const dialogRef = this.dialog.open(LogOutComponent)
+    dialogRef.afterClosed()
+
   }
 
 
