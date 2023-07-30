@@ -11,6 +11,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatMenuModule} from "@angular/material/menu";
+import {TimePipe} from "./pipe/time.pipe";
+
+
+
 
 
 @NgModule(
@@ -19,19 +23,23 @@ import {MatMenuModule} from "@angular/material/menu";
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    ThemeComponent
+    ThemeComponent,
+      TimePipe
   ],
-      imports: [
-          CommonModule,
-          MatSidenavModule,
-          MatIconModule,
-          MatListModule,
-          MatButtonModule,
-          MatToolbarModule,
-          RouterLink,
-          MatMenuModule,
-          RouterOutlet
-      ],
+    imports: [
+      CommonModule,
+      MatSidenavModule,
+      MatIconModule,
+      MatListModule,
+      MatButtonModule,
+      MatToolbarModule,
+      RouterLink,
+      MatMenuModule,
+      RouterOutlet,
+
+
+
+    ],
     exports: [
       ThemeComponent
     ]

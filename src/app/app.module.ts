@@ -7,14 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./userLogin/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
-import { TimePipe } from './pipe/time.pipe';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimePipe
+
   ],
   imports: [
     BrowserModule,
@@ -25,9 +25,10 @@ import { TimePipe } from './pipe/time.pipe';
 
   ],
   providers: [MatSnackBar,
-      CookieService
+    CookieService
   ],
   bootstrap: [AppComponent],
+
 
 
 })
