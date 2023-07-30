@@ -10,20 +10,33 @@
 
       <mat-form-field class="mat-form">
         <mat-label>نام کاربری</mat-label>
-        <input type="text" matInput formControlName="username">
-        <mat-error>نام کاربری صحیح نمی باشد</mat-error>
+        <input type="text" matInput formControlName="username" #myInput>
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('required')">نام
+          کاربری وارد شود.
+        </mat-error>
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('minlength')">طول
+          کاراکتر نام کاربر کمتر از 5 کاراکتر است
+        </mat-error>
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('maxLength')">طول
+          کاراکتر نام کاربر بیشتر از 60 کاراکتر است
+        </mat-error>
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('pattern')">نام کاربری
+          فارسی است
+        </mat-error>
+
+
       </mat-form-field>
-
-
       <mat-form-field class="mat-form">
         <mat-label>پسورد</mat-label>
         <input type="password" matInput formControlName="Password">
-        <mat-error>پسورد صحیح نمی باشد</mat-error>
+        <mat-error>کلمه عبور وارد شود</mat-error>
+
       </mat-form-field>
 
-      <div class="button" >
-        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()" >ورود</button>
-        <button mat-raised-button  color="accent" [routerLink]="['/signup']">ثبت نام</button>
+      <div class="button">
+        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()">ورود
+        </button>
+        <button mat-raised-button color="accent" [routerLink]="['/signup']">ثبت نام</button>
         <button mat-raised-button color="warn">بازیابی پسورد</button>
       </div>
 

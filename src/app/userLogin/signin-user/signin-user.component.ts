@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../user-login.service";
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 
 
@@ -14,36 +16,51 @@ import {UserLoginService} from "../user-login.service";
   styleUrls: ['./signin-user.component.css']
 })
 export class SigninUserComponent implements OnInit{
-  form=this.fb.group({
-    username: ['', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(60)
-    ]],
-    Password: ['', [Validators.required,Validators.minLength(5)]],
-  })
-// ,Validators.pattern(/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,6}$/g)
+  @ViewChild("myInput") private _inputElement: ElementRef;
+  form: FormGroup;
+  pending = true;
 
-  constructor(private fb: FormBuilder ,private usersAth: UserLoginService ) {
+  constructor(private fb: FormBuilder, private usersAth: UserLoginService, private cookie: CookieService, private router: Router, private c: CookieService) {
+    this.form = this.fb.group({
+      username: ['',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(60),
+          Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')
+        ])
+      ],
+      Password: ['', [Validators.required, Validators.minLength(5)]],
+    })
+    // ,Validators.pattern(/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,6}$/g)
 
   }
-
 
 
   ngOnInit() {
 
+    console.log('34: ', this.form.get('username').errors)
+    const a = this.cookie.get('login')
 
-  }
-  onSubmit() {
-    if(this.form.valid){
-      console.log(this.form.value)
-      const name = this.form.value.username;
-      const password : any = this.form.value.Password;
-      this.usersAth.usernameLogin(name);
-      // this.cookie.set(name,password);
-      this.usersAth.signOn(name,password);
+    if (a) {
+      console.log('dddd', a)
+      this.router.navigate(['/home']);
     }
 
   }
 
+  onSubmit() {
+
+    if (this.form.valid) {
+      console.log(this.form.value)
+      const name = this.form.value.username;
+      const password: any = this.form.value.Password;
+      // this.usersAth.usernameLogin(name);
+      this.c.set('users', name)
+      this.usersAth.signOn(name, password);
+    }
+    this.form.reset();
+    this._inputElement.nativeElement.focus();
+
+  }
 }
