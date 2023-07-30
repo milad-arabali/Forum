@@ -15,16 +15,17 @@ export class HeaderComponent implements OnInit{
   sidebarStatus:boolean =true;
 username : string;
  ngOnInit() {
-   this.usernameLogin.selectedUser$.subscribe(
-     user => this.username =user
-   )
+   // this.usernameLogin.selectedUser$.subscribe(
+   //   user => this.username =user
+   // )
+   this.username = this.c.get('users')
  }
 
   showSidebar() {
     this.sidebarStatus =!this.sidebarStatus;
     this.showSidebarEmitter.emit(this.sidebarStatus);
   }
-  constructor(private logOut: CookieService , private  route : Router,private usernameLogin: UserLoginService , private  dialog: MatDialog) {
+  constructor(private logOut: CookieService , private  route : Router,private usernameLogin: UserLoginService , private  dialog: MatDialog, private c:CookieService) {
   }
   logout() {
     const dialogRef = this.dialog.open(LogOutComponent)
