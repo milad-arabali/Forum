@@ -20,6 +20,7 @@ export class LogOutComponent {
 
   logout() {
     this.logOut.delete('login', 'true');
+    this.logOut.delete('users');
     this.route.navigate(['/signin'])
     this.dialogRef.close();
   }
