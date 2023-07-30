@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 
 import { LogOutComponent } from './log-out/log-out.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -21,7 +22,8 @@ import {MatDialogModule} from "@angular/material/dialog";
   declarations: [
     SigninUserComponent,
     SignupUserComponent,
-    LogOutComponent
+    LogOutComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,

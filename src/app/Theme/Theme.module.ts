@@ -9,7 +9,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatMenuModule} from "@angular/material/menu";
 
 
@@ -21,16 +21,17 @@ import {MatMenuModule} from "@angular/material/menu";
     FooterComponent,
     ThemeComponent
   ],
-    imports: [
-      CommonModule,
-      MatSidenavModule,
-      MatIconModule,
-      MatListModule,
-      MatButtonModule,
-      MatToolbarModule,
-      RouterLink,
-      MatMenuModule
-    ],
+      imports: [
+          CommonModule,
+          MatSidenavModule,
+          MatIconModule,
+          MatListModule,
+          MatButtonModule,
+          MatToolbarModule,
+          RouterLink,
+          MatMenuModule,
+          RouterOutlet
+      ],
     exports: [
       ThemeComponent
     ]

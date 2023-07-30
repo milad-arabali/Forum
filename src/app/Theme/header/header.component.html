@@ -14,9 +14,9 @@
         <span>{{username}}</span>
       </a>
       <mat-menu #dropdown>
-        <button mat-menu-item >
+        <button mat-menu-item [routerLink]="['profile']" RouterLinkActive="['active']">
           <mat-icon>person</mat-icon>
-          <span>ویرایش حساب</span>
+          <span>  ویرایش حساب کاربری</span>
         </button>
         <button mat-menu-item >
           <mat-icon>login</mat-icon>
