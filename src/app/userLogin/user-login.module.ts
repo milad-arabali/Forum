@@ -14,6 +14,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatListModule} from "@angular/material/list";
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import {CdkTableModule} from "@angular/cdk/table";
 
 
 
@@ -26,7 +28,8 @@ import {MatListModule} from "@angular/material/list";
     SigninUserComponent,
     SignupUserComponent,
     LogOutComponent,
-    EditUserComponent
+    EditUserComponent,
+    ChangePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +42,7 @@ import {MatListModule} from "@angular/material/list";
     MatGridListModule,
     MatDatepickerModule,
     MatListModule,
+    CdkTableModule,
 
 
   ]
