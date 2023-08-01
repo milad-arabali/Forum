@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./userLogin/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
+import {MatNativeDateModule} from "@angular/material/core";
+
 
 
 
@@ -22,10 +24,12 @@ import {CookieService} from "ngx-cookie-service";
     ThemeModule,
     BrowserAnimationsModule,
     UserLoginModule,
+    MatNativeDateModule
+
 
   ],
   providers: [MatSnackBar,
-    CookieService
+    CookieService,
   ],
   bootstrap: [AppComponent],
 

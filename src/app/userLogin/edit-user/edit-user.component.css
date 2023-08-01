@@ -1,7 +1,50 @@
-:host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/*:host {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  height: 100vh;*/
 
+/*}*/
+.mat{
+  padding: 0px;
+  margin-top: 10px;
+}
+.container{
+  display: flex;
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  padding: 0;
+}
+.col{
+  flex-direction: column;
+  width: 50%;
+  margin: 0 10px;
+  align-items: flex-start;
+
+}
+.row{
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.mat-form{
+  width: 100%;
+}
+.card-header{
+  height: 30px;
+  margin-bottom: 10px ;
+}
+
+.row div  {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.row span  {
+  width: 30%;
+}
+.button button{
+  margin: 10px 10px;
 }
