@@ -16,6 +16,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatListModule} from "@angular/material/list";
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {CdkTableModule} from "@angular/cdk/table";
+import {MatIconModule} from "@angular/material/icon";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 
@@ -43,6 +45,8 @@ import {CdkTableModule} from "@angular/cdk/table";
     MatDatepickerModule,
     MatListModule,
     CdkTableModule,
+    MatIconModule,
+    MatRadioModule,
 
 
   ]

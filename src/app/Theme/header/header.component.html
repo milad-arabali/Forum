@@ -1,5 +1,5 @@
 <header class="header">
-  <mat-toolbar class="toolbar">
+  <mat-toolbar class="toolbar" color="primary">
     <div  class="toolbar-right">
       <a mat-button (click)="showSidebar()">
         <mat-icon *ngIf="sidebarStatus">close</mat-icon>
@@ -14,7 +14,7 @@
         <span>{{username}}</span>
       </a>
       <mat-menu #dropdown>
-        <button mat-menu-item [routerLink]="['profile']" RouterLinkActive="['active']">
+        <button mat-menu-item  [routerLink]="['profile']" RouterLinkActive="['active']">
           <mat-icon>person</mat-icon>
           <span>  ویرایش حساب کاربری</span>
         </button>

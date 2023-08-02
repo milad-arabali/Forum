@@ -5,11 +5,23 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
 }
 
 body {
+
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: BYekan;
+  font-size: 20px;
+}
+
+
+@font-face {
+  font-family: 'BYekan';
+  src:  url('../src/assets/fonts/BYekan.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'BYekan-bold';
+  src:  url('../src/assets/fonts/BYekan-Bold.ttf') format('ttf');
 }

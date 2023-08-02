@@ -2,9 +2,8 @@
 .toolbar{
   display: flex;
   /*align-items: center;*/
-
   justify-content: space-between;
-  background-color: #5885AF;
+  /*background-color: #5885AF;*/
 }
 
 .toolbar-right{

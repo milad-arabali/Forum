@@ -1,16 +1,12 @@
-/*:host {*/
-/*  display: flex;*/
-/*  justify-content: center;*/
-/*  align-items: center;*/
-/*  height: 100vh;*/
 
-/*}*/
 .mat{
   padding: 0px;
   margin-top: 10px;
 }
 .container{
+  margin-top: 20px;
   display: flex;
+  height: 400px;
   /*justify-content: center;*/
   /*align-items: center;*/
   padding: 0;
@@ -31,7 +27,12 @@
 .mat-form{
   width: 100%;
 }
+.card-header-title{
+  font-family: BYekan-bold;
+  font-size: 30px;
+}
 .card-header{
+
   height: 30px;
   margin-bottom: 10px ;
 }
