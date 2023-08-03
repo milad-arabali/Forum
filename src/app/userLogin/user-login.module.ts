@@ -6,8 +6,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {RouterLink} from "@angular/router";
-import {ReactiveFormsModule} from "@angular/forms";
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LogOutComponent } from './log-out/log-out.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { EditUserComponent } from './edit-user/edit-user.component';
@@ -47,6 +46,7 @@ import {MatRadioModule} from "@angular/material/radio";
     CdkTableModule,
     MatIconModule,
     MatRadioModule,
+    FormsModule,
 
 
   ]

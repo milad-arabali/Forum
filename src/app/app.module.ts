@@ -8,6 +8,7 @@ import {UserLoginModule} from "./userLogin/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 import {MatNativeDateModule} from "@angular/material/core";
+import {HttpClientModule} from "@angular/common/http";
 
 
 
@@ -24,7 +25,9 @@ import {MatNativeDateModule} from "@angular/material/core";
     ThemeModule,
     BrowserAnimationsModule,
     UserLoginModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule,
+
 
 
   ],

@@ -1,21 +1,53 @@
-<mat-card class="mt-card" >
+<mat-card class="mt-card">
   <mat-card-header class="card-header">
-      <mat-card-title >ویرایش پروفایل</mat-card-title>
+    <mat-card-title>ویرایش پروفایل</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content  class="mat">
-
-    <div class="container">
-
-
+  <mat-card-content class="mat">
+    <div class="container" [formGroup]="form">
       <div class="col">
         <div class="row">
           <div>
             <span>نام کاربری :</span>
-
             <mat-form-field class="mat-form">
               <mat-label>نام کاربری :</mat-label>
-              <input type="text" matInput #myInput>
+              <input type="text" matInput formControlName="name"  >
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>نام :</span>
+            <mat-form-field class="mat-form">
+
+              <mat-label>نام :</mat-label>
+              <input type="text" matInput  formControlName="name">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <span>جنسیت :</span>
+            <mat-radio-group class="mat-form"  formControlName="gender">
+              <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
+
+            </mat-radio-group>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="col">
+
+        <div class="row">
+          <div>
+            <span>کدملی :</span>
+            <mat-form-field class="mat-form">
+
+              <mat-label>کدملی :</mat-label>
+              <input type="text" matInput  formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </div>
@@ -23,49 +55,23 @@
             <span>نام خانوادگی :</span>
             <mat-form-field class="mat-form">
               <mat-label>نام خانوادگی :</mat-label>
-              <input type="text" matInput #myInput>
+              <input type="text" matInput  formControlName="nameFamily" >
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </div>
           <div>
-            <span>جنسیت :</span>
-              <mat-radio-group class="mat-form">
-                <mat-radio-button value="male">مرد</mat-radio-button>
-                <mat-radio-button value="female">زن</mat-radio-button>
-              </mat-radio-group>
+            <span>تاریخ تولد:</span>
+            <mat-form-field class="mat-form">
 
+              <mat-label>تاریخ تولد:</mat-label>
+              <input matInput [matDatepicker]="picker"  formControlName="DateOfBirth">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
 
-
         </div>
-
-      </div>
-
-      <div class="col">
-
-      <div class="row">
-        <div>
-          <span>نام :</span>
-          <mat-form-field class="mat-form">
-
-            <mat-label>نام :</mat-label>
-            <input type="text" matInput #myInput>
-            <mat-icon matSuffix>mode_edit</mat-icon>
-          </mat-form-field>
-        </div>
-        <div>
-          <span>تاریخ تولد:</span>
-          <mat-form-field class="mat-form">
-
-            <mat-label>تاریخ تولد:</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-
-      </div>
       </div>
 
     </div>
@@ -75,7 +81,7 @@
   <mat-divider class="mt-divider"></mat-divider>
   <mat-card-footer>
     <div class="button">
-      <button mat-raised-button type="submit" color="primary" >ذخیره
+      <button mat-raised-button type="submit" color="primary" (click)="submit()">ذخیره
       </button>
       <button mat-raised-button color="accent" [routerLink]="['/home']">انصراف</button>
 
