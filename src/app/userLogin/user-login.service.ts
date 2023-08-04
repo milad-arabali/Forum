@@ -27,8 +27,6 @@ export class UserLoginService {
   //   console.log(username)
   // }
 
-  users !: userAccountModel[];
-
   singIn(username , value) {
     const api = this.api.apiUrl
     let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(res => {
@@ -44,13 +42,11 @@ export class UserLoginService {
 
         })
 
-
       }else {
 
         this.c.set('users', username)
         this.userLogin.logIn().then(() => {
           this.router.navigate(['/home'])
-
         })
         this.api.postRegistration(value).subscribe( res=>
           {
@@ -58,11 +54,8 @@ export class UserLoginService {
               duration:3000,
               horizontalPosition: "end",
               verticalPosition: "top"
-
             })
-
           }
-
         )
       }
 
@@ -123,10 +116,8 @@ export class UserLoginService {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
-
         }
       )
-
     } else {
       this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
 

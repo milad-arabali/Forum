@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../user-login.service";
 import {ApiService} from "../../../share/api.service";
@@ -11,28 +11,38 @@ import {CookieService} from "ngx-cookie-service";
   templateUrl: './signup-user.component.html',
   styleUrls: ['./signup-user.component.css']
 })
-export class SignupUserComponent {
+export class SignupUserComponent implements AfterViewInit{
+  @ViewChild("myInput") private _inputElement: ElementRef;
+
   gender: string[] = ['مرد', 'زن']
   form: FormGroup;
 
-  constructor(private signUpfb: FormBuilder ,private api : ApiService ,private  snack: MatSnackBar, private usersAth: UserLoginService, private cookie: CookieService, private c: CookieService) {
+  constructor(private signUpfb: FormBuilder, private api: ApiService, private snack: MatSnackBar, private usersAth: UserLoginService, private cookie: CookieService, private c: CookieService) {
     this.form = this.signUpfb.group({
-      userName:[ ,[Validators.required]],
-      passWord: [ ,[Validators.required]],
-      name: [ ,[Validators.required]],
-      nameFamily: [,[Validators.required]],
-      nationalCode: [,[Validators.required]],
-      gender: [,[Validators.required]],
-      DateOfBirth: [,[Validators.required]]
+      userName: [, [Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(60),
+        Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
+      passWord: [, [Validators.required, Validators.required, Validators.minLength(5)]],
+      name: [, [Validators.required]],
+      nameFamily: [, [Validators.required]],
+      nationalCode: [, [Validators.required]],
+      gender: [, [Validators.required]],
+      DateOfBirth: [, [Validators.required]]
     })
   }
 
-  submit() {
-    if(this.form.valid){
-      const name = this.form.value.userName;
-      const  value =this.form.value;
+  ngAfterViewInit() {
 
-      this.usersAth.singIn(name,value)
+    this._inputElement.nativeElement.focus();
+  }
+
+  submit() {
+    if (this.form.valid) {
+      const name = this.form.value.userName;
+      const value = this.form.value;
+
+      this.usersAth.singIn(name, value)
 
 
     }

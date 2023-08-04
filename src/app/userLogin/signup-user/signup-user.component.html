@@ -13,8 +13,20 @@
             <span>نام کاربری :</span>
             <mat-form-field class="mat-form">
               <mat-label>نام کاربری :</mat-label>
-              <input type="text" matInput formControlName="userName">
+              <input type="text" matInput formControlName="userName"   #myInput>
               <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('minlength')">طول
+                کاراکتر نام کاربر کمتر از 5 کاراکتر است
+              </mat-error>
+              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('maxLength')">طول
+                کاراکتر نام کاربر بیشتر از 60 کاراکتر است
+              </mat-error>
+              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('pattern')">نام کاربری
+                فارسی است
+              </mat-error>
+              <mat-error *ngIf="form.controls['userName'].invalid ">
+               نام کاربری وارد شود.
+              </mat-error>
             </mat-form-field>
           </div>
           <div>
@@ -23,6 +35,9 @@
               <mat-label>نام :</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix >mode_edit</mat-icon>
+              <mat-error *ngIf="form.controls['name'].invalid ">
+                نام کاربر وارد شود.
+              </mat-error>
             </mat-form-field>
           </div>
           <div>
@@ -31,12 +46,15 @@
               <mat-label>کدملی :</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="form.controls['nationalCode'].invalid ">
+                کدملی کاربر وارد شود.
+              </mat-error>
             </mat-form-field>
           </div>
           <div>
             <span>جنسیت :</span>
-            <mat-radio-group class="mat-form" formControlName="gender">
-              <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
+            <mat-radio-group class="mat-form" formControlName="gender" >
+              <mat-radio-button *ngFor="let gender of gender" [value]="gender" [checked]="gender === 'مرد'">{{gender}}</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -49,6 +67,9 @@
             <mat-label>کلمه عبور :</mat-label>
             <input type="text" matInput formControlName="passWord">
             <mat-icon matSuffix >mode_edit</mat-icon>
+            <mat-error *ngIf="form.controls['passWord'].invalid ">
+              کلمه عبور وارد شود.
+            </mat-error>
           </mat-form-field>
         </div>
         <div>
@@ -57,6 +78,9 @@
             <mat-label>نام خانوادگی :</mat-label>
             <input type="text" matInput formControlName="nameFamily">
             <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-error *ngIf="form.controls['nameFamily'].invalid ">
+              نام خانوادگی وارد شود.
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -69,6 +93,9 @@
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.controls['DateOfBirth'].invalid ">
+              تاریخ تولد وارد شود.
+            </mat-error>
           </mat-form-field>
         </div>
 
