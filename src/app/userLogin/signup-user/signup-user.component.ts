@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../user-login.service";
+import {ApiService} from "../../../share/api.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {CookieService} from "ngx-cookie-service";
+
 
 @Component({
   selector: 'app-signup-user',
@@ -8,16 +12,39 @@ import {UserLoginService} from "../user-login.service";
   styleUrls: ['./signup-user.component.css']
 })
 export class SignupUserComponent {
-  form=this.signUpfb.group({
-    username: ['', [
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(60),
-      Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')
-    ]],
-    Password: ['', [Validators.required,Validators.pattern(/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g),Validators.minLength(5)]],
-  })
-  constructor(private signUpfb: FormBuilder) {
+  gender: string[] = ['مرد', 'زن']
+  form: FormGroup;
+
+  constructor(private signUpfb: FormBuilder ,private api : ApiService ,private  snack: MatSnackBar, private usersAth: UserLoginService, private cookie: CookieService, private c: CookieService) {
+    this.form = this.signUpfb.group({
+      userName:[ ,[Validators.required]],
+      passWord: [ ,[Validators.required]],
+      name: [ ,[Validators.required]],
+      nameFamily: [,[Validators.required]],
+      nationalCode: [,[Validators.required]],
+      gender: [,[Validators.required]],
+      DateOfBirth: [,[Validators.required]]
+    })
+  }
+
+  submit() {
+    if(this.form.valid){
+      const name = this.form.value.userName;
+      const  value =this.form.value;
+
+      this.usersAth.singIn(name,value)
+
+
+    }
 
   }
 }
+
+
+// username: ['', [
+//   Validators.required,
+//   Validators.minLength(5),
+//   Validators.maxLength(60),
+//   Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')
+// ]],
+//   Password: ['', [Validators.required,Validators.pattern(/^[a-zA-Z0-9!@#\$%\^\&*_=+-]{8,12}$/g),Validators.minLength(5)]],

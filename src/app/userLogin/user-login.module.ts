@@ -17,6 +17,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import {CdkTableModule} from "@angular/cdk/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
+import { ResetPassWordComponent } from './reset-pass-word/reset-pass-word.component';
 
 
 
@@ -30,7 +31,8 @@ import {MatRadioModule} from "@angular/material/radio";
     SignupUserComponent,
     LogOutComponent,
     EditUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPassWordComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class EditUserComponent implements OnInit{
   form:FormGroup;
   gender:string[]=['مرد','زن']
-  ss : any =this.userEditForm.s();
+
 
   constructor( private Fb:FormBuilder,private userEditForm: UserLoginService, private api:ApiService ,public snack : MatSnackBar) {
     this.form= this.Fb.group(
@@ -31,23 +31,28 @@ export class EditUserComponent implements OnInit{
     )
   }
   ngOnInit() {
-    let s = this.userEditForm.s()
-     let ss = 'ssss'
+
   }
 
   submit() {
-        this.api.postRegistration(this.form.value).subscribe( res=>
-          {
-            this.snack.open("نام کاربری یا پسورد وجود ندارد","",{
+    if(this.form.valid){
 
-              duration:3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
 
-            })
-            this.form.reset();
-          }
 
-        )
+
+      this.api.postRegistration(this.form.value).subscribe( res=>
+        {
+          this.snack.open("نام کاربری یا پسورد وجود ندارد","",{
+            duration:3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+
+          })
+          this.form.reset();
+        }
+
+      )
+    }
+
   }
 }

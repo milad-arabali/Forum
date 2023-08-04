@@ -1,37 +1,93 @@
-<mat-card>
+<mat-card class="matCard">
   <mat-card-title>
     <div class="title">
       <img class="avatar " src="..\assets\img\images.jpg">
       <p>فرم ثبت نام در سامانه</p>
     </div>
   </mat-card-title>
-  <mat-card-content>
+  <mat-card-content class="mat">
     <div [formGroup]="form" class="loginForm">
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>نام کاربری :</span>
+            <mat-form-field class="mat-form">
+              <mat-label>نام کاربری :</mat-label>
+              <input type="text" matInput formControlName="userName">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>نام :</span>
+            <mat-form-field class="mat-form">
+              <mat-label>نام :</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-icon matSuffix >mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>کدملی :</span>
+            <mat-form-field class="mat-form">
+              <mat-label>کدملی :</mat-label>
+              <input type="text" matInput formControlName="nationalCode">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>جنسیت :</span>
+            <mat-radio-group class="mat-form" formControlName="gender">
+              <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+    <div class="col">
+      <div class="row">
+        <div>
+          <span>کلمه عبور :</span>
+          <mat-form-field class="mat-form">
+            <mat-label>کلمه عبور :</mat-label>
+            <input type="text" matInput formControlName="passWord">
+            <mat-icon matSuffix >mode_edit</mat-icon>
+          </mat-form-field>
+        </div>
+        <div>
+          <span>نام خانوادگی :</span>
+          <mat-form-field class="mat-form">
+            <mat-label>نام خانوادگی :</mat-label>
+            <input type="text" matInput formControlName="nameFamily">
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
+        </div>
 
-      <mat-form-field class="mat-form">
-        <mat-label>نام کاربری</mat-label>
-        <input type="text" matInput formControlName="username">
-        <mat-error>نام کاربری صحیح نمی باشد</mat-error>
-      </mat-form-field>
 
-
-      <mat-form-field class="mat-form">
-        <mat-label>پسورد</mat-label>
-        <input type="password" matInput formControlName="Password">
-        <mat-error>پسورد صحیح نمی باشد</mat-error>
-      </mat-form-field>
-
-      <div class="button">
-        <button mat-raised-button color="primary" >ثبت نام</button>
-        <button mat-raised-button  color="accent" [routerLink]="['/signin']">ورود</button>
+        <div>
+          <span>تاریخ تولد:</span>
+          <mat-form-field class="mat-form">
+            <mat-label>تاریخ تولد:</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="DateOfBirth">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
 
       </div>
-
     </div>
 
+    </div>
   </mat-card-content>
-  <div class="footerLoginform">
-    <p>تالار گفتگو</p>
-    <p>ورژن 1.0.0</p>
+  <mat-divider></mat-divider>
+  <div class="button">
+    <button mat-raised-button color="primary" (click)="submit()">ثبت نام</button>
+    <button mat-raised-button color="accent" [routerLink]="['/signin']">انصراف</button>
   </div>
+  <mat-card-footer>
+    <div class="footerLoginform">
+      <p>تالار گفتگو</p>
+      <p>ورژن 1.0.0</p>
+    </div>
+  </mat-card-footer>
+
+
 </mat-card>

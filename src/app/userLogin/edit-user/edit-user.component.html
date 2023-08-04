@@ -29,23 +29,15 @@
             <span>جنسیت :</span>
             <mat-radio-group class="mat-form"  formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
-
             </mat-radio-group>
-
           </div>
-
-
         </div>
-
       </div>
-
       <div class="col">
-
         <div class="row">
           <div>
             <span>کدملی :</span>
             <mat-form-field class="mat-form">
-
               <mat-label>کدملی :</mat-label>
               <input type="text" matInput  formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
@@ -62,7 +54,6 @@
           <div>
             <span>تاریخ تولد:</span>
             <mat-form-field class="mat-form">
-
               <mat-label>تاریخ تولد:</mat-label>
               <input matInput [matDatepicker]="picker"  formControlName="DateOfBirth">
               <mat-hint>MM/DD/YYYY</mat-hint>

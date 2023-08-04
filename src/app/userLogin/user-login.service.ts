@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {computed, Injectable} from '@angular/core';
 import {UserDbModel} from "./userDb.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -6,6 +6,7 @@ import {CookieServiceLogin} from "../../share/cookie.service";
 import {ApiService} from "../../share/api.service";
 import {userAccountModel} from "./useraccount.model";
 import {HttpClient} from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Injectable({
@@ -20,9 +21,6 @@ export class UserLoginService {
     new UserDbModel(2, 'admin1', 'admin1', 'admin1', 'admini1', 22265656, 'male', new Date(7 / 88 / 7))
   ];
 
-  s() {
-    return this.userDb.slice()
-  }
 
   // usernameLogin(username : any){
   //   this.cookie$.next(username)
@@ -30,6 +28,73 @@ export class UserLoginService {
   // }
 
   users !: userAccountModel[];
+
+  singIn(username , value) {
+    const api = this.api.apiUrl
+    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(res => {
+
+      if(res.find(
+        x => x.userName === username ,
+
+      )){
+        this.snack.open("نام کاربری وجود دارد", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+
+        })
+
+
+      }else {
+
+        this.c.set('users', username)
+        this.userLogin.logIn().then(() => {
+          this.router.navigate(['/home'])
+
+        })
+        this.api.postRegistration(value).subscribe( res=>
+          {
+            this.snack.open("کاربر جدید با موفقیت ثبت شد","",{
+              duration:3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+
+            })
+
+          }
+
+        )
+      }
+
+
+    })
+
+    // if (users1) {
+    //
+    //   this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
+    //     duration: 3000,
+    //     horizontalPosition: "end",
+    //     verticalPosition: "top"
+    //
+    //   })
+    //
+    // } else {
+    //   this.c.set('users', username)
+    //   this.userLogin.logIn().then(() => {
+    //     this.router.navigate(['/home'])
+    //
+    //   })
+    //   this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
+    //       duration: 3000,
+    //       horizontalPosition: "end",
+    //       verticalPosition: "top"
+    //
+    //     }
+    //   )
+    // }
+
+
+  }
 
   signOn(username, password) {
     const message: string = `کاربر ${username} وارد شدید `
@@ -39,7 +104,7 @@ export class UserLoginService {
       res.filter(
         x => x.userName === username
       ).filter(
-        y => y.nationalCode === password
+        y => y.password === password
       )
     })
 
@@ -50,7 +115,7 @@ export class UserLoginService {
 
     if (user && user.length === 1 || users1) {
       console.log("test")
-      // this.userLogin.userLogin(username)
+
       this.userLogin.logIn().then(() => {
         this.router.navigate(['/home'])
       })
@@ -73,6 +138,6 @@ export class UserLoginService {
     }
   }
 
-  constructor(private router: Router, public snack: MatSnackBar, private userLogin: CookieServiceLogin, private httpClient: HttpClient, private api: ApiService) {
+  constructor(private router: Router, public snack: MatSnackBar, private userLogin: CookieServiceLogin, private httpClient: HttpClient, private api: ApiService, private c: CookieService) {
   }
 }

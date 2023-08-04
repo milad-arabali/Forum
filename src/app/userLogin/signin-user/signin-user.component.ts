@@ -55,7 +55,6 @@ export class SigninUserComponent implements OnInit{
       console.log(this.form.value)
       const name = this.form.value.username;
       const password: any = this.form.value.Password;
-      // this.usersAth.usernameLogin(name);
       this.c.set('users', name)
       this.usersAth.signOn(name, password);
     }
