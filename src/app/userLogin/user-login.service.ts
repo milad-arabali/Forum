@@ -7,6 +7,7 @@ import {ApiService} from "../../share/api.service";
 import {userAccountModel} from "./useraccount.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {find} from "rxjs";
 
 
 @Injectable({
@@ -89,6 +90,7 @@ export class UserLoginService {
 
   }
 
+
   signOn(username, password) {
     const message: string = `کاربر ${username} وارد شدید `
     const api = this.api.apiUrl
@@ -128,6 +130,7 @@ export class UserLoginService {
       })
     }
   }
+
 
   constructor(private router: Router, public snack: MatSnackBar, private userLogin: CookieServiceLogin, private httpClient: HttpClient, private api: ApiService, private c: CookieService) {
   }

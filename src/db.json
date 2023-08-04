@@ -11,24 +11,14 @@
       "id": 10
     },
     {
-      "userName": "admin1",
-      "passWord": "admin",
+      "userName": "milad",
+      "passWord": "milad",
       "name": "milad",
       "nameFamily": "milad",
-      "nationalCode": "2216552355",
+      "nationalCode": "22222",
       "gender": "مرد",
-      "DateOfBirth": "2023-08-09T20:30:00.000Z",
+      "DateOfBirth": "2023-08-13T20:30:00.000Z",
       "id": 11
-    },
-    {
-      "userName": "admin2",
-      "passWord": "admin",
-      "name": "admin",
-      "nameFamily": "admin",
-      "nationalCode": "999999",
-      "gender": "مرد",
-      "DateOfBirth": "2023-08-15T20:30:00.000Z",
-      "id": 12
     }
   ],
   "a": []
