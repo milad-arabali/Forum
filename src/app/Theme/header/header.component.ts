@@ -4,35 +4,58 @@ import {Router} from "@angular/router";
 import {UserLoginService} from "../../userLogin/user-login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogOutComponent} from "../../userLogin/log-out/log-out.component";
+import {userAccountModel} from "../../userLogin/useraccount.model";
+import {ApiService} from "../../../share/api.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
-@Output() showSidebarEmitter: EventEmitter<boolean>=new EventEmitter<boolean>()
-  sidebarStatus:boolean =true;
-username : string;
- ngOnInit() {
-   // this.usernameLogin.selectedUser$.subscribe(
-   //   user => this.username =user
-   // )
-   this.username = this.c.get('users')
- }
+export class HeaderComponent implements OnInit {
+  @Output() showSidebarEmitter: EventEmitter<boolean> = new EventEmitter<boolean>()
+  sidebarStatus: boolean = true;
+  usernameCookie: string;
+  name: string;
+  familyName: string;
+
+  ngOnInit() {
+    // this.usernameLogin.selectedUser$.subscribe(
+    //   user => this.username =user
+    // )
+    this.usernameCookie = this.c.get('users')
+    const api = this.api.apiUrl;
+    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+      res => {
+        res.slice().find(a => {
+          if (a.userName === this.usernameCookie) {
+            this.name = a.name;
+            this.familyName = a.nameFamily
+          }
+        })
+      })
+  }
 
   showSidebar() {
-    this.sidebarStatus =!this.sidebarStatus;
+    this.sidebarStatus = !this.sidebarStatus;
     this.showSidebarEmitter.emit(this.sidebarStatus);
   }
-  constructor(private logOut: CookieService , private  route : Router,private usernameLogin: UserLoginService , private  dialog: MatDialog, private c:CookieService) {
+
+  constructor(private logOut: CookieService,
+              private api: ApiService,
+              private route: Router,
+              private usernameLogin: UserLoginService,
+              private dialog: MatDialog,
+              private httpClient: HttpClient,
+              private c: CookieService) {
   }
+
   logout() {
     const dialogRef = this.dialog.open(LogOutComponent)
     dialogRef.afterClosed()
 
   }
-
 
 
 }

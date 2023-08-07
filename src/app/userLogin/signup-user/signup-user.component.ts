@@ -23,7 +23,7 @@ export class SignupUserComponent implements AfterViewInit{
         Validators.minLength(5),
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
-      passWord: [, [Validators.required, Validators.required, Validators.minLength(5)]],
+      password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
       name: [, [Validators.required]],
       nameFamily: [, [Validators.required]],
       nationalCode: [, [Validators.required]],

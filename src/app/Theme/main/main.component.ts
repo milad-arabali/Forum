@@ -1,7 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserLoginService} from "../../userLogin/user-login.service";
 import {CookieService} from "ngx-cookie-service";
-
+import {userAccountModel} from "../../userLogin/useraccount.model";
+import {ActivatedRoute} from "@angular/router";
+import {ApiService} from "../../../share/api.service";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -10,18 +13,34 @@ import {CookieService} from "ngx-cookie-service";
   styleUrls: ['./main.component.css']
 })
 
-export class MainComponent implements OnInit{
-  @Input() showSidebar: boolean =true;
+export class MainComponent implements OnInit {
+  @Input() showSidebar: boolean = true;
 
-   username1 : string;
- ngOnInit() {
-   // this.usernameLogin.selectedUser$.subscribe( user => this.username1 = user)
-   this.username1 = this.c.get('users')
- }
+  username1: string;
+  name: string;
+  familyName: string;
 
+  ngOnInit() {
 
+    this.username1 = this.c.get('users')
+    const api = this.api.apiUrl;
+    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+      res => {
+      res.slice().find(a => {
+        if (a.userName === this.username1) {
+          this.name = a.name;
+          this.familyName = a.nameFamily
+        }
+      })
+    })
 
-  constructor(private usernameLogin: UserLoginService,private c: CookieService) {
+  }
+
+  constructor(private route: ActivatedRoute,
+              private api: ApiService,
+              private usernameLogin: UserLoginService,
+              private c: CookieService,
+              private httpClient: HttpClient) {
   }
 
 

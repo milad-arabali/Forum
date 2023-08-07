@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SigninUserComponent } from './signin-user/signin-user.component';
+import { SigninUserComponent } from './sign-in-user/signin-user.component';
 import { SignupUserComponent } from './signup-user/signup-user.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";

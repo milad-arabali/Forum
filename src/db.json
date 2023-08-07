@@ -2,7 +2,7 @@
   "enquiry": [
     {
       "userName": "admin",
-      "passWord": "milad",
+      "password": "milad",
       "name": "admin",
       "nameFamily": "eeeq",
       "nationalCode": "00213131",
@@ -12,13 +12,33 @@
     },
     {
       "userName": "milad",
-      "passWord": "milad",
+      "password": "milad",
       "name": "milad",
       "nameFamily": "milad",
       "nationalCode": "22222",
       "gender": "مرد",
       "DateOfBirth": "2023-08-13T20:30:00.000Z",
       "id": 11
+    },
+    {
+      "userName": "ali12345",
+      "password": "ali12345",
+      "name": "sssss",
+      "nameFamily": "ssss",
+      "nationalCode": "1111111",
+      "gender": "مرد",
+      "DateOfBirth": "2023-08-20T20:30:00.000Z",
+      "id": 12
+    },
+    {
+      "userName": "test1",
+      "password": "test1",
+      "name": "محمدرضا",
+      "nameFamily": "حسینی",
+      "nationalCode": "090909009",
+      "gender": "مرد",
+      "DateOfBirth": "2023-08-14T20:30:00.000Z",
+      "id": 13
     }
   ],
   "a": []

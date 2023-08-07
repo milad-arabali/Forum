@@ -1,20 +1,20 @@
 <header class="header">
   <mat-toolbar class="toolbar" color="primary">
-    <div  class="toolbar-right">
+    <div class="toolbar-right">
       <a mat-button (click)="showSidebar()">
         <mat-icon *ngIf="sidebarStatus">close</mat-icon>
         <mat-icon *ngIf="!sidebarStatus">menu</mat-icon>
       </a>
-      <p >تالار گفتگو</p>
+      <p>تالار گفتگو</p>
     </div>
-    <div  class="toolbar-left">
+    <div class="toolbar-left">
       <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
       <a mat-button [matMenuTriggerFor]="dropdown">
         <mat-icon>person</mat-icon>
-        <span>{{username}}</span>
+        <span>{{name}}--{{familyName}}</span>
       </a>
       <mat-menu #dropdown>
-        <button mat-menu-item  [routerLink]="['profile']" RouterLinkActive="['active']">
+        <button mat-menu-item [routerLink]="['profile']" RouterLinkActive="['active']">
           <mat-icon>person</mat-icon>
           <span>  ویرایش حساب کاربری</span>
         </button>

@@ -5,17 +5,12 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 
 
-
-
-
-
-
 @Component({
-  selector: 'app-signin-user',
+  selector: 'app-sign-in-user',
   templateUrl: './signin-user.component.html',
   styleUrls: ['./signin-user.component.css']
 })
-export class SigninUserComponent implements OnInit{
+export class SigninUserComponent implements OnInit {
   @ViewChild("myInput") private _inputElement: ElementRef;
   form: FormGroup;
   pending = true;
@@ -41,12 +36,10 @@ export class SigninUserComponent implements OnInit{
 
     console.log('34: ', this.form.get('username').errors)
     const a = this.cookie.get('login')
-
     if (a) {
       console.log('dddd', a)
       this.router.navigate(['/home']);
     }
-
   }
 
   onSubmit() {
@@ -55,7 +48,7 @@ export class SigninUserComponent implements OnInit{
       console.log(this.form.value)
       const name = this.form.value.username;
       const password: any = this.form.value.Password;
-      this.c.set('users', name)
+
       this.usersAth.signOn(name, password);
     }
     this.form.reset();

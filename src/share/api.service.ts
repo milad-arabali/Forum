@@ -11,11 +11,13 @@ export class ApiService {
   getRegisterUserId(id: number){
      return this.httpClient.get<userAccountModel>(`${this.apiUrl}/${id}`)
   }
-  getRegisterUser(){
-    return this.httpClient.get<userAccountModel[]>(`${this.apiUrl}`)
+  updateRegisterUser(registerObj: userAccountModel,id : number){
+    return this.httpClient.patch<userAccountModel>(`${this.apiUrl}/${id}}`,registerObj)
   }
   postRegistration(registerObj: userAccountModel){
      return this.httpClient.post<userAccountModel>(`${this.apiUrl}`,registerObj)
   }
-
+   showInformation(){
+     return this.httpClient.get<userAccountModel>(`${this.apiUrl}`)
+   }
 }

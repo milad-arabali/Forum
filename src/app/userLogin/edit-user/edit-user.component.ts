@@ -17,13 +17,18 @@ import {CookieService} from "ngx-cookie-service";
 export class EditUserComponent implements OnInit {
   form: FormGroup;
   gender: string[] = ['مرد', 'زن']
-  a:boolean=true;
+  a: boolean = true;
 
-
-  constructor(private route: ActivatedRoute, private Fb: FormBuilder, private userEditForm: UserLoginService, private httpClient: HttpClient, private api: ApiService, public snack: MatSnackBar, private c: CookieService) {
+  constructor(private route: ActivatedRoute,
+              private Fb: FormBuilder,
+              private userEditForm: UserLoginService,
+              private httpClient: HttpClient,
+              private api: ApiService,
+              public snack: MatSnackBar,
+              private c: CookieService) {
     this.form = this.Fb.group(
       {
-        userName: [ ],
+        userName: [],
         name: [],
         nameFamily: [],
         nationalCode: [],
@@ -34,24 +39,31 @@ export class EditUserComponent implements OnInit {
     )
   }
 
-  userEdit ?: userAccountModel;
+
   username1 = this.c.get('users')
-  r:userAccountModel;
+  r: userAccountModel;
+  userId: number;
+
   ngOnInit() {
     const api = this.api.apiUrl;
-    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(res => {
-      this.r = res.find(
-        x => x.userName === this.username1,
-      )
-     this.showUserConfig(this.r)
-    })
+    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+      res => {
+        this.r = res.find(
+          x => x.userName === this.username1,
+        )
+        this.showUserConfig(this.r)
+        // this.userId=this.r.id;
+        // this.userId = res.find(
+        //   x => x.userName === this.username1,
+        // ).id
+      })
 
 
   }
 
   showUserConfig(user: userAccountModel) {
     this.form.setValue({
-        userName: { value:user.userName,disabled: true},
+        userName: user.userName,
         name: user.name,
         nameFamily: user.nameFamily,
         nationalCode: user.nationalCode,
@@ -63,6 +75,15 @@ export class EditUserComponent implements OnInit {
 
   submit() {
 
+    this.api.updateRegisterUser(this.form.value, this.userId).subscribe(res => {
+      this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top"
+      })
+
+
+    })
 
   }
 }
