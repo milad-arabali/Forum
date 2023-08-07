@@ -83,7 +83,7 @@ export class EditUserComponent implements OnInit {
   submit() {
     const userId = this.userId
     let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(res => {
-      this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
+      this.snack.open("حساب کاربری با موفقیت ویرایش شد", "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
