@@ -8,16 +8,20 @@ import {UserLoginModule} from "./components/user-panel/module/user-login.module"
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
-import {HttpClientModule} from "@angular/common/http";
+
 import {
   MaterialPersianDateAdapter,
   PERSIAN_DATE_FORMATS
 } from "./components/user-panel/adapter/material-persian-date.adapter";
 import {NationalCodeValidatorDirective} from "./components/user-panel/directive/natonal-code-validator.directive";
+import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-
-
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -34,6 +38,16 @@ import {NationalCodeValidatorDirective} from "./components/user-panel/directive/
     UserLoginModule,
     MatNativeDateModule,
     HttpClientModule,
+    HttpClientModule,
+    TranslateModule.forRoot(
+      {
+        loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      }
+    )
 
 
 

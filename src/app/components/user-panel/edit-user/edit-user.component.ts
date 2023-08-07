@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../directive/natonal-code-validator.directive";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -28,7 +29,13 @@ export class EditUserComponent implements OnInit {
               private api: ApiService,
               public snack: MatSnackBar,
               private c: CookieService,
-              private dateAdapter: DateAdapter<any>) {
+              private dateAdapter: DateAdapter<any>,
+              translate: TranslateService
+
+              ) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('en');
+    translate.use('fa');
     this.dateAdapter.setLocale('fa-IR');
     this.form = this.Fb.group(
       {

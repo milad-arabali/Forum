@@ -18,6 +18,7 @@ import {CdkTableModule} from "@angular/cdk/table";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
 import { ResetPassWordComponent } from '../../user-authentication/reset-pass-word/reset-pass-word.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -34,23 +35,24 @@ import { ResetPassWordComponent } from '../../user-authentication/reset-pass-wor
     ChangePasswordComponent,
     ResetPassWordComponent
   ],
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
-    RouterLink,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatGridListModule,
-    MatDatepickerModule,
-    MatListModule,
-    CdkTableModule,
-    MatIconModule,
-    MatRadioModule,
-    FormsModule,
+    imports: [
+        CommonModule,
+        MatInputModule,
+        MatButtonModule,
+        MatCardModule,
+        RouterLink,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatGridListModule,
+        MatDatepickerModule,
+        MatListModule,
+        CdkTableModule,
+        MatIconModule,
+        MatRadioModule,
+        FormsModule,
+        TranslateModule,
 
 
-  ]
+    ]
 })
 export class UserLoginModule { }
