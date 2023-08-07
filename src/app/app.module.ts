@@ -7,8 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./components/user-panel/module/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
-import {MatNativeDateModule} from "@angular/material/core";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {HttpClientModule} from "@angular/common/http";
+import {
+  MaterialPersianDateAdapter,
+  PERSIAN_DATE_FORMATS
+} from "./components/user-panel/adapter/material-persian-date.adapter";
+import {NationalCodeValidatorDirective} from "./components/user-panel/directive/natonal-code-validator.directive";
+
 
 
 
@@ -17,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
+    NationalCodeValidatorDirective
 
   ],
   imports: [
@@ -32,7 +39,15 @@ import {HttpClientModule} from "@angular/common/http";
 
   ],
   providers: [MatSnackBar,
-    CookieService,
+    CookieService,{
+      provide: DateAdapter,
+      useClass: MaterialPersianDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    {
+      provide:MAT_DATE_FORMATS,
+      useValue:PERSIAN_DATE_FORMATS
+    },
   ],
   bootstrap: [AppComponent],
 

@@ -12,7 +12,7 @@ export class ApiService {
      return this.httpClient.get<userAccountModel>(`${this.apiUrl}/${id}`)
   }
   updateRegisterUser(registerObj: userAccountModel,id : number){
-    return this.httpClient.patch<userAccountModel>(`${this.apiUrl}/${id}}`,registerObj)
+    return this.httpClient.patch<userAccountModel[]>(`${this.apiUrl}/${id}}`,registerObj)
   }
   postRegistration(registerObj: userAccountModel){
      return this.httpClient.post<userAccountModel>(`${this.apiUrl}`,registerObj)

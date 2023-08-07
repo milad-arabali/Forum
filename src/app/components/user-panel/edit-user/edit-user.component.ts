@@ -3,10 +3,12 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../services/user-login.service";
 import {ApiService} from "../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {userAccountModel} from "../model/useraccount.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {DateAdapter} from "@angular/material/core";
+import {checkNationalCode} from "../directive/natonal-code-validator.directive";
 
 
 @Component({
@@ -25,15 +27,19 @@ export class EditUserComponent implements OnInit {
               private httpClient: HttpClient,
               private api: ApiService,
               public snack: MatSnackBar,
-              private c: CookieService) {
+              private c: CookieService,
+              private dateAdapter: DateAdapter<any>) {
+    this.dateAdapter.setLocale('fa-IR');
     this.form = this.Fb.group(
       {
-        userName: [],
-        name: [],
-        nameFamily: [],
-        nationalCode: [],
-        gender: [],
-        DateOfBirth: []
+        userName: ['', [Validators.required]],
+
+        name: ['', [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+        nameFamily: ['', [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+        nationalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10),
+          checkNationalCode()]],
+        gender: ['', [Validators.required]],
+        DateOfBirth: ['', [Validators.required]]
 
       }
     )
@@ -52,6 +58,7 @@ export class EditUserComponent implements OnInit {
           x => x.userName === this.username1,
         )
         this.showUserConfig(this.r)
+        this.userId = this.r.id
         // this.userId=this.r.id;
         // this.userId = res.find(
         //   x => x.userName === this.username1,
@@ -74,8 +81,8 @@ export class EditUserComponent implements OnInit {
   }
 
   submit() {
-
-    this.api.updateRegisterUser(this.form.value, this.userId).subscribe(res => {
+    const userId = this.userId
+    let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(res => {
       this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
         duration: 3000,
         horizontalPosition: "end",
