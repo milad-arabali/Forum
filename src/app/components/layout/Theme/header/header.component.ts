@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
-import {UserLoginService} from "../../userLogin/user-login.service";
+import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {MatDialog} from "@angular/material/dialog";
-import {LogOutComponent} from "../../userLogin/log-out/log-out.component";
-import {userAccountModel} from "../../userLogin/useraccount.model";
-import {ApiService} from "../../../share/api.service";
+import {LogOutComponent} from "../../../user-panel/log-out/log-out.component";
+import {userAccountModel} from "../../../user-panel/model/useraccount.model";
+import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
 
 @Component({

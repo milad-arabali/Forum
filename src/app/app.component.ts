@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CookieServiceLogin} from "../share/cookie.service";
+import {CookieServiceLogin} from "../share/services/cookie.service";
 import {CookieService} from "ngx-cookie-service";
 
 import {Router} from "@angular/router";

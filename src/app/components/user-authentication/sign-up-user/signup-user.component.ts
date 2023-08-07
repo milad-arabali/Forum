@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserLoginService} from "../user-login.service";
-import {ApiService} from "../../../share/api.service";
+import {UserLoginService} from "../../user-panel/services/user-login.service";
+import {ApiService} from "../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
-  selector: 'app-signup-user',
+  selector: 'app-sign-up-user',
   templateUrl: './signup-user.component.html',
   styleUrls: ['./signup-user.component.css']
 })

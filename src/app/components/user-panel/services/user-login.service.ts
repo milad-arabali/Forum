@@ -1,10 +1,10 @@
 import {computed, Injectable} from '@angular/core';
-import {UserDbModel} from "./userDb.model";
+import {UserDbModel} from "../model/userDb.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {CookieServiceLogin} from "../../share/cookie.service";
-import {ApiService} from "../../share/api.service";
-import {userAccountModel} from "./useraccount.model";
+import {CookieServiceLogin} from "../../../../share/services/cookie.service";
+import {ApiService} from "../../../../share/services/api.service";
+import {userAccountModel} from "../model/useraccount.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {find} from "rxjs";

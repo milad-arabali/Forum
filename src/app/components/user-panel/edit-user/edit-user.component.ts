@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserLoginService} from "../user-login.service";
-import {ApiService} from "../../../share/api.service";
+import {UserLoginService} from "../services/user-login.service";
+import {ApiService} from "../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Params} from "@angular/router";
-import {userAccountModel} from "../useraccount.model";
+import {userAccountModel} from "../model/useraccount.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 

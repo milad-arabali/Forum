@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserLoginService} from "../user-login.service";
+import {UserLoginService} from "../../user-panel/services/user-login.service";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 

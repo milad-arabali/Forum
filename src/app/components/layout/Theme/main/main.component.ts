@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UserLoginService} from "../../userLogin/user-login.service";
+import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {CookieService} from "ngx-cookie-service";
-import {userAccountModel} from "../../userLogin/useraccount.model";
+import {userAccountModel} from "../../../user-panel/model/useraccount.model";
 import {ActivatedRoute} from "@angular/router";
-import {ApiService} from "../../../share/api.service";
+import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
 
 
