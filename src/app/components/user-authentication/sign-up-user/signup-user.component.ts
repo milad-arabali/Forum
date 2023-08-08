@@ -11,13 +11,17 @@ import {CookieService} from "ngx-cookie-service";
   templateUrl: './signup-user.component.html',
   styleUrls: ['./signup-user.component.css']
 })
-export class SignupUserComponent implements AfterViewInit{
+export class SignupUserComponent implements AfterViewInit {
   @ViewChild("myInput") private _inputElement: ElementRef;
-
   gender: string[] = ['مرد', 'زن']
   form: FormGroup;
 
-  constructor(private signUpfb: FormBuilder, private api: ApiService, private snack: MatSnackBar, private usersAth: UserLoginService, private cookie: CookieService, private c: CookieService) {
+  constructor(private signUpfb: FormBuilder,
+              private api: ApiService,
+              private snack: MatSnackBar,
+              private usersAth: UserLoginService,
+              private cookie: CookieService,
+              private c: CookieService) {
     this.form = this.signUpfb.group({
       userName: [, [Validators.required,
         Validators.minLength(5),

@@ -4,7 +4,7 @@ import {UserLoginService} from "../services/user-login.service";
 import {ApiService} from "../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute} from "@angular/router";
-import {userAccountModel} from "../model/useraccount.model";
+import {UserAccountInformationModel} from "../model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter} from "@angular/material/core";
@@ -31,8 +31,7 @@ export class EditUserComponent implements OnInit {
               private c: CookieService,
               private dateAdapter: DateAdapter<any>,
               translate: TranslateService
-
-              ) {
+  ) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('en');
     translate.use('fa');
@@ -54,12 +53,12 @@ export class EditUserComponent implements OnInit {
 
 
   username1 = this.c.get('users')
-  r: userAccountModel;
+  r: UserAccountInformationModel;
   userId: number;
 
   ngOnInit() {
     const api = this.api.apiUrl;
-    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
       res => {
         this.r = res.find(
           x => x.userName === this.username1,
@@ -75,7 +74,7 @@ export class EditUserComponent implements OnInit {
 
   }
 
-  showUserConfig(user: userAccountModel) {
+  showUserConfig(user: UserAccountInformationModel) {
     this.form.setValue({
         userName: user.userName,
         name: user.name,
@@ -89,15 +88,16 @@ export class EditUserComponent implements OnInit {
 
   submit() {
     const userId = this.userId
-    let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(res => {
-      this.snack.open("حساب کاربری با موفقیت ویرایش شد", "", {
-        duration: 3000,
-        horizontalPosition: "end",
-        verticalPosition: "top"
+    let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(
+      res => {
+        this.snack.open("حساب کاربری با موفقیت ویرایش شد", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+
+
       })
-
-
-    })
 
   }
 }

@@ -9,23 +9,24 @@ import {Router} from "@angular/router";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  constructor(private userLifetime : CookieServiceLogin,private cookie : CookieService ,private router:Router) {
-  }
+export class AppComponent implements OnInit {
 
   title = 'Forum';
   lifeTime: boolean = false;
-  userLife: string ;
+  userLife: string;
+
+  constructor(private userLifetime: CookieServiceLogin, private cookie: CookieService, private router: Router) {
+  }
 
   ngOnInit() {
-     // this.userLifetime.selectedUser$.subscribe(
-     //  (value) => { this.userLife = value;
-     //     this.cookie.set(String(this.userLife) , String(this.lifeTime));
-     //     this.lifeTime=true;
-     //   }
-     //
-     //
-     // )
+    // this.userLifetime.selectedUser$.subscribe(
+    //  (value) => { this.userLife = value;
+    //     this.cookie.set(String(this.userLife) , String(this.lifeTime));
+    //     this.lifeTime=true;
+    //   }
+    //
+    //
+    // )
     // if(this.lifeTime){
     //   this.router.navigate(['/users'])
     // }else{

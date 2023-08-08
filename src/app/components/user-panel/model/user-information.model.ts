@@ -1,4 +1,4 @@
-export class UserDbModel {
+export class UserInformationModel {
   id:number;
   userName: string;
   password: any;

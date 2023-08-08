@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ThemeModule} from "./components/layout/Theme/module/Theme.module";
+import {ThemeModule} from "./components/layout/theme/module/theme.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./components/user-panel/module/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";

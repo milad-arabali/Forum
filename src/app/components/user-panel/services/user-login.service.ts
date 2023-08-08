@@ -1,13 +1,12 @@
 import {computed, Injectable} from '@angular/core';
-import {UserDbModel} from "../model/userDb.model";
+import {UserInformationModel} from "../model/user-information.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieServiceLogin} from "../../../../share/services/cookie.service";
 import {ApiService} from "../../../../share/services/api.service";
-import {userAccountModel} from "../model/useraccount.model";
+import {UserAccountInformationModel} from "../model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
-import {find} from "rxjs";
 
 
 @Injectable({
@@ -17,12 +16,35 @@ export class UserLoginService {
   // private cookie$ = new BehaviorSubject<any>({});
   // selectedUser$ = this.cookie$.asObservable();
   aa: number;
-  public user: userAccountModel;
-  public userDb: UserDbModel[] = [
-    new UserDbModel(1, 'admin', 'admin', 'admin', 'admini', 22265656, 'male', new Date(7 / 88 / 7)),
-    new UserDbModel(2, 'admin1', 'admin1', 'admin1', 'admini1', 22265656, 'male', new Date(7 / 88 / 7))
+  public user: UserAccountInformationModel;
+  public userDb: UserInformationModel[] = [
+    new UserInformationModel(
+      1,
+      'admin',
+      'admin',
+      'admin',
+      'admini',
+      22265656,
+      'male',
+      new Date(7 / 88 / 7)),
+    new UserInformationModel(
+      2,
+      'admin1',
+      'admin1',
+      'admin1',
+      'admini1',
+      22265656,
+      'male',
+      new Date(7 / 88 / 7))
   ];
 
+  constructor(private router: Router,
+              public snack: MatSnackBar,
+              private userLogin: CookieServiceLogin,
+              private httpClient: HttpClient,
+              private api: ApiService,
+              private c: CookieService) {
+  }
 
   // usernameLogin(username : any){
   //   this.cookie$.next(username)
@@ -31,36 +53,36 @@ export class UserLoginService {
 
   singIn(username, value) {
     const api = this.api.apiUrl
-    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(res => {
+    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+      res => {
+        if (res.find(
+          x => x.userName === username,
+        )) {
+          this.snack.open("نام کاربری وجود دارد", "", {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
 
-      if (res.find(
-        x => x.userName === username,
-      )) {
-        this.snack.open("نام کاربری وجود دارد", "", {
-          duration: 3000,
-          horizontalPosition: "end",
-          verticalPosition: "top"
+          })
 
-        })
+        } else {
 
-      } else {
-
-        this.c.set('users', username)
-        this.userLogin.logIn().then(() => {
-          this.router.navigate(['/home'])
-        })
-        this.api.postRegistration(value).subscribe(res => {
-            this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
-              duration: 3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
-            })
-          }
-        )
-      }
+          this.c.set('users', username)
+          this.userLogin.logIn().then(() => {
+            this.router.navigate(['/home'])
+          })
+          this.api.postRegistration(value).subscribe(res => {
+              this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              })
+            }
+          )
+        }
 
 
-    })
+      })
 
     // if (users1) {
     //
@@ -86,14 +108,12 @@ export class UserLoginService {
     //   )
     // }
 
-
   }
-
 
   signOn(username, password) {
     const message: string = `کاربر ${username} وارد شدید `
     const api = this.api.apiUrl
-    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
       res => {
         // console.log("sss", res)
         const a = res.find(a => {
@@ -154,11 +174,4 @@ export class UserLoginService {
   }
 
 
-  constructor(private router: Router,
-              public snack: MatSnackBar,
-              private userLogin: CookieServiceLogin,
-              private httpClient: HttpClient,
-              private api: ApiService,
-              private c: CookieService) {
-  }
 }

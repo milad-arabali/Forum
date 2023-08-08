@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogOutComponent} from "../../../user-panel/log-out/log-out.component";
-import {userAccountModel} from "../../../user-panel/model/useraccount.model";
+import {UserAccountInformationModel} from "../../../user-panel/model/user-account-information.model";
 import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
 
@@ -20,13 +20,22 @@ export class HeaderComponent implements OnInit {
   name: string;
   familyName: string;
 
+  constructor(private logOut: CookieService,
+              private api: ApiService,
+              private route: Router,
+              private usernameLogin: UserLoginService,
+              private dialog: MatDialog,
+              private httpClient: HttpClient,
+              private c: CookieService) {
+  }
+
   ngOnInit() {
     // this.usernameLogin.selectedUser$.subscribe(
     //   user => this.username =user
     // )
     this.usernameCookie = this.c.get('users')
     const api = this.api.apiUrl;
-    let users1 = this.httpClient.get<userAccountModel[]>(`${api}`).subscribe(
+    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
       res => {
         res.slice().find(a => {
           if (a.userName === this.usernameCookie) {
@@ -42,14 +51,6 @@ export class HeaderComponent implements OnInit {
     this.showSidebarEmitter.emit(this.sidebarStatus);
   }
 
-  constructor(private logOut: CookieService,
-              private api: ApiService,
-              private route: Router,
-              private usernameLogin: UserLoginService,
-              private dialog: MatDialog,
-              private httpClient: HttpClient,
-              private c: CookieService) {
-  }
 
   logout() {
     const dialogRef = this.dialog.open(LogOutComponent)

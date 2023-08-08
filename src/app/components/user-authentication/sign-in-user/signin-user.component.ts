@@ -15,7 +15,11 @@ export class SigninUserComponent implements OnInit {
   form: FormGroup;
   pending = true;
 
-  constructor(private fb: FormBuilder, private usersAth: UserLoginService, private cookie: CookieService, private router: Router, private c: CookieService) {
+  constructor(private fb: FormBuilder,
+              private usersAth: UserLoginService,
+              private cookie: CookieService,
+              private router: Router,
+              private c: CookieService) {
     this.form = this.fb.group({
       username: ['',
         Validators.compose([

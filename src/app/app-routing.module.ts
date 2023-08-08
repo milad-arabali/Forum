@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ThemeComponent} from "./components/layout/Theme/theme.component";
+import {ThemeComponent} from "./components/layout/theme/theme.component";
 import {SigninUserComponent} from "./components/user-authentication/sign-in-user/signin-user.component";
 import {SignupUserComponent} from "./components/user-authentication/sign-up-user/signup-user.component";
 import {AuthGuard} from "../share/services/auth.guard";
@@ -13,7 +13,6 @@ const routes: Routes = [
   {path: 'signup', component: SignupUserComponent},
   {path: 'signin', component: SigninUserComponent},
   {path: 'resetpassword', component: ResetPassWordComponent},
-
   {path: 'home', canActivate:[AuthGuard] ,component: ThemeComponent ,children: [{
       path: 'profile',
       component: EditUserComponent,
