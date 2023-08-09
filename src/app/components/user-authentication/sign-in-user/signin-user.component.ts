@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../../user-panel/services/user-login.service";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -19,7 +20,11 @@ export class SigninUserComponent implements OnInit {
               private usersAth: UserLoginService,
               private cookie: CookieService,
               private router: Router,
-              private c: CookieService) {
+              private c: CookieService,
+              translate: TranslateService) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('en');
+    translate.use('fa');
     this.form = this.fb.group({
       username: ['',
         Validators.compose([

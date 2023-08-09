@@ -1,7 +1,7 @@
 <mat-card class="matCard">
   <mat-card-title>
     <div class="title">
-      <p>فرم ثبت نام در سامانه</p>
+      <p>{{'singUpComponent.singUpComponent-title' | translate }}</p>
     </div>
   </mat-card-title>
   <mat-card-content class="mat">
@@ -9,22 +9,19 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>نام کاربری :</span>
+            <span>{{'singUpComponent.singUpComponent-userName-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>نام کاربری :</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-userName-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="userName" #myInput>
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('minlength')">
-                طول
-                کاراکتر نام کاربر کمتر از 5 کاراکتر است
+                طول کاراکتر نام کاربر کمتر از 5 کاراکتر است
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('maxLength')">
-                طول
-                کاراکتر نام کاربر بیشتر از 60 کاراکتر است
+                طول کاراکتر نام کاربر بیشتر از 60 کاراکتر است
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('pattern')">نام
-                کاربری
-                فارسی است
+                کاربری فارسی است
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid ">
                 نام کاربری وارد شود.
@@ -32,9 +29,9 @@
             </mat-form-field>
           </div>
           <div>
-            <span>نام :</span>
+            <span>{{'singUpComponent.singUpComponent-name-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>نام :</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-name-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid ">
@@ -43,9 +40,9 @@
             </mat-form-field>
           </div>
           <div>
-            <span>کدملی :</span>
+            <span>{{'singUpComponent.singUpComponent-nationalCode-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>کدملی :</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-nationalCode-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid ">
@@ -54,7 +51,7 @@
             </mat-form-field>
           </div>
           <div>
-            <span>جنسیت :</span>
+            <span>{{'singUpComponent.singUpComponent-gender-span' | translate }}</span>
             <mat-radio-group class="mat-form" formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
             </mat-radio-group>
@@ -64,9 +61,9 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>کلمه عبور :</span>
+            <span>{{'singUpComponent.singUpComponent-password-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>کلمه عبور :</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-password-mat-label' | translate }}</mat-label>
               <input type="password" matInput formControlName="password">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['password'].invalid ">
@@ -75,9 +72,9 @@
             </mat-form-field>
           </div>
           <div>
-            <span>نام خانوادگی :</span>
+            <span>{{'singUpComponent.singUpComponent-nameFamily-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>نام خانوادگی :</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-nameFamily-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nameFamily'].invalid ">
@@ -88,9 +85,9 @@
 
 
           <div>
-            <span>تاریخ تولد:</span>
+            <span>{{'singUpComponent.singUpComponent-DateOfBirth-span' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>تاریخ تولد:</mat-label>
+              <mat-label>{{'singUpComponent.singUpComponent-DateOfBirth-mat-label' | translate }}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="DateOfBirth">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -108,16 +105,16 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <div class="button">
-    <button mat-raised-button color="primary" (click)="submit()">ثبت نام</button>
-    <button mat-raised-button color="accent" [routerLink]="['/signin']">انصراف</button>
+    <button mat-raised-button color="primary" (click)="submit()">{{'singUpComponent.singUpComponent-registerButton' | translate }}</button>
+    <button mat-raised-button color="accent" [routerLink]="['/signin']">{{'singUpComponent.singUpComponent-cancel' | translate }}</button>
   </div>
   <mat-card-footer>
     <div class="footerLoginform">
       <div>
         <img class="avatar" src="..\assets\img\angular.png">
-        <p>تالار گفتگو</p>
+        <p>{{'singUpComponent.singUpComponent-nameApp' | translate }}</p>
       </div>
-      <p>ورژن 1.0.0</p>
+      <p>{{'singUpComponent.singUpComponent-AppVersion' | translate }}</p>
     </div>
   </mat-card-footer>
 </mat-card>

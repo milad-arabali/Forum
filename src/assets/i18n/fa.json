@@ -1,4 +1,43 @@
 {
+  "singInComponent":{
+    "singInComponent-title": "فرم ورود به سامانه",
+    "singInComponent-userName": "نام کاربری",
+    "singInComponent-matError-userName":"نام کاربری وارد شود.",
+    "singInComponent-matError-userNameChar":"طول کاراکتر نام کاربر کمتر از 5 کاراکتراست....",
+    "singInComponent-matError-userNameMaxChar":"کاراکتر نام کاربر بیشتر از 60 کاراکتر است.",
+    "singInComponent-matError-userNamePresianChar":"نام کاربری فارسی است.",
+    "passWord-matlabel": "کلمه عبور ",
+    "singInComponent-matError-PassWordError":"کلمه عبور وارد شود.",
+    "singInComponent-inputButton":"ورود",
+    "singInComponent-registerButton":"ثبت نام",
+    "singInComponent-recoveryPassword":"بازیابی پسورد",
+    "singInComponent-nameApp":"تالار گفتگو",
+    "singInComponent-AppVersion":"ورژن 1.0.0"
+  },
+  "singUpComponent":{
+    "singUpComponent-title": "فرم ثبت نام در سامانه",
+    "singUpComponent-userName-span": "نام کاربری :",
+    "singUpComponent-name-span": "نام :",
+    "singUpComponent-nationalCode-span": "کدملی :",
+    "singUpComponent-gender-span": "جنسیت :",
+    "singUpComponent-password-span": "کلمه عبور :",
+    "singUpComponent-nameFamily-span": "نام خانوادگی :",
+    "singUpComponent-DateOfBirth-span": "تاریخ تولد:",
+    "singUpComponent-inputButton":"ورود",
+    "singUpComponent-registerButton":"ثبت نام",
+    "singUpComponent-cancel":"انصراف",
+    "singUpComponent-nameApp":"تالار گفتگو",
+    "singUpComponent-AppVersion":"ورژن 1.0.0",
+    "singUpComponent-userName-mat-label": "نام کاربری :",
+    "singUpComponent-name-mat-label": "نام :",
+    "singUpComponent-nationalCode-mat-label": "کدملی :",
+    "singUpComponent-password-mat-label": "کلمه عبور :",
+    "singUpComponent-nameFamily-mat-label": "نام خانوادگی :",
+    "singUpComponent-DateOfBirth-mat-label": "تاریخ تولد:"
+
+  },
+
+
   "hello": "سلام",
   "dd0": "ییی"
 }

@@ -1,55 +1,49 @@
 <mat-card>
   <mat-card-title>
     <div class="title">
-
-      <p>فرم ورود به سامانه</p>
+      <p>{{'singInComponent.singInComponent-title' | translate }}</p>
     </div>
   </mat-card-title>
   <mat-card-content>
     <div [formGroup]="form" class="loginForm">
-
       <mat-form-field class="mat-form">
-        <mat-label>نام کاربری</mat-label>
+        <mat-label>  {{'singInComponent.singInComponent-userName' | translate }}</mat-label>
         <input type="text" matInput formControlName="username" #myInput>
-        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('required')">نام
-          کاربری وارد شود.
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('required')">
+          {{'singInComponent.singInComponent-matError-userName' | translate }}
         </mat-error>
-        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('minlength')">طول
-          کاراکتر نام کاربر کمتر از 5 کاراکتر است
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('minlength')">
+          {{'singInComponent.singInComponent-matError-userNameChar' | translate }}
         </mat-error>
-        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('maxLength')">طول
-          کاراکتر نام کاربر بیشتر از 60 کاراکتر است
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('maxLength')">
+          {{'singInComponent.singInComponent-matError-userNameMaxChar' | translate }}
         </mat-error>
-        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('pattern')">نام کاربری
-          فارسی است
+        <mat-error *ngIf="form.controls['username'].invalid && form.controls['username'].hasError('pattern')">
+          {{'singInComponent.singInComponent-matError-userNamePresianChar' | translate }}
         </mat-error>
-
-
       </mat-form-field>
       <mat-form-field class="mat-form">
-        <mat-label>پسورد</mat-label>
+        <mat-label> {{'singInComponent.passWord-matlabel' | translate }}</mat-label>
         <input type="password" matInput formControlName="Password">
-        <mat-error>کلمه عبور وارد شود</mat-error>
-
+        <mat-error>{{'singInComponent.singInComponent-matError-PassWordError' | translate }}</mat-error>
       </mat-form-field>
-
       <div class="button">
-        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()">ورود
+        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()">
+          {{'singInComponent.singInComponent-inputButton' | translate }}
         </button>
-        <button mat-raised-button color="accent" [routerLink]="['/signup']">ثبت نام</button>
-        <button mat-raised-button color="warn" [routerLink]="['/resetpassword']">بازیابی پسورد</button>
+        <button mat-raised-button color="accent" [routerLink]="['/signup']">
+          {{'singInComponent.singInComponent-registerButton' | translate }}</button>
+        <button mat-raised-button color="warn" [routerLink]="['/resetpassword']">
+          {{'singInComponent.singInComponent-recoveryPassword' | translate }}
+        </button>
       </div>
-
     </div>
-
   </mat-card-content>
   <div class="footerLoginform">
-
-<div>
-  <img class="avatar" src="..\assets\img\angular.png">
-  <p>تالار گفتگو</p>
-</div>
-
-    <p>ورژن 1.0.0</p>
+    <div>
+      <img class="avatar" src="..\assets\img\angular.png">
+      <p> {{'singInComponent.singInComponent-nameApp' | translate }}</p>
+    </div>
+    <p> {{'singInComponent.singInComponent-AppVersion' | translate }}</p>
   </div>
 </mat-card>

@@ -4,6 +4,7 @@ import {UserLoginService} from "../../user-panel/services/user-login.service";
 import {ApiService} from "../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -21,7 +22,11 @@ export class SignupUserComponent implements AfterViewInit {
               private snack: MatSnackBar,
               private usersAth: UserLoginService,
               private cookie: CookieService,
-              private c: CookieService) {
+              private c: CookieService,
+              translate: TranslateService) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('en');
+    translate.use('fa');
     this.form = this.signUpfb.group({
       userName: [, [Validators.required,
         Validators.minLength(5),
