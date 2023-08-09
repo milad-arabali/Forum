@@ -5,10 +5,12 @@
   height: 100vh;
   color: whitesmoke;
 }
-.matCard{
+
+.matCard {
   /*width: 110vh;*/
 }
-.mat{
+
+.mat {
   padding: 0px;
   margin-top: 10px;
 }
@@ -19,7 +21,8 @@
   justify-content: space-around;
   background-color: #5885AF;
 }
-mat-icon , mat-hint{
+
+mat-icon, mat-hint {
   color: #0f172a;
 }
 
@@ -31,8 +34,10 @@ mat-icon , mat-hint{
 }
 
 .title p {
-  font-size: 20px;
-  color: black;
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 30px;
+  color: whitesmoke;
 }
 
 mat-card-title,
@@ -45,7 +50,7 @@ mat-card-content {
 }
 
 
-.loginForm{
+.loginForm {
   margin-top: 30px;
   display: flex;
   height: 320px;
@@ -54,30 +59,34 @@ mat-card-content {
   padding: 0;
 
 }
-.col{
+
+.col {
   flex-direction: column;
   width: 50%;
   margin: 0 10px;
-
   justify-content: space-between;
-  /*align-items: ;*/
+
 }
-.row{
+
+.row {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0;
 }
-.row div  {
+
+.row div {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-.row span  {
-  width: 20%;
+
+.row span {
+  width: 24%;
   font-family: BYekan-bold;
-  font-size: 15px;
+  font-size: 18px;
+  font-weight: bold;
   color: #000000;
 }
 
@@ -87,18 +96,19 @@ mat-card-content {
   margin-top: 10px;
 }
 
-
-.footerLoginform{
+.footerLoginform {
   display: flex;
   width: 100%;
   justify-content: space-around;
   background-color: #5885AF;
 }
-.footerLoginform div{
+
+.footerLoginform div {
   display: flex;
 
   justify-content: center;
 }
+
 .button {
   display: flex;
   align-items: center;
@@ -106,6 +116,16 @@ mat-card-content {
 
 
 }
-.button button{
+
+.button button {
   margin: 5px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.footerLoginform p {
+  font-family: BYekan-bold;
+  font-weight: bold;
+  font-size: 20px;
 }

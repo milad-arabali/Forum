@@ -9,7 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class ChangePasswordComponent {
 constructor( translate: TranslateService) {
   translate.addLangs(['fa', 'klingon']);
-  translate.setDefaultLang('en');
+  translate.setDefaultLang('fa');
   translate.use('fa');
 }
 }

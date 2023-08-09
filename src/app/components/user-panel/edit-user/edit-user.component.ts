@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
               translate: TranslateService
   ) {
     translate.addLangs(['fa', 'klingon']);
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('fa');
     translate.use('fa');
     this.dateAdapter.setLocale('fa-IR');
     this.form = this.Fb.group(

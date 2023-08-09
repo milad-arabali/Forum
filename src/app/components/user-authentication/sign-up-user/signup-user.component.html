@@ -88,7 +88,7 @@
             <span>{{'singUpComponent.singUpComponent-DateOfBirth-span' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'singUpComponent.singUpComponent-DateOfBirth-mat-label' | translate }}</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="DateOfBirth">
+              <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>

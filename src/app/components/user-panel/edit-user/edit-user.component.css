@@ -28,8 +28,9 @@
   width: 100%;
 }
 .card-header-title{
-  font-family: BYekan-bold;
-  font-size: 30px;
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 25px;
 }
 .card-header{
 
@@ -45,7 +46,15 @@
 }
 .row span  {
   width: 30%;
+  font-family: BYekan-bold;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+
 }
 .button button{
   margin: 10px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
 }

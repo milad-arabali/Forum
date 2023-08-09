@@ -14,7 +14,7 @@ export class LogOutComponent {
   constructor(private logOut: CookieService, private route: Router ,private dialogRef: MatDialogRef<LogOutComponent>,
               translate: TranslateService) {
     translate.addLangs(['fa', 'klingon']);
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('fa');
     translate.use('fa');
   }
 

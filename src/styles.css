@@ -8,7 +8,6 @@ html, body {
 }
 
 body {
-
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-family: BYekan;
@@ -19,6 +18,10 @@ body {
 @font-face {
   font-family: 'BYekan';
   src:  url('../src/assets/fonts/BYekan.ttf') format('ttf');
+}
+@font-face {
+  font-family: 'BTitrBold';
+  src:  url('../src/assets/fonts/BTitrBold.ttf') format('ttf');
 }
 
 @font-face {

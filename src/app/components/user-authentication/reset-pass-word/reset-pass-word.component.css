@@ -31,8 +31,10 @@ mat-icon , mat-hint{
 }
 
 .title p {
-  font-size: 20px;
-  color: black;
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 30px;
+  color: whitesmoke;
 }
 
 mat-card-title,
@@ -104,4 +106,12 @@ mat-card-content {
 }
 .button button{
   margin: 5px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.footerLoginform  p {
+  font-family: BYekan-bold;
+  font-weight: bold;
+  font-size: 20px;
 }

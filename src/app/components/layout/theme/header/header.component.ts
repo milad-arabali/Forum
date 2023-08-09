@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
               private c: CookieService,
               translate: TranslateService) {
     translate.addLangs(['fa', 'klingon']);
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('fa');
     translate.use('fa');
   }
 

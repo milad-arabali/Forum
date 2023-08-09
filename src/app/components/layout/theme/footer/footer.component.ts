@@ -12,7 +12,7 @@ export class FooterComponent {
    a:Date = new Date();
 constructor(translate: TranslateService) {
   translate.addLangs(['fa', 'klingon']);
-  translate.setDefaultLang('en');
+  translate.setDefaultLang('fa');
   translate.use('fa');
 }
 

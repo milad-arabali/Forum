@@ -5,6 +5,7 @@ import {UserAccountInformationModel} from "../../../user-panel/model/user-accoun
 import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -23,7 +24,11 @@ export class MainComponent implements OnInit {
               private api: ApiService,
               private usernameLogin: UserLoginService,
               private c: CookieService,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              translate: TranslateService) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('fa');
+    translate.use('fa');
   }
 
   ngOnInit() {
