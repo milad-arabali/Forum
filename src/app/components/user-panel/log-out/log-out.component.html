@@ -1,19 +1,15 @@
 <div class="edit-course-form">
 
-  <h2 mat-dialog-title>آیا از سامانه میخواهید خارج شوید؟ </h2>
+  <h2 mat-dialog-title>{{"logout-UserComponent.logout-UserComponent-title" | translate}} </h2>
 
-  <mat-dialog-content >
-
+  <mat-dialog-content>
 
   </mat-dialog-content>
-
   <mat-dialog-actions>
-
-
-
-    <button mat-raised-button color="warn" (click)="logout()">بله</button>
-    <button mat-raised-button color="primary" (click)="close()">خیر</button>
-
+    <button mat-raised-button color="warn"
+            (click)="logout()">{{"logout-UserComponent.logout-UserComponent-yesButton" | translate}}</button>
+    <button mat-raised-button color="primary"
+            (click)="close()">{{"logout-UserComponent.logout-UserComponent-noButton" | translate}}</button>
   </mat-dialog-actions>
 
 </div>

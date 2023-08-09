@@ -12,6 +12,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatMenuModule} from "@angular/material/menu";
 import {TimePipe} from "../../../../../share/pipe/time.pipe";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -36,7 +37,7 @@ import {TimePipe} from "../../../../../share/pipe/time.pipe";
       RouterLink,
       MatMenuModule,
       RouterOutlet,
-
+      TranslateModule,
 
 
     ],

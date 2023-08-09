@@ -15,16 +15,16 @@
               <input type="text" matInput formControlName="userName" #myInput>
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('minlength')">
-                طول کاراکتر نام کاربر کمتر از 5 کاراکتر است
+                {{'singUpComponent.singUpComponent-userName-minlength' | translate }}
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('maxLength')">
-                طول کاراکتر نام کاربر بیشتر از 60 کاراکتر است
+                {{'singUpComponent.singUpComponent-userName-maxLength' | translate }}
               </mat-error>
-              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('pattern')">نام
-                کاربری فارسی است
+              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('pattern')">
+                {{'singUpComponent.singUpComponent-userName-pattern' | translate }}
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid ">
-                نام کاربری وارد شود.
+                {{'singUpComponent.singUpComponent-userName-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -35,7 +35,7 @@
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid ">
-                نام کاربر وارد شود.
+                {{'singUpComponent.singUpComponent-userName-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -46,7 +46,7 @@
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid ">
-                کدملی کاربر وارد شود.
+                {{'singUpComponent.singUpComponent-nationalCode-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -67,7 +67,7 @@
               <input type="password" matInput formControlName="password">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['password'].invalid ">
-                کلمه عبور وارد شود.
+                {{'singUpComponent.singUpComponent-password-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -78,7 +78,7 @@
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nameFamily'].invalid ">
-                نام خانوادگی وارد شود.
+                {{'singUpComponent.singUpComponent-nameFamily-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -93,7 +93,7 @@
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <mat-error *ngIf="form.controls['DateOfBirth'].invalid ">
-                تاریخ تولد وارد شود.
+                {{'singUpComponent.singUpComponent-DateOfBirth-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -105,8 +105,10 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <div class="button">
-    <button mat-raised-button color="primary" (click)="submit()">{{'singUpComponent.singUpComponent-registerButton' | translate }}</button>
-    <button mat-raised-button color="accent" [routerLink]="['/signin']">{{'singUpComponent.singUpComponent-cancel' | translate }}</button>
+    <button mat-raised-button color="primary"
+            (click)="submit()">{{'singUpComponent.singUpComponent-registerButton' | translate }}</button>
+    <button mat-raised-button color="accent"
+            [routerLink]="['/signin']">{{'singUpComponent.singUpComponent-cancel' | translate }}</button>
   </div>
   <mat-card-footer>
     <div class="footerLoginform">

@@ -1,8 +1,8 @@
 <mat-card class="mt-card">
   <mat-card-header class="card-header">
     <mat-card-title>
-      {{'hello'|translate}}
-      ویرایش حساب کاربری</mat-card-title>
+      {{'edit-UserComponent.edit-UserComponent-title'|translate}}
+    </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content class="mat">
@@ -10,30 +10,29 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>نام کاربری :</span>
+            <span> {{'edit-UserComponent.edit-UserComponent-userName-span'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>نام کاربری :</mat-label>
+              <mat-label>{{'edit-UserComponent.edit-UserComponent-userName-mat-label'|translate}}</mat-label>
               <input type="text" matInput formControlName="userName" [readonly]="true">
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </div>
           <div>
-            <span>نام :</span>
+            <span>{{'edit-UserComponent.edit-UserComponent-name-span'|translate}}</span>
             <mat-form-field class="mat-form">
-
-              <mat-label>نام :</mat-label>
+              <mat-label>{{'edit-UserComponent.edit-UserComponent-name-mat-label'|translate}}</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
-                نام کاربر به زبان فارسی وارد شود.
+                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                نام کاربر وارد شود.
+                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>جنسیت :</span>
+            <span>{{'edit-UserComponent.edit-UserComponent-gender-span'|translate}}</span>
             <mat-radio-group class="mat-form" formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
             </mat-radio-group>
@@ -43,54 +42,52 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>کدملی :</span>
+            <span>{{'edit-UserComponent.edit-UserComponent-nationalCode-span'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>کدملی :</mat-label>
+              <mat-label>{{'edit-UserComponent.edit-UserComponent-nationalCode-mat-label'|translate}}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
                form.controls['nationalCode'].hasError('maxLength'))">
-                کدملی صحیح نمی باشد.
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-maxLength'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               form.controls['nationalCode'].errors['wrong']">
-                کدملی نامعتبر است.
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-wrong'|translate}}
               </mat-error>
               <mat-error
                 *ngIf="form.controls['nationalCode'].invalid && form.controls['nationalCode'].hasError('required')">
-                کد ملی کاربر وارد شود.
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>نام خانوادگی :</span>
+            <span> {{'edit-UserComponent.edit-UserComponent-nameFamily-span'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>نام خانوادگی :</mat-label>
+              <mat-label>{{'edit-UserComponent.edit-UserComponent-userName-mat-label'|translate}}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nameFamily'].hasError('pattern')">
-                نام خانوادگی کاربر به زبان فارسی وارد شود.
+                {{'edit-UserComponent.edit-UserComponent-nameFamily-pattern'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                نام خانوادگی کاربر وارد شود.
+                {{'edit-UserComponent.edit-UserComponent-nameFamily-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>تاریخ تولد:</span>
+            <span>  {{'edit-UserComponent.edit-UserComponent-DateOfBirth-span'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>تاریخ تولد:</mat-label>
+              <mat-label> {{'edit-UserComponent.edit-UserComponent-DateOfBirth-mat-label'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
-
         </div>
       </div>
-
     </div>
 
 
@@ -99,14 +96,13 @@
   <mat-card-footer>
     <div class="button">
       <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid" (click)="submit()" #myInput>
-        ذخیره
+        {{'edit-UserComponent.edit-UserComponent-saveButton'|translate}}
       </button>
-      <button mat-raised-button color="accent" [routerLink]="['/home']">انصراف</button>
-
+      <button mat-raised-button color="accent" [routerLink]="['/home']">
+        {{'edit-UserComponent.edit-UserComponent-cancelButton'|translate}}
+      </button>
     </div>
-
   </mat-card-footer>
-
 </mat-card>
 
 

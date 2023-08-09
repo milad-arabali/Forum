@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-reset-pass-word',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./reset-pass-word.component.css']
 })
 export class ResetPassWordComponent {
-
+  constructor(translate: TranslateService) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('en');
+    translate.use('fa');
+  }
 }

@@ -7,6 +7,7 @@ import {LogOutComponent} from "../../../user-panel/log-out/log-out.component";
 import {UserAccountInformationModel} from "../../../user-panel/model/user-account-information.model";
 import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
@@ -26,7 +27,11 @@ export class HeaderComponent implements OnInit {
               private usernameLogin: UserLoginService,
               private dialog: MatDialog,
               private httpClient: HttpClient,
-              private c: CookieService) {
+              private c: CookieService,
+              translate: TranslateService) {
+    translate.addLangs(['fa', 'klingon']);
+    translate.setDefaultLang('en');
+    translate.use('fa');
   }
 
   ngOnInit() {

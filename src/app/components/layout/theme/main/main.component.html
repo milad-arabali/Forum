@@ -1,26 +1,26 @@
 <div class="article">
-  <mat-sidenav-container >
+  <mat-sidenav-container>
     <mat-sidenav mode="side" [(opened)]="showSidebar" class="sidebar">
       <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
       <h4 class="name">{{name}}-{{familyName}}</h4>
-      <p class="designation">Software Engineer</p>
+      <p class="designation">{{'mainComponent.mainComponent-job' | translate }}</p>
       <mat-divider class="divider"></mat-divider>
       <button mat-button class="menu-Button">
         <mat-icon>home</mat-icon>
-        <span>خانه</span>
+        <span>{{'mainComponent.mainComponent-home' | translate }}</span>
       </button>
       <button mat-button class="menu-Button">
         <mat-icon>person</mat-icon>
-        <span>پروفایل</span>
+        <span>{{'mainComponent.mainComponent-profile' | translate }}</span>
       </button>
       <button mat-button class="menu-Button">
         <mat-icon>info</mat-icon>
-        <span>توضیحات</span>
+        <span>{{'mainComponent.mainComponent-description' | translate }}</span>
       </button>
       <mat-divider class="divider"></mat-divider>
       <button mat-button class="menu-Button">
         <mat-icon>help</mat-icon>
-        <span>راهنما</span>
+        <span>{{'mainComponent.mainComponent-guide' | translate }}</span>
       </button>
 
     </mat-sidenav>

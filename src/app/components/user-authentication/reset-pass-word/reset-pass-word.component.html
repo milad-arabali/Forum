@@ -1,23 +1,25 @@
 <mat-card>
   <mat-card-title>
     <div class="title">
-      <p>بازیابی کلمه عبور</p>
+      <p> {{'recoveryPasswordComponent.recoveryPasswordComponent-title' | translate }}</p>
     </div>
   </mat-card-title>
   <mat-card-content>
 
     <div class="button">
-      <button mat-raised-button color="accent">بازیابی پسورد</button>
-      <button mat-raised-button color="accent" [routerLink]="['/signin']">انصراف</button>
+      <button mat-raised-button color="accent">
+        {{'recoveryPasswordComponent.recoveryPasswordComponent-recovery-btn' | translate }}</button>
+      <button mat-raised-button color="accent" [routerLink]="['/signin']">
+        {{'recoveryPasswordComponent.recoveryPasswordComponent-cancel-btn' | translate }}</button>
     </div>
 
-    
+
   </mat-card-content>
   <div class="footerLoginform">
     <div>
       <img class="avatar" src="..\assets\img\angular.png">
-      <p>تالار گفتگو</p>
+      <p>{{'recoveryPasswordComponent.recoveryPasswordComponent-nameApp' | translate }}</p>
     </div>
-    <p>ورژن 1.0.0</p>
+    <p>{{'recoveryPasswordComponent.recoveryPasswordComponent-AppVersion' | translate }}</p>
   </div>
 </mat-card>
