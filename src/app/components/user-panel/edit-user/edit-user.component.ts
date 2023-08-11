@@ -39,7 +39,6 @@ export class EditUserComponent implements OnInit {
     this.form = this.Fb.group(
       {
         userName: ['', [Validators.required]],
-
         name: ['', [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
         nameFamily: ['', [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
         nationalCode: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10),
@@ -88,6 +87,9 @@ export class EditUserComponent implements OnInit {
 
   submit() {
     const userId = this.userId
+
+
+
     let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(
       res => {
         this.snack.open("حساب کاربری با موفقیت ویرایش شد", "", {
