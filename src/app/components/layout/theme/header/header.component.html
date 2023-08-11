@@ -12,7 +12,7 @@
       <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
       <a mat-button [matMenuTriggerFor]="dropdown">
         <mat-icon>person</mat-icon>
-        <span>{{name}}--{{familyName}}</span>
+        <span>{{name}}  {{familyName}}</span>
       </a>
       <mat-menu #dropdown>
         <button mat-menu-item [routerLink]="['profile']" RouterLinkActive="['active']">

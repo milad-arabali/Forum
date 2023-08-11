@@ -3,6 +3,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
+import {UserLoginService} from "../services/user-login.service";
 
 @Component({
   selector: 'app-log-out',
@@ -11,8 +12,11 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class LogOutComponent {
 
-  constructor(private logOut: CookieService, private route: Router ,private dialogRef: MatDialogRef<LogOutComponent>,
-              translate: TranslateService) {
+  constructor(private logOut: CookieService,
+              private route: Router ,
+              private dialogRef: MatDialogRef<LogOutComponent>,
+              translate: TranslateService,
+              private loginservice: UserLoginService) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
     translate.use('fa');
@@ -25,9 +29,9 @@ export class LogOutComponent {
   }
 
   logout() {
-    this.logOut.delete('login', 'true');
-    this.logOut.delete('users');
+    this.logOut.deleteAll();
     this.route.navigate(['/signin'])
     this.dialogRef.close();
+
   }
 }

@@ -7,13 +7,15 @@ import {ApiService} from "../../../../share/services/api.service";
 import {UserAccountInformationModel} from "../model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {BehaviorSubject} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
-  // private cookie$ = new BehaviorSubject<any>({});
+  public showUserName$ = new BehaviorSubject<any>('');
+  public showUserLastName$ = new BehaviorSubject<any>('');
   // selectedUser$ = this.cookie$.asObservable();
   aa: number;
   public user: UserAccountInformationModel;
@@ -113,13 +115,11 @@ export class UserLoginService {
   signOn(username, password) {
     const message: string = `کاربر ${username} وارد شدید `
     const api = this.api.apiUrl
-    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+    this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
       res => {
         // console.log("sss", res)
         const a = res.find(a => {
           return a.userName === username && a.password === password
-
-
         })
 
         console.log("ddddd", a)
@@ -134,6 +134,9 @@ export class UserLoginService {
               verticalPosition: "top"
             }
           )
+          this.showUserName$.next(a.name)
+          this.showUserLastName$.next(a.nameFamily)
+
         } else {
           this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
 

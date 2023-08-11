@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogOutComponent} from "../../../user-panel/log-out/log-out.component";
-import {UserAccountInformationModel} from "../../../user-panel/model/user-account-information.model";
 import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
@@ -17,7 +16,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class HeaderComponent implements OnInit {
   @Output() showSidebarEmitter: EventEmitter<boolean> = new EventEmitter<boolean>()
   sidebarStatus: boolean = true;
-  usernameCookie: string;
   name: string;
   familyName: string;
 
@@ -38,17 +36,32 @@ export class HeaderComponent implements OnInit {
     // this.usernameLogin.selectedUser$.subscribe(
     //   user => this.username =user
     // )
-    this.usernameCookie = this.c.get('users')
-    const api = this.api.apiUrl;
-    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
-      res => {
-        res.slice().find(a => {
-          if (a.userName === this.usernameCookie) {
-            this.name = a.name;
-            this.familyName = a.nameFamily
-          }
-        })
-      })
+    // this.usernameCookie = this.c.get('users')
+    // const api = this.api.apiUrl;
+    // let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+    //   res => {
+    //     res.slice().find(a => {
+    //       if (a.userName === this.usernameCookie) {
+    //         this.name = a.name;
+    //         this.familyName = a.nameFamily
+    //       }
+    //     })
+    //   })
+
+    this.usernameLogin.showUserName$.subscribe(
+      a => {
+        if (a) {
+          this.name = a
+        }
+      }
+    )
+    this.usernameLogin.showUserLastName$.subscribe(
+      a => {
+        if (a) {
+          this.familyName = a
+        }
+      }
+    )
   }
 
   showSidebar() {

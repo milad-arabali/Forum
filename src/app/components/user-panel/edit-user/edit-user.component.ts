@@ -95,7 +95,8 @@ export class EditUserComponent implements OnInit {
           horizontalPosition: "end",
           verticalPosition: "top"
         })
-
+        this.userEditForm.showUserName$.next(this.form.value.name)
+        this.userEditForm.showUserLastName$.next(this.form.value.nameFamily)
 
       })
 

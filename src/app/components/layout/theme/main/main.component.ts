@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {CookieService} from "ngx-cookie-service";
-import {UserAccountInformationModel} from "../../../user-panel/model/user-account-information.model";
 import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../../../../../share/services/api.service";
 import {HttpClient} from "@angular/common/http";
@@ -16,7 +15,6 @@ import {TranslateService} from "@ngx-translate/core";
 
 export class MainComponent implements OnInit {
   @Input() showSidebar: boolean = true;
-  username1: string;
   name: string;
   familyName: string;
 
@@ -32,17 +30,40 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.username1 = this.c.get('users')
-    const api = this.api.apiUrl;
-    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
-      res => {
-        res.slice().find(a => {
-          if (a.userName === this.username1) {
-            this.name = a.name;
-            this.familyName = a.nameFamily
-          }
-        })
-      })
+    // this.username1 = this.c.get('users')
+    // const api = this.api.apiUrl;
+    // let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+    //   res => {
+    //     res.slice().find(a => {
+    //       if (a.userName === this.username1) {
+    //         this.name = a.name;
+    //         this.familyName = a.nameFamily
+    //       }
+    //     })
+    //   })
+    // this.usernameLogin.showUserName$.subscribe(
+    //   a=>{
+    //     if(a){
+    //       this.name=a
+    //       console.log("aaa",a)
+    //     }
+    //
+    //   }
+    // )
+    this.usernameLogin.showUserName$.subscribe(
+      a => {
+        if (a) {
+          this.name = a
+        }
+      }
+    )
+    this.usernameLogin.showUserLastName$.subscribe(
+      a => {
+        if (a) {
+          this.familyName = a
+        }
+      }
+    )
   }
 
 
