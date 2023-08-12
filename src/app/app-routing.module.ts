@@ -7,6 +7,7 @@ import {AuthGuard} from "../share/services/auth.guard";
 import {EditUserComponent} from "./components/user-panel/edit-user/edit-user.component";
 import {ChangePasswordComponent} from "./components/user-panel/change-password/change-password.component";
 import {ResetPassWordComponent} from "./components/user-authentication/reset-pass-word/reset-pass-word.component";
+import {SubjectCategoryComponent} from "./components/sidebar/subject-category/subject-category.component";
 
 const routes: Routes = [
   {path: '', component: SigninUserComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
       component: EditUserComponent,
 
     },
-      {path: 'changePassword', component: ChangePasswordComponent}
+      {path: 'changePassword', component: ChangePasswordComponent},
+      {path: 'subject-category', component: SubjectCategoryComponent}
     ] },{
     path:'**' , component: SigninUserComponent
   }

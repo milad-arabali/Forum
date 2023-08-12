@@ -64,7 +64,7 @@
   "mainComponent": {
     "mainComponent-job": "Software Engineer",
     "mainComponent-home": "خانه",
-    "mainComponent-profile": "پروفایل",
+    "mainComponent-category": "دسته بندی موضوع",
     "mainComponent-description": "توضیحات",
     "mainComponent-guide": "راهنما"
   },
@@ -120,5 +120,8 @@
     "logout-UserComponent-title": "آیا از سامانه میخواهید خارج شوید؟",
     "logout-UserComponent-yesButton": "بله",
     "logout-UserComponent-noButton": "خیر"
+  },
+  "subject-category-Component": {
+    "subject-category-title": "دسته بندی موضوع"
   }
 }

@@ -1,0 +1,61 @@
+
+
+.header-card{
+  display: block;
+  padding: 0;
+}
+.title-container {
+  display: flex;
+  width: 100%;
+  position: unset;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.button button{
+  margin: 10px;
+}
+.container {
+  display: flex;
+  position: unset;
+  flex-direction: column;
+}
+
+.container1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.header-card {
+
+  padding: 10px;
+
+
+  height: 50px;
+
+}
+
+.card-header-title {
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.footer-card {
+  height: 20px;
+  margin-top: 10px;
+}
+
+.header-card1 {
+  height: 450px;
+}
+
+.button button {
+  margin: 10px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}

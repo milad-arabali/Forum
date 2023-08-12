@@ -55,6 +55,9 @@ mat-sidenav button{
 
 }
 .menu-Button span{
+  font-family: BYekan;
+  font-size: 15px;
+  font-weight: bold;
   color: whitesmoke;
 }
 .name{

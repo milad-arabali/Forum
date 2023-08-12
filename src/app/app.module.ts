@@ -17,6 +17,8 @@ import {NationalCodeValidatorDirective} from "./components/user-panel/directive/
 import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SubjectCategoryComponent } from './components/sidebar/subject-category/subject-category.component';
+import {SidebarModule} from "./components/sidebar/module/sidebar.module";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -27,13 +29,15 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NationalCodeValidatorDirective
+    NationalCodeValidatorDirective,
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ThemeModule,
+    SidebarModule,
     BrowserAnimationsModule,
     UserLoginModule,
     MatNativeDateModule,

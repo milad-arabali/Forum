@@ -5,18 +5,18 @@
       <h4 class="name">{{name}}  {{familyName}}</h4>
       <p class="designation">{{'mainComponent.mainComponent-job' | translate }}</p>
       <mat-divider class="divider"></mat-divider>
-      <button mat-button class="menu-Button">
+      <button mat-button class="menu-Button" [routerLink]="['home']">
         <mat-icon>home</mat-icon>
         <span>{{'mainComponent.mainComponent-home' | translate }}</span>
       </button>
-      <button mat-button class="menu-Button">
+      <button mat-button class="menu-Button" [routerLink]="['subject-category']">
         <mat-icon>person</mat-icon>
-        <span>{{'mainComponent.mainComponent-profile' | translate }}</span>
+        <span>{{'mainComponent.mainComponent-category' | translate }}</span>
       </button>
-      <button mat-button class="menu-Button">
-        <mat-icon>info</mat-icon>
-        <span>{{'mainComponent.mainComponent-description' | translate }}</span>
-      </button>
+<!--      <button mat-button class="menu-Button">-->
+<!--        <mat-icon>info</mat-icon>-->
+<!--        <span>{{'mainComponent.mainComponent-description' | translate }}</span>-->
+<!--      </button>-->
       <mat-divider class="divider"></mat-divider>
       <button mat-button class="menu-Button">
         <mat-icon>help</mat-icon>
