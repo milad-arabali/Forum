@@ -111,7 +111,7 @@
     "changePassword-UserComponent-cfnPassword-mat-label-error": "کلمه عبور جدید اشتباه است.",
     "changePassword-UserComponent-mat-label-oldPassword-error": "کلمه عبور جاری وارد شود.",
     "changePassword-UserComponent-mat-label-newPassword-error": "کلمه عبور جدید وارد شود.",
-    "changePassword-UserComponent-min-newPassword-error": "طول کلمه عبور جدید کمتر 5 عدد است.",
+    "changePassword-UserComponent-min-newPassword-error": "طول کلمه عبور جدید کمتر 5 کارکتر است.",
     "changePassword-UserComponent-mat-label-confrimPassword-error": "کلمه عبور جدید دوباره وارد شود.",
     "changePassword-UserComponent-saveButton": "ذخیره",
     "changePassword-UserComponent-cancelButton": "انصراف"

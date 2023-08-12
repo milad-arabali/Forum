@@ -49,7 +49,7 @@ export class ChangePasswordService {
               })
 
         } else {
-          this.snack.open("کلمه عبور کاربر نامعتبر است.", "", {
+          this.snack.open("کلمه عبور جاری کاربر نامعتبر است.", "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"

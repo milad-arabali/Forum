@@ -5,6 +5,7 @@ import {ConfirmedValidator} from "./confrim.validator";
 import {ApiService} from "../../../../share/services/api.service";
 import {ChangePasswordService} from "../services/change-password.service";
 import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-change-password',
@@ -20,6 +21,8 @@ export class ChangePasswordComponent {
               private api:ApiService,
               private fb: FormBuilder,
               private changePasswordUser:ChangePasswordService,
+              private logOut: CookieService,
+              private route: Router ,
               private c: CookieService) {
     this.changePassword = this.fb.group({
         oldPassword: ['', [Validators.required]],
@@ -50,5 +53,7 @@ export class ChangePasswordComponent {
     this.changePasswordUser.checkPassword(oldPassword,newPassword,this.username1)
     this.changePassword.reset();
     this._inputElement.nativeElement.focus();
+    this.logOut.deleteAll();
+    this.route.navigate(['/signin'])
   }
 }

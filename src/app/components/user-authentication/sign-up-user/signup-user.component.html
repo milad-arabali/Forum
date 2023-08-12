@@ -12,7 +12,7 @@
             <span>{{'singUpComponent.singUpComponent-userName-span' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'singUpComponent.singUpComponent-userName-mat-label' | translate }}</mat-label>
-              <input type="text" matInput formControlName="userName" #myInput>
+              <input type="text" matInput formControlName="userName" #userName>
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('minlength')">
                 {{'singUpComponent.singUpComponent-userName-minlength' | translate }}
@@ -34,8 +34,11 @@
               <mat-label>{{'singUpComponent.singUpComponent-name-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['name'].invalid ">
-                {{'singUpComponent.singUpComponent-userName-invalid' | translate }}
+              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
+                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
+              </mat-error>
+              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
+                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
@@ -45,8 +48,18 @@
               <mat-label>{{'singUpComponent.singUpComponent-nationalCode-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['nationalCode'].invalid ">
-                {{'singUpComponent.singUpComponent-nationalCode-invalid' | translate }}
+              <mat-error *ngIf="form.controls['nationalCode'].invalid &&
+              (form.controls['nationalCode'].hasError('minLength') ||
+               form.controls['nationalCode'].hasError('maxLength'))">
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-maxLength'|translate}}
+              </mat-error>
+              <mat-error *ngIf="form.controls['nationalCode'].invalid &&
+              form.controls['nationalCode'].errors['wrong']">
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-wrong'|translate}}
+              </mat-error>
+              <mat-error
+                *ngIf="form.controls['nationalCode'].invalid && form.controls['nationalCode'].hasError('required')">
+                {{'edit-UserComponent.edit-UserComponent-nationalCode-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
@@ -77,8 +90,13 @@
               <mat-label>{{'singUpComponent.singUpComponent-nameFamily-mat-label' | translate }}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['nameFamily'].invalid ">
-                {{'singUpComponent.singUpComponent-nameFamily-invalid' | translate }}
+
+              <mat-error *ngIf="form.controls['nameFamily'].invalid && form.controls['nameFamily'].hasError('pattern')">
+                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
+              </mat-error>
+              <mat-error
+                *ngIf="form.controls['nameFamily'].invalid && form.controls['nameFamily'].hasError('required')">
+                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>

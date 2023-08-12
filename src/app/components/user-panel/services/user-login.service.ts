@@ -53,7 +53,7 @@ export class UserLoginService {
   //   console.log(username)
   // }
 
-  singIn(username, value) {
+  singIn(username, value,name,family) {
     const api = this.api.apiUrl
     let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
       res => {
@@ -68,7 +68,9 @@ export class UserLoginService {
           })
 
         } else {
-
+          const a = res.find(a => {
+            return a => a === value
+          })
           this.c.set('users', username)
           this.userLogin.logIn().then(() => {
             this.router.navigate(['/home'])
@@ -81,6 +83,8 @@ export class UserLoginService {
               })
             }
           )
+          this.showUserName$.next(name)
+          this.showUserLastName$.next(family)
         }
 
 

@@ -6,6 +6,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {DateAdapter} from "@angular/material/core";
+import {checkNationalCode} from "../../user-panel/directive/natonal-code-validator.directive";
 
 
 @Component({
@@ -13,8 +14,8 @@ import {DateAdapter} from "@angular/material/core";
   templateUrl: './signup-user.component.html',
   styleUrls: ['./signup-user.component.css']
 })
-export class SignupUserComponent implements AfterViewInit {
-  @ViewChild("myInput") private _inputElement: ElementRef;
+export class SignupUserComponent {
+  @ViewChild("userName") private _inputElement: ElementRef;
   gender: string[] = ['مرد', 'زن']
   form: FormGroup;
 
@@ -36,29 +37,31 @@ export class SignupUserComponent implements AfterViewInit {
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
       password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
-      name: [, [Validators.required]],
-      nameFamily: [, [Validators.required]],
-      nationalCode: [, [Validators.required]],
+      name: [, [Validators.required ,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nationalCode: [, [Validators.required,Validators.minLength(10), Validators.maxLength(10),
+        checkNationalCode()]],
       gender: [, [Validators.required]],
       DateOfBirth: [, [Validators.required]]
     })
   }
 
-  ngAfterViewInit() {
 
-    this._inputElement.nativeElement.focus();
-  }
 
   submit() {
     if (this.form.valid) {
       const name = this.form.value.userName;
+      const name1 = this.form.value.name;
+      const familyName = this.form.value.nameFamily;
       const value = this.form.value;
 
-      this.usersAth.singIn(name, value)
+      this.usersAth.singIn(name, value,name1,familyName)
 
 
     }
-
+    this.form.get('userName').reset();
+    this.form.get('password').reset();
+    this._inputElement.nativeElement.focus();
   }
 }
 

@@ -7,9 +7,11 @@
 }
 
 .matCard {
-  /*width: 110vh;*/
+  width: 900px;
 }
-
+.mat-form {
+  width: 330px;
+}
 .mat {
   padding: 0px;
   margin-top: 10px;
