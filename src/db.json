@@ -61,5 +61,42 @@
       "id": 15
     }
   ],
-  "a": []
+  "subject-category": [
+    {
+      "id": 1,
+      "parentId": -1,
+      "title": "تست 1",
+      "createDateTime": "2023-08-07T20:30:00.000Z",
+      "status": true,
+      "priority": 1,
+      "hasChild": true
+    },
+    {
+      "id": 2,
+      "parentId": -1,
+      "title": "تست 2",
+      "createDateTime": "2023-08-07T21:30:00.000Z",
+      "status": true,
+      "priority": 2,
+      "hasChild": false
+    },
+    {
+      "id": 3,
+      "parentId": 1,
+      "title": "تست 3",
+      "createDateTime": "2023-08-07T22:30:00.000Z",
+      "status": false,
+      "priority": 1,
+      "hasChild": true
+    },
+    {
+      "id": 4,
+      "parentId": 3,
+      "title": "تست 4",
+      "createDateTime": "2023-08-07T23:30:00.000Z",
+      "status": true,
+      "priority": 1,
+      "hasChild": false
+    }
+  ]
 }
