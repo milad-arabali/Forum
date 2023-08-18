@@ -17,6 +17,7 @@ export class SubjectCategoryService {
   public Id$ = new BehaviorSubject<any>('');
   public showBtn$:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(true);
   public disableBtn$:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+  public deleteSubject:BehaviorSubject<number>=new BehaviorSubject<number>(0);
 
   findByParentId(parentId: number): Observable<SubjectCategoryModel[]> {
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?parentId=' + `${parentId}`);

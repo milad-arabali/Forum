@@ -10,21 +10,23 @@
           </button>
           <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">حذف</button>
           <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">ویرایش</button>
-          <button mat-raised-button color="warn" [disabled]="disableButton">افزودن</button>
+          <button mat-raised-button color="warn" [disabled]="disableButton" [routerLink]="['add']">افزودن</button>
         </div>
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content>
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree">
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding="">
+  <mat-card-content >
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree" >
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding=""
+                     (contextmenu)="onContextMenu($event, node)">
         <button mat-flat-button (click)="selectNode(node)"
                 [color]="activeNode === node ? 'primary' : ''">
           <span class="iransans">{{node.item.title}}</span>
         </button>
       </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+                     (contextmenu)="onContextMenu($event, node)">
         <div class="mat-tree-node">
           <button [attr.aria-label]="'Toggle ' + node.item.title" mat-icon-button
                   matTreeNodeToggle>
@@ -42,8 +44,43 @@
                           class="tree-progress-bar"></mat-progress-bar>
       </mat-tree-node>
     </mat-tree>
+<!--    <ng-template #context_menu>-->
+<!--      <div class="example-menu" cdkMenu>-->
+<!--        <button class="example-menu-item" cdkMenuItem>Cut</button>-->
+<!--        <button class="example-menu-item" cdkMenuItem>Copy</button>-->
+<!--        <button class="example-menu-item" cdkMenuItem>Link</button>-->
+<!--      </div>-->
+<!--    </ng-template>-->
 <router-outlet></router-outlet>
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>
 </mat-card>
+<div [matMenuTriggerFor]="contextMenu"
+     [style.left]="contextMenuPosition.x"
+     [style.top]="contextMenuPosition.y"
+     style="visibility: hidden; position: fixed">
+</div>
+<mat-menu #contextMenu="matMenu">
+  <ng-template  matMenuContent>
+    <button   mat-menu-item [disabled]="disableButton" [routerLink]="['add']">
+      <mat-icon aria-hidden="false" color="primary">add</mat-icon>
+      <span class="iransans">افزودن</span>
+    </button>
+    <button   mat-menu-item [hidden]="showButton" [routerLink]="['show', id]" [disabled]="disableButton">
+      <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
+
+      <span class="iransans">مشاهده</span>
+    </button>
+    <button   mat-menu-item [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">
+      <mat-icon aria-hidden="false" color="accent">edit</mat-icon>
+
+      <span class="iransans">ویرایش</span>
+    </button>
+    <button  mat-menu-item [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">
+      <mat-icon aria-hidden="false" color="warn">delete</mat-icon>
+
+      <span class="iransans">حذف</span>
+    </button>
+  </ng-template>
+</mat-menu>

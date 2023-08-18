@@ -19,6 +19,12 @@ export class ApiService {
   updateSubjectCategory(subjectCategory: SubjectCategoryModel, id : number){
     return this.httpClient.patch<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`,subjectCategory)
   }
+  deleteSubjectCategory(id : number){
+    return this.httpClient.delete<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`)
+  }
+  addSubjectCategory(subjectCategoryModel:SubjectCategoryModel){
+    return this.httpClient.post<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}`,subjectCategoryModel)
+  }
   postRegistration(registerObj: UserAccountInformationModel){
      return this.httpClient.post<UserAccountInformationModel>(`${this.apiUrl}`,registerObj)
   }

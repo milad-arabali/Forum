@@ -1,0 +1,44 @@
+.button button {
+  margin: 10px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.header-card{
+  background-color: #3f51b5;
+  padding: 16px;
+}
+.title-container{
+  color: white;
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 0;
+}
+.subjectCategoryForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subjectCategoryForm div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 1000px;
+  margin: 10px;
+}
+.header-card1{
+  margin-bottom: 10px;
+}
+.mat-form {
+  width: 700px;
+  padding: 0;
+}
+
+.mat-form input {
+  width: 300px;
+  padding: 0;
+}

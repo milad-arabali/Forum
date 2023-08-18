@@ -1,13 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {SubjectCategoryFlatNodeModel} from "../model/subject-category-flat-node.model";
 import {SubjectCategoryDataSource} from "./subject-category-data-source";
 import {SubjectCategoryService} from "../services/subject-category.service";
 import {Router} from "@angular/router";
-import {BehaviorSubject, Subject, Subscription} from "rxjs";
-import {LogOutComponent} from "../../user-panel/log-out/log-out.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-subject-category.component";
+import {MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
   selector: 'app-subject-category',
@@ -15,7 +14,7 @@ import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-s
   styleUrls: ['./subject-category.component.css']
 })
 export class SubjectCategoryComponent implements OnInit {
-   disableButton:boolean;
+  disableButton:boolean;
   showButton: boolean = true;
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
@@ -24,6 +23,9 @@ export class SubjectCategoryComponent implements OnInit {
   getLevel = (node: SubjectCategoryFlatNodeModel) => node.level;
   isExpandable = (node: SubjectCategoryFlatNodeModel) => true;
   hasChild = (_: number, _nodeData: SubjectCategoryFlatNodeModel) => _nodeData.item.hasChild;
+  @ViewChild(MatMenuTrigger)
+  contextMenu: MatMenuTrigger;
+  contextMenuPosition = { x: '0px', y: '0px' };
 
   constructor(private subjectCategoryService: SubjectCategoryService,
               private router: Router,
@@ -44,7 +46,6 @@ export class SubjectCategoryComponent implements OnInit {
         }
       )
     });
-
     this.subjectCategoryService.disableBtn$.subscribe(a=>{
       this.disableButton=a;
     })
@@ -64,7 +65,6 @@ export class SubjectCategoryComponent implements OnInit {
       this.subjectCategoryService.showBtn$.subscribe(a => {
         this.showButton = a
       })
-
     } else {
       this.activeNode = node;
       // this.showButton=false;
@@ -74,17 +74,21 @@ export class SubjectCategoryComponent implements OnInit {
       })
       this.subjectCategoryService.findId(node.item.id)
       this.subjectCategoryService.Id$.next(node.item.id)
+      this.subjectCategoryService.deleteSubject.next(node.item.id)
     }
   }
-
-  edit(id: number) {
-    this.router.navigate(['/edit', id])
-  }
-
-  protected readonly console = console;
 
   deleteSubject() {
     const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent)
     dialogRef.afterClosed()
+    console.log("delete",this.id)
+  }
+
+  onContextMenu(event : MouseEvent, node) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
   }
 }

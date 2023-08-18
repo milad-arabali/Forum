@@ -15,6 +15,8 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatRadioModule} from "@angular/material/radio";
+import {CdkContextMenuTrigger} from "@angular/cdk/menu";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -38,7 +40,9 @@ import {MatRadioModule} from "@angular/material/radio";
     MatInputModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    CdkContextMenuTrigger,
+    MatMenuModule
   ]
 })
 export class SidebarModule { }

@@ -14,6 +14,9 @@ import {
 import {
   ShowSubjectCategoryComponent
 } from "./components/sidebar-component/subject-category/show-subject-category/show-subject-category.component";
+import {
+  AddSubjectCategoryComponent
+} from "./components/sidebar-component/subject-category/add-subject-category/add-subject-category.component";
 
 const routes: Routes = [
   {path: '', component: SigninUserComponent},
@@ -30,7 +33,8 @@ const routes: Routes = [
       {
         path: 'subject-category', component: SubjectCategoryComponent, children: [
           {path: 'edit/:id', component: EditSubjectCategoryComponent},
-          {path: 'show/:id', component: ShowSubjectCategoryComponent}
+          {path: 'show/:id', component: ShowSubjectCategoryComponent},
+          {path: 'add', component: AddSubjectCategoryComponent}
         ]
       }
 

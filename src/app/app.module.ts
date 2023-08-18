@@ -31,6 +31,11 @@ import {CdkListbox} from "@angular/cdk/listbox";
 import { DeleteSubjectCategoryComponent } from './components/sidebar-component/subject-category/delete-subject-category/delete-subject-category.component';
 import { AddSubjectCategoryComponent } from './components/sidebar-component/subject-category/add-subject-category/add-subject-category.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -78,7 +83,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatProgressBarModule,
     MatTreeModule,
     CdkListbox,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    ReactiveFormsModule
 
 
   ],
