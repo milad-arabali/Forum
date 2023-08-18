@@ -4,7 +4,7 @@ import {SubjectCategoryFlatNodeModel} from "../model/subject-category-flat-node.
 import {SubjectCategoryDataSource} from "./subject-category-data-source";
 import {SubjectCategoryService} from "../services/subject-category.service";
 import {Router} from "@angular/router";
-import {Subject, Subscription} from "rxjs";
+import {BehaviorSubject, Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-subject-category',
@@ -12,6 +12,7 @@ import {Subject, Subscription} from "rxjs";
   styleUrls: ['./subject-category.component.css']
 })
 export class SubjectCategoryComponent implements OnInit {
+   disableButton:boolean;
   showButton: boolean = true;
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
@@ -19,7 +20,7 @@ export class SubjectCategoryComponent implements OnInit {
   activeNode: SubjectCategoryFlatNodeModel;
 
   constructor(private subjectCategoryService: SubjectCategoryService,
-             private router:Router) {
+              private router: Router) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
   }
@@ -30,15 +31,21 @@ export class SubjectCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.subjectCategoryService.findByParentId(-1).subscribe(result => {
-      this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel(item, 0, true, false));
+      this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
+      (item, 0, true, false));
       this.subjectCategoryService.Id$.subscribe(
-       a=> {
-         if(a){
-           this.id=a
-         }
-       }
-     )
+        a => {
+          if (a) {
+            this.id = a
+          }
+        }
+      )
     });
+
+    this.subjectCategoryService.disableBtn$.subscribe(a=>{
+      this.disableButton=a;
+    })
+
   }
 
   /**
@@ -49,19 +56,27 @@ export class SubjectCategoryComponent implements OnInit {
 
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
-      this.showButton=true;
-
-
+      // this.showButton=true;
+      this.subjectCategoryService.showBtn$.next(true)
+      this.subjectCategoryService.showBtn$.subscribe(a => {
+        this.showButton = a
+      })
 
     } else {
       this.activeNode = node;
-      this.showButton=false;
+      // this.showButton=false;
+      this.subjectCategoryService.showBtn$.next(false)
+      this.subjectCategoryService.showBtn$.subscribe(a => {
+        this.showButton = a
+      })
       this.subjectCategoryService.findId(node.item.id)
       this.subjectCategoryService.Id$.next(node.item.id)
     }
   }
-  edit(id:number){
-    this.router.navigate(['/edit',id])
+
+  edit(id: number) {
+    this.router.navigate(['/edit', id])
   }
 
+  protected readonly console = console;
 }

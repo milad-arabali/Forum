@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, find, Observable} from "rxjs";
 import {SubjectCategoryModel} from "../model/subject-category.model";
 import {Router} from "@angular/router";
-import {UserAccountInformationModel} from "../../user-panel/model/user-account-information.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,9 @@ export class SubjectCategoryService {
   }
 
   public Id$ = new BehaviorSubject<any>('');
+  public showBtn$:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(true);
+  public disableBtn$:BehaviorSubject<boolean>=new BehaviorSubject<boolean>(false);
+
   findByParentId(parentId: number): Observable<SubjectCategoryModel[]> {
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?parentId=' + `${parentId}`);
   }

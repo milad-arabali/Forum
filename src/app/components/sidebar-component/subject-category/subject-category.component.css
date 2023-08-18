@@ -1,9 +1,9 @@
 
-
-.header-card{
+.header-card {
   display: block;
   padding: 0;
 }
+
 .title-container {
   display: flex;
   width: 100%;
@@ -12,9 +12,11 @@
   align-items: center;
   justify-content: space-between;
 }
-.button button{
+
+.button button {
   margin: 10px;
 }
+
 .container {
   display: flex;
   position: unset;
@@ -50,7 +52,7 @@
 }
 
 .header-card1 {
-  height: 450px;
+  min-height: 450px;
 }
 
 .button button {

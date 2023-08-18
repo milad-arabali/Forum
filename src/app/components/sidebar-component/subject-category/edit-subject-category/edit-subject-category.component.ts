@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {SubjectCategoryFlatNodeModel} from "../../model/subject-category-flat-node.model";
 import {SubjectCategoryService} from "../../services/subject-category.service";
 import {SubjectCategoryModel} from "../../model/subject-category.model";
-import {find} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ApiService} from "../../../../../share/services/api.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {DateAdapter} from "@angular/material/core";
 
 @Component({
   selector: 'app-edit-subject-category',
@@ -15,6 +17,23 @@ export class EditSubjectCategoryComponent implements OnInit {
   c?: SubjectCategoryModel;
   userId: number;
   user?: SubjectCategoryModel;
+  form: FormGroup;
+
+  constructor(private router: ActivatedRoute,
+              private http: HttpClient,
+              private subjectCategoryService: SubjectCategoryService,
+              private fb: FormBuilder,
+              private api: ApiService,
+              private snack: MatSnackBar,
+              private dateAdapter: DateAdapter<any>) {
+    this.dateAdapter.setLocale('fa-IR');
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      createDateTime: ['', Validators.required],
+      status: ['', Validators.required]
+
+    })
+  }
 
   ngOnInit() {
     this.userId = this.router.snapshot.params['id']
@@ -23,16 +42,38 @@ export class EditSubjectCategoryComponent implements OnInit {
       respose => {
         this.user = respose.find(a => a.id === +this.userId)
 
-
+        this.showSubjectCategoryConfig(this.user)
         console.log("fsfsf", this.user)
+      }
+    )
+    this.subjectCategoryService.disableBtn$.next(true)
+  }
+
+
+  showSubjectCategoryConfig(id: SubjectCategoryModel) {
+    this.form.setValue({
+        title: id.title,
+        createDateTime: id.createDateTime,
+        status: id.status,
+
       }
     )
   }
 
-  constructor(private router: ActivatedRoute,
-              private http: HttpClient,
-              private s: SubjectCategoryService) {
+  enableBtn() {
+    this.subjectCategoryService.disableBtn$.next(false)
   }
 
+  editSubjectCategory() {
+    this.subjectCategoryService.disableBtn$.next(false)
+    let s = this.api.updateSubjectCategory(this.form.value, this.user.id).subscribe(
+      res => {
+        this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+      })
 
+  }
 }

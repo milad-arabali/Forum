@@ -2,33 +2,49 @@
   <mat-card-header class="header-card">
     <mat-card-title>
       <div class="title-container">
-        <div class="card-header-title">qqqq
-        </div>
-<!--        <div class="button">-->
-<!--          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['edit' , 1]" (click)="edit(1)">مشاهده</button>-->
-<!--          <button mat-raised-button color="accent" [hidden]="showButton">حذف</button>-->
-<!--          <button mat-raised-button color="warn" [hidden]="showButton">ویرایش</button>-->
-<!--          <button mat-raised-button color="warn">افزودن</button>-->
-<!--        </div>-->
+        <div class="card-header-title">ویرایش</div>
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    {{user.id}}
-    {{user.status}}
-    {{user.title}}
-    {{user.createDateTime}}
-
-
+    <div [formGroup]="form" class="subjectCategoryForm">
+      <div>
+        <span>عنوان دسته بندی :</span>
+        <mat-form-field class="mat-form">
+          <mat-label>عنوان دسته بندی :</mat-label>
+          <input type="text" matInput formControlName="title">
+          <mat-error>عنوان دسته بندی وارد شود</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <span>تاریخ انتشار :</span>
+        <mat-form-field class="mat-form">
+          <mat-label> تاریخ انتشار :</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <span>وضیعت :</span>
+        <mat-radio-group class="mat-form" formControlName="status">
+              <mat-radio-button value="true" [value]="true">فعال</mat-radio-button>
+              <mat-radio-button value="false" [value]="false">غیرفعال</mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
   </mat-card-content>
+  <mat-divider></mat-divider>
   <mat-card-footer>
     <div class="button">
-      <button mat-raised-button type="submit" color="primary" >
-        {{'edit-UserComponent.edit-UserComponent-saveButton'|translate}}
+      <button mat-raised-button type="submit" color="primary" (click)="editSubjectCategory()" [disabled]="form.invalid"
+              [routerLink]="['/home/subject-category']">
+        ویرایش
       </button>
-      <button mat-raised-button color="accent" [routerLink]="['/home/subject-category']">
-        {{'edit-UserComponent.edit-UserComponent-cancelButton'|translate}}
+      <button mat-raised-button color="accent" [routerLink]="['/home/subject-category']" (click)="enableBtn()">
+        بازگشت
       </button>
     </div>
   </mat-card-footer>

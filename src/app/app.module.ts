@@ -26,6 +26,8 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTreeModule} from "@angular/material/tree";
+import { ShowSubjectCategoryComponent } from './components/sidebar-component/subject-category/show-subject-category/show-subject-category.component';
+import {CdkListbox} from "@angular/cdk/listbox";
 
 
 
@@ -38,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     NationalCodeValidatorDirective,
+    ShowSubjectCategoryComponent,
 
 
 
@@ -68,7 +71,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDividerModule,
     MatIconModule,
     MatProgressBarModule,
-    MatTreeModule
+    MatTreeModule,
+    CdkListbox
 
 
   ],

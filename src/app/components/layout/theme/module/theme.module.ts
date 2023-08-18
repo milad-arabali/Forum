@@ -41,9 +41,10 @@ import {TranslateModule} from "@ngx-translate/core";
 
 
     ],
-    exports: [
-      ThemeComponent
-    ]
+      exports: [
+          ThemeComponent,
+          TimePipe
+      ]
   }
 )
 export class ThemeModule{

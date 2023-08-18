@@ -5,12 +5,12 @@
         <div class="card-header-title">{{'subject-category-Component.subject-category-title'|translate}}
         </div>
         <div class="button">
-          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['edit', id]" >
+          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['show', id]" [disabled]="disableButton">
             مشاهده
           </button>
-          <button mat-raised-button color="accent" [hidden]="showButton">حذف</button>
-          <button mat-raised-button color="warn" [hidden]="showButton">ویرایش</button>
-          <button mat-raised-button color="warn">افزودن</button>
+          <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton">حذف</button>
+          <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">ویرایش</button>
+          <button mat-raised-button color="warn" [disabled]="disableButton">افزودن</button>
         </div>
       </div>
     </mat-card-title>

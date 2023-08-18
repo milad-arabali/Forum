@@ -10,6 +10,11 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {EditSubjectCategoryComponent} from "../subject-category/edit-subject-category/edit-subject-category.component";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 
@@ -28,7 +33,12 @@ import {EditSubjectCategoryComponent} from "../subject-category/edit-subject-cat
     MatProgressBarModule,
     MatIconModule,
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatRadioModule
   ]
 })
 export class SidebarModule { }
