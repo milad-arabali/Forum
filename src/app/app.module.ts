@@ -28,6 +28,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTreeModule} from "@angular/material/tree";
 import { ShowSubjectCategoryComponent } from './components/sidebar-component/subject-category/show-subject-category/show-subject-category.component';
 import {CdkListbox} from "@angular/cdk/listbox";
+import { DeleteSubjectCategoryComponent } from './components/sidebar-component/subject-category/delete-subject-category/delete-subject-category.component';
+import { AddSubjectCategoryComponent } from './components/sidebar-component/subject-category/add-subject-category/add-subject-category.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 
@@ -41,6 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     NationalCodeValidatorDirective,
     ShowSubjectCategoryComponent,
+    DeleteSubjectCategoryComponent,
+    AddSubjectCategoryComponent,
 
 
 
@@ -72,7 +77,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatProgressBarModule,
     MatTreeModule,
-    CdkListbox
+    CdkListbox,
+    MatDialogModule
 
 
   ],

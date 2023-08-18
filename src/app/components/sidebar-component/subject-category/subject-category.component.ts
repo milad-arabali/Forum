@@ -5,6 +5,9 @@ import {SubjectCategoryDataSource} from "./subject-category-data-source";
 import {SubjectCategoryService} from "../services/subject-category.service";
 import {Router} from "@angular/router";
 import {BehaviorSubject, Subject, Subscription} from "rxjs";
+import {LogOutComponent} from "../../user-panel/log-out/log-out.component";
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-subject-category.component";
 
 @Component({
   selector: 'app-subject-category',
@@ -18,16 +21,16 @@ export class SubjectCategoryComponent implements OnInit {
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
   activeNode: SubjectCategoryFlatNodeModel;
-
-  constructor(private subjectCategoryService: SubjectCategoryService,
-              private router: Router) {
-    this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
-    this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
-  }
-
   getLevel = (node: SubjectCategoryFlatNodeModel) => node.level;
   isExpandable = (node: SubjectCategoryFlatNodeModel) => true;
   hasChild = (_: number, _nodeData: SubjectCategoryFlatNodeModel) => _nodeData.item.hasChild;
+
+  constructor(private subjectCategoryService: SubjectCategoryService,
+              private router: Router,
+              private dialog: MatDialog) {
+    this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
+    this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
+  }
 
   ngOnInit() {
     this.subjectCategoryService.findByParentId(-1).subscribe(result => {
@@ -79,4 +82,9 @@ export class SubjectCategoryComponent implements OnInit {
   }
 
   protected readonly console = console;
+
+  deleteSubject() {
+    const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent)
+    dialogRef.afterClosed()
+  }
 }
