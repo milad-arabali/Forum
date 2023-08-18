@@ -17,8 +17,16 @@ import {NationalCodeValidatorDirective} from "./components/user-panel/directive/
 import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { SubjectCategoryComponent } from './components/sidebar-component/subject-category/subject-category.component';
+
 import {SidebarModule} from "./components/sidebar-component/module/sidebar.module";
+
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatDividerModule} from "@angular/material/divider";
+import {MatIconModule} from "@angular/material/icon";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatTreeModule} from "@angular/material/tree";
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,6 +38,9 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     NationalCodeValidatorDirective,
+
+
+
 
 
   ],
@@ -51,8 +62,13 @@ export function HttpLoaderFactory(http: HttpClient) {
           deps: [HttpClient]
         }
       }
-    )
-
+    ),
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatIconModule,
+    MatProgressBarModule,
+    MatTreeModule
 
 
   ],

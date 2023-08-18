@@ -8,12 +8,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterLink, RouterOutlet} from "@angular/router";
+import {EditSubjectCategoryComponent} from "../subject-category/edit-subject-category/edit-subject-category.component";
 
 
 
 @NgModule({
   declarations: [
-    SubjectCategoryComponent
+    SubjectCategoryComponent,
+    EditSubjectCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,9 @@ import {MatIconModule} from "@angular/material/icon";
     MatButtonModule,
     MatTreeModule,
     MatProgressBarModule,
-    MatIconModule
+    MatIconModule,
+    RouterOutlet,
+    RouterLink
   ]
 })
 export class SidebarModule { }

@@ -1,0 +1,35 @@
+<mat-card class="header-card1">
+  <mat-card-header class="header-card">
+    <mat-card-title>
+      <div class="title-container">
+        <div class="card-header-title">qqqq
+        </div>
+<!--        <div class="button">-->
+<!--          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['edit' , 1]" (click)="edit(1)">مشاهده</button>-->
+<!--          <button mat-raised-button color="accent" [hidden]="showButton">حذف</button>-->
+<!--          <button mat-raised-button color="warn" [hidden]="showButton">ویرایش</button>-->
+<!--          <button mat-raised-button color="warn">افزودن</button>-->
+<!--        </div>-->
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    {{user.id}}
+    {{user.status}}
+    {{user.title}}
+    {{user.createDateTime}}
+
+
+  </mat-card-content>
+  <mat-card-footer>
+    <div class="button">
+      <button mat-raised-button type="submit" color="primary" >
+        {{'edit-UserComponent.edit-UserComponent-saveButton'|translate}}
+      </button>
+      <button mat-raised-button color="accent" [routerLink]="['/home/subject-category']">
+        {{'edit-UserComponent.edit-UserComponent-cancelButton'|translate}}
+      </button>
+    </div>
+  </mat-card-footer>
+</mat-card>

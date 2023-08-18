@@ -8,21 +8,32 @@ import {EditUserComponent} from "./components/user-panel/edit-user/edit-user.com
 import {ChangePasswordComponent} from "./components/user-panel/change-password/change-password.component";
 import {ResetPassWordComponent} from "./components/user-authentication/reset-pass-word/reset-pass-word.component";
 import {SubjectCategoryComponent} from "./components/sidebar-component/subject-category/subject-category.component";
+import {
+  EditSubjectCategoryComponent
+} from "./components/sidebar-component/subject-category/edit-subject-category/edit-subject-category.component";
 
 const routes: Routes = [
   {path: '', component: SigninUserComponent},
   {path: 'signup', component: SignupUserComponent},
   {path: 'signin', component: SigninUserComponent},
   {path: 'resetpassword', component: ResetPassWordComponent},
-  {path: 'home', canActivate:[AuthGuard] ,component: ThemeComponent ,children: [{
+  {
+    path: 'home', canActivate: [AuthGuard], component: ThemeComponent, children: [{
       path: 'profile',
       component: EditUserComponent,
 
     },
       {path: 'changePassword', component: ChangePasswordComponent},
-      {path: 'subject-category', component: SubjectCategoryComponent}
-    ] },{
-    path:'**' , component: SigninUserComponent
+      {
+        path: 'subject-category', component: SubjectCategoryComponent, children: [
+          {path: 'edit/:id', component: EditSubjectCategoryComponent},
+
+        ]
+      }
+
+    ]
+  }, {
+    path: '**', component: SigninUserComponent
   }
 
 ];

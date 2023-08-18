@@ -92,6 +92,7 @@ export class SubjectCategoryDataSource implements DataSource<SubjectCategoryFlat
         this.dataChange.next(this.data);
         node.isLoading = false;
       }, 1000);
+      console.log("dsdsdsds")
     });
   }
 }
