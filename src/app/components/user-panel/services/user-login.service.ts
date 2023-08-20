@@ -73,7 +73,7 @@ export class UserLoginService {
           })
           this.c.set('users', username)
           this.userLogin.logIn().then(() => {
-            this.router.navigate(['/home'])
+            this.router.navigate(['/home-module'])
           })
           this.api.postRegistration(value).subscribe(res => {
               this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
@@ -102,7 +102,7 @@ export class UserLoginService {
     // } else {
     //   this.c.set('users', username)
     //   this.userLogin.logIn().then(() => {
-    //     this.router.navigate(['/home'])
+    //     this.router.navigate(['/home-module'])
     //
     //   })
     //   this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
@@ -161,7 +161,7 @@ export class UserLoginService {
     //     console.log("test")
     //
     //     this.userLogin.logIn().then(() => {
-    //       this.router.navigate(['/home'])
+    //       this.router.navigate(['/home-module'])
     //     })
     //     this.snack.open(message, "", {
     //         duration: 3000,

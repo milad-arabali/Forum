@@ -6,7 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {UserLoginService} from "../../../user-panel/services/user-login.service";
 import {SubjectCategoryService} from "../../services/subject-category.service";
 import {ApiService} from "../../../../../share/services/api.service";
-import {SubjectCategoryModel} from "../../model/subject-category.model";
+import {SubjectCategoryModel} from "../model/subject-category.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpClient} from "@angular/common/http";
 

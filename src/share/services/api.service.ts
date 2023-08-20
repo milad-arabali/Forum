@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {UserAccountInformationModel} from "../../app/components/user-panel/model/user-account-information.model";
-import {SubjectCategoryModel} from "../../app/components/sidebar-component/model/subject-category.model";
+import {SubjectCategoryModel} from "../../app/components/sidebar-component/subject-category/model/subject-category.model";
 
 @Injectable({
   providedIn: 'root'

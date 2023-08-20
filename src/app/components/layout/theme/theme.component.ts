@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -8,6 +9,8 @@ import {Component} from '@angular/core';
 })
 export class ThemeComponent {
   showSidebar:boolean= true;
+  constructor(public router:Router) {
+  }
   changeSidebar(status: boolean) {
     this.showSidebar=status;
   }

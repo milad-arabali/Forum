@@ -1,41 +1,31 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {ThemeModule} from "./components/layout/theme/module/theme.module";
+import {ThemeModule} from "./components/layout/theme/theme-module/theme.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./components/user-panel/module/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
-
 import {
   MaterialPersianDateAdapter,
   PERSIAN_DATE_FORMATS
 } from "./components/user-panel/adapter/material-persian-date.adapter";
 import {NationalCodeValidatorDirective} from "./components/user-panel/directive/natonal-code-validator.directive";
 import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import {SidebarModule} from "./components/sidebar-component/module/sidebar.module";
 
-import {MatButtonModule} from "@angular/material/button";
-import {MatCardModule} from "@angular/material/card";
-import {MatDividerModule} from "@angular/material/divider";
-import {MatIconModule} from "@angular/material/icon";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatTreeModule} from "@angular/material/tree";
-import { ShowSubjectCategoryComponent } from './components/sidebar-component/subject-category/show-subject-category/show-subject-category.component';
-import {CdkListbox} from "@angular/cdk/listbox";
-import { DeleteSubjectCategoryComponent } from './components/sidebar-component/subject-category/delete-subject-category/delete-subject-category.component';
-import { AddSubjectCategoryComponent } from './components/sidebar-component/subject-category/add-subject-category/add-subject-category.component';
-import {MatDialogModule} from "@angular/material/dialog";
-import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatRadioModule} from "@angular/material/radio";
-import {ReactiveFormsModule} from "@angular/forms";
+import {
+  UserAuthenticationModule
+} from "./components/user-authentication/user-authentication-module/user-authentication.module";
+import {
+  RoutingSubjectCategoryModule
+} from "./components/sidebar-component/subject-category/routing-subject-category/routing-subject-category.module";
+import {AppRoutingModule} from "./app-routing.module";
+
+
 
 
 
@@ -44,28 +34,25 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     NationalCodeValidatorDirective,
-    ShowSubjectCategoryComponent,
-    DeleteSubjectCategoryComponent,
-    AddSubjectCategoryComponent,
-
-
-
 
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    RoutingSubjectCategoryModule,
     ThemeModule,
     SidebarModule,
-    BrowserAnimationsModule,
+    UserAuthenticationModule,
     UserLoginModule,
+    BrowserAnimationsModule,
     MatNativeDateModule,
-    HttpClientModule,
+    AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot(
       {
@@ -76,20 +63,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         }
       }
     ),
-    MatButtonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatTreeModule,
-    CdkListbox,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    ReactiveFormsModule
-
 
   ],
   providers: [MatSnackBar,

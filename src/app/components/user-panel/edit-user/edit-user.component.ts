@@ -13,7 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
-  selector: 'app-edit-user',
+  selector: 'app-edit-user-module',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css']
 })

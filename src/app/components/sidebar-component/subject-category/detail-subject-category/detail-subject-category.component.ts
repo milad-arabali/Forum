@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {SubjectCategoryService} from "../../services/subject-category.service";
-import {SubjectCategoryModel} from "../../model/subject-category.model";
+import {SubjectCategoryModel} from "../model/subject-category.model";
 import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../../../share/services/api.service";
@@ -9,11 +9,11 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DateAdapter} from "@angular/material/core";
 
 @Component({
-  selector: 'app-edit-subject-category',
-  templateUrl: './edit-subject-category.component.html',
-  styleUrls: ['./edit-subject-category.component.css']
+  selector: 'app-detail-subject-category-module',
+  templateUrl: './detail-subject-category.component.html',
+  styleUrls: ['./detail-subject-category.component.css']
 })
-export class EditSubjectCategoryComponent implements OnInit {
+export class DetailSubjectCategoryComponent implements OnInit {
   c?: SubjectCategoryModel;
   userId: number;
   user?: SubjectCategoryModel;

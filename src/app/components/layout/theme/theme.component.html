@@ -1,5 +1,8 @@
 <div class="wrapper">
-  <app-header class="header" (showSidebarEmitter)="changeSidebar($event)"></app-header>
+  <app-header class="header" (showSidebarEmitter)="changeSidebar($event)"
+              *ngIf="router.url !== '/signin' && router.url !== '/signup' && router.url !== '/resetpassword'">
+  </app-header>
   <app-main [showSidebar]="showSidebar"></app-main>
-  <app-footer></app-footer>
+  <app-footer *ngIf="router.url !== '/signin' && router.url !== '/signup' && router.url !== '/resetpassword'">
+  </app-footer>
 </div>

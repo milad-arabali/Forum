@@ -2,7 +2,7 @@ import {CollectionViewer, DataSource, SelectionChange} from '@angular/cdk/collec
 import {BehaviorSubject, merge, Observable} from 'rxjs';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {map} from 'rxjs/operators';
-import {SubjectCategoryFlatNodeModel} from "../model/subject-category-flat-node.model";
+import {SubjectCategoryFlatNodeModel} from "./model/subject-category-flat-node.model";
 import {SubjectCategoryService} from "../services/subject-category.service";
 
 

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
-import {SubjectCategoryFlatNodeModel} from "../model/subject-category-flat-node.model";
+import {SubjectCategoryFlatNodeModel} from "./model/subject-category-flat-node.model";
 import {SubjectCategoryDataSource} from "./subject-category-data-source";
 import {SubjectCategoryService} from "../services/subject-category.service";
 import {Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-s
 import {MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
-  selector: 'app-subject-category',
+  selector: 'app-subject-category-module',
   templateUrl: './subject-category.component.html',
   styleUrls: ['./subject-category.component.css']
 })

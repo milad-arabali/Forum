@@ -8,7 +8,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'app-change-password-module',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
