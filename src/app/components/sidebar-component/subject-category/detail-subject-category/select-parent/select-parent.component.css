@@ -1,0 +1,28 @@
+.edit-course-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  min-height: 400px;
+}
+.button button{
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.selectParentDialogContent{
+  width: 100%;
+}
+mat-divider{
+  background: black;
+}
+.headerDialog{
+  width: 100%;
+  background: #3f51b5;
+}
+.headerDialog span{
+  color: white;
+  font-family: BYekan-bold;
+  font-size: 25px;
+}

@@ -8,7 +8,7 @@ import {DetailSubjectCategoryComponent} from "../detail-subject-category/detail-
 const routingSubjectCategory: Routes = [
 
   {path: 'subject-category', canActivate: [AuthGuard], component: SubjectCategoryComponent},
-  {path: 'edit/:id', component: DetailSubjectCategoryComponent, canActivate: [AuthGuard]},
+  {path: 'subject-category/add', component: DetailSubjectCategoryComponent, canActivate: [AuthGuard]},
 
 ]
 

@@ -10,7 +10,7 @@
           </button>
           <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">حذف</button>
           <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">ویرایش</button>
-          <button mat-raised-button color="warn" [disabled]="disableButton" [routerLink]="['add']">افزودن</button>
+          <button mat-raised-button color="warn"  [routerLink]="['/subject-category/add']">افزودن</button>
         </div>
       </div>
     </mat-card-title>

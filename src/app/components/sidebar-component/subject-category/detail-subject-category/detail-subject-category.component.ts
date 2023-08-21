@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {SubjectCategoryService} from "../../services/subject-category.service";
 import {SubjectCategoryModel} from "../model/subject-category.model";
@@ -7,17 +7,22 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../../../share/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DateAdapter} from "@angular/material/core";
+import {MatDialog} from "@angular/material/dialog";
+import {SelectParentComponent} from "./select-parent/select-parent.component";
 
 @Component({
-  selector: 'app-detail-subject-category-module',
+  selector: 'app-detail-subject-category',
   templateUrl: './detail-subject-category.component.html',
   styleUrls: ['./detail-subject-category.component.css']
 })
-export class DetailSubjectCategoryComponent implements OnInit {
+export class DetailSubjectCategoryComponent implements OnInit , AfterViewInit {
   c?: SubjectCategoryModel;
+  test:number;
   userId: number;
   user?: SubjectCategoryModel;
+  parentTitle?: SubjectCategoryModel;
   form: FormGroup;
+
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -25,36 +30,62 @@ export class DetailSubjectCategoryComponent implements OnInit {
               private fb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
+              private dialog: MatDialog,
               private dateAdapter: DateAdapter<any>) {
     this.dateAdapter.setLocale('fa-IR');
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      createDateTime: ['', Validators.required],
-      status: ['', Validators.required]
+      title: ['', [Validators.required,Validators.maxLength(5)]],
+      parent: ['', Validators.required],
+      status: ['', Validators.required],
+      priority: ['', [Validators.required,Validators.max(10),Validators.min(1)]]
 
     })
   }
 
+  ngAfterViewInit()
+  {
+    const a= this.subjectCategoryService.selectParentId$.subscribe(
+      a=>{
+        this.test=a;
+        console.log("dsdsdsddddd",this.test)
+
+
+        this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category').subscribe(
+          response => {
+            this.parentTitle = response.find(test => test.id === this.test)
+            console.log(this.parentTitle.title,"dddd")
+            console.log("eewewewe")
+            this.form.controls['parent'].setValue(this.parentTitle.title)
+          })
+      }
+
+    )
+
+
+
+  }
   ngOnInit() {
     this.userId = this.router.snapshot.params['id']
-    console.log('userid', this.userId)
-    this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category').subscribe(
-      respose => {
-        this.user = respose.find(a => a.id === +this.userId)
+    // console.log('userid', this.userId)
+    // this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category').subscribe(
+    //   respose => {
+    //     this.user = respose.find(a => a.id === +this.userId)
+    //
+    //     this.showSubjectCategoryConfig(this.user)
+    //     console.log("fsfsf", this.user)
+    //   }
+    // )
 
-        this.showSubjectCategoryConfig(this.user)
-        console.log("fsfsf", this.user)
-      }
-    )
-    this.subjectCategoryService.disableBtn$.next(true)
+
+
   }
 
 
   showSubjectCategoryConfig(id: SubjectCategoryModel) {
     this.form.setValue({
-        title: id.title,
-        createDateTime: id.createDateTime,
-        status: id.status,
+
+        parent: id.title,
+
 
       }
     )
@@ -75,5 +106,11 @@ export class DetailSubjectCategoryComponent implements OnInit {
         })
       })
 
+  }
+
+  selectParent() {
+    console.log("dsdsdsd")
+    const dialogRef = this.dialog.open(SelectParentComponent)
+    dialogRef.afterClosed()
   }
 }

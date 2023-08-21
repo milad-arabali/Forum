@@ -9,6 +9,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatRadioModule} from "@angular/material/radio";
 import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
+import {SelectParentModule} from "../select-parent/select-parent-module/select-parent.module";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -25,7 +27,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatDatepickerModule,
     MatRadioModule,
     RouterLink,
-    MatButtonModule
+    MatButtonModule,
+    SelectParentModule,
+    MatIconModule
   ]
 })
 export class DetailSubjectCategoryModule { }

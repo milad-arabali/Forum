@@ -14,31 +14,62 @@
   font-weight: bold;
   font-size: 25px;
   padding: 0;
+
 }
 .subjectCategoryForm {
+  margin-top: 30px;
+  display: flex;
+  height: 320px;
+  /*justify-content: center;*/
+  /*align-items: center;*/
+  padding: 0
+}
+.col{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 50%;
+  margin: 0 10px;
+  /*justify-content: space-between;*/
 }
-
-.subjectCategoryForm div {
+.row{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 1000px;
-  margin: 10px;
+  flex-wrap: wrap;
+  margin: 0;
 }
+.row div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.row span {
+  width: 24%;
+  font-family: BYekan-bold;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+}
+/*.subjectCategoryForm div {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  !*justify-content: space-around;*!*/
+/*  align-items: center;*/
+/*  width: 1000px;*/
+/*  margin: 10px;*/
+/*}*/
 .header-card1{
   margin-bottom: 10px;
 }
 .mat-form {
-  width: 700px;
+  width: 320px;
   padding: 0;
 }
 
 .mat-form input {
-  width: 300px;
+  width: 320px;
   padding: 0;
 }
+
