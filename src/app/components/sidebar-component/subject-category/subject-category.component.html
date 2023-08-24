@@ -2,23 +2,37 @@
   <mat-card-header class="header-card">
     <mat-card-title>
       <div class="title-container">
-        <div class="card-header-title">{{'subject-category-Component.subject-category-title'|translate}}
+
+        <div class="card-header-title">
+          <mat-icon aria-hidden="false" color="warn">insert_drive_file</mat-icon>
+          {{'subject-category-Component.subject-category-title'|translate}}
+
         </div>
         <div class="button">
-          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]" [disabled]="disableButton"
+          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]"
+                  [disabled]="disableButton"
                   (click)="showSubject()">
-            مشاهده
+            {{'subject-category-Component.show-btn'|translate}}
           </button>
-          <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">حذف</button>
-          <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['/subject-category/edit', id]" (click)="editSubject()">ویرایش</button>
-          <button mat-raised-button color="warn"  [routerLink]="['/subject-category/add']" (click)="addSubject()">افزودن</button>
+          <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton"
+                  (click)="deleteSubject()">
+            {{'subject-category-Component.delete-btn'|translate}}
+          </button>
+          <button mat-raised-button color="warn" [hidden]="showButton" [disabled]="disableButton"
+                  [routerLink]="['/subject-category/edit', id]" (click)="editSubject()">
+            {{'subject-category-Component.edit-btn'|translate}}
+          </button>
+          <button mat-raised-button color="warn" [routerLink]="['/subject-category/add']" (click)="addSubject()">
+            {{'subject-category-Component.add-btn'|translate}}
+
+          </button>
         </div>
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content >
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree" >
+  <mat-card-content>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding=""
                      (contextmenu)="onContextMenu($event, node)">
         <button mat-flat-button (click)="selectNode(node)"
@@ -63,25 +77,33 @@
      style="visibility: hidden; position: fixed">
 </div>
 <mat-menu #contextMenu="matMenu">
-  <ng-template  matMenuContent>
-    <button   mat-menu-item [disabled]="disableButton" [routerLink]="['/subject-category/add']">
+  <ng-template matMenuContent>
+    <button mat-menu-item [routerLink]="['/subject-category/add']">
       <mat-icon aria-hidden="false" color="primary">add</mat-icon>
-      <span class="iransans">افزودن</span>
+      <span class="iransans" (click)="addSubject()">
+        {{'subject-category-Component.add-btn'|translate}}
+      </span>
     </button>
-    <button   mat-menu-item [hidden]="showButton" [routerLink]="['/subject-category/show', id]" [disabled]="disableButton">
+    <button mat-menu-item [routerLink]="['/subject-category/show', id]">
       <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
 
-      <span class="iransans">مشاهده</span>
+      <span class="iransans"  (click)="showSubject()">
+         {{'subject-category-Component.show-btn'|translate}}
+      </span>
     </button>
-    <button   mat-menu-item [hidden]="showButton" [routerLink]="['/subject-category/edit', id]" [disabled]="disableButton">
+    <button mat-menu-item  [routerLink]="['/subject-category/edit', id]">
       <mat-icon aria-hidden="false" color="accent">edit</mat-icon>
 
-      <span class="iransans">ویرایش</span>
+      <span class="iransans">
+             {{'subject-category-Component.edit-btn'|translate}}
+      </span>
     </button>
-    <button  mat-menu-item [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">
+    <button mat-menu-item (click)="deleteSubject()">
       <mat-icon aria-hidden="false" color="warn">delete</mat-icon>
 
-      <span class="iransans">حذف</span>
+      <span class="iransans">
+             {{'subject-category-Component.delete-btn'|translate}}
+      </span>
     </button>
   </ng-template>
 </mat-menu>

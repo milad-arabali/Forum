@@ -11,6 +11,7 @@ import {RouterLink} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {SelectParentModule} from "../select-parent/select-parent-module/select-parent.module";
 import {MatIconModule} from "@angular/material/icon";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -18,18 +19,19 @@ import {MatIconModule} from "@angular/material/icon";
   declarations: [
     DetailSubjectCategoryComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatRadioModule,
-    RouterLink,
-    MatButtonModule,
-    SelectParentModule,
-    MatIconModule
-  ]
+    imports: [
+        CommonModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatListModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatRadioModule,
+        RouterLink,
+        MatButtonModule,
+        SelectParentModule,
+        MatIconModule,
+        TranslateModule
+    ]
 })
 export class DetailSubjectCategoryModule { }

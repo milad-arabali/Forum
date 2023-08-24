@@ -33,7 +33,7 @@
     {
       "userName": "test1",
       "password": "test2",
-      "name": "ممدرضا",
+      "name": "محمدرضا",
       "nameFamily": "حسینی",
       "nationalCode": "1234567891",
       "gender": "مرد",
@@ -63,58 +63,31 @@
   ],
   "subject-category": [
     {
-      "id": 1,
+      "title": "تس",
       "parentId": -1,
-      "title": "تست 1",
-      "createDateTime": "2023-08-07T20:30:00.000Z",
-      "status": true,
+      "createDateTime": "Thu Aug 24 2023 16:12:37 GMT+0330 (Iran Standard Time)",
+      "hasChild": true,
       "priority": 1,
-      "hasChild": true
-    },
-    {
-      "id": 2,
-      "parentId": -1,
-      "title": "تست 23",
-      "createDateTime": "2023-08-07T21:30:00.000Z",
       "status": true,
-      "priority": 2,
-      "hasChild": false
+      "id": 1
     },
     {
-      "id": 3,
+      "title": "22",
       "parentId": 1,
-      "title": "تست 3",
-      "createDateTime": "2023-08-07T22:30:00.000Z",
+      "createDateTime": "Thu Aug 24 2023 16:13:57 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 2,
       "status": false,
-      "priority": 1,
-      "hasChild": true
+      "id": 2
     },
     {
-      "id": 4,
-      "parentId": 3,
-      "title": "تست 4",
-      "createDateTime": "2023-08-07T23:30:00.000Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": false
-    },
-    {
-      "id": 5,
-      "parentId": -1,
-      "title": "تست 5",
-      "createDateTime": "2023-08-07T23:30:00.000Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": true
-    },
-    {
-      "id": 6,
-      "parentId": -1,
-      "title": "تست 6",
-      "createDateTime": "2023-08-07T23:30:00.000Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": true
+      "title": "سس",
+      "parentId": 2,
+      "createDateTime": "Thu Aug 24 2023 16:31:05 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 2,
+      "status": false,
+      "id": 3
     }
   ]
 }

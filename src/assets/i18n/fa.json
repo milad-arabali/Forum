@@ -122,6 +122,36 @@
     "logout-UserComponent-noButton": "خیر"
   },
   "subject-category-Component": {
-    "subject-category-title": "دسته بندی موضوع"
+    "subject-category-title": "دسته بندی موضوع",
+    "show-btn": "مشاهده",
+    "delete-btn": "حذف",
+    "add-btn": "افزودن",
+    "edit-btn": "ویرایش"
+  },
+  "select-subject-category-Component": {
+    "select-parent": "انتخاب والد",
+    "select-parent-btn": "انتخاب",
+    "exit": "انصراف"
+  },
+  "detail-subject-category-Component":{
+    "add-btn": " افزودن",
+    "show-btn": " مشاهده",
+    "edit-btn": "ویرایش",
+    "exit-btn": "بازگشت",
+    "select-parent-input": "والد :",
+    "select-parent-mat-label": "والد :",
+    "select-parent-input-error": "والد دسته بندی وارد شود",
+    "select-priority-input": "اولویت :",
+    "select-priority-mat-label": "اولویت :",
+    "select-priority-input-error-required": "اولویت دسته بندی وارد شود",
+    "select-priority-input-error-max": "مقداراولویت بین 1 تا 10 وارد شود.",
+    "select-title-input": "عنوان :",
+    "select-title-mat-label": "عنوان :",
+    "select-title-input-error-required": "عنوان دسته بندی وارد شود.",
+    "select-title-input-error-maxlength": " حداکثر تعداد کاراکتر 255 است.",
+    "select-title-status": "وضیعت :",
+    "select-title-status-true": "فعال",
+    "select-title-status-false": "غیرفعال"
+
   }
 }

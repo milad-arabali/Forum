@@ -15,7 +15,7 @@ import {SelectParentComponent} from "./select-parent/select-parent.component";
   templateUrl: './detail-subject-category.component.html',
   styleUrls: ['./detail-subject-category.component.css']
 })
-export class DetailSubjectCategoryComponent implements OnInit, AfterViewInit {
+export class DetailSubjectCategoryComponent implements OnInit , AfterViewInit {
   c?: SubjectCategoryModel;
   test: number;
   userId: number;
@@ -167,5 +167,4 @@ export class DetailSubjectCategoryComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed()
   }
-
 }

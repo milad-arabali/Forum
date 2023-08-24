@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {SubjectCategoryFlatNodeModel} from "./model/subject-category-flat-node.model";
 import {SubjectCategoryDataSource} from "./subject-category-data-source";
@@ -13,11 +13,11 @@ import {MatMenuTrigger} from "@angular/material/menu";
   templateUrl: './subject-category.component.html',
   styleUrls: ['./subject-category.component.css']
 })
-export class SubjectCategoryComponent implements OnInit {
+export class SubjectCategoryComponent implements OnInit , OnDestroy {
   disableButton:boolean;
+  contextmenu:boolean;
   showButton: boolean = true;
   id: number;
-  editSubjectCategory:boolean;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
   activeNode: SubjectCategoryFlatNodeModel;
@@ -47,15 +47,23 @@ export class SubjectCategoryComponent implements OnInit {
         }
       )
     });
-    this.subjectCategoryService.disableBtn$.subscribe(a=>{
-      this.disableButton=a;
-    })
-    this.subjectCategoryService.selectParentId$.next(0)
+    // this.subjectCategoryService.disableBtn$.subscribe(a=>{
+    //   this.disableButton=a;
+    // })
 
+    this.subjectCategoryService.selectParentId$.next(0)
     this.subjectCategoryService.editSubject$.next(false)
     this.subjectCategoryService.addSubject$.next(false)
     this.subjectCategoryService.showSubject$.next(false)
+    // this.subjectCategoryService.contextmenu$.next(true)
+    // this.subjectCategoryService.contextmenu$.subscribe(a => {
+    //   this.contextmenu = a
+    // })
+    // this.contextmenu=true;
 
+  }
+
+  ngOnDestroy() {
   }
 
   /**
@@ -67,11 +75,22 @@ export class SubjectCategoryComponent implements OnInit {
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
       // this.showButton=true;
+
       this.subjectCategoryService.selectParentId$.unsubscribe()
+
+      this.subjectCategoryService.Id$.unsubscribe()
+      this.subjectCategoryService.deleteSubject.unsubscribe()
+
       this.subjectCategoryService.showBtn$.next(true)
       this.subjectCategoryService.showBtn$.subscribe(a => {
         this.showButton = a
       })
+      // this.subjectCategoryService.deleteSubject.unsubscribe()
+      // this.subjectCategoryService.contextmenu$.next(true)
+      // this.subjectCategoryService.contextmenu$.subscribe(b => {
+      //   this.contextmenu = b
+      // })
+      // this.contextmenu=true;
     } else {
       this.activeNode = node;
       // this.showButton=false;
@@ -83,6 +102,11 @@ export class SubjectCategoryComponent implements OnInit {
       this.subjectCategoryService.Id$.next(node.item.id)
       this.subjectCategoryService.deleteSubject.next(node.item.id)
       this.subjectCategoryService.selectParentId$.next(node.item.id)
+      // this.subjectCategoryService.contextmenu$.next(false)
+      // this.subjectCategoryService.contextmenu$.subscribe(a => {
+      //   this.contextmenu = a
+      // })
+      // this.contextmenu=false;
     }
 
   }

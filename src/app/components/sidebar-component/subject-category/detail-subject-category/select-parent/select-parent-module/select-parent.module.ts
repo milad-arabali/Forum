@@ -8,6 +8,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTreeModule} from "@angular/material/tree";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -17,14 +18,15 @@ import {MatTreeModule} from "@angular/material/tree";
 
         SelectParentComponent
   ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatListModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatTreeModule
-  ]
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatListModule,
+        MatProgressBarModule,
+        MatIconModule,
+        MatTreeModule,
+        TranslateModule
+    ]
 })
 export class SelectParentModule { }

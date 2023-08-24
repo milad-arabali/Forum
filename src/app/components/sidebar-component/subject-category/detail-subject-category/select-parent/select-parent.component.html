@@ -1,12 +1,13 @@
 <div class="edit-course-form">
   <mat-dialog-content class="headerDialog">
-    <span>انتخاب والد</span>
+    <span>
+        {{'select-subject-category-Component.select-parent'|translate}}
+    </span>
   </mat-dialog-content>
   <mat-divider></mat-divider>
   <mat-dialog-content class="selectParentDialogContent">
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree">
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding=""
-      >
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding="">
         <button mat-flat-button (click)="selectNode(node)"
                 [color]="activeNode === node ? 'primary' : ''">
           <span class="iransans">{{node.item.title}}</span>
@@ -33,9 +34,10 @@
     </mat-tree>
   </mat-dialog-content>
   <mat-dialog-actions class="button">
-    <button mat-raised-button color="primary" (click)="selectParent()">انتخاب</button>
+    <button mat-raised-button color="primary" (click)="selectParent()">
+      {{'select-subject-category-Component.select-parent-btn'|translate}}</button>
     <button mat-raised-button color="warn"
-            (click)="selectParentClose()">انصراف
+            (click)="selectParentClose()"> {{'select-subject-category-Component.exit'|translate}}
     </button>
   </mat-dialog-actions>
 

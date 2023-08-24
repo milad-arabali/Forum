@@ -11,8 +11,7 @@ import {Router} from "@angular/router";
 export class SubjectCategoryService {
   public apiUrl: string = 'http://localhost:3000/subject-category'
 
-  constructor(private http: HttpClient,
-              private routr: Router) {
+  constructor(private http: HttpClient) {
   }
 
   public Id$ = new BehaviorSubject<any>('');
@@ -23,7 +22,7 @@ export class SubjectCategoryService {
   public editSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public addSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public showSubject$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  public contextmenu$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   findByParentId(parentId: number): Observable<SubjectCategoryModel[]> {
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?parentId=' + `${parentId}`);
   }
