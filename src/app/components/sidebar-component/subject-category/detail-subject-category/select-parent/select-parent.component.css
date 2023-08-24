@@ -12,12 +12,14 @@
   font-size: 15px;
 }
 .selectParentDialogContent{
+  min-height: 300px;
   width: 100%;
 }
 mat-divider{
   background: black;
 }
 .headerDialog{
+  max-height: 70px;
   width: 100%;
   background: #3f51b5;
 }

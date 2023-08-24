@@ -9,6 +9,8 @@ const routingSubjectCategory: Routes = [
 
   {path: 'subject-category', canActivate: [AuthGuard], component: SubjectCategoryComponent},
   {path: 'subject-category/add', component: DetailSubjectCategoryComponent, canActivate: [AuthGuard]},
+  {path: 'subject-category/edit/:id', component: DetailSubjectCategoryComponent, canActivate: [AuthGuard]},
+  {path: 'subject-category/show/:id', component: DetailSubjectCategoryComponent, canActivate: [AuthGuard]},
 
 ]
 

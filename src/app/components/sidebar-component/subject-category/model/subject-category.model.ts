@@ -1,4 +1,4 @@
-export interface SubjectCategoryModel {
+export class SubjectCategoryModel {
   id:number;
   parentId: number;
   title: string;

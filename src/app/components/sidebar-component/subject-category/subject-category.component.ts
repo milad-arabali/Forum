@@ -17,6 +17,7 @@ export class SubjectCategoryComponent implements OnInit {
   disableButton:boolean;
   showButton: boolean = true;
   id: number;
+  editSubjectCategory:boolean;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
   activeNode: SubjectCategoryFlatNodeModel;
@@ -49,6 +50,11 @@ export class SubjectCategoryComponent implements OnInit {
     this.subjectCategoryService.disableBtn$.subscribe(a=>{
       this.disableButton=a;
     })
+    this.subjectCategoryService.selectParentId$.next(0)
+
+    this.subjectCategoryService.editSubject$.next(false)
+    this.subjectCategoryService.addSubject$.next(false)
+    this.subjectCategoryService.showSubject$.next(false)
 
   }
 
@@ -61,6 +67,7 @@ export class SubjectCategoryComponent implements OnInit {
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
       // this.showButton=true;
+      this.subjectCategoryService.selectParentId$.unsubscribe()
       this.subjectCategoryService.showBtn$.next(true)
       this.subjectCategoryService.showBtn$.subscribe(a => {
         this.showButton = a
@@ -75,7 +82,9 @@ export class SubjectCategoryComponent implements OnInit {
       this.subjectCategoryService.findId(node.item.id)
       this.subjectCategoryService.Id$.next(node.item.id)
       this.subjectCategoryService.deleteSubject.next(node.item.id)
+      this.subjectCategoryService.selectParentId$.next(node.item.id)
     }
+
   }
 
   deleteSubject() {
@@ -90,5 +99,17 @@ export class SubjectCategoryComponent implements OnInit {
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
+  }
+
+  editSubject() {
+    this.subjectCategoryService.editSubject$.next(true)
+  }
+
+  addSubject() {
+    this.subjectCategoryService.addSubject$.next(true)
+  }
+
+  showSubject() {
+    this.subjectCategoryService.showSubject$.next(true)
   }
 }

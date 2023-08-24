@@ -12,8 +12,6 @@ import {SubjectCategoryService} from "../../../services/subject-category.service
   styleUrls: ['./select-parent.component.css']
 })
 export class SelectParentComponent implements OnInit {
-
-
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
@@ -35,8 +33,6 @@ export class SelectParentComponent implements OnInit {
       (item, 0, true, false));
 
     });
-
-
   }
 
   /**
@@ -47,10 +43,11 @@ export class SelectParentComponent implements OnInit {
 
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
-
+      this.subjectCategoryService.selectParentId$.unsubscribe()
     } else {
       this.activeNode = node;
       this.id=node.item.id
+
 
 
     }
@@ -68,5 +65,6 @@ export class SelectParentComponent implements OnInit {
     this.route.navigate(['/subject-category/add'])
     this.dialogRef.close()
   }
+
 
 }

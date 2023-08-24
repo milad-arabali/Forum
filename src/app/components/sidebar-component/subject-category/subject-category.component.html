@@ -5,12 +5,13 @@
         <div class="card-header-title">{{'subject-category-Component.subject-category-title'|translate}}
         </div>
         <div class="button">
-          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['show', id]" [disabled]="disableButton">
+          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]" [disabled]="disableButton"
+                  (click)="showSubject()">
             مشاهده
           </button>
           <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton" (click)="deleteSubject()">حذف</button>
-          <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">ویرایش</button>
-          <button mat-raised-button color="warn"  [routerLink]="['/subject-category/add']">افزودن</button>
+          <button mat-raised-button color="warn" [hidden]="showButton" [routerLink]="['/subject-category/edit', id]" (click)="editSubject()">ویرایش</button>
+          <button mat-raised-button color="warn"  [routerLink]="['/subject-category/add']" (click)="addSubject()">افزودن</button>
         </div>
       </div>
     </mat-card-title>
@@ -44,13 +45,13 @@
                           class="tree-progress-bar"></mat-progress-bar>
       </mat-tree-node>
     </mat-tree>
-<!--    <ng-template #context_menu>-->
-<!--      <div class="example-menu" cdkMenu>-->
-<!--        <button class="example-menu-item" cdkMenuItem>Cut</button>-->
-<!--        <button class="example-menu-item" cdkMenuItem>Copy</button>-->
-<!--        <button class="example-menu-item" cdkMenuItem>Link</button>-->
-<!--      </div>-->
-<!--    </ng-template>-->
+    <!--    <ng-template #context_menu>-->
+    <!--      <div class="example-menu" cdkMenu>-->
+    <!--        <button class="example-menu-item" cdkMenuItem>Cut</button>-->
+    <!--        <button class="example-menu-item" cdkMenuItem>Copy</button>-->
+    <!--        <button class="example-menu-item" cdkMenuItem>Link</button>-->
+    <!--      </div>-->
+    <!--    </ng-template>-->
 
   </mat-card-content>
   <mat-card-footer>
@@ -63,16 +64,16 @@
 </div>
 <mat-menu #contextMenu="matMenu">
   <ng-template  matMenuContent>
-    <button   mat-menu-item [disabled]="disableButton" [routerLink]="['add']">
+    <button   mat-menu-item [disabled]="disableButton" [routerLink]="['/subject-category/add']">
       <mat-icon aria-hidden="false" color="primary">add</mat-icon>
       <span class="iransans">افزودن</span>
     </button>
-    <button   mat-menu-item [hidden]="showButton" [routerLink]="['show', id]" [disabled]="disableButton">
+    <button   mat-menu-item [hidden]="showButton" [routerLink]="['/subject-category/show', id]" [disabled]="disableButton">
       <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
 
       <span class="iransans">مشاهده</span>
     </button>
-    <button   mat-menu-item [hidden]="showButton" [routerLink]="['edit', id]" [disabled]="disableButton">
+    <button   mat-menu-item [hidden]="showButton" [routerLink]="['/subject-category/edit', id]" [disabled]="disableButton">
       <mat-icon aria-hidden="false" color="accent">edit</mat-icon>
 
       <span class="iransans">ویرایش</span>

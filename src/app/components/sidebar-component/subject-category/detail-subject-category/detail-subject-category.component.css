@@ -14,7 +14,6 @@
   font-weight: bold;
   font-size: 25px;
   padding: 0;
-
 }
 .subjectCategoryForm {
   margin-top: 30px;
@@ -43,6 +42,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+
 }
 
 .row span {
@@ -64,12 +64,12 @@
   margin-bottom: 10px;
 }
 .mat-form {
-  width: 320px;
+
   padding: 0;
 }
 
-.mat-form input {
-  width: 320px;
+.mat-form {
+  /*width: 100%;*/
   padding: 0;
+  width: 420px;
 }
-

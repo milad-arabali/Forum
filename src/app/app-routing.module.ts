@@ -10,7 +10,7 @@ import {HomeComponent} from "./components/sidebar-component/home/home/home.compo
 
 
 const routes: Routes = [
-  {path: '', component: SigninUserComponent},
+  {path: '', redirectTo:'/home' , pathMatch:"full" },
   {path: 'signup', component: SignupUserComponent},
   {path: 'signin', component: SigninUserComponent},
   {path: 'resetpassword', component: ResetPassWordComponent},
