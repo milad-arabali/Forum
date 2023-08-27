@@ -3,7 +3,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
-import {UserLoginService} from "../services/user-login.service";
+import {UserLoginService} from "../../user-authentication/sign-in-user/shared/services/user-login.service";
 
 @Component({
   selector: 'app-log-out',

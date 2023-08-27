@@ -2,8 +2,8 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ConfirmedValidator} from "./confrim.validator";
-import {ApiService} from "../../../../share/services/api.service";
-import {ChangePasswordService} from "../services/change-password.service";
+import {ApiService} from "../../shared/services/api.service";
+import {ChangePasswordService} from "./shared/services/change-password.service";
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 

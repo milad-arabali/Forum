@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {CookieServiceLogin} from "../share/services/cookie.service";
+import {CookieServiceLogin} from "./components/shared/services/cookie.service";
 import {CookieService} from "ngx-cookie-service";
-
-import {Router} from "@angular/router";
-import {UserAccountInformationModel} from "./components/user-panel/model/user-account-information.model";
-import {ApiService} from "../share/services/api.service";
+import {UserAccountInformationModel} from "./components/shared/model/user-account-information.model";
+import {ApiService} from "./components/shared/services/api.service";
 import {HttpClient} from "@angular/common/http";
-import {UserLoginService} from "./components/user-panel/services/user-login.service";
+import {UserLoginService} from "./components/user-authentication/sign-in-user/shared/services/user-login.service";
 
 @Component({
   selector: 'app-root',
