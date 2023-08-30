@@ -4,14 +4,14 @@
       <div class="title-container">
 
         <div class="card-header-title">
-          <mat-icon aria-hidden="false" color="warn">insert_drive_file</mat-icon>
+          <mat-icon aria-hidden="false" >insert_drive_file</mat-icon>
           {{'subject-category-Component.subject-category-title'|translate}}
 
         </div>
         <div class="button">
           <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]"
                   [disabled]="disableButton"
-                  (click)="showSubject()">
+          >
             {{'subject-category-Component.show-btn'|translate}}
           </button>
           <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton"
@@ -19,10 +19,10 @@
             {{'subject-category-Component.delete-btn'|translate}}
           </button>
           <button mat-raised-button color="warn" [hidden]="showButton" [disabled]="disableButton"
-                  [routerLink]="['/subject-category/edit', id]" (click)="editSubject()">
+                  [routerLink]="['/subject-category/edit', id]" >
             {{'subject-category-Component.edit-btn'|translate}}
           </button>
-          <button mat-raised-button color="warn" [routerLink]="['/subject-category/add']" (click)="addSubject()">
+          <button mat-raised-button color="primary"  (click)="navigateAdd()">
             {{'subject-category-Component.add-btn'|translate}}
 
           </button>
@@ -80,14 +80,14 @@
   <ng-template matMenuContent>
     <button mat-menu-item [routerLink]="['/subject-category/add']">
       <mat-icon aria-hidden="false" color="primary">add</mat-icon>
-      <span class="iransans" (click)="addSubject()">
+      <span class="iransans" >
         {{'subject-category-Component.add-btn'|translate}}
       </span>
     </button>
     <button mat-menu-item [routerLink]="['/subject-category/show', id]">
       <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
 
-      <span class="iransans"  (click)="showSubject()">
+      <span class="iransans" >
          {{'subject-category-Component.show-btn'|translate}}
       </span>
     </button>

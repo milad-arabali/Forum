@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {UserLoginService} from "../../../../components/user-authentication/sign-in-user/shared/services/user-login.service";
 import {CookieService} from "ngx-cookie-service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ApiService} from "../../../../components/shared/services/api.service";
+import {ApiService} from "../../../../shared/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 

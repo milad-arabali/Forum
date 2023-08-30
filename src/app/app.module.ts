@@ -11,22 +11,18 @@ import {
   MaterialPersianDateAdapter,
   PERSIAN_DATE_FORMATS
 } from "./core/adapter/material-persian-date.adapter";
-
 import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import {
   UserAuthenticationModule
 } from "./components/user-authentication/user-authentication.module";
 import {
   RoutingSubjectCategoryModule
-} from "./components/subject-category-manage/routing-subject-category.module";
+} from "./components/subject-category/shared/services/routing-subject-category.module";
 import {AppRoutingModule} from "./app-routing.module";
-import {NationalCodeValidatorDirective} from "./components/shared/directive/natonal-code-validator.directive";
-import {SubjectCategoryModule} from "./components/subject-category-manage/subject-category/subject-category.module";
-import {SubjectCategoryManageModule} from "./components/subject-category-manage/subject-category-manage.module";
-
+import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-validator.directive";
+import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
 
 
 
@@ -55,7 +51,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatNativeDateModule,
     AppRoutingModule,
     HttpClientModule,
-    SubjectCategoryManageModule,
+    SubjectCategoryModule,
     TranslateModule.forRoot(
       {
         loader: {

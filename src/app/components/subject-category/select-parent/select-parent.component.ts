@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {SubjectCategoryFlatNodeModel} from "../../shared/model/subject-category-flat-node.model";
+import {SubjectCategoryFlatNodeModel} from "../../../shared/model/subject-category-flat-node.model";
 import {FlatTreeControl} from "@angular/cdk/tree";
-import {SubjectCategoryDataSource} from "../subject-category/subject-category-data-source";
+import {SubjectCategoryDataSource} from "../subject-category-data-source";
 import {MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import {SubjectCategoryService} from "../subject-category/subject-category.service";
+import {SubjectCategoryService} from "../subject-category.service";
+import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 
 @Component({
   selector: 'app-select-parent-module',
@@ -20,9 +21,12 @@ export class SelectParentComponent implements OnInit {
   isExpandable = (node: SubjectCategoryFlatNodeModel) => true;
   hasChild = (_: number, _nodeData: SubjectCategoryFlatNodeModel) => _nodeData.item.hasChild;
 
+  selectParentBtn: Boolean = false;
+
   constructor(private subjectCategoryService: SubjectCategoryService,
               private route: Router,
-              private dialogRef: MatDialogRef<SelectParentComponent>) {
+              private dialogRef: MatDialogRef<SelectParentComponent>,
+  ) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
   }
@@ -33,6 +37,12 @@ export class SelectParentComponent implements OnInit {
       (item, 0, true, false));
 
     });
+    // if (this.dataSource.data.length > 0) {
+    //   this.selectParentBtn = true;
+    //   console.log("true")
+    // } else {
+    //   this.selectParentBtn = false;
+    // }
   }
 
   /**
@@ -43,11 +53,13 @@ export class SelectParentComponent implements OnInit {
 
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
-      this.subjectCategoryService.selectParentId$.unsubscribe()
+      // this.subjectCategoryService.selectParentId$.unsubscribe()
+      this.selectParentBtn = false;
     } else {
       this.activeNode = node;
-      this.id=node.item.id
-
+      this.id = node.item.id;
+      this.selectParentBtn = true;
+      // this.subjectCategoryService.selectParentId$.next(node.item.id)
 
 
     }
@@ -55,16 +67,23 @@ export class SelectParentComponent implements OnInit {
   }
 
   selectParentClose() {
-    this.route.navigate(['/subject-category/add'])
-    this.dialogRef.close()
+    const s = new SubjectCategoryModel();
+
+    s.id = -1
+
+    this.dialogRef.close(s)
+
   }
 
   selectParent() {
-    this.subjectCategoryService.selectParentId$.next(this.id)
-    console.log("id:",this.id)
-    this.route.navigate(['/subject-category/add'])
-    this.dialogRef.close()
+    // this.subjectCategoryService.selectParentId$.next(this.id)
+    const s = new SubjectCategoryModel();
+    s.title = this.activeNode.item.title
+    s.id = this.activeNode.item.id
+    console.log("id:", this.id)
+    this.dialogRef.close(s)
   }
+
 
 
 }

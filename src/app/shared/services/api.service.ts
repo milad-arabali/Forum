@@ -16,8 +16,8 @@ export class ApiService {
   updateRegisterUser(registerObj: UserAccountInformationModel, id : number){
     return this.httpClient.patch<UserAccountInformationModel[]>(`${this.apiUrl}/${id}`,registerObj)
   }
-  updateSubjectCategory(subjectCategory: SubjectCategoryModel, id : number){
-    return this.httpClient.patch<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`,subjectCategory)
+  getSubjectCategory(id : number){
+    return this.httpClient.get<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`)
   }
   deleteSubjectCategory(id : number){
     return this.httpClient.delete<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`)

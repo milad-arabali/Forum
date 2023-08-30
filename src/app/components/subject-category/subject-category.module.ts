@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SubjectCategoryComponent} from "./subject-category.component";
-import {
-  DetailSubjectCategoryModule
-} from "../detail-subject-category/detail-subject-category.module";
 import {MatMenuModule} from "@angular/material/menu";
 import {RouterLink} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
@@ -13,16 +10,16 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatListModule} from "@angular/material/list";
 import {TranslateModule} from "@ngx-translate/core";
-import {
-  DeleteSubjectCategoryModule
-} from "../delete-subject-category/delete-subject-category.module";
-
+import {SelectParentModule} from "./select-parent/select-parent.module";
+import {DeleteSubjectCategoryModule} from "./delete-subject-category/delete-subject-category.module";
+import {DetailSubjectCategoryModule} from "./detail-subject-category/detail-subject-category.module";
 
 
 
 @NgModule({
   declarations: [
     SubjectCategoryComponent,
+
 
   ],
   imports: [
@@ -36,6 +33,9 @@ import {
     MatTreeModule,
     MatListModule,
     TranslateModule,
+    SelectParentModule,
+    DeleteSubjectCategoryModule,
+    DetailSubjectCategoryModule
 
   ]
 })

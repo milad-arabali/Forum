@@ -34,7 +34,7 @@
     </mat-tree>
   </mat-dialog-content>
   <mat-dialog-actions class="button">
-    <button mat-raised-button color="primary" (click)="selectParent()">
+    <button mat-raised-button color="primary" (click)="selectParent()" [disabled]="!selectParentBtn">
       {{'select-subject-category-Component.select-parent-btn'|translate}}</button>
     <button mat-raised-button color="warn"
             (click)="selectParentClose()"> {{'select-subject-category-Component.exit'|translate}}

@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {UserLoginService} from "../../../../components/user-authentication/sign-in-user/shared/services/user-login.service";
 import {MatDialog} from "@angular/material/dialog";
 import {LogOutComponent} from "../../../../components/user-panel/log-out/log-out.component";
-import {ApiService} from "../../../../components/shared/services/api.service";
+import {ApiService} from "../../../../shared/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
 

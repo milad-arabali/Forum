@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserLoginService} from "../../user-authentication/sign-in-user/shared/services/user-login.service";
-import {ApiService} from "../../shared/services/api.service";
+import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute} from "@angular/router";
-import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
+import {UserAccountInformationModel} from "../../../shared/model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter} from "@angular/material/core";
 import {TranslateService} from "@ngx-translate/core";
-import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
+import {checkNationalCode} from "../../../shared/directive/natonal-code-validator.directive";
 
 
 @Component({

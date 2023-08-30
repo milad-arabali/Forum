@@ -3,10 +3,9 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
-import {UserLoginService} from "../../user-authentication/sign-in-user/shared/services/user-login.service";
-import {SubjectCategoryService} from "../subject-category/subject-category.service";
-import {ApiService} from "../../shared/services/api.service";
-import {SubjectCategoryModel} from "../../shared/model/subject-category.model";
+import {SubjectCategoryService} from "../subject-category.service";
+import {ApiService} from "../../../shared/services/api.service";
+import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {HttpClient} from "@angular/common/http";
 
@@ -40,12 +39,15 @@ export class DeleteSubjectCategoryComponent implements OnInit {
       }
     )
 
-    this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category').subscribe(
-      response => {
-        this.subjectCategory = response.find(a => a.id === this.id)
-
-      }
-    )
+    // this.subjectCategoryService.findId(this.id).subscribe(
+    //   response => {
+    //    if(response.id === this.id){
+    //      this.subjectCategory.id = response.id
+    //
+    //    }
+    //
+    //   }
+    // )
   }
 
   close() {
@@ -55,26 +57,17 @@ export class DeleteSubjectCategoryComponent implements OnInit {
   }
 
   delete() {
+    this.api.deleteSubjectCategory(this.id).subscribe(
+      a => {
+        this.snack.open("دسته بندی مورد نظر با موفقیت حذف شد.", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+      }
+    )
 
-    // console.log("dd",this.subjectCategory.hasChild)
-    if (this.subjectCategory.hasChild === false) {
-      this.api.deleteSubjectCategory(this.subjectCategory.id).subscribe(
-        a => {
-          this.snack.open("دسته بندی مورد نظر با موفقیت حذف شد.", "", {
-            duration: 3000,
-            horizontalPosition: "end",
-            verticalPosition: "top"
-          })
-        }
-      )
 
-    } else {
-      this.snack.open("دسته بندی مورد نظر دارای فرزند است.", "", {
-        duration: 3000,
-        horizontalPosition: "end",
-        verticalPosition: "top"
-      })
-    }
     this.dialogRef.close();
 
   }

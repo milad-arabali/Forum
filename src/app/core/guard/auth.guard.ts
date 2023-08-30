@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import {CookieServiceLogin} from "../../components/shared/services/cookie.service";
+import {CookieServiceLogin} from "../../shared/services/cookie.service";
 
 
 

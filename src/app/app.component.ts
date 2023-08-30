@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CookieServiceLogin} from "./components/shared/services/cookie.service";
+import {CookieServiceLogin} from "./shared/services/cookie.service";
 import {CookieService} from "ngx-cookie-service";
-import {UserAccountInformationModel} from "./components/shared/model/user-account-information.model";
-import {ApiService} from "./components/shared/services/api.service";
+import {UserAccountInformationModel} from "./shared/model/user-account-information.model";
+import {ApiService} from "./shared/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {UserLoginService} from "./components/user-authentication/sign-in-user/shared/services/user-login.service";
 

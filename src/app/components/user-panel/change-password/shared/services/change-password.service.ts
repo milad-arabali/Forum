@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from "../../../../shared/services/api.service";
-import {UserAccountInformationModel} from "../../../../shared/model/user-account-information.model";
+import {ApiService} from "../../../../../shared/services/api.service";
+import {UserAccountInformationModel} from "../../../../../shared/model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
