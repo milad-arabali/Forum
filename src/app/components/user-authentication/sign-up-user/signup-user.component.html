@@ -1,7 +1,7 @@
 <mat-card class="matCard">
   <mat-card-title>
     <div class="title">
-      <p>{{'singUpComponent.singUpComponent-title' | translate }}</p>
+      <p>{{'form.singUp-title' | translate }}</p>
     </div>
   </mat-card-title>
   <mat-card-content class="mat">
@@ -9,62 +9,66 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>{{'singUpComponent.singUpComponent-userName-span' | translate }}</span>
+            <span>{{'form.userName' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-userName-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.userName' | translate }}</mat-label>
               <input type="text" matInput formControlName="userName" #userName>
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('minlength')">
-                {{'singUpComponent.singUpComponent-userName-minlength' | translate }}
+              <mat-error *ngIf="form.controls['userName'].invalid &&
+              form.controls['userName'].hasError('minlength')">
+                {{'form.userNameChar-error' | translate }}
               </mat-error>
-              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('maxLength')">
-                {{'singUpComponent.singUpComponent-userName-maxLength' | translate }}
+              <mat-error *ngIf="form.controls['userName'].invalid &&
+              form.controls['userName'].hasError('maxLength')">
+                {{'form.userNameMaxChar-error' | translate }}
               </mat-error>
-              <mat-error *ngIf="form.controls['userName'].invalid && form.controls['userName'].hasError('pattern')">
-                {{'singUpComponent.singUpComponent-userName-pattern' | translate }}
+              <mat-error *ngIf="form.controls['userName'].invalid &&
+              form.controls['userName'].hasError('pattern')">
+                {{'form.userNamePersianChar-error' | translate }}
               </mat-error>
               <mat-error *ngIf="form.controls['userName'].invalid ">
-                {{'singUpComponent.singUpComponent-userName-invalid' | translate }}
+                {{'form.userName-error' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'singUpComponent.singUpComponent-name-span' | translate }}</span>
+            <span>{{'form.name' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-name-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.name' | translate }}</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
-                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
+                {{'form.user-errorPattern'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
+                {{'form.user-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'singUpComponent.singUpComponent-nationalCode-span' | translate }}</span>
+            <span>{{'form.nationalCode' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-nationalCode-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.nationalCode' | translate }}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
                form.controls['nationalCode'].hasError('maxLength'))">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-maxLength'|translate}}
+                {{'form.nationalCode-wrong'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               form.controls['nationalCode'].errors['wrong']">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-wrong'|translate}}
+                {{'form.nationalCode-wrong'|translate}}
               </mat-error>
               <mat-error
-                *ngIf="form.controls['nationalCode'].invalid && form.controls['nationalCode'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-invalid'|translate}}
+                *ngIf="form.controls['nationalCode'].invalid &&
+                form.controls['nationalCode'].hasError('required')">
+                {{'form.nationalCode-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'singUpComponent.singUpComponent-gender-span' | translate }}</span>
+            <span>{{'form.gender' | translate }}</span>
             <mat-radio-group class="mat-form" formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
             </mat-radio-group>
@@ -74,44 +78,44 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>{{'singUpComponent.singUpComponent-password-span' | translate }}</span>
+            <span>{{'form.passWord' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-password-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.passWord' | translate }}</mat-label>
               <input type="password" matInput formControlName="password">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['password'].invalid ">
-                {{'singUpComponent.singUpComponent-password-invalid' | translate }}
+                {{'form.passWord-error' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'singUpComponent.singUpComponent-nameFamily-span' | translate }}</span>
+            <span>{{'form.nameFamily' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-nameFamily-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.nameFamily' | translate }}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
-
-              <mat-error *ngIf="form.controls['nameFamily'].invalid && form.controls['nameFamily'].hasError('pattern')">
-                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
+              <mat-error *ngIf="form.controls['nameFamily'].invalid &&
+               form.controls['nameFamily'].hasError('pattern')">
+                {{'form.nameFamily-errorPattern'|translate}}
               </mat-error>
               <mat-error
                 *ngIf="form.controls['nameFamily'].invalid && form.controls['nameFamily'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
+                {{'form.nameFamily-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
 
 
           <div>
-            <span>{{'singUpComponent.singUpComponent-DateOfBirth-span' | translate }}</span>
+            <span>{{'form.DateOfBirth' | translate }}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'singUpComponent.singUpComponent-DateOfBirth-mat-label' | translate }}</mat-label>
+              <mat-label>{{'form.DateOfBirth' | translate }}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
               <mat-error *ngIf="form.controls['DateOfBirth'].invalid ">
-                {{'singUpComponent.singUpComponent-DateOfBirth-invalid' | translate }}
+                {{'form.DateOfBirth-invalid' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -124,17 +128,17 @@
   <mat-divider></mat-divider>
   <div class="button">
     <button mat-raised-button color="primary"
-            (click)="submit()">{{'singUpComponent.singUpComponent-registerButton' | translate }}</button>
+            (click)="submit()">{{'form.registerButton' | translate }}</button>
     <button mat-raised-button color="accent"
-            [routerLink]="['/signin']">{{'singUpComponent.singUpComponent-cancel' | translate }}</button>
+            [routerLink]="['/signin']">{{'form.cancel-btn' | translate }}</button>
   </div>
   <mat-card-footer>
     <div class="footerLoginform">
       <div>
         <img class="avatar" src="..\assets\img\angular.png">
-        <p>{{'singUpComponent.singUpComponent-nameApp' | translate }}</p>
+        <p>{{'layout.projectName' | translate }}</p>
       </div>
-      <p>{{'singUpComponent.singUpComponent-AppVersion' | translate }}</p>
+      <p>{{'layout.appVersion' | translate }}</p>
     </div>
   </mat-card-footer>
 </mat-card>

@@ -1,73 +1,7 @@
 {
-  "singInComponent": {
-    "singInComponent-title": "فرم ورود به سامانه",
-    "singInComponent-userName": "نام کاربری",
-    "singInComponent-matError-userName": "نام کاربری وارد شود.",
-    "singInComponent-matError-userNameChar": "طول کاراکتر نام کاربر کمتر از 5 کاراکتراست.",
-    "singInComponent-matError-userNameMaxChar": "کاراکتر نام کاربر بیشتر از 60 کاراکتر است.",
-    "singInComponent-matError-userNamePresianChar": "نام کاربری فارسی است.",
-    "passWord-matlabel": "کلمه عبور ",
-    "singInComponent-matError-PassWordError": "کلمه عبور وارد شود.",
-    "singInComponent-inputButton": "ورود",
-    "singInComponent-registerButton": "ثبت نام",
-    "singInComponent-recoveryPassword": "بازیابی پسورد",
-    "singInComponent-nameApp": "تالار گفتگو",
-    "singInComponent-AppVersion": "ورژن 1.0.0"
-  },
-  "singUpComponent": {
-    "singUpComponent-title": "فرم ثبت نام در سامانه",
-    "singUpComponent-userName-span": "نام کاربری :",
-    "singUpComponent-name-span": "نام :",
-    "singUpComponent-nationalCode-span": "کدملی :",
-    "singUpComponent-gender-span": "جنسیت :",
-    "singUpComponent-password-span": "کلمه عبور :",
-    "singUpComponent-nameFamily-span": "نام خانوادگی :",
-    "singUpComponent-DateOfBirth-span": "تاریخ تولد:",
-    "singUpComponent-inputButton": "ورود",
-    "singUpComponent-registerButton": "ثبت نام",
-    "singUpComponent-cancel": "انصراف",
-    "singUpComponent-nameApp": "تالار گفتگو",
-    "singUpComponent-AppVersion": "ورژن 1.0.0",
-    "singUpComponent-userName-mat-label": "نام کاربری :",
-    "singUpComponent-name-mat-label": "نام :",
-    "singUpComponent-nationalCode-mat-label": "کدملی :",
-    "singUpComponent-password-mat-label": "کلمه عبور :",
-    "singUpComponent-nameFamily-mat-label": "نام خانوادگی :",
-    "singUpComponent-DateOfBirth-mat-label": "تاریخ تولد:",
-    "singUpComponent-userName-minlength": "طول کاراکتر نام کاربر کمتر از 5 کاراکتر است.",
-    "singUpComponent-userName-maxLength": " طول کاراکتر نام کاربر بیشتر از 60 کاراکتر است.",
-    "singUpComponent-userName-pattern": " نام کاربری فارسی است.",
-    "singUpComponent-userName-invalid": "  نام کاربری وارد شود.",
-    "singUpComponent-nationalCode-invalid": " کدملی کاربر وارد شود.",
-    "singUpComponent-password-invalid": "  کلمه عبور وارد شود.",
-    "singUpComponent-nameFamily-invalid": " نام خانوادگی وارد شود.",
-    "singUpComponent-DateOfBirth-invalid": "  تاریخ تولد وارد شود."
-  },
-  "recoveryPasswordComponent": {
-    "recoveryPasswordComponent-title": "بازیابی کلمه عبور",
-    "recoveryPasswordComponent-recovery-btn": "بازیابی کلمه عبور",
-    "recoveryPasswordComponent-cancel-btn": "انصراف",
-    "recoveryPasswordComponent-nameApp": "تالار گفتگو",
-    "recoveryPasswordComponent-AppVersion": "ورژن 1.0.0"
-  },
-  "footerComponent": {
-    "footerComponent-nameApp": "تالار گفتگو",
-    "footerComponent-AppVersion": "ورژن 1.0.0",
-    "footerComponent-time": "تاریخ امروز :"
-  },
-  "headerComponent": {
-    "headerComponent-nameApp": "تالار گفتگو",
-    "headerComponent-editUser-btn": "ویرایش حساب کاربری",
-    "headerComponent-changePassword-btn": "تغییر کلمه عبور",
-    "headerComponent-exit-btn": "خروج"
-  },
-  "mainComponent": {
-    "mainComponent-job": "Software Engineer",
-    "mainComponent-home": "خانه",
-    "mainComponent-category": "دسته بندی موضوع",
-    "mainComponent-description": "توضیحات",
-    "mainComponent-guide": "راهنما"
-  },
+
+
+
   "edit-UserComponent": {
     "edit-UserComponent-title": " ویرایش حساب کاربری",
     "edit-UserComponent-userName-span": "نام کاربری :",
@@ -116,7 +50,7 @@
     "changePassword-UserComponent-saveButton": "ذخیره",
     "changePassword-UserComponent-cancelButton": "انصراف"
   },
-  "logout-UserComponent":{
+  "logout-UserComponent": {
     "logout-UserComponent-title": "آیا از سامانه میخواهید خارج شوید؟",
     "logout-UserComponent-yesButton": "بله",
     "logout-UserComponent-noButton": "خیر"
@@ -133,7 +67,7 @@
     "select-parent-btn": "انتخاب",
     "exit": "انصراف"
   },
-  "detail-subject-category-Component":{
+  "detail-subject-category-Component": {
     "add-btn": " افزودن",
     "show-btn": " مشاهده",
     "edit-btn": "ویرایش",
@@ -152,6 +86,49 @@
     "select-title-status": "وضیعت :",
     "select-title-status-true": "فعال",
     "select-title-status-false": "غیرفعال"
+  },
+  "layout": {
+    "projectName": "تالار گفتمان",
+    "appVersion": "ورژن 1.0.0",
+    "time": "تاریخ امروز :",
+    "editUser-btn": "ویرایش حساب کاربری",
+    "changePassword-btn": "تغییر کلمه عبور",
+    "exit-btn": "خروج",
+    "job": "Software Engineer",
+    "home": "خانه",
+    "category": "دسته بندی موضوع",
+    "description": "توضیحات",
+    "guide": "راهنما"
+
+  },
+  "form": {
+    "userName": "نام کاربری",
+    "passWord": "کلمه عبور",
+    "passWord-error": "کلمه عبور وارد شود.",
+    "userName-error": "نام کاربری وارد شود.",
+    "userNameChar-error": "طول کاراکتر نام کاربر کمتر از 5 کاراکتراست.",
+    "userNameMaxChar-error": "کاراکتر نام کاربر بیشتر از 60 کاراکتر است.",
+    "userNamePersianChar-error": "نام کاربری فارسی است.",
+    "recoveryPasswordBtn": "بازیابی کلمه عبور",
+    "inputButton": "ورود",
+    "registerButton": "ثبت نام",
+    "singIn-title": "فرم ورود به سامانه",
+    "recoveryPassword-title": "بازیابی کلمه عبور",
+    "cancel-btn": "انصراف",
+    "singUp-title": "فرم ثبت نام در سامانه",
+    "name": "نام :",
+    "user-errorPattern": "نام کاربر فارسی وارد شود.",
+    "user-error": "نام کاربر وارد شود.",
+    "nationalCode": "کدملی :",
+    "nationalCode-invalid": " کدملی کاربر وارد شود.",
+    "nationalCode-wrong": " کدملی نامعتبراست.",
+    "singUpComponent-password-invalid": "  کلمه عبور وارد شود.",
+    "nameFamily-invalid": " نام خانوادگی وارد شود.",
+    "DateOfBirth-invalid": "  تاریخ تولد وارد شود.",
+    "gender": "جنسیت :",
+    "nameFamily": "نام خانوادگی :",
+    "nameFamily-errorPattern": "نام خانوادگی کاربر فارسی وارد شود.",
+    "DateOfBirth": "تاریخ تولد:"
 
   }
 }

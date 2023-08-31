@@ -84,14 +84,19 @@ export class DetailSubjectCategoryComponent implements OnInit {
 
     if (this.formMode === FormMode.ADD) {
 
-      if (this.form.controls['parentId'].value) {
+      if (this.form.controls['parentId'].value !== -1) {
+        const hasChild=new SubjectCategoryModel();
+        hasChild.hasChild=true;
+        this.api.updateSubjectCategory(hasChild,this.form.controls['parentId'].getRawValue()).subscribe(
+          a=>{
+          console.log("true")
+          }
+        )
 
       } else {
         this.form.controls['parentId'].setValue(-1)
-        // this.api.updateSubjectCategory(this.form.controls['hasChild'].getRawValue(),this.form.controls['parentId'].getRawValue())
-
       }
-      // let subjectModel = new SubjectCategoryModel();
+      this.form.removeControl('parentTitle')
       this.subjectModel = this.form.getRawValue()
       let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
         res => {

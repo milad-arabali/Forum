@@ -19,6 +19,9 @@ export class ApiService {
   getSubjectCategory(id : number){
     return this.httpClient.get<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`)
   }
+  updateSubjectCategory(registerObj: SubjectCategoryModel, id : number){
+    return this.httpClient.patch<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`,registerObj)
+  }
   deleteSubjectCategory(id : number){
     return this.httpClient.delete<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`)
   }

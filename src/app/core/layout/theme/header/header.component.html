@@ -6,7 +6,7 @@
         <mat-icon *ngIf="!sidebarStatus">menu</mat-icon>
       </a>
       <img class="avatar" src="..\assets\img\angular.png">
-      <p>{{'headerComponent.headerComponent-nameApp' | translate }}</p>
+      <p>{{'layout.projectName' | translate }}</p>
     </div>
     <div class="toolbar-left">
       <img class="avatar mat-elevation-z8" src="..\assets\img\images.jpg">
@@ -17,16 +17,16 @@
       <mat-menu #dropdown>
         <button mat-menu-item [routerLink]="['profile']" RouterLinkActive="['active']">
           <mat-icon>person</mat-icon>
-          <span> {{'headerComponent.headerComponent-editUser-btn' | translate }} </span>
+          <span> {{'layout.editUser-btn' | translate }} </span>
         </button>
         <button mat-menu-item [routerLink]="['changePassword']">
 
           <mat-icon>login</mat-icon>
-          <span>{{'headerComponent.headerComponent-changePassword-btn' | translate }}</span>
+          <span>{{'layout.changePassword-btn' | translate }}</span>
         </button>
         <button mat-menu-item (click)="logout()">
           <mat-icon>library_books</mat-icon>
-          <span>{{'headerComponent.headerComponent-exit-btn' | translate }}</span>
+          <span>{{'layout.exit-btn' | translate }}</span>
         </button>
       </mat-menu>
 

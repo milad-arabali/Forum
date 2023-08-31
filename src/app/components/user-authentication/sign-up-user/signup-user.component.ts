@@ -42,7 +42,7 @@ export class SignupUserComponent {
       nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.required,Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
-      gender: [, [Validators.required]],
+      gender: ['مرد', [Validators.required]],
       DateOfBirth: [, [Validators.required]]
     })
   }
