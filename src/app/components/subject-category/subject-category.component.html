@@ -6,25 +6,21 @@
         <div class="card-header-title">
           <mat-icon aria-hidden="false" >insert_drive_file</mat-icon>
           {{'form.subject-category-title'|translate}}
-
         </div>
         <div class="button">
-          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]"
-                  [disabled]="disableButton"
-          >
+          <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category', id]">
             {{'form.show-btn'|translate}}
           </button>
-          <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton"
+          <button mat-raised-button color="accent" [hidden]="showButton"
                   (click)="deleteSubject()">
             {{'form.delete-btn'|translate}}
           </button>
-          <button mat-raised-button color="warn" [hidden]="showButton" [disabled]="disableButton"
+          <button mat-raised-button color="warn" [hidden]="showButton"
                   [routerLink]="['/subject-category/edit', id]" >
             {{'form.edit-btn'|translate}}
           </button>
           <button mat-raised-button color="primary"  (click)="navigateAdd()">
             {{'form.add-btn'|translate}}
-
           </button>
         </div>
       </div>
@@ -84,7 +80,7 @@
         {{'subject-category-Component.add-btn'|translate}}
       </span>
     </button>
-    <button mat-menu-item [routerLink]="['/subject-category/show', id]">
+    <button mat-menu-item [routerLink]="['/subject-category', id]">
       <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
 
       <span class="iransans" >

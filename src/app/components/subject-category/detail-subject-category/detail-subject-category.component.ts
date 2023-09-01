@@ -6,7 +6,6 @@ import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {DateAdapter} from "@angular/material/core";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
@@ -21,6 +20,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   id: number;
   form: FormGroup;
   subjectModel = new SubjectCategoryModel();
+
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
               private subjectCategoryService: SubjectCategoryService,
@@ -44,14 +44,24 @@ export class DetailSubjectCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.router.snapshot.params['id']
+    this.formMode = FormMode.VIEW;
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
-      if (url[1].path === '') {
-        this.formMode = FormMode.VIEW;
+      if (url[1].path === this.router.snapshot.params['id'] ) {
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             this.form.controls['title'].setValue(value.title)
             this.form.controls['priority'].setValue(value.priority)
             this.form.controls['status'].setValue(value.status)
+            if(value.parentId === -1){
+              this.form.controls['parentTitle'].setValue(value.title)
+            }else {
+              this.api.getSubjectCategory(value.parentId).subscribe(
+                res=>{
+                  this.form.controls['parentTitle'].setValue(res.title)
+                }
+              )
+            }
+
           }
         )
       } else if (url[1].path === 'add') {
@@ -81,18 +91,15 @@ export class DetailSubjectCategoryComponent implements OnInit {
   }
 
   editSubjectCategory() {
-
     if (this.formMode === FormMode.ADD) {
-
       if (this.form.controls['parentId'].value !== -1) {
-        const hasChild=new SubjectCategoryModel();
-        hasChild.hasChild=true;
-        this.api.updateSubjectCategory(hasChild,this.form.controls['parentId'].getRawValue()).subscribe(
-          a=>{
-          console.log("true")
+        const hasChild = new SubjectCategoryModel();
+        hasChild.hasChild = true;
+        this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+          a => {
+            console.log("true")
           }
         )
-
       } else {
         this.form.controls['parentId'].setValue(-1)
       }
@@ -107,35 +114,23 @@ export class DetailSubjectCategoryComponent implements OnInit {
           })
         });
       this.route.navigate(['/subject-category'])
+    } else if (this.formMode === FormMode.EDIT) {
+      let editSubject = new SubjectCategoryModel();
+      this.form.removeControl('parentTitle')
+      editSubject = this.form.getRawValue()
+      if (this.form) {
+        this.api.updateSubjectCategory(editSubject, this.id).subscribe(
+          res => {
+            this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            })
+          }
+        )
+      }
+      this.route.navigate(['/subject-category'])
     }
-    // else if(this.formMode=== FormMode.EDIT) {
-    //   this.subjectModel.title = this.form.controls['title'].value
-    //   if (this.form.controls['parentId'].value === '') {
-    //     this.subjectModel.parentId = -1
-    //   } else {
-    //     this.subjectModel.parentId = this.form.controls['parentId'].value
-    //     this.changeHaseChild.hasChild = true;
-    //     // this.api.updateSubjectCategory(this.changeHaseChild,this.subjectModel.parentId)
-    //     this.api.updateSubjectCategory(this.changeHaseChild, this.subjectModel.parentId)
-    //       .subscribe({
-    //         next: value => {
-    //           console.log(value)
-    //         }
-    //       })
-    //     this.subjectModel.hasChild = false
-    //   }
-    //   this.subjectModel.priority = this.form.controls['priority'].value
-    //   this.subjectModel.status = this.form.controls['status'].value
-    //   let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
-    //     res => {
-    //       this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
-    //         duration: 3000,
-    //         horizontalPosition: "end",
-    //         verticalPosition: "top"
-    //       })
-    //     });
-    //   this.route.navigate(['/subject-category'])
-    // }
   }
 
   selectParent() {
@@ -143,7 +138,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
-
     })
   }
 }

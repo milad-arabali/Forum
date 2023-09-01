@@ -63,13 +63,14 @@
   ],
   "subject-category": [
     {
-      "title": "test2",
+      "title": "dededddedddd",
       "parentId": -1,
-      "status": true,
-      "createDateTime": "Thu Aug 31 2023 15:07:03 GMT+0330 (Iran Standard Time)",
+      "status": false,
+      "createDateTime": "Fri Sep 01 2023 15:42:47 GMT+0330 (Iran Standard Time)",
       "hasChild": false,
       "priority": 1,
-      "id": 1
+      "id": 1,
+      "parentTitle": ""
     },
     {
       "title": "test1",

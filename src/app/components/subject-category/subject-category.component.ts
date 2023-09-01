@@ -15,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./subject-category.component.css']
 })
 export class SubjectCategoryComponent implements OnInit  {
-  disableButton: boolean;
+
   showButton: boolean = true;
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
@@ -27,12 +27,7 @@ export class SubjectCategoryComponent implements OnInit  {
   @ViewChild(MatMenuTrigger)
   contextMenu: MatMenuTrigger;
   contextMenuPosition = {x: '0px', y: '0px'};
-  permissions = {
-    view: false,
-    edit: false,
-    add: false,
-    delete: false
-  };
+
 
   constructor(private subjectCategoryService: SubjectCategoryService,
               private router: Router,
