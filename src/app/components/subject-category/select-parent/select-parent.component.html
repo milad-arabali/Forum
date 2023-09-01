@@ -1,7 +1,7 @@
 <div class="edit-course-form">
   <mat-dialog-content class="headerDialog">
     <span>
-        {{'select-subject-category-Component.select-parent'|translate}}
+        {{'form.select-parent'|translate}}
     </span>
   </mat-dialog-content>
   <mat-divider></mat-divider>
@@ -35,9 +35,9 @@
   </mat-dialog-content>
   <mat-dialog-actions class="button">
     <button mat-raised-button color="primary" (click)="selectParent()" [disabled]="!selectParentBtn">
-      {{'select-subject-category-Component.select-parent-btn'|translate}}</button>
+      {{'form.select-parent-btn'|translate}}</button>
     <button mat-raised-button color="warn"
-            (click)="selectParentClose()"> {{'select-subject-category-Component.exit'|translate}}
+            (click)="selectParentClose()"> {{'form.cancel-btn'|translate}}
     </button>
   </mat-dialog-actions>
 

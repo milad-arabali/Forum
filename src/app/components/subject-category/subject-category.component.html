@@ -5,25 +5,25 @@
 
         <div class="card-header-title">
           <mat-icon aria-hidden="false" >insert_drive_file</mat-icon>
-          {{'subject-category-Component.subject-category-title'|translate}}
+          {{'form.subject-category-title'|translate}}
 
         </div>
         <div class="button">
           <button mat-raised-button color="primary" [hidden]="showButton" [routerLink]="['/subject-category/show', id]"
                   [disabled]="disableButton"
           >
-            {{'subject-category-Component.show-btn'|translate}}
+            {{'form.show-btn'|translate}}
           </button>
           <button mat-raised-button color="accent" [hidden]="showButton" [disabled]="disableButton"
                   (click)="deleteSubject()">
-            {{'subject-category-Component.delete-btn'|translate}}
+            {{'form.delete-btn'|translate}}
           </button>
           <button mat-raised-button color="warn" [hidden]="showButton" [disabled]="disableButton"
                   [routerLink]="['/subject-category/edit', id]" >
-            {{'subject-category-Component.edit-btn'|translate}}
+            {{'form.edit-btn'|translate}}
           </button>
           <button mat-raised-button color="primary"  (click)="navigateAdd()">
-            {{'subject-category-Component.add-btn'|translate}}
+            {{'form.add-btn'|translate}}
 
           </button>
         </div>

@@ -4,14 +4,14 @@
       <div class="title-container">
         <div class="card-header-title" *ngIf="formMode=== 0">
           <mat-icon>insert_drive_file</mat-icon>
-          {{'detail-subject-category-Component.add-btn'|translate}}
+          {{'form.add-btn'|translate}}
         </div>
         <div class="card-header-title" *ngIf="formMode===1">
           <mat-icon>insert_drive_file</mat-icon>
-          {{'detail-subject-category-Component.edit-btn'|translate}}</div>
+          {{'form.edit-btn'|translate}}</div>
         <div class="card-header-title" *ngIf="formMode===2">
           <mat-icon>insert_drive_file</mat-icon>
-          {{'detail-subject-category-Component.show-btn'|translate}}</div>
+          {{'form.show-btn'|translate}}</div>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -21,30 +21,30 @@
       <div class="col">
         <div class="row">
           <div>
-            <span> {{'detail-subject-category-Component.select-parent-input'|translate}}</span>
+            <span> {{'form.parent'|translate}}</span>
             <mat-form-field class="mat-form" >
-              <mat-label> {{'detail-subject-category-Component.select-parent-mat-label'|translate}}</mat-label>
+              <mat-label> {{'form.parent'|translate}}</mat-label>
               <input type="text" matInput [readonly]="true" formControlName="parentTitle">
               <mat-icon matSuffix (click)="selectParent()" style="cursor: pointer" *ngIf="formMode!==2" >mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['parentId'].invalid &&
               form.controls['parentId'].hasError('required')">
-                {{'detail-subject-category-Component.select-parent-input-error'|translate}}
+                {{'form.parent-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>  {{'detail-subject-category-Component.select-priority-input'|translate}}</span>
+            <span>  {{'form.priority'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>  {{'detail-subject-category-Component.select-priority-mat-label'|translate}}</mat-label>
+              <mat-label>  {{'form.priority'|translate}}</mat-label>
               <input type="number" matInput formControlName="priority" [min]="1" [max]="10" [readonly]="formMode===2">
               <mat-error *ngIf="form.controls['priority'].invalid &&
               form.controls['priority'].hasError('required')">
-                {{'detail-subject-category-Component.select-priority-input-error-required'|translate}}
+                {{'form.priority-error'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['priority'].invalid &&
               (form.controls['priority'].hasError('max') ||
                form.controls['priority'].hasError('min'))">
-                {{'detail-subject-category-Component.select-priority-input-error-max'|translate}}
+                {{'form.priority-error-max'|translate}}
               </mat-error>
             </mat-form-field>
 
@@ -54,27 +54,27 @@
       <div class="col">
         <div class="row">
           <div>
-            <span> {{'detail-subject-category-Component.select-title-input'|translate}}</span>
+            <span> {{'form.title'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label> {{'detail-subject-category-Component.select-title-mat-label'|translate}}</mat-label>
+              <mat-label> {{'form.title'|translate}}</mat-label>
               <input type="text" matInput formControlName="title" [readonly]="formMode===2">
               <mat-error *ngIf="form.controls['title'].invalid && form.controls['title'].hasError('maxlength')">
-                {{'detail-subject-category-Component.select-title-input-error-maxlength'|translate}}
+                {{'form.title-error-maxlength'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['title'].invalid &&
               form.controls['title'].hasError('required')">
-                {{'detail-subject-category-Component.select-title-input-error-required'|translate}}
+                {{'form.title-error-required'|translate}}
               </mat-error>
 
             </mat-form-field>
           </div>
           <div>
-            <span>{{'detail-subject-category-Component.select-title-status'|translate}}</span>
+            <span>{{'form.status'|translate}}</span>
             <mat-radio-group class="mat-form" formControlName="status"  >
               <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
-                {{'detail-subject-category-Component.select-title-status-true'|translate}}</mat-radio-button>
+                {{'form.status-true'|translate}}</mat-radio-button>
               <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
-                {{'detail-subject-category-Component.select-title-status-false'|translate}}</mat-radio-button>
+                {{'form.status-false'|translate}}</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>
@@ -86,14 +86,14 @@
     <div class="button">
       <button mat-raised-button type="submit" color="primary" (click)="editSubjectCategory()" [disabled]="form.invalid"
               *ngIf="formMode!==2">
-        <span *ngIf="formMode===0"> {{'detail-subject-category-Component.add-btn'|translate}}
+        <span *ngIf="formMode===0"> {{'form.add-btn'|translate}}
         </span>
         <span *ngIf="formMode===1">
-          {{'detail-subject-category-Component.edit-btn'|translate}}
+          {{'form.edit-btn'|translate}}
         </span>
       </button>
       <button mat-raised-button color="accent" [routerLink]="['/subject-category']" (click)="enableBtn()">
-        {{'detail-subject-category-Component.exit-btn'|translate}}
+        {{'form.exit-btn'|translate}}
       </button>
     </div>
   </mat-card-footer>

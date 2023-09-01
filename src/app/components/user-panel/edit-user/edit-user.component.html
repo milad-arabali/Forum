@@ -1,7 +1,7 @@
 <mat-card class="mt-card">
   <mat-card-header class="card-header">
     <mat-card-title class="card-header-title">
-      {{'edit-UserComponent.edit-UserComponent-title'|translate}}
+      {{'form.edit-title'|translate}}
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
@@ -10,29 +10,29 @@
       <div class="col">
         <div class="row">
           <div>
-            <span> {{'edit-UserComponent.edit-UserComponent-userName-span'|translate}}</span>
+            <span> {{'form.userName'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'edit-UserComponent.edit-UserComponent-userName-mat-label'|translate}}</mat-label>
+              <mat-label>{{'form.userName'|translate}}</mat-label>
               <input type="text" matInput formControlName="userName" [readonly]="true">
               <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'edit-UserComponent.edit-UserComponent-name-span'|translate}}</span>
+            <span>{{'form.name'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'edit-UserComponent.edit-UserComponent-name-mat-label'|translate}}</mat-label>
+              <mat-label>{{'form.name'|translate}}</mat-label>
               <input type="text" matInput formControlName="name">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
-                {{'edit-UserComponent.edit-UserComponent-name-pattern'|translate}}
+                {{'form.user-errorPattern'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-name-invalid'|translate}}
+                {{'form.user-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>{{'edit-UserComponent.edit-UserComponent-gender-span'|translate}}</span>
+            <span>{{'form.gender'|translate}}</span>
             <mat-radio-group class="mat-form" formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
             </mat-radio-group>
@@ -42,44 +42,44 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>{{'edit-UserComponent.edit-UserComponent-nationalCode-span'|translate}}</span>
+            <span>{{'form.nationalCode'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'edit-UserComponent.edit-UserComponent-nationalCode-mat-label'|translate}}</mat-label>
+              <mat-label>{{'form.nationalCode'|translate}}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
                form.controls['nationalCode'].hasError('maxLength'))">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-maxLength'|translate}}
+                {{'form.nationalCode-invalid'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               form.controls['nationalCode'].errors['wrong']">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-wrong'|translate}}
+                {{'form.nationalCode-wrong'|translate}}
               </mat-error>
               <mat-error
                 *ngIf="form.controls['nationalCode'].invalid && form.controls['nationalCode'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-nationalCode-invalid'|translate}}
+                {{'form.nationalCode-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span> {{'edit-UserComponent.edit-UserComponent-nameFamily-span'|translate}}</span>
+            <span> {{'form.nameFamily'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>{{'edit-UserComponent.edit-UserComponent-userName-mat-label'|translate}}</mat-label>
+              <mat-label>{{'form.nameFamily'|translate}}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
               <mat-icon matSuffix>mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['nameFamily'].hasError('pattern')">
-                {{'edit-UserComponent.edit-UserComponent-nameFamily-pattern'|translate}}
+                {{'form.nameFamily-errorPattern'|translate}}
               </mat-error>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                {{'edit-UserComponent.edit-UserComponent-nameFamily-invalid'|translate}}
+                {{'form.nameFamily-invalid'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span>  {{'edit-UserComponent.edit-UserComponent-DateOfBirth-span'|translate}}</span>
+            <span>  {{'form.DateOfBirth'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label> {{'edit-UserComponent.edit-UserComponent-DateOfBirth-mat-label'|translate}}</mat-label>
+              <mat-label> {{'form.DateOfBirth'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -94,10 +94,10 @@
   <mat-card-footer>
     <div class="button">
       <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid" (click)="submit()" #myInput>
-        {{'edit-UserComponent.edit-UserComponent-saveButton'|translate}}
+        {{'form.save-btn'|translate}}
       </button>
-      <button mat-raised-button color="accent" [routerLink]="['/home-module']">
-        {{'edit-UserComponent.edit-UserComponent-cancelButton'|translate}}
+      <button mat-raised-button color="accent" [routerLink]="['/home']">
+        {{'form.cancel-btn'|translate}}
       </button>
     </div>
   </mat-card-footer>
