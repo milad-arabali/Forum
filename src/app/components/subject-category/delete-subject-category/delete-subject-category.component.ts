@@ -16,8 +16,6 @@ import {HttpClient} from "@angular/common/http";
 })
 export class DeleteSubjectCategoryComponent implements OnInit {
   id: number
-  subjectCategory!: SubjectCategoryModel;
-
   constructor(private logOut: CookieService,
               private route: Router,
               private subjectCategoryService: SubjectCategoryService,
@@ -38,27 +36,31 @@ export class DeleteSubjectCategoryComponent implements OnInit {
         this.id = a
       }
     )
-
-    // this.subjectCategoryService.findId(this.id).subscribe(
-    //   response => {
-    //    if(response.id === this.id){
-    //      this.subjectCategory.id = response.id
-    //
-    //    }
-    //
-    //   }
-    // )
   }
 
   close() {
-
     this.dialogRef.close();
-
   }
 
   delete() {
+    this.api.getSubjectCategory(this.id).subscribe(
+      rez=>{
+        if(rez.parentId === -1){
+          const hasChild=new SubjectCategoryModel();
+          this.api.getSubjectCategory(rez.parentId).subscribe(
+
+          )
+          this.api.updateSubjectCategory(hasChild,rez.parentId).subscribe(
+            rez=>{
+              console.log("true")
+            }
+          )
+        }
+      }
+    )
     this.api.deleteSubjectCategory(this.id).subscribe(
       a => {
+
         this.snack.open("دسته بندی مورد نظر با موفقیت حذف شد.", "", {
           duration: 3000,
           horizontalPosition: "end",

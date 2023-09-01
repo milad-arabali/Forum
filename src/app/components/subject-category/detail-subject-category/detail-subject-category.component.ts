@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router, UrlSegment} from "@angular/router";
+import { Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {SubjectCategoryService} from "../subject-category.service";
 import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 import {HttpClient} from "@angular/common/http";
@@ -46,25 +46,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.id = this.router.snapshot.params['id']
     this.formMode = FormMode.VIEW;
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
-      if (url[1].path === this.router.snapshot.params['id'] ) {
-        this.api.getSubjectCategory(this.id).subscribe(
-          value => {
-            this.form.controls['title'].setValue(value.title)
-            this.form.controls['priority'].setValue(value.priority)
-            this.form.controls['status'].setValue(value.status)
-            if(value.parentId === -1){
-              this.form.controls['parentTitle'].setValue(value.title)
-            }else {
-              this.api.getSubjectCategory(value.parentId).subscribe(
-                res=>{
-                  this.form.controls['parentTitle'].setValue(res.title)
-                }
-              )
-            }
-
-          }
-        )
-      } else if (url[1].path === 'add') {
+      if (url[1].path === 'add') {
         this.formMode = FormMode.ADD;
         if (this.id > 0) {
           this.api.getSubjectCategory(this.id).subscribe(
@@ -79,16 +61,39 @@ export class DetailSubjectCategoryComponent implements OnInit {
             this.form.controls['title'].setValue(value.title)
             this.form.controls['priority'].setValue(value.priority)
             this.form.controls['status'].setValue(value.status)
+            if(value.parentId === -1){
+              this.form.controls['parentTitle'].setValue(value.title)
+            }else {
+              this.api.getSubjectCategory(value.parentId).subscribe(
+                res => {
+                  this.form.controls['parentTitle'].setValue(res.title)
+                }
+              )
+            }
           }
         )
         this.formMode = FormMode.EDIT;
+      }else if (url[1].path === this.id.toString() ) {
+        this.api.getSubjectCategory(this.id).subscribe(
+          value => {
+            this.form.controls['title'].setValue(value.title)
+            this.form.controls['priority'].setValue(value.priority)
+            this.form.controls['status'].setValue(value.status)
+            if(value.parentId === -1){
+              this.form.controls['parentTitle'].setValue(value.title)
+            }else {
+              this.api.getSubjectCategory(value.parentId).subscribe(
+                res=>{
+                  this.form.controls['parentTitle'].setValue(res.title)
+                }
+              )
+            }
+          }
+        )
       }
     })
   }
 
-  enableBtn() {
-    this.subjectCategoryService.disableBtn$.next(false)
-  }
 
   editSubjectCategory() {
     if (this.formMode === FormMode.ADD) {
@@ -119,6 +124,15 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.form.removeControl('parentTitle')
       editSubject = this.form.getRawValue()
       if (this.form) {
+        if (this.form.controls['parentId'].value === -1) {
+          const hasChild = new SubjectCategoryModel();
+          hasChild.hasChild = true;
+          this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+            a => {
+              console.log("true")
+            }
+          )
+        }
         this.api.updateSubjectCategory(editSubject, this.id).subscribe(
           res => {
             this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
@@ -132,7 +146,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.route.navigate(['/subject-category'])
     }
   }
-
   selectParent() {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed().subscribe(result => {

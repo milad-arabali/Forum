@@ -27,8 +27,6 @@ export class SubjectCategoryComponent implements OnInit  {
   @ViewChild(MatMenuTrigger)
   contextMenu: MatMenuTrigger;
   contextMenuPosition = {x: '0px', y: '0px'};
-
-
   constructor(private subjectCategoryService: SubjectCategoryService,
               private router: Router,
               private dialog: MatDialog,
@@ -41,7 +39,6 @@ export class SubjectCategoryComponent implements OnInit  {
     this.loadTree()
     this.subjectCategoryService.selectParentId$.next(0)
   }
-
 
   /**
    * select node
@@ -67,7 +64,6 @@ export class SubjectCategoryComponent implements OnInit  {
     });
   }
 
-
   deleteSubject() {
     if (this.activeNode.item.hasChild === true) {
       this.snack.open("دسته بندی مورد نظر دارای فرزند است.", "", {
@@ -80,10 +76,8 @@ export class SubjectCategoryComponent implements OnInit  {
       dialogRef.afterClosed().subscribe(result => {
         this.loadTree()
       })
-      console.log("delete", this.id)
     }
   }
-
   onContextMenu(event: MouseEvent, node) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
