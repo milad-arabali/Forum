@@ -17,6 +17,9 @@ export class ApiService {
   getSubjectCategory(id : number){
     return this.httpClient.get<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`)
   }
+  getAllSubjectCategory(){
+    return this.httpClient.get<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}`)
+  }
   updateSubjectCategory(registerObj: SubjectCategoryModel, id : number){
     return this.httpClient.patch<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`,registerObj)
   }

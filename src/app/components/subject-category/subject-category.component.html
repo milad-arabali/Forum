@@ -74,30 +74,30 @@
 </div>
 <mat-menu #contextMenu="matMenu">
   <ng-template matMenuContent>
-    <button mat-menu-item [routerLink]="['/subject-category/add']">
+    <button mat-menu-item (click)="navigateAdd()" >
       <mat-icon aria-hidden="false" color="primary">add</mat-icon>
       <span class="iransans" >
-        {{'subject-category-Component.add-btn'|translate}}
+           {{'form.add-btn'|translate}}
       </span>
     </button>
-    <button mat-menu-item [routerLink]="['/subject-category', id]">
+    <button mat-menu-item [routerLink]="['/subject-category', id]"  [disabled]="contextmenu">
       <mat-icon aria-hidden="false" color="primary">pageview</mat-icon>
 
       <span class="iransans" >
-         {{'subject-category-Component.show-btn'|translate}}
+         {{'form.show-btn'|translate}}
       </span>
     </button>
-    <button mat-menu-item  [routerLink]="['/subject-category/edit', id]">
+    <button mat-menu-item  [routerLink]="['/subject-category/edit', id]" [disabled]="contextmenu">
       <mat-icon aria-hidden="false" color="accent">edit</mat-icon>
 
       <span class="iransans">
-             {{'subject-category-Component.edit-btn'| translate}}
+               {{'form.edit-btn'|translate}}
       </span>
     </button>
-    <button mat-menu-item (click)="deleteSubject()">
+    <button mat-menu-item (click)="deleteSubject()" [disabled]="contextmenu">
       <mat-icon aria-hidden="false" color="warn">delete</mat-icon>
       <span class="iransans">
-             {{'subject-category-Component.delete-btn'| translate}}
+             {{'form.delete-btn'|translate}}
       </span>
     </button>
   </ng-template>

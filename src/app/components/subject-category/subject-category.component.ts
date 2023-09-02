@@ -15,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   styleUrls: ['./subject-category.component.css']
 })
 export class SubjectCategoryComponent implements OnInit  {
-
+  contextmenu:boolean=true;
   showButton: boolean = true;
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
@@ -38,6 +38,8 @@ export class SubjectCategoryComponent implements OnInit  {
   ngOnInit() {
     this.loadTree()
     this.subjectCategoryService.selectParentId$.next(0)
+    this.id=0;
+    this.contextmenu=true;
   }
 
   /**
@@ -47,24 +49,28 @@ export class SubjectCategoryComponent implements OnInit  {
   selectNode(node: SubjectCategoryFlatNodeModel) {
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
+      this.subjectCategoryService.deleteSubject.next(0)
       this.showButton=true;
-
+      this.id =0
+      this.contextmenu=true;
     } else {
       this.activeNode = node;
       this.showButton=false;
       this.subjectCategoryService.deleteSubject.next(node.item.id)
       this.id = node.item.id
+      this.contextmenu=false;
     }
   }
-
   loadTree() {
-    this.subjectCategoryService.findByParentId(-1).subscribe(result => {
-      this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
-      (item, 0, true, false));
-    });
+    setTimeout(()=>{
+      this.subjectCategoryService.findByParentId(-1).subscribe(result => {
+        this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
+        (item, 0, true, false));
+      });
+    },100)
   }
 
-  deleteSubject() {
+  deleteSubject()  {
     if (this.activeNode.item.hasChild === true) {
       this.snack.open("دسته بندی مورد نظر دارای فرزند است.", "", {
         duration: 3000,
@@ -74,7 +80,11 @@ export class SubjectCategoryComponent implements OnInit  {
     }else {
       const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent, {})
       dialogRef.afterClosed().subscribe(result => {
-        this.loadTree()
+        setTimeout(()=>{
+          this.loadTree()
+        },100)
+        this.id = 0;
+        this.showButton=true;
       })
     }
   }
@@ -85,10 +95,9 @@ export class SubjectCategoryComponent implements OnInit  {
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
   }
-
   navigateAdd() {
     if(this.id){
-      this.router.navigate(['/subject-category/add',this.activeNode.item.id])
+      this.router.navigate(['/subject-category/add',this.id])
     }else {
       this.router.navigate(['/subject-category/add'])
     }

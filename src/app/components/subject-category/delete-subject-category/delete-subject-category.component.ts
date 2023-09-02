@@ -15,7 +15,9 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./delete-subject-category.component.css']
 })
 export class DeleteSubjectCategoryComponent implements OnInit {
-  id: number
+  id: number;
+  parentId: number;
+
   constructor(private logOut: CookieService,
               private route: Router,
               private subjectCategoryService: SubjectCategoryService,
@@ -36,40 +38,48 @@ export class DeleteSubjectCategoryComponent implements OnInit {
         this.id = a
       }
     )
+
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  delete() {
+  getParentId() {
     this.api.getSubjectCategory(this.id).subscribe(
-      rez=>{
-        if(rez.parentId === -1){
-          const hasChild=new SubjectCategoryModel();
-          this.api.getSubjectCategory(rez.parentId).subscribe(
+      value => {
+        this.parentId = value.parentId
 
-          )
-          this.api.updateSubjectCategory(hasChild,rez.parentId).subscribe(
-            rez=>{
-              console.log("true")
-            }
-          )
-        }
       }
     )
+  }
+
+  delete() {
+    this.getParentId()
     this.api.deleteSubjectCategory(this.id).subscribe(
       a => {
-
         this.snack.open("دسته بندی مورد نظر با موفقیت حذف شد.", "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
         })
-      }
-    )
-
-
+      })
+    setTimeout(() => {
+      this.api.getAllSubjectCategory()
+        .subscribe(value => {
+          // console.log(value)
+          let subject = value.find((a: any) => {
+            return a.parentId === this.parentId
+          })
+          // console.log("sss", this.parentId)
+          if (!subject) {
+            let subjectModel = new SubjectCategoryModel()
+            subjectModel.hasChild = false;
+            this.api.updateSubjectCategory(subjectModel, this.parentId)
+              .subscribe()
+          }
+        })
+    }, 100)
     this.dialogRef.close();
 
   }

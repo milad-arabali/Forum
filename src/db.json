@@ -67,27 +67,9 @@
       "parentId": -1,
       "status": true,
       "createDateTime": "Fri Sep 01 2023 17:21:42 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 2
-    },
-    {
-      "title": "sssss",
-      "parentId": 2,
-      "status": true,
-      "createDateTime": "Fri Sep 01 2023 17:21:49 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 3
-    },
-    {
-      "title": "www",
-      "parentId": 6,
-      "status": true,
-      "createDateTime": "Fri Sep 01 2023 17:39:00 GMT+0330 (Iran Standard Time)",
       "hasChild": false,
       "priority": 1,
-      "id": 4
+      "id": 2
     },
     {
       "title": "eeee",
@@ -97,24 +79,6 @@
       "hasChild": false,
       "priority": 1,
       "id": 5
-    },
-    {
-      "title": "ewewe",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Fri Sep 01 2023 17:38:37 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 6
-    },
-    {
-      "title": "www",
-      "parentId": 6,
-      "status": true,
-      "createDateTime": "Fri Sep 01 2023 17:38:46 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 7
     }
   ]
 }

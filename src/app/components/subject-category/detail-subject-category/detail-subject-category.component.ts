@@ -20,6 +20,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   id: number;
   form: FormGroup;
   subjectModel = new SubjectCategoryModel();
+  parentId: number;
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -49,21 +50,33 @@ export class DetailSubjectCategoryComponent implements OnInit {
       if (url[1].path === 'add') {
         this.formMode = FormMode.ADD;
         if (this.id > 0) {
+          // this.subjectCategoryService.checkId(this.id).subscribe(
+          //   value => {
+          //     if (){
+          //       console.log("true")
+          //     }else {
+          //       console.log("false")
+          //     }
+          //   }
+          // )
           this.api.getSubjectCategory(this.id).subscribe(
             value => {
               this.form.controls['parentId'].setValue(value.id)
               this.form.controls['parentTitle'].setValue(value.title)
             })
         }
+
       } else if (url[1].path === 'edit') {
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
+            console.log(value.id)
             this.form.controls['title'].setValue(value.title)
             this.form.controls['priority'].setValue(value.priority)
             this.form.controls['status'].setValue(value.status)
-            if(value.parentId === -1){
+            this.parentId = value.parentId
+            if (value.parentId === -1) {
               this.form.controls['parentTitle'].setValue(value.title)
-            }else {
+            } else {
               this.api.getSubjectCategory(value.parentId).subscribe(
                 res => {
                   this.form.controls['parentTitle'].setValue(res.title)
@@ -73,17 +86,17 @@ export class DetailSubjectCategoryComponent implements OnInit {
           }
         )
         this.formMode = FormMode.EDIT;
-      }else if (url[1].path === this.id.toString() ) {
+      } else if (url[1].path === this.id.toString()) {
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             this.form.controls['title'].setValue(value.title)
             this.form.controls['priority'].setValue(value.priority)
             this.form.controls['status'].setValue(value.status)
-            if(value.parentId === -1){
+            if (value.parentId === -1) {
               this.form.controls['parentTitle'].setValue(value.title)
-            }else {
+            } else {
               this.api.getSubjectCategory(value.parentId).subscribe(
-                res=>{
+                res => {
                   this.form.controls['parentTitle'].setValue(res.title)
                 }
               )
@@ -93,7 +106,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
       }
     })
   }
-
 
   editSubjectCategory() {
     if (this.formMode === FormMode.ADD) {
@@ -123,8 +135,22 @@ export class DetailSubjectCategoryComponent implements OnInit {
       let editSubject = new SubjectCategoryModel();
       this.form.removeControl('parentTitle')
       editSubject = this.form.getRawValue()
+      this.api.getAllSubjectCategory()
+        .subscribe(value => {
+          // console.log(value)
+          let subject = value.find((a: any) => {
+            return a.parentId === this.parentId
+          })
+          console.log("ssss", this.parentId)
+          if (subject) {
+            let subjectModel = new SubjectCategoryModel()
+            subjectModel.hasChild = false;
+            this.api.updateSubjectCategory(subjectModel, this.parentId)
+              .subscribe()
+          }
+        })
       if (this.form) {
-        if (this.form.controls['parentId'].value === -1) {
+        if (this.form.controls['parentId'].value !== -1) {
           const hasChild = new SubjectCategoryModel();
           hasChild.hasChild = true;
           this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
@@ -132,6 +158,8 @@ export class DetailSubjectCategoryComponent implements OnInit {
               console.log("true")
             }
           )
+        } else {
+          this.form.controls['parentId'].setValue(-1)
         }
         this.api.updateSubjectCategory(editSubject, this.id).subscribe(
           res => {
@@ -146,11 +174,20 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.route.navigate(['/subject-category'])
     }
   }
+
   selectParent() {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
+      if (result.id === this.id) {
+        console.log("id:", this.id)
+        this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+      }
     })
   }
 }
