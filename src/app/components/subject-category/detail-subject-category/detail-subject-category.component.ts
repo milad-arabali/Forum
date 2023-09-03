@@ -38,6 +38,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
       parentId: [-1],
       parentTitle: [''],
+      currentParentId:[],
       status: [true, Validators.required],
       createDateTime: [Date()],
       hasChild: [false],
@@ -49,23 +50,10 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.id = this.router.snapshot.params['id']
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
-        console.log("url[2].path", url[2].path)
+        // console.log("url[2].path", url[2].path)
         this.formMode = FormMode.ADD;
-        this.subjectCategoryService.checkId().subscribe(
-          value => {
-            let path = Number(url[2].path)
-            let id = value.find((a) => a.id === path)
-            if (Number.isInteger(path) && id) {
-              console.log("true")
-            } else {
-              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              })
-              this.route.navigate(['/subject-category'])
-            }
-          })
+        this.checkSubject(Number(url[2].path))
+
         if (this.id > 0) {
           this.api.getSubjectCategory(this.id).subscribe(
             value => {
@@ -74,57 +62,32 @@ export class DetailSubjectCategoryComponent implements OnInit {
             })
         }
       } else if (url[1].path === 'edit') {
-        this.subjectCategoryService.checkId().subscribe(
-          value => {
-            let path = Number(url[2].path)
-            let id = value.find((a) => a.id === path)
-            if (Number.isInteger(path) && id) {
-              console.log("true")
-            } else {
-              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              })
-              this.route.navigate(['/subject-category'])
-            }
-          })
+        this.checkSubject(Number(url[2].path))
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             console.log(value.id)
             this.form.controls['title'].setValue(value.title)
             this.form.controls['priority'].setValue(value.priority)
             this.form.controls['status'].setValue(value.status)
+            this.form.controls['currentParentId'].setValue(value.parentId)
             this.parentId = value.parentId
-            if (value.parentId === -1) {
-              // this.form.controls['parentTitle'].setValue(value.title)
-            } else {
+            if (value.parentId !== -1) {
               this.api.getSubjectCategory(value.parentId).subscribe(
                 res => {
                   this.form.controls['parentTitle'].setValue(res.title)
+                  this.form.controls['parentId'].setValue(res.id)
                 }
               )
+              // this.form.controls['parentTitle'].setValue(value.title)
+            } else {
+
             }
           }
         )
         this.formMode = FormMode.EDIT;
       } else if (url[1].path === this.id.toString()) {
         this.formMode = FormMode.VIEW;
-        this.subjectCategoryService.checkId().subscribe(
-          value => {
-            let path = Number(url[1].path)
-            let id = value.find((a) => a.id === path)
-            if (Number.isInteger(path) && id) {
-              console.log("true")
-            } else {
-              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              })
-              this.route.navigate(['/subject-category'])
-            }
-          })
+        this.checkSubject(Number(url[1].path))
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             this.form.controls['title'].setValue(value.title)
@@ -143,6 +106,24 @@ export class DetailSubjectCategoryComponent implements OnInit {
         )
       }
     })
+  }
+
+  checkSubject(url: number) {
+    this.subjectCategoryService.checkId().subscribe(
+      value => {
+        let path = url
+        let id = value.find((a) => a.id === path)
+        if (Number.isInteger(path) && id) {
+          console.log("true")
+        } else {
+          this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+            duration: 3000,
+            horizontalPosition: "end",
+            verticalPosition: "top"
+          })
+          this.route.navigate(['/subject-category'])
+        }
+      })
   }
 
   editSubjectCategory() {
@@ -159,6 +140,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
         this.form.controls['parentId'].setValue(-1)
       }
       this.form.removeControl('parentTitle')
+      this.form.removeControl('currentParentId')
       this.subjectModel = this.form.getRawValue()
       let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
         res => {
@@ -170,17 +152,9 @@ export class DetailSubjectCategoryComponent implements OnInit {
         });
       this.route.navigate(['/subject-category'])
     } else if (this.formMode === FormMode.EDIT) {
-      if (this.form.controls['parentId'].value === this.id) {
-        this.snack.open("تست", "", {
-          duration: 3000,
-          horizontalPosition: "end",
-          verticalPosition: "top"
-        })
-        this.route.navigate(['/subject-category'])
-      }
       let editSubject = new SubjectCategoryModel();
       this.form.removeControl('parentTitle')
-      editSubject = this.form.getRawValue()
+
       this.api.getAllSubjectCategory()
         .subscribe(value => {
           let subject = value.find((a: any) => {
@@ -197,14 +171,26 @@ export class DetailSubjectCategoryComponent implements OnInit {
         if (this.form.controls['parentId'].value !== -1) {
           const hasChild = new SubjectCategoryModel();
           hasChild.hasChild = true;
+          this.form.removeControl('currentParentId')
           this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
             a => {
               console.log("true")
             }
           )
-        } else {
+        } else if(this.form.controls['parentId'].value === this.form.controls['currentParentId'].value){
+          const hasChild = new SubjectCategoryModel();
+          this.form.removeControl('currentParentId')
+          this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+            a => {
+              console.log("true")
+            }
+          )
+        }
+        else {
+          this.form.removeControl('currentParentId')
           this.form.controls['parentId'].setValue(-1)
         }
+        editSubject = this.form.getRawValue()
         this.api.updateSubjectCategory(editSubject, this.id).subscribe(
           res => {
             this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
@@ -218,7 +204,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.route.navigate(['/subject-category'])
     }
   }
-
   selectParent() {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed().subscribe(result => {

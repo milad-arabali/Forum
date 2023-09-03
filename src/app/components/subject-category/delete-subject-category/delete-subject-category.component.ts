@@ -63,12 +63,16 @@ export class DeleteSubjectCategoryComponent implements OnInit {
     setTimeout(() => {
       this.api.getAllSubjectCategory()
         .subscribe(value => {
-          // console.log(value)
           let subject = value.find((a: any) => {
             return a.parentId === this.parentId
           })
-          // console.log("sss", this.parentId)
           if (!subject) {
+            let subjectModel = new SubjectCategoryModel()
+            subjectModel.hasChild = false;
+            this.api.updateSubjectCategory(subjectModel, this.parentId)
+              .subscribe()
+          }
+          else if(subject){
             let subjectModel = new SubjectCategoryModel()
             subjectModel.hasChild = false;
             this.api.updateSubjectCategory(subjectModel, this.parentId)
