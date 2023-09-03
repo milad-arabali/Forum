@@ -18,6 +18,12 @@ const routes: Routes = [
   {path: 'home', canActivate: [AuthGuard], component: HomeComponent},
   {path: 'profile', component: EditUserComponent, canActivate: [AuthGuard]},
   {path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard]},
+  {path: 'subject-category',
+  loadChildren:()=>import('./components/subject-category/subject-category.module')
+    .then(m=>m.SubjectCategoryModule)},
+  {path: 'subject',
+    loadChildren:()=>import('./components/subject-manger/subject-manager.module')
+      .then(m=>m.SubjectManagerModule)},
   {path: '**', component: SigninUserComponent}
 ]
 

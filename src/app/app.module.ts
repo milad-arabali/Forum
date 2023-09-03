@@ -19,10 +19,11 @@ import {
 } from "./components/user-authentication/user-authentication.module";
 import {
   RoutingSubjectCategoryModule
-} from "./components/subject-category/shared/services/routing-subject-category.module";
+} from "./components/subject-category/routing-subject-category.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-validator.directive";
 import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
+import {SubjectManagerModule} from "./components/subject-manger/subject-manager.module";
 
 
 
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     HttpClientModule,
     SubjectCategoryModule,
+    SubjectManagerModule,
     TranslateModule.forRoot(
       {
         loader: {

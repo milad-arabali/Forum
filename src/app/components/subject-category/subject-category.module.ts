@@ -13,6 +13,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {SelectParentModule} from "./select-parent/select-parent.module";
 import {DeleteSubjectCategoryModule} from "./delete-subject-category/delete-subject-category.module";
 import {DetailSubjectCategoryModule} from "./detail-subject-category/detail-subject-category.module";
+import {RoutingSubjectCategoryModule} from "./routing-subject-category.module";
 
 
 
@@ -35,7 +36,8 @@ import {DetailSubjectCategoryModule} from "./detail-subject-category/detail-subj
     TranslateModule,
     SelectParentModule,
     DeleteSubjectCategoryModule,
-    DetailSubjectCategoryModule
+    DetailSubjectCategoryModule,
+    RoutingSubjectCategoryModule
 
   ]
 })

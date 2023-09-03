@@ -3,7 +3,7 @@ import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
-import {SubjectCategoryService} from "../subject-category.service";
+import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {ApiService} from "../../../shared/services/api.service";
 import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 import {MatSnackBar} from "@angular/material/snack-bar";

@@ -3,7 +3,7 @@ import {BehaviorSubject, merge, Observable} from 'rxjs';
 import {FlatTreeControl} from '@angular/cdk/tree';
 import {map} from 'rxjs/operators';
 import {SubjectCategoryFlatNodeModel} from "../../shared/model/subject-category-flat-node.model";
-import {SubjectCategoryService} from "./subject-category.service";
+import {SubjectCategoryService} from "./shared/services/subject-category.service";
 
 
 

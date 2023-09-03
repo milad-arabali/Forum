@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
-import {SubjectCategoryService} from "../subject-category.service";
+import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 import {HttpClient} from "@angular/common/http";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";

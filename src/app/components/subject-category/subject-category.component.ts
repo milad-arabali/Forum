@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {SubjectCategoryFlatNodeModel} from "../../shared/model/subject-category-flat-node.model";
 import {SubjectCategoryDataSource} from "./subject-category-data-source";
-import {SubjectCategoryService} from "./subject-category.service";
+import {SubjectCategoryService} from "./shared/services/subject-category.service";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-subject-category.component";

@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, find, Observable} from "rxjs";
-import {SubjectCategoryModel} from "../../shared/model/subject-category.model";
+import {SubjectCategoryModel} from "../../../../shared/model/subject-category.model";
 import {Router} from "@angular/router";
 
 

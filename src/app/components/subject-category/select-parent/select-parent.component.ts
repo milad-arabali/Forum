@@ -4,7 +4,7 @@ import {FlatTreeControl} from "@angular/cdk/tree";
 import {SubjectCategoryDataSource} from "../subject-category-data-source";
 import {MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
-import {SubjectCategoryService} from "../subject-category.service";
+import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 
 @Component({
