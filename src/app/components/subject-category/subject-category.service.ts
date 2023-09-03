@@ -13,13 +13,14 @@ export class SubjectCategoryService {
 
   constructor(private http: HttpClient) {
   }
-
   public deleteSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public selectParentId$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
   findByParentId(parentId: number): Observable<SubjectCategoryModel[]> {
-    return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?parentId=' + `${parentId}`);
+    return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?_sort=priority&parentId=' + `${parentId}`);
   }
 
+  checkId(): Observable<SubjectCategoryModel[]>{
+    return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category');
+  }
 
 }

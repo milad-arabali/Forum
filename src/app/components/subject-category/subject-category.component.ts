@@ -62,12 +62,12 @@ export class SubjectCategoryComponent implements OnInit  {
     }
   }
   loadTree() {
-    setTimeout(()=>{
+
       this.subjectCategoryService.findByParentId(-1).subscribe(result => {
         this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
         (item, 0, true, false));
       });
-    },100)
+
   }
 
   deleteSubject()  {

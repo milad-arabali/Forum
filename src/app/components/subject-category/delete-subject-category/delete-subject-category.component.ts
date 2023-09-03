@@ -38,13 +38,10 @@ export class DeleteSubjectCategoryComponent implements OnInit {
         this.id = a
       }
     )
-
   }
-
   close() {
     this.dialogRef.close();
   }
-
   getParentId() {
     this.api.getSubjectCategory(this.id).subscribe(
       value => {
@@ -53,7 +50,6 @@ export class DeleteSubjectCategoryComponent implements OnInit {
       }
     )
   }
-
   delete() {
     this.getParentId()
     this.api.deleteSubjectCategory(this.id).subscribe(
@@ -79,7 +75,7 @@ export class DeleteSubjectCategoryComponent implements OnInit {
               .subscribe()
           }
         })
-    }, 100)
+    }, 10)
     this.dialogRef.close();
 
   }

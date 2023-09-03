@@ -32,11 +32,7 @@ export class SelectParentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subjectCategoryService.findByParentId(-1).subscribe(result => {
-      this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
-      (item, 0, true, false));
-
-    });
+    this.loadTree()
     // if (this.dataSource.data.length > 0) {
     //   this.selectParentBtn = true;
     //   console.log("true")
@@ -44,7 +40,14 @@ export class SelectParentComponent implements OnInit {
     //   this.selectParentBtn = false;
     // }
   }
-
+  loadTree() {
+    setTimeout(()=>{
+      this.subjectCategoryService.findByParentId(-1).subscribe(result => {
+        this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
+        (item, 0, true, false));
+      });
+    },10)
+  }
   /**
    * select node
    * @param node tree node
@@ -83,6 +86,8 @@ export class SelectParentComponent implements OnInit {
     console.log("id:", this.id)
     this.dialogRef.close(s)
   }
+
+
 
 
 

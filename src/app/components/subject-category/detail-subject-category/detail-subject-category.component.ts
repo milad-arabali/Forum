@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {SubjectCategoryService} from "../subject-category.service";
 import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
+
 
 @Component({
   selector: 'app-detail-subject-category',
@@ -30,7 +31,8 @@ export class DetailSubjectCategoryComponent implements OnInit {
               private snack: MatSnackBar,
               private dialog: MatDialog,
               private route: Router,
-              private activateRoute: ActivatedRoute) {
+              private activateRoute: ActivatedRoute,
+              private snackBar: MatSnackBar) {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255),
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
@@ -45,28 +47,48 @@ export class DetailSubjectCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.router.snapshot.params['id']
-    this.formMode = FormMode.VIEW;
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
+        console.log("url[2].path", url[2].path)
         this.formMode = FormMode.ADD;
+        this.subjectCategoryService.checkId().subscribe(
+          value => {
+            let path = Number(url[2].path)
+            let id = value.find((a) => a.id === path)
+            if (Number.isInteger(path) && id) {
+              console.log("true")
+            } else {
+              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              })
+              this.route.navigate(['/subject-category'])
+            }
+          })
         if (this.id > 0) {
-          // this.subjectCategoryService.checkId(this.id).subscribe(
-          //   value => {
-          //     if (){
-          //       console.log("true")
-          //     }else {
-          //       console.log("false")
-          //     }
-          //   }
-          // )
           this.api.getSubjectCategory(this.id).subscribe(
             value => {
               this.form.controls['parentId'].setValue(value.id)
               this.form.controls['parentTitle'].setValue(value.title)
             })
         }
-
       } else if (url[1].path === 'edit') {
+        this.subjectCategoryService.checkId().subscribe(
+          value => {
+            let path = Number(url[2].path)
+            let id = value.find((a) => a.id === path)
+            if (Number.isInteger(path) && id) {
+              console.log("true")
+            } else {
+              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              })
+              this.route.navigate(['/subject-category'])
+            }
+          })
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             console.log(value.id)
@@ -75,7 +97,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
             this.form.controls['status'].setValue(value.status)
             this.parentId = value.parentId
             if (value.parentId === -1) {
-              this.form.controls['parentTitle'].setValue(value.title)
+              // this.form.controls['parentTitle'].setValue(value.title)
             } else {
               this.api.getSubjectCategory(value.parentId).subscribe(
                 res => {
@@ -87,6 +109,22 @@ export class DetailSubjectCategoryComponent implements OnInit {
         )
         this.formMode = FormMode.EDIT;
       } else if (url[1].path === this.id.toString()) {
+        this.formMode = FormMode.VIEW;
+        this.subjectCategoryService.checkId().subscribe(
+          value => {
+            let path = Number(url[1].path)
+            let id = value.find((a) => a.id === path)
+            if (Number.isInteger(path) && id) {
+              console.log("true")
+            } else {
+              this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              })
+              this.route.navigate(['/subject-category'])
+            }
+          })
         this.api.getSubjectCategory(this.id).subscribe(
           value => {
             this.form.controls['title'].setValue(value.title)
@@ -132,16 +170,22 @@ export class DetailSubjectCategoryComponent implements OnInit {
         });
       this.route.navigate(['/subject-category'])
     } else if (this.formMode === FormMode.EDIT) {
+      if (this.form.controls['parentId'].value === this.id) {
+        this.snack.open("تست", "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+        this.route.navigate(['/subject-category'])
+      }
       let editSubject = new SubjectCategoryModel();
       this.form.removeControl('parentTitle')
       editSubject = this.form.getRawValue()
       this.api.getAllSubjectCategory()
         .subscribe(value => {
-          // console.log(value)
           let subject = value.find((a: any) => {
             return a.parentId === this.parentId
           })
-          console.log("ssss", this.parentId)
           if (subject) {
             let subjectModel = new SubjectCategoryModel()
             subjectModel.hasChild = false;
@@ -180,14 +224,16 @@ export class DetailSubjectCategoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
-      if (result.id === this.id) {
-        console.log("id:", this.id)
-        this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
+      if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
+        this.snack.open("والد یک دسته بندی موضوع نمی تواند خودش باشد.", "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
         })
+        this.form.controls['parentTitle'].setValue('')
+        // this.form.setErrors({Invalid:true})
       }
+
     })
   }
 }
