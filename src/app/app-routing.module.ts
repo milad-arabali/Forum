@@ -22,7 +22,7 @@ const routes: Routes = [
   loadChildren:()=>import('./components/subject-category/subject-category.module')
     .then(m=>m.SubjectCategoryModule)},
   {path: 'subject',
-    loadChildren:()=>import('./components/subject-manger/subject-manager.module')
+    loadChildren:()=>import('./components/subject-manager/subject-manager.module')
       .then(m=>m.SubjectManagerModule)},
   {path: '**', component: SigninUserComponent}
 ]

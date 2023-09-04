@@ -1,0 +1,66 @@
+.button button {
+  margin: 10px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.header-card{
+  background-color: #3f51b5;
+  padding: 16px;
+}
+.title-container{
+  color: white;
+  font-family: BTitrBold;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 0;
+}
+.subjectCategoryForm {
+  margin-top: 30px;
+  display: flex;
+  height: 320px;
+  padding: 0
+}
+.col{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 10px;
+
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.row div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.row span {
+  width: 24%;
+  font-family: BYekan-bold;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.header-card1{
+  margin-bottom: 10px;
+}
+.mat-form {
+
+  padding: 0;
+}
+
+.mat-form {
+  /*width: 100%;*/
+  padding: 0;
+  width: 420px;
+}

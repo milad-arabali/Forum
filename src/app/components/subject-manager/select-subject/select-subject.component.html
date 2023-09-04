@@ -1,0 +1,43 @@
+<div class="edit-course-form">
+  <mat-dialog-content class="headerDialog">
+    <span>
+       انتخاب دسته بندی موضوع
+    </span>
+  </mat-dialog-content>
+  <mat-divider></mat-divider>
+  <mat-dialog-content class="selectParentDialogContent">
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding="">
+        <button mat-flat-button (click)="selectNode(node)"
+                [color]="activeNode === node ? 'primary' : ''">
+          <span class="iransans">{{node.item.title}}</span>
+        </button>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
+      >
+        <div class="mat-tree-node">
+          <button [attr.aria-label]="'Toggle ' + node.item.title" mat-icon-button
+                  matTreeNodeToggle>
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <button mat-flat-button (click)="selectNode(node)"
+                  [color]="activeNode === node ? 'primary' : ''">
+            <span class="iransans">{{node.item.title}} </span>
+          </button>
+        </div>
+        <mat-progress-bar *ngIf="node.isLoading"
+                          mode="indeterminate"
+                          class="tree-progress-bar"></mat-progress-bar>
+      </mat-tree-node>
+    </mat-tree>
+  </mat-dialog-content>
+  <mat-dialog-actions class="button">
+    <button mat-raised-button color="primary" (click)="selectParent()" [disabled]="!selectParentBtn">
+      {{'form.select-parent-btn'|translate}}</button>
+    <button mat-raised-button color="warn"
+            (click)="selectParentClose()"> {{'form.cancel-btn'|translate}}
+    </button>
+  </mat-dialog-actions>
+</div>

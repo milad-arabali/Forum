@@ -23,7 +23,8 @@ import {
 import {AppRoutingModule} from "./app-routing.module";
 import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-validator.directive";
 import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
-import {SubjectManagerModule} from "./components/subject-manger/subject-manager.module";
+import {SubjectManagerModule} from "./components/subject-manager/subject-manager.module";
+
 
 
 
@@ -44,16 +45,15 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
-    RoutingSubjectCategoryModule,
     ThemeModule,
     UserAuthenticationModule,
     UserLoginModule,
     BrowserAnimationsModule,
     MatNativeDateModule,
-    AppRoutingModule,
     HttpClientModule,
     SubjectCategoryModule,
     SubjectManagerModule,
+    AppRoutingModule,
     TranslateModule.forRoot(
       {
         loader: {
