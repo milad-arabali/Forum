@@ -41,9 +41,9 @@
           <div>
             <span>وضیعت :</span>
             <mat-radio-group class="mat-form" formControlName="status">
-              <mat-radio-button value="true" [value]="true">
+              <mat-radio-button value="true">
                 {{'form.status-true'|translate}}</mat-radio-button>
-              <mat-radio-button value="false" [value]="false">
+              <mat-radio-button value="false">
                 {{'form.status-false'|translate}}</mat-radio-button>
             </mat-radio-group>
           </div>
@@ -55,10 +55,10 @@
             <span>عنوان :</span>
             <mat-form-field class="mat-form">
               <mat-label>عنوان :</mat-label>
-              <input type="text" matInput formControlName="title">
+              <input type="text" matInput formControlName="categoryTitle">
               <!--              <mat-icon matSuffix>mode_edit</mat-icon>-->
-              <mat-error *ngIf="form.controls['title'].invalid &&
-              form.controls['title'].hasError('pattern')">
+              <mat-error *ngIf="form.controls['categoryTitle'].invalid &&
+              form.controls['categoryTitle'].hasError('pattern')">
                 عنوان دسته بندی نامعتبر است.
               </mat-error>
             </mat-form-field>
@@ -80,7 +80,7 @@
               <button mat-raised-button type="submit" color="primary" (click)="formReset()">
                 پاک کردن
               </button>
-              <button mat-raised-button color="accent">
+              <button mat-raised-button color="accent" (click)="searchObject()">
                 جستجو
               </button>
             </div>
@@ -90,15 +90,15 @@
     </div>
     <div class="scrolling-container">
       <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
-             [dataSource]="dataSource" class="mat-elevation-z8 tableSubject">
+             [dataSource]="dataSource" class="mat-elevation-z8 tableDesign">
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-        <ng-container matColumnDef="id" >
+        <ng-container matColumnDef="id" class="tableDesign">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by position"> ردیف</th>
-          <td class="tableDesign" mat-cell *matCellDef="let element "> {{element.id}} </td>
+          <td mat-cell *matCellDef="let element "> {{element.id}} </td>
         </ng-container>
 
         <!-- Name Column -->
@@ -108,9 +108,14 @@
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="categoryId">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> categoryId</th>
-          <td mat-cell *matCellDef="let element"> {{element.categoryId}} </td>
+        <ng-container matColumnDef="categoryTitle">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> categoryTitle</th>
+          <td mat-cell *matCellDef="let element"> {{element.categoryTitle}} </td>
+        </ng-container>
+        <!-- Weight Column -->
+        <ng-container matColumnDef="creatorUser">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> creatorUser</th>
+          <td mat-cell *matCellDef="let element"> {{element.creatorUser}} </td>
         </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="createDateTime">
@@ -118,13 +123,8 @@
           <td mat-cell *matCellDef="let element"> {{element.createDateTime}} </td>
         </ng-container>
         <!-- Symbol Column -->
-        <ng-container matColumnDef="creatorUser">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef> creatorUser</th>
-          <td mat-cell *matCellDef="let element"> {{element.creatorUser}} </td>
-        </ng-container>
-        <!-- Symbol Column -->
         <ng-container matColumnDef="status">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef>status</th>
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> status</th>
           <td mat-cell *matCellDef="let element"> {{element.status}} </td>
         </ng-container>
 

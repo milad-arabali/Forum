@@ -8,19 +8,20 @@ import {SubjectCategoryService} from "../../subject-category/shared/services/sub
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
-import {SelectParentComponent} from "../../subject-category/select-parent/select-parent.component";
+
 
 @Component({
   selector: 'app-detail-subject',
   templateUrl: './detail-subject.component.html',
   styleUrls: ['./detail-subject.component.css']
 })
-export class DetailSubjectComponent implements OnInit {
+export class DetailSubjectComponent implements OnInit{
   formMode: FormMode = FormMode.ADD;
   id: number;
   form: FormGroup;
   subjectModel = new SubjectCategoryModel();
   parentId: number;
+
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -60,7 +61,6 @@ export class DetailSubjectComponent implements OnInit {
       } else if (url[1].path === this.id.toString()) {
         this.formMode = FormMode.VIEW;
         this.checkSubject(Number(url[1].path))
-
       }
     })
   }
@@ -71,111 +71,111 @@ export class DetailSubjectComponent implements OnInit {
         let path = url
         let id = value.find((a) => a.id === path)
         if (Number.isInteger(path) && id) {
-          console.log("true")
+
         } else {
           this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
           })
-          this.route.navigate(['/subject-category'])
+          this.route.navigate(['subject'])
         }
       })
   }
 
   editSubjectCategory() {
-    if (this.formMode === FormMode.ADD) {
-      if (this.form.controls['parentId'].value !== -1) {
-        const hasChild = new SubjectCategoryModel();
-        hasChild.hasChild = true;
-        this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
-          a => {
-            console.log("true")
-          }
-        )
-      } else {
-        this.form.controls['parentId'].setValue(-1)
-      }
-      this.form.removeControl('parentTitle')
-      this.form.removeControl('currentParentId')
-      this.subjectModel = this.form.getRawValue()
-      let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
-        res => {
-          this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
-            duration: 3000,
-            horizontalPosition: "end",
-            verticalPosition: "top"
-          })
-        });
-      this.route.navigate(['/subject-category'])
-    } else if (this.formMode === FormMode.EDIT) {
-      let editSubject = new SubjectCategoryModel();
-      this.form.removeControl('parentTitle')
-
-      this.api.getAllSubjectCategory()
-        .subscribe(value => {
-          let subject = value.find((a: any) => {
-            return a.parentId === this.parentId
-          })
-          if (subject) {
-            let subjectModel = new SubjectCategoryModel()
-            subjectModel.hasChild = false;
-            this.api.updateSubjectCategory(subjectModel, this.parentId)
-              .subscribe()
-          }
-        })
-      if (this.form) {
-        if (this.form.controls['parentId'].value !== -1) {
-          const hasChild = new SubjectCategoryModel();
-          hasChild.hasChild = true;
-          this.form.removeControl('currentParentId')
-          this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
-            a => {
-              console.log("true")
-            }
-          )
-        } else if(this.form.controls['parentId'].value === this.form.controls['currentParentId'].value){
-          const hasChild = new SubjectCategoryModel();
-          this.form.removeControl('currentParentId')
-          this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
-            a => {
-              console.log("true")
-            }
-          )
-        }
-        else {
-          this.form.removeControl('currentParentId')
-          this.form.controls['parentId'].setValue(-1)
-        }
-        editSubject = this.form.getRawValue()
-        this.api.updateSubjectCategory(editSubject, this.id).subscribe(
-          res => {
-            this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
-              duration: 3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
-            })
-          }
-        )
-      }
-      this.route.navigate(['/subject-category'])
-    }
+    // if (this.formMode === FormMode.ADD) {
+    //   if (this.form.controls['parentId'].value !== -1) {
+    //     const hasChild = new SubjectCategoryModel();
+    //     hasChild.hasChild = true;
+    //     this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+    //       a => {
+    //         console.log("true")
+    //       }
+    //     )
+    //   } else {
+    //     this.form.controls['parentId'].setValue(-1)
+    //   }
+    //   this.form.removeControl('parentTitle')
+    //   this.form.removeControl('currentParentId')
+    //   this.subjectModel = this.form.getRawValue()
+    //   let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
+    //     res => {
+    //       this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
+    //         duration: 3000,
+    //         horizontalPosition: "end",
+    //         verticalPosition: "top"
+    //       })
+    //     });
+    //   this.route.navigate(['/subject-category'])
+    // } else if (this.formMode === FormMode.EDIT) {
+    //   let editSubject = new SubjectCategoryModel();
+    //   this.form.removeControl('parentTitle')
+    //
+    //   this.api.getAllSubjectCategory()
+    //     .subscribe(value => {
+    //       let subject = value.find((a: any) => {
+    //         return a.parentId === this.parentId
+    //       })
+    //       if (subject) {
+    //         let subjectModel = new SubjectCategoryModel()
+    //         subjectModel.hasChild = false;
+    //         this.api.updateSubjectCategory(subjectModel, this.parentId)
+    //           .subscribe()
+    //       }
+    //     })
+    //   if (this.form) {
+    //     if (this.form.controls['parentId'].value !== -1) {
+    //       const hasChild = new SubjectCategoryModel();
+    //       hasChild.hasChild = true;
+    //       this.form.removeControl('currentParentId')
+    //       this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+    //         a => {
+    //           console.log("true")
+    //         }
+    //       )
+    //     } else if(this.form.controls['parentId'].value === this.form.controls['currentParentId'].value){
+    //       const hasChild = new SubjectCategoryModel();
+    //       this.form.removeControl('currentParentId')
+    //       this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+    //         a => {
+    //           console.log("true")
+    //         }
+    //       )
+    //     }
+    //     else {
+    //       this.form.removeControl('currentParentId')
+    //       this.form.controls['parentId'].setValue(-1)
+    //     }
+    //     editSubject = this.form.getRawValue()
+    //     this.api.updateSubjectCategory(editSubject, this.id).subscribe(
+    //       res => {
+    //         this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
+    //           duration: 3000,
+    //           horizontalPosition: "end",
+    //           verticalPosition: "top"
+    //         })
+    //       }
+    //     )
+    //   }
+    //   this.route.navigate(['/subject-category'])
+    // }
   }
   selectParent() {
-    const dialogRef = this.dialog.open(SelectParentComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      this.form.controls['parentId'].setValue(result.id)
-      this.form.controls['parentTitle'].setValue(result.title)
-      if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
-        this.snack.open("والد یک دسته بندی موضوع نمی تواند خودش باشد.", "", {
-          duration: 3000,
-          horizontalPosition: "end",
-          verticalPosition: "top"
-        })
-        this.form.controls['parentTitle'].setValue('')
-        // this.form.setErrors({Invalid:true})
-      }
-
-    })
+    // const dialogRef = this.dialog.open(SelectParentComponent)
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.form.controls['parentId'].setValue(result.id)
+    //   this.form.controls['parentTitle'].setValue(result.title)
+    //   if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
+    //     this.snack.open("والد یک دسته بندی موضوع نمی تواند خودش باشد.", "", {
+    //       duration: 3000,
+    //       horizontalPosition: "end",
+    //       verticalPosition: "top"
+    //     })
+    //     this.form.controls['parentTitle'].setValue('')
+    //     // this.form.setErrors({Invalid:true})
+    //   }
+    //
+    // })
   }
 }
