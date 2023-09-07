@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-delete-subject',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./delete-subject.component.css']
 })
 export class DeleteSubjectComponent {
+  constructor(
+    private dialogRef: MatDialogRef<DeleteSubjectComponent>,
+  ) {
+  }
 
 }

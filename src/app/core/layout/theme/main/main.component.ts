@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../../../shared/services/api.service";
 import {HttpClient} from "@angular/common/http";
 import {TranslateService} from "@ngx-translate/core";
+import {SubjectService} from "../../../../components/subject-manager/shared/services/subject.service";
 
 
 @Component({
@@ -24,7 +25,8 @@ export class MainComponent implements OnInit {
               private c: CookieService,
               private httpClient: HttpClient,
               public router:Router,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private subject:SubjectService) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
     translate.use('fa');
@@ -65,6 +67,7 @@ export class MainComponent implements OnInit {
         }
       }
     )
+
   }
 
 

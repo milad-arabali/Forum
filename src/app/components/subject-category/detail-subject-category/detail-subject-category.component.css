@@ -52,24 +52,12 @@
   font-weight: bold;
   color: #000000;
 }
-/*.subjectCategoryForm div {*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  !*justify-content: space-around;*!*/
-/*  align-items: center;*/
-/*  width: 1000px;*/
-/*  margin: 10px;*/
-/*}*/
+
 .header-card1{
   margin-bottom: 10px;
 }
-.mat-form {
 
-  padding: 0;
-}
 
-.mat-form {
-  /*width: 100%;*/
-  padding: 0;
-  width: 420px;
+.mat-form{
+  width: 100%;
 }

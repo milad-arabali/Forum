@@ -1,9 +1,10 @@
 export class SubjectMangerModel {
   id:number;
-  categoryTitle: string;
-  title: number;
-  createDateTime: Date;
+  parentId:number;
+  categoryTitle:string;
+  title: string;
   creatorUser: string;
-  status: number;
+  createDateTime: Date;
+  status: boolean;
 
 }

@@ -7,6 +7,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTreeModule} from "@angular/material/tree";
 import {MatListModule} from "@angular/material/list";
+import {NgIf} from "@angular/common";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatListModule} from "@angular/material/list";
     MatProgressBarModule,
     MatIconModule,
     MatTreeModule,
-    MatListModule
+    MatListModule,
+    NgIf
 
   ]
 })

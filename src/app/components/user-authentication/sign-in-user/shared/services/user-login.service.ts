@@ -1,4 +1,4 @@
-import {computed, Injectable} from '@angular/core';
+import { Injectable} from '@angular/core';
 import {UserInformationModel} from "../../../../../shared/model/user-information.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -10,14 +10,13 @@ import {CookieService} from "ngx-cookie-service";
 import {BehaviorSubject} from "rxjs";
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserLoginService {
   public showUserName$ = new BehaviorSubject<any>('');
   public showUserLastName$ = new BehaviorSubject<any>('');
-  // selectedUser$ = this.cookie$.asObservable();
-  aa: number;
   public user: UserAccountInformationModel;
   public userDb: UserInformationModel[] = [
     new UserInformationModel(
@@ -45,14 +44,9 @@ export class UserLoginService {
               private userLogin: CookieServiceLogin,
               private httpClient: HttpClient,
               private api: ApiService,
-              private c: CookieService) {
+              private c: CookieService,
+             ) {
   }
-
-  // usernameLogin(username : any){
-  //   this.cookie$.next(username)
-  //   console.log(username)
-  // }
-
   singIn(username, value,name,family) {
     const api = this.api.apiUrl
     let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
@@ -73,7 +67,7 @@ export class UserLoginService {
           })
           this.c.set('users', username)
           this.userLogin.logIn().then(() => {
-            this.router.navigate(['/home-module'])
+            this.router.navigate(['/home'])
           })
           this.api.postRegistration(value).subscribe(res => {
               this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
@@ -85,6 +79,7 @@ export class UserLoginService {
           )
           this.showUserName$.next(name)
           this.showUserLastName$.next(family)
+
         }
 
 

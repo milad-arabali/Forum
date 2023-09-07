@@ -9,6 +9,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {NgIf} from "@angular/common";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import {RouterLink} from "@angular/router";
     MatRadioModule,
     MatButtonModule,
     RouterLink,
+    NgIf,
+    MatDatepickerModule,
 
 
   ]

@@ -4,7 +4,7 @@
       <div class="title-container">
         <div class="card-header-title" *ngIf="formMode=== 0">
           <mat-icon>insert_drive_file</mat-icon>
-          {{'form.add-btn'|translate}}یبیبیب
+          {{'form.add-btn'|translate}}
         </div>
         <div class="card-header-title" *ngIf="formMode===1">
           <mat-icon>insert_drive_file</mat-icon>
@@ -21,11 +21,12 @@
       <div class="col">
         <div class="row">
           <div>
-            <span> {{'form.parent'|translate}}</span>
+            <span> دسته بندی </span>
             <mat-form-field class="mat-form" >
               <mat-label> {{'form.parent'|translate}}</mat-label>
-              <input type="text" matInput  formControlName="parentTitle"[readonly]="formMode===2">
-              <mat-icon matSuffix (click)="selectParent()" style="cursor: pointer" *ngIf="formMode!==2" >mode_edit</mat-icon>
+              <input type="text" matInput  formControlName="categoryTitle"[readonly]="true">
+              <mat-icon matSuffix (click)="selectCategory()"
+                        style="cursor: pointer" *ngIf="formMode!==2">mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['parentId'].invalid &&
                  form.controls['parentId'].hasError('required')">
                 {{'form.parent-error'|translate}}
@@ -33,20 +34,30 @@
             </mat-form-field>
           </div>
           <div>
-            <span>  {{'form.priority'|translate}}</span>
+            <span>  کاربرایجاد کننده</span>
             <mat-form-field class="mat-form">
-              <mat-label>  {{'form.priority'|translate}}</mat-label>
-              <input type="number" matInput formControlName="priority" [min]="1" [max]="10" [readonly]="formMode===2">
-              <mat-error *ngIf="form.controls['priority'].invalid &&
-              form.controls['priority'].hasError('required')">
-                {{'form.priority-error'|translate}}
-              </mat-error>
-              <mat-error *ngIf="form.controls['priority'].invalid &&
-              (form.controls['priority'].hasError('max') ||
-               form.controls['priority'].hasError('min'))">
-                {{'form.priority-error-max'|translate}}
-              </mat-error>
+              <mat-label> کاربرایجاد کننده</mat-label>
+              <input type="text" matInput formControlName="creatorUser"  [readonly]="true">
+<!--              <mat-error *ngIf="form.controls['priority'].invalid &&-->
+<!--              form.controls['priority'].hasError('required')">-->
+<!--                {{'form.priority-error'|translate}}-->
+<!--              </mat-error>-->
+<!--              <mat-error *ngIf="form.controls['priority'].invalid &&-->
+<!--              (form.controls['priority'].hasError('max') ||-->
+<!--               form.controls['priority'].hasError('min'))">-->
+<!--                {{'form.priority-error-max'|translate}}-->
+<!--              </mat-error>-->
             </mat-form-field>
+          </div>
+
+          <div>
+            <span>{{'form.status'|translate}}</span>
+            <mat-radio-group class="mat-form" formControlName="status">
+              <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
+                {{'form.status-true'|translate}}</mat-radio-button>
+              <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
+                {{'form.status-false'|translate}}</mat-radio-button>
+            </mat-radio-group>
           </div>
         </div>
       </div>
@@ -71,23 +82,23 @@
             </mat-form-field>
           </div>
           <div>
-            <span>{{'form.status'|translate}}</span>
-            <mat-radio-group class="mat-form" formControlName="status">
-              <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
-                {{'form.status-true'|translate}}</mat-radio-button>
-              <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
-                {{'form.status-false'|translate}}</mat-radio-button>
-            </mat-radio-group>
+            <span> تاریخ و رمان ایجاد :</span>
+            <mat-form-field class="mat-form">
+              <mat-label>تاریخ و رمان ایجاد :</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formMode===2"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
           </div>
         </div>
       </div>
     </div>
-
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-footer>
     <div class="button">
-      <button mat-raised-button type="submit" color="primary"
+      <button mat-raised-button type="submit" color="primary" (click)="editSubjectCategory()"
               [disabled]="form.invalid" [hidden]="formMode===2">
         <span *ngIf="formMode===0"> {{'form.add-btn'|translate}}</span>
         <span *ngIf="formMode===1">

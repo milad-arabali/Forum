@@ -44,7 +44,7 @@
 }
 
 .row span {
-  width: 24%;
+  width: 30%;
   font-family: BYekan-bold;
   font-size: 18px;
   font-weight: bold;
@@ -54,13 +54,6 @@
 .header-card1{
   margin-bottom: 10px;
 }
-.mat-form {
-
-  padding: 0;
-}
-
-.mat-form {
-  /*width: 100%;*/
-  padding: 0;
-  width: 420px;
+.mat-form{
+  width: 100%;
 }

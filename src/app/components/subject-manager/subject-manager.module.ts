@@ -16,6 +16,7 @@ import {RouterLink} from "@angular/router";
 import {RoutingSubjectModule} from "./routing-subject.module";
 import {DeleteSubjectModule} from "./delete-subject/delete-subject.module";
 import {DetailSubjectModule} from "./detail-subject/detail-subject.module";
+import {NgIf} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {DetailSubjectModule} from "./detail-subject/detail-subject.module";
     ReactiveFormsModule,
     MatIconModule,
     MatListModule,
-    RouterLink
+    RouterLink,
+    NgIf
   ]
 })
 
