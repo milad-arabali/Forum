@@ -47,20 +47,10 @@ export class DeleteSubjectCategoryComponent implements OnInit {
     this.api.getSubjectCategory(this.id).subscribe(
       value => {
         this.parentId = value.parentId
-
       }
     )
   }
   delete() {
-    this.getParentId()
-    this.api.deleteSubjectCategory(this.id).subscribe(
-      a => {
-        this.snack.open(this.translate.instant('snackbar.subject-delete-value'), "", {
-          duration: 3000,
-          horizontalPosition: "end",
-          verticalPosition: "top"
-        })
-      })
     setTimeout(() => {
       this.api.getAllSubjectCategory()
         .subscribe(value => {
@@ -80,7 +70,15 @@ export class DeleteSubjectCategoryComponent implements OnInit {
               .subscribe()
           }
         })
-    }, 10)
+    }, 100)
+    this.api.deleteSubjectCategory(this.id).subscribe(
+      a => {
+        this.snack.open(this.translate.instant('snackbar.subject-delete-value'), "", {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top"
+        })
+      })
     this.dialogRef.close();
 
   }

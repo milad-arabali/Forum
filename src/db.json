@@ -73,57 +73,39 @@
     },
     {
       "title": "w",
-      "parentId": -1,
+      "parentId": 8,
       "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:24:49 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
+      "createDateTime": "Fri Sep 08 2023 20:46:00 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
       "priority": 1,
       "id": 2
     },
     {
-      "title": "q",
-      "parentId": 2,
-      "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:26:03 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 3,
-      "id": 3
-    },
-    {
       "title": "s",
-      "parentId": 2,
+      "parentId": -1,
       "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:25:41 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 5
-    },
-    {
-      "title": "d",
-      "parentId": 2,
-      "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:25:56 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 6
-    },
-    {
-      "title": "s",
-      "parentId": 2,
-      "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:27:06 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
+      "createDateTime": "Fri Sep 08 2023 20:43:24 GMT+0330 (Iran Standard Time)",
+      "hasChild": true,
       "priority": 1,
       "id": 7
     },
     {
-      "title": "11",
-      "parentId": 2,
+      "title": "sss",
+      "parentId": -1,
       "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:27:16 GMT+0330 (Iran Standard Time)",
+      "createDateTime": "Fri Sep 08 2023 20:43:57 GMT+0330 (Iran Standard Time)",
       "hasChild": false,
       "priority": 1,
       "id": 8
+    },
+    {
+      "title": "aaa",
+      "parentId": 7,
+      "status": true,
+      "createDateTime": "Fri Sep 08 2023 20:46:42 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 1,
+      "id": 10
     }
   ],
   "subject": [
@@ -146,15 +128,6 @@
       "id": 17
     },
     {
-      "title": "2222",
-      "parentId": 4,
-      "categoryTitle": "r",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "9/8/2023",
-      "id": 20
-    },
-    {
       "title": "d",
       "parentId": 4,
       "categoryTitle": "r",
@@ -162,33 +135,6 @@
       "status": false,
       "createDateTime": "9/8/2023",
       "id": 22
-    },
-    {
-      "title": "ddd",
-      "parentId": 4,
-      "categoryTitle": "r",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "9/8/2023",
-      "id": 24
-    },
-    {
-      "title": "ssss",
-      "parentId": 4,
-      "categoryTitle": "r",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "9/8/2023",
-      "id": 25
-    },
-    {
-      "title": "ss",
-      "parentId": 4,
-      "categoryTitle": "r",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "9/8/2023",
-      "id": 26
     }
   ]
 }
