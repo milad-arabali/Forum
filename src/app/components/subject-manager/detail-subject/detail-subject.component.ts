@@ -29,7 +29,7 @@ export class DetailSubjectComponent implements OnInit {
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
-              private subjectCategoryService: SubjectCategoryService,
+              private subjectService: SubjectService,
               private fb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
@@ -91,7 +91,7 @@ export class DetailSubjectComponent implements OnInit {
   }
 
   checkSubject(url: number) {
-    this.subjectCategoryService.checkId().subscribe(
+    this.subjectService.checkId().subscribe(
       value => {
         let path = url
         let id = value.find((a) => a.id === path)

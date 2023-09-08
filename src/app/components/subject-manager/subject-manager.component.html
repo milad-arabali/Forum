@@ -3,8 +3,8 @@
     <mat-card-title>
       <div class="title-container">
         <div class="card-header-title">
-          <mat-icon aria-hidden="false">insert_drive_file</mat-icon>
-          مدیریت موضوع
+          <mat-icon aria-hidden="false">edit_square</mat-icon>
+          {{'form.subject-form'|translate}}
         </div>
         <div class="button">
           <button mat-raised-button color="primary" [routerLink]="['/subject/add']">
@@ -18,28 +18,28 @@
   <mat-card-content>
     <div class="filterList">
       <mat-icon aria-hidden="false" class="filterListIcon">filter_list</mat-icon>
-      <p>فیلتر دسته بندی موضوع</p>
+      <p>{{'form.filter-subject'|translate}}</p>
     </div>
     <div class="container" [formGroup]="form">
       <div class="col">
         <div class="row">
           <div>
-            <span>دسته بندی :</span>
+            <span>{{'form.filter-subject-category'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>دسته بندی :</mat-label>
+              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
               <input type="text" matInput formControlName="parentTitle" [readonly]="true">
               <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>
             </mat-form-field>
           </div>
           <div>
-            <span>کاربر ایجاد کننده : </span>
+            <span>{{'form.filter-subject-creatorUser'|translate}} </span>
             <mat-form-field class="mat-form">
-              <mat-label>کاربر ایجاد کننده :</mat-label>
+              <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>
               <input type="text" matInput formControlName="creatorUser">
             </mat-form-field>
           </div>
           <div>
-            <span>وضیعت :</span>
+            <span>{{'form.status'|translate}}</span>
             <mat-radio-group class="mat-form" formControlName="status">
               <mat-radio-button value="true">
                 {{'form.status-true'|translate}}</mat-radio-button>
@@ -52,22 +52,22 @@
       <div class="col">
         <div class="row">
           <div>
-            <span>عنوان :</span>
+            <span>{{'form.title'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>عنوان :</mat-label>
+              <mat-label>{{'form.title'|translate}}</mat-label>
               <input type="text" matInput formControlName="title">
               <!--              <mat-icon matSuffix>mode_edit</mat-icon>-->
               <mat-error *ngIf="form.controls['title'].invalid &&
               form.controls['title'].hasError('pattern')">
-                عنوان دسته بندی نامعتبر است.
+                {{'form.subject-valid-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
 
           <div>
-            <span> تاریخ و رمان ایجاد :</span>
+            <span>{{'form.filter-subject-createTime'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>تاریخ و رمان ایجاد :</mat-label>
+              <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -78,10 +78,10 @@
           <div>
             <div class="button">
               <button mat-raised-button type="submit" color="primary" (click)="formReset()">
-                پاک کردن
+                {{'form.clean-btn'|translate}}
               </button>
               <button mat-raised-button color="accent" (click)="searchObject()">
-                جستجو
+                {{'form.search-btn'|translate}}
               </button>
             </div>
           </div>
@@ -91,10 +91,9 @@
     <div class="scrolling-container">
       <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
              [dataSource]="dataSource" class="mat-elevation-z8 ">
-
         <ng-container matColumnDef="id" class="tableDesign">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by position">ردیف</th>
-          <td mat-cell *matCellDef="let element ">{{element.id}} </td>
+          <td mat-cell *matCellDef="let element ; let i=index">{{i + 1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="title">
@@ -139,12 +138,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-
       <mat-paginator #paginator class="mat-elevation-z8 paginator"
                      showFirstLastButtons
                      [pageSizeOptions]="[5,10,15]">
       </mat-paginator>
-
     </div>
   </mat-card-content>
   <mat-card-footer>

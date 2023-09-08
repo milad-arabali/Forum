@@ -1,5 +1,8 @@
 import {NgModule} from "@angular/core";
 import { DeleteSubjectComponent } from './delete-subject.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from "@angular/material/dialog";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 
@@ -12,8 +15,11 @@ import { DeleteSubjectComponent } from './delete-subject.component';
 
     DeleteSubjectComponent
   ],
-  imports: [
+    imports: [
+        MatButtonModule,
+        MatDialogModule,
+        TranslateModule
 
-  ]
+    ]
 })
 export class DeleteSubjectModule{}

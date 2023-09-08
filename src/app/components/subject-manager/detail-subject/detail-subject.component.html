@@ -3,15 +3,15 @@
     <mat-card-title>
       <div class="title-container">
         <div class="card-header-title" *ngIf="formMode=== 0">
-          <mat-icon>insert_drive_file</mat-icon>
-          {{'form.add-btn'|translate}}
+          <mat-icon>edit_square</mat-icon>
+          {{'form.add-subject'|translate}}
         </div>
         <div class="card-header-title" *ngIf="formMode===1">
-          <mat-icon>insert_drive_file</mat-icon>
-          {{'form.edit-btn'|translate}}</div>
+          <mat-icon>edit_square</mat-icon>
+          {{'form.edit-subject'|translate}}</div>
         <div class="card-header-title" *ngIf="formMode===2">
-          <mat-icon>insert_drive_file</mat-icon>
-          {{'form.show-btn'|translate}}</div>
+          <mat-icon>edit_square</mat-icon>
+          {{'form.view-subject'|translate}}</div>
       </div>
     </mat-card-title>
   </mat-card-header>
@@ -21,9 +21,9 @@
       <div class="col">
         <div class="row">
           <div>
-            <span> دسته بندی </span>
+            <span>{{'form.filter-subject-category'|translate}}</span>
             <mat-form-field class="mat-form" >
-              <mat-label> {{'form.parent'|translate}}</mat-label>
+              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
               <input type="text" matInput  formControlName="categoryTitle"[readonly]="true">
               <mat-icon matSuffix (click)="selectCategory()"
                         style="cursor: pointer" *ngIf="formMode!==2">mode_edit</mat-icon>
@@ -34,19 +34,10 @@
             </mat-form-field>
           </div>
           <div>
-            <span>  کاربرایجاد کننده</span>
+            <span>{{'form.filter-subject-creatorUser'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label> کاربرایجاد کننده</mat-label>
+              <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>
               <input type="text" matInput formControlName="creatorUser"  [readonly]="true">
-<!--              <mat-error *ngIf="form.controls['priority'].invalid &&-->
-<!--              form.controls['priority'].hasError('required')">-->
-<!--                {{'form.priority-error'|translate}}-->
-<!--              </mat-error>-->
-<!--              <mat-error *ngIf="form.controls['priority'].invalid &&-->
-<!--              (form.controls['priority'].hasError('max') ||-->
-<!--               form.controls['priority'].hasError('min'))">-->
-<!--                {{'form.priority-error-max'|translate}}-->
-<!--              </mat-error>-->
             </mat-form-field>
           </div>
 
@@ -77,14 +68,14 @@
               </mat-error>
               <mat-error *ngIf="form.controls['title'].invalid &&
                 form.controls['title'].hasError('pattern')">
-                عنوان دسته بندی نامعتبر است.
+                {{'form.subject-valid-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>
           <div>
-            <span> تاریخ و رمان ایجاد :</span>
+            <span>{{'form.filter-subject-createTime'|translate}}</span>
             <mat-form-field class="mat-form">
-              <mat-label>تاریخ و رمان ایجاد :</mat-label>
+              <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formMode===2"></mat-datepicker-toggle>

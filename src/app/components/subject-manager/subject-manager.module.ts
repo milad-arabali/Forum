@@ -17,6 +17,7 @@ import {RoutingSubjectModule} from "./routing-subject.module";
 import {DeleteSubjectModule} from "./delete-subject/delete-subject.module";
 import {DetailSubjectModule} from "./detail-subject/detail-subject.module";
 import {NgIf} from "@angular/common";
+import {MatSortModule} from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -27,25 +28,26 @@ import {NgIf} from "@angular/common";
     SubjectManagerComponent,
 
   ],
-  imports: [
-    DeleteSubjectModule,
-    DetailSubjectModule,
-    SelectSubjectModule,
-    RoutingSubjectModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDatepickerModule,
-    MatInputModule,
-    TranslateModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatListModule,
-    RouterLink,
-    NgIf
-  ]
+    imports: [
+        DeleteSubjectModule,
+        DetailSubjectModule,
+        SelectSubjectModule,
+        RoutingSubjectModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDatepickerModule,
+        MatInputModule,
+        TranslateModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatListModule,
+        RouterLink,
+        NgIf,
+        MatSortModule
+    ]
 })
 
 

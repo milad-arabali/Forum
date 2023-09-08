@@ -30,9 +30,6 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   @ViewChild(MatSort) sort !: MatSort;
   displayedColumns: string[] = ['id', 'title','categoryTitle', 'creatorUser', 'createDateTime', 'status', 'actions'];
   dataSource = new MatTableDataSource();
-
-  loading = false;
-  searchResult:any[]=[];
   search:string;
   constructor(private Fb: FormBuilder,
               private dialog: MatDialog,
@@ -54,7 +51,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
   ngOnInit() {
     this.sourceTable()
-
+    this.subject.deleteSubjectGrid.next(0)
   }
 
   ngAfterViewInit()
@@ -79,15 +76,6 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
-      // if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
-      //   this.snack.open("والد یک دسته بندی موضوع نمی تواند خودش باشد.", "", {
-      //     duration: 3000,
-      //     horizontalid: "end",
-      //     verticalid: "top"
-      //   })
-      //   this.form.controls['parentTitle'].setValue('')
-      //   // this.form.setErrors({Invalid:true})
-      // }
     })
   }
 
@@ -135,10 +123,10 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       status=`&`
     }
     this.search= `${parentId}&${title}&${creatorUser}&${createDateTime}&${status}`
-    console.log(this.search)
+    // console.log(this.search)
     this.subject.findSubject(this.search).subscribe(
       value =>{
-        console.log(value);
+        // console.log(value);
         this.dataSource.data=value
 
 
@@ -151,19 +139,13 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
 
   deleteSubject(id:number) {
-    const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent, {})
-    dialogRef.afterClosed()
+    this.subject.deleteSubjectGrid.next(id)
+    const dialogRef = this.dialog.open(DeleteSubjectComponent, {})
+    dialogRef.afterClosed().subscribe(result=>{
+      this.sourceTable()
+      }
 
+    )
 
-
-    // this.api.deleteSubject(id).subscribe(
-    //   res => {
-    //     this.snack.open("اطلاعات  با موفقیت حذف شد", "", {
-    //       duration: 3000,
-    //       horizontalPosition: "end",
-    //       verticalPosition: "top"
-    //     })
-    //   }
-    // )
   }
 }

@@ -50,10 +50,12 @@
     "cfnPassword": "تکرار کلمه عبور جدید:",
     "cfnPassword-error": "کلمه عبور جدید اشتباه است.",
     "newPassword-error": "کلمه عبور جدید وارد شود.",
+    "subject-valid-error": " عنوان موضوع نامعتبر است.",
     "min-newPassword-error": "طول کلمه عبور جدید کمتر 5 کارکتر است.",
     "confrimPassword-error": "کلمه عبور جدید تکرار شود.",
     "logout-title": "آیا از سامانه میخواهید خارج شوید؟",
     "delete-title": "آیا میخواهید دسته موضوع مورد نظر حذف شود؟ ",
+    "delete-subject": "آیا میخواهید موضوع مورد نظر حذف شود؟ ",
     "yesButton": "بله",
     "noButton": "خیر",
     "subject-category-title": "دسته بندی موضوع",
@@ -62,6 +64,8 @@
     "add-btn": "افزودن",
     "edit-btn": "ویرایش",
     "exit-btn": "بازگشت",
+    "search-btn": "جستجو",
+    "clean-btn": " پاک کردن",
     "select-parent": "انتخاب والد",
     "select-parent-btn": "انتخاب",
     "parent": "والد :",
@@ -74,6 +78,21 @@
     "title-error-maxlength": " حداکثر تعداد کاراکتر 255 است.",
     "status": "وضیعت :",
     "status-true": "فعال",
-    "status-false": "غیرفعال"
+    "status-false": "غیرفعال",
+    "add-subject-category": "افزودن دسته بندی",
+    "view-subject-category": "مشاهده دسته بندی",
+    "edit-subject-category": "ویرایش دسته بندی",
+    "add-subject": "افزودن موضوع",
+    "view-subject": "مشاهده موضوع",
+    "edit-subject": "ویرایش موضوع",
+    "subject-form": "مدیریت موضوع",
+    "filter-subject": "فیلتر دسته بندی موضوع",
+    "filter-subject-category": "دسته بندی :",
+    "filter-subject-creatorUser": "کاربر ایجاد کننده :",
+    "filter-subject-createTime": " تاریخ ایجاد :"
+
+  },
+  "snackbar": {
+    
   }
 }
