@@ -8,9 +8,8 @@ import {MatSort} from "@angular/material/sort";
 import {MatPaginator} from "@angular/material/paginator";
 import {SubjectService} from "./shared/services/subject.service";
 import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
-import {ApiService} from "../../shared/services/api.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeleteSubjectComponent} from "./delete-subject/delete-subject.component";
+import {CdkDragDrop, CdkDragStart, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 
 
 
@@ -25,6 +24,8 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   form: FormGroup;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+
+  previousIndex: number;
   displayedColumns: string[] = ['id', 'title','categoryTitle', 'creatorUser', 'createDateTime', 'status', 'actions'];
   dataSource = new MatTableDataSource();
   search:string;
@@ -129,11 +130,11 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
 
 
     })
-    // drop(event: CdkDragDrop<string[]>) {
-    //   moveItemInArray(this.dataSource.data, event.previousIndex, event.currentIndex);
-    // }
-  }
 
+  }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
+  }
   deleteSubject(id:number) {
     this.subject.deleteSubjectGrid.next(id)
     const dialogRef = this.dialog.open(DeleteSubjectComponent, {})
@@ -144,4 +145,5 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
     )
 
   }
+
 }

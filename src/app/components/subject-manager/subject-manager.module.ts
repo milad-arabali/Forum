@@ -18,6 +18,7 @@ import {DeleteSubjectModule} from "./delete-subject/delete-subject.module";
 import {DetailSubjectModule} from "./detail-subject/detail-subject.module";
 import {NgIf} from "@angular/common";
 import {MatSortModule} from "@angular/material/sort";
+import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -28,26 +29,29 @@ import {MatSortModule} from "@angular/material/sort";
     SubjectManagerComponent,
 
   ],
-    imports: [
-        DeleteSubjectModule,
-        DetailSubjectModule,
-        SelectSubjectModule,
-        RoutingSubjectModule,
-        MatPaginatorModule,
-        MatCardModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDatepickerModule,
-        MatInputModule,
-        TranslateModule,
-        MatRadioModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatListModule,
-        RouterLink,
-        NgIf,
-        MatSortModule
-    ]
+  imports: [
+    DeleteSubjectModule,
+    DetailSubjectModule,
+    SelectSubjectModule,
+    RoutingSubjectModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatInputModule,
+    TranslateModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatListModule,
+    RouterLink,
+    NgIf,
+    MatSortModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag
+  ]
 })
 
 
