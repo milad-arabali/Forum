@@ -169,3 +169,6 @@ td, th {
   display: flex;
   justify-content: center;
 }
+input{
+  font-family: BNAZANIN;
+}

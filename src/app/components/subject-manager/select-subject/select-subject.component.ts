@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {SubjectCategoryService} from "../../subject-category/shared/services/subject-category.service";
 import {SubjectCategoryDataSource} from "../../subject-category/subject-category-data-source";
 
+
 @Component({
   selector: 'app-select-subject',
   templateUrl: './select-subject.component.html',
@@ -25,6 +26,7 @@ export class SelectSubjectComponent implements OnInit{
   constructor(private subjectCategoryService: SubjectCategoryService,
               private route: Router,
               private dialogRef: MatDialogRef<SelectSubjectComponent>,
+
   ) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);

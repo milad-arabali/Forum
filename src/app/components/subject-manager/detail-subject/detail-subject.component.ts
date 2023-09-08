@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {SubjectCategoryService} from "../../subject-category/shared/services/subject-category.service";
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
@@ -12,6 +11,7 @@ import {SubjectService} from "../shared/services/subject.service";
 import {CookieService} from "ngx-cookie-service";
 import {DateAdapter} from "@angular/material/core";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -39,7 +39,7 @@ export class DetailSubjectComponent implements OnInit {
               private dateAdapter: DateAdapter<any>,
               private subject: SubjectService,
               private cookie: CookieService,
-              private snackBar: MatSnackBar,
+              private translate:TranslateService
   ) {
     this.dateAdapter.setLocale('fa-IR');
     this.form = this.fb.group({
@@ -98,7 +98,7 @@ export class DetailSubjectComponent implements OnInit {
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+          this.snack.open(this.translate.instant('snackbar.subject-manager-value-error'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -115,7 +115,7 @@ export class DetailSubjectComponent implements OnInit {
       subject = this.form.getRawValue()
       let s = this.api.addSubject(subject).subscribe(
         res => {
-          this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
+          this.snack.open(this.translate.instant('snackbar.subject-manager-save-value'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -129,7 +129,7 @@ export class DetailSubjectComponent implements OnInit {
         editSubject = this.form.getRawValue()
         this.api.updateSubject(editSubject,this.id).subscribe(
           res => {
-            this.snack.open("اطلاعات  با موفقیت ویرایش شد", "", {
+            this.snack.open(this.translate.instant('snackbar.subject-manager-edit-value'), "", {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"

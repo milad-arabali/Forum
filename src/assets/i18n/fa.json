@@ -90,9 +90,32 @@
     "filter-subject-category": "دسته بندی :",
     "filter-subject-creatorUser": "کاربر ایجاد کننده :",
     "filter-subject-createTime": " تاریخ ایجاد :"
-
+  },
+  "table": {
+    "row": "ردیف",
+    "title": "عنوان",
+    "category-title": "عنوان دسته بندی",
+    "create-user": "کاربر ایجاد کننده",
+    "status": "وضیعت",
+    "create-time": "تاریخ ایجاد",
+    "action": "عملیات"
   },
   "snackbar": {
-    
+    "subject-manager-value-error": "موضوع مورد نظر وجود ندارد.",
+    "subject-value-error": "دسته بندی مورد نظر وجود ندارد.",
+    "subject-manager-save-value": "موضوع موردنظر با موفقیت ذخیره شد.",
+    "subject-save-value": "اطلاعات دسته بندی با موفقیت ذخیره شد.",
+    "subject-edit-value": "اطلاعات دسته بندی با موفقیت ویرایش شد.",
+    "subject-delete-value": "دسته بندی مورد نظر با موفقیت حذف شد.",
+    "subject-manager-edit-value": "اطلاعات موضوع با موفقیت ویرایش شد.",
+    "subject-manager-delete-value": "موضوع موردنظر با موفقیت حذف شد.",
+    "child-value-error": "دسته بندی مورد نظر دارای فرزنداست.",
+    "child-error": "والد یک دسته بندی موضوع نمی تواند خودش باشد.",
+    "user-valid": "نام کاربری وجود دارد.",
+    "user-register": "کاربر جدید با موفقیت ثبت شد.",
+    "user-valid-error": "نام کاربری یا پسورد وجود ندارد.",
+    "password-edit": "کلمه عبور کاربر با موفقیت ویرایش شد.",
+    "password-edit-valid-error": "کلمه عبور جاری کاربر نامعتبر است.",
+    "edit-account": "حساب کاربری با موفقیت ویرایش شد."
   }
 }

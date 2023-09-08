@@ -9,6 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -32,7 +33,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
               private dialog: MatDialog,
               private route: Router,
               private activateRoute: ActivatedRoute,
-              private snackBar: MatSnackBar) {
+              private translate:TranslateService) {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255),
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
@@ -50,7 +51,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.id = this.router.snapshot.params['id']
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
-        // console.log("url[2].path", url[2].path)
+        console.log("url[2].path", url[2].path)
         this.formMode = FormMode.ADD;
         this.checkSubject(Number(url[2].path))
 
@@ -116,7 +117,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
         if (Number.isInteger(path) && id) {
           console.log("true")
         } else {
-          this.snack.open("دسته بندی مورد نظر وجود ندارد.", "", {
+          this.snack.open(this.translate.instant('snackbar.subject-value-error'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -144,7 +145,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.subjectModel = this.form.getRawValue()
       let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
         res => {
-          this.snack.open("اطلاعات دسته بندی با موفقیت ذخیره شد", "", {
+          this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -193,7 +194,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
         editSubject = this.form.getRawValue()
         this.api.updateSubjectCategory(editSubject, this.id).subscribe(
           res => {
-            this.snack.open("اطلاعات دسته بندی با موفقیت ویرایش شد", "", {
+            this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"
@@ -210,7 +211,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
       if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
-        this.snack.open("والد یک دسته بندی موضوع نمی تواند خودش باشد.", "", {
+        this.snack.open(this.translate.instant('snackbar.child-error'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"

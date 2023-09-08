@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, find, Observable} from "rxjs";
 import {SubjectCategoryModel} from "../../../../shared/model/subject-category.model";
-import {Router} from "@angular/router";
+
 
 
 @Injectable({
@@ -18,7 +18,6 @@ export class SubjectCategoryService {
   findByParentId(parentId: number): Observable<SubjectCategoryModel[]> {
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?_sort=priority&parentId=' + `${parentId}`);
   }
-
   checkId(): Observable<SubjectCategoryModel[]>{
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category');
   }

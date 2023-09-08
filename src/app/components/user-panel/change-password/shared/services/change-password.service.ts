@@ -3,19 +3,20 @@ import {ApiService} from "../../../../../shared/services/api.service";
 import {UserAccountInformationModel} from "../../../../../shared/model/user-account-information.model";
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangePasswordService {
   userData: UserAccountInformationModel;
-  userData1: UserAccountInformationModel;
   userId: number;
 
   constructor(
     private api: ApiService,
     private httpClient: HttpClient,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private translate:TranslateService
   ) {
   }
 
@@ -42,14 +43,14 @@ export class ChangePasswordService {
             console.log("کلمه عبور کاربر با موفقیت ویرایش شد")
           )
 
-              this.snack.open("کلمه عبور کاربر با موفقیت ویرایش شد", "", {
+              this.snack.open(this.translate.instant('snackbar.password-edit'), "", {
                 duration: 3000,
                 horizontalPosition: "end",
                 verticalPosition: "top"
               })
 
         } else {
-          this.snack.open("کلمه عبور جاری کاربر نامعتبر است.", "", {
+          this.snack.open(this.translate.instant('snackbar.password-edit-valid-error'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"

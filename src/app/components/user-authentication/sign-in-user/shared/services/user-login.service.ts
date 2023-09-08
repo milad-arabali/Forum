@@ -8,6 +8,7 @@ import {UserAccountInformationModel} from "../../../../../shared/model/user-acco
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {BehaviorSubject} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -45,7 +46,7 @@ export class UserLoginService {
               private httpClient: HttpClient,
               private api: ApiService,
               private c: CookieService,
-             ) {
+              private translate:TranslateService) {
   }
   singIn(username, value,name,family) {
     const api = this.api.apiUrl
@@ -54,7 +55,7 @@ export class UserLoginService {
         if (res.find(
           x => x.userName === username,
         )) {
-          this.snack.open("نام کاربری وجود دارد", "", {
+          this.snack.open(this.translate.instant('snackbar.user-valid'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -70,7 +71,7 @@ export class UserLoginService {
             this.router.navigate(['/home'])
           })
           this.api.postRegistration(value).subscribe(res => {
-              this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
+              this.snack.open(this.translate.instant('snackbar.user-register'), "", {
                 duration: 3000,
                 horizontalPosition: "end",
                 verticalPosition: "top"
@@ -137,7 +138,7 @@ export class UserLoginService {
           this.showUserLastName$.next(a.nameFamily)
 
         } else {
-          this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
+          this.snack.open(this.translate.instant('snackbar.user-valid-error'), "", {
 
             duration: 3000,
             horizontalPosition: "end",

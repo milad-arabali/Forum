@@ -30,7 +30,7 @@ export class EditUserComponent implements OnInit {
               public snack: MatSnackBar,
               private c: CookieService,
               private dateAdapter: DateAdapter<any>,
-              translate: TranslateService
+              private translate: TranslateService
   ) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
@@ -92,7 +92,7 @@ export class EditUserComponent implements OnInit {
 
     let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(
       res => {
-        this.snack.open("حساب کاربری با موفقیت ویرایش شد", "", {
+        this.snack.open(this.translate.instant('snackbar.edit-account'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"

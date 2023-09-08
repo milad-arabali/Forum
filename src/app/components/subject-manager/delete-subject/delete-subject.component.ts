@@ -4,6 +4,7 @@ import {SubjectCategoryModel} from "../../../shared/model/subject-category.model
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SubjectService} from "../shared/services/subject.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-delete-subject',
@@ -16,7 +17,8 @@ export class DeleteSubjectComponent implements OnInit{
     private dialogRef: MatDialogRef<DeleteSubjectComponent>,
     private api:ApiService,
     private snack:MatSnackBar,
-    private subjectService:SubjectService) {
+    private subjectService:SubjectService,
+    private translate:TranslateService) {
   }
 
   close() {
@@ -32,7 +34,7 @@ ngOnInit() {
   delete() {
     this.api.deleteSubject(this.id).subscribe(
       res => {
-        this.snack.open("اطلاعات  با موفقیت حذف شد", "", {
+        this.snack.open(this.translate.instant('snackbar.subject-manager-delete-value'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"

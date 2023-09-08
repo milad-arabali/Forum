@@ -10,9 +10,6 @@ import {SubjectService} from "./shared/services/subject.service";
 import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {ApiService} from "../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {
-  DeleteSubjectCategoryComponent
-} from "../subject-category/delete-subject-category/delete-subject-category.component";
 import {DeleteSubjectComponent} from "./delete-subject/delete-subject.component";
 
 
@@ -35,8 +32,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
               private dialog: MatDialog,
               private dateAdapter: DateAdapter<any>,
               private subject: SubjectService,
-              private api:ApiService,
-              private snack:MatSnackBar,
+
   ) {
     this.form = this.Fb.group({
       title: [, [Validators.required, Validators.maxLength(255),

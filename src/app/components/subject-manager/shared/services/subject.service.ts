@@ -22,10 +22,7 @@ export class SubjectService {
       value =>
         this.fullNameUser.userName = value.userName
     )
-
-
   }
-
   checkId(): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject');
   }
@@ -35,7 +32,4 @@ export class SubjectService {
       'http://localhost:3000/subject?' + `${a}`);
   }
 
-  currentUser() {
-
-  }
 }

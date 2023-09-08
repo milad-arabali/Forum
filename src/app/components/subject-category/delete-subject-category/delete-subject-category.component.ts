@@ -25,7 +25,8 @@ export class DeleteSubjectCategoryComponent implements OnInit {
               private snack: MatSnackBar,
               private http: HttpClient,
               private dialogRef: MatDialogRef<DeleteSubjectCategoryComponent>,
-              translate: TranslateService,
+              private translate: TranslateService,
+
   ) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
@@ -54,7 +55,7 @@ export class DeleteSubjectCategoryComponent implements OnInit {
     this.getParentId()
     this.api.deleteSubjectCategory(this.id).subscribe(
       a => {
-        this.snack.open("دسته بندی مورد نظر با موفقیت حذف شد.", "", {
+        this.snack.open(this.translate.instant('snackbar.subject-delete-value'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"

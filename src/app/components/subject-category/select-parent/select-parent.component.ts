@@ -33,12 +33,6 @@ export class SelectParentComponent implements OnInit {
 
   ngOnInit() {
     this.loadTree()
-    // if (this.dataSource.data.length > 0) {
-    //   this.selectParentBtn = true;
-    //   console.log("true")
-    // } else {
-    //   this.selectParentBtn = false;
-    // }
   }
   loadTree() {
     setTimeout(()=>{
@@ -86,9 +80,4 @@ export class SelectParentComponent implements OnInit {
     console.log("id:", this.id)
     this.dialogRef.close(s)
   }
-
-
-
-
-
 }

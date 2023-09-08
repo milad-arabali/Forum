@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-subject-category.component";
 import {MatMenuTrigger} from "@angular/material/menu";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-subject-category-module',
@@ -30,7 +31,8 @@ export class SubjectCategoryComponent implements OnInit  {
   constructor(private subjectCategoryService: SubjectCategoryService,
               private router: Router,
               private dialog: MatDialog,
-              private snack:MatSnackBar) {
+              private snack:MatSnackBar,
+              private translate:TranslateService) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
   }
@@ -72,7 +74,7 @@ export class SubjectCategoryComponent implements OnInit  {
 
   deleteSubject()  {
     if (this.activeNode.item.hasChild === true) {
-      this.snack.open("دسته بندی مورد نظر دارای فرزند است.", "", {
+      this.snack.open(this.translate.instant('snackbar.child-value-error'), "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
