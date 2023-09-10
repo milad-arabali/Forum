@@ -12,6 +12,7 @@ import {CookieService} from "ngx-cookie-service";
 import {DateAdapter} from "@angular/material/core";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 import {TranslateService} from "@ngx-translate/core";
+import * as moment from "jalali-moment";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class DetailSubjectComponent implements OnInit {
   id: number;
   form: FormGroup;
   parentId: number;
-  date = new Date();
+  date = moment().locale('fa');
   name: string;
 
   constructor(private router: ActivatedRoute,
@@ -49,7 +50,7 @@ export class DetailSubjectComponent implements OnInit {
       categoryTitle: ['', Validators.required],
       creatorUser: [this.cookie.get('users')],
       status: [true, Validators.required],
-      createDateTime: [this.date.toLocaleDateString()],
+      createDateTime: [this.date.format('YYYY/MM/DD')],
     })
   }
 

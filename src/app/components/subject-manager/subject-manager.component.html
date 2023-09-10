@@ -89,23 +89,28 @@
       </div>
     </div>
     <div class="scrolling-container">
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
       <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
-             [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList>
-
-        <ng-container matColumnDef="id" class="tableDesign" >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by position" cdkDrag>
+             [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList
+             (matSortChange)="sortData($event)">
+        <ng-container matColumnDef="id" class="tableDesign">
+          <th mat-header-cell *matHeaderCellDef  cdkDrag
+          >
             {{'table.row'|translate}}</th>
-          <td mat-cell *matCellDef="let element ; let i=index">{{i + 1}} </td>
+          <td mat-cell *matCellDef="let element ; let i=index">
+            <!--            {{index(i)}} -->
+            {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}
+          </td>
         </ng-container>
-
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name" cdkDrag>
-            {{'table.title'|translate}}</th>
+          <th mat-header-cell *matHeaderCellDef  cdkDrag
+              mat-sort-header>
+            {{'table.title'|translate}} </th>
           <td mat-cell *matCellDef="let element">{{element.title}} </td>
         </ng-container>
 
         <ng-container matColumnDef="categoryTitle">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag> {{'table.category-title'|translate}}</th>
+          <th mat-header-cell  mat-sort-header="categoryTitle" *matHeaderCellDef cdkDrag> {{'table.category-title'|translate}}</th>
           <td mat-cell *matCellDef="let element"> {{element.categoryTitle}} </td>
         </ng-container>
 
@@ -121,19 +126,22 @@
 
         <ng-container matColumnDef="status">
           <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status'|translate}}</th>
-          <td mat-cell *matCellDef="let element">{{element.status}} </td>
+          <td mat-cell *matCellDef="let element">{{changeStatusTitle(element.status)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.action'|translate}}</th>
           <td mat-cell *matCellDef="let element" class="button">
-            <button mat-raised-button color="accent" [routerLink]="['/subject/edit/',element.id]">
+            <button mat-raised-button color="accent" [routerLink]="['/subject/edit/',element.id]"
+                    matTooltip="ویرایش">
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-raised-button color="primary" [routerLink]="['/subject/',element.id]">
+            <button mat-raised-button color="primary" [routerLink]="['/subject/',element.id]"
+                    matTooltip="مشاهده">
               <mat-icon>visibility</mat-icon>
             </button>
-            <button mat-raised-button color="warn" (click)="deleteSubject(element.id)">
+            <button mat-raised-button color="warn" (click)="deleteSubject(element.id)"
+                    matTooltip="حذف">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
@@ -141,9 +149,12 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator #paginator class="mat-elevation-z8 paginator"
-                     showFirstLastButtons
-                     [pageSizeOptions]="[5,10,15]">
+      <!--      <mat-paginator #paginator class="mat-elevation-z8 paginator"-->
+      <!--                     showFirstLastButtons-->
+      <!--                     [pageSizeOptions]="getPageSizeOptions()">-->
+      <!--      </mat-paginator>-->
+      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator
+                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
       </mat-paginator>
     </div>
   </mat-card-content>

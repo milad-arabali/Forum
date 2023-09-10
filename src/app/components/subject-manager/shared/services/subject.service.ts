@@ -26,10 +26,15 @@ export class SubjectService {
   checkId(): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject');
   }
-
   findSubject(a: string): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?' + `${a}`);
+  }
+  sorting(pageSize:number,currentPage:number): Observable<SubjectMangerModel[]> {
+    return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_page='+`${pageSize}`+'&_limit='+`${currentPage}`);
+  }
+  sortingCell(sort:string,order:string){
+    return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);
   }
 
 }

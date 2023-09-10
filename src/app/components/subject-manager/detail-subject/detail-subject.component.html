@@ -41,15 +41,7 @@
             </mat-form-field>
           </div>
 
-          <div>
-            <span>{{'form.status'|translate}}</span>
-            <mat-radio-group class="mat-form" formControlName="status">
-              <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
-                {{'form.status-true'|translate}}</mat-radio-button>
-              <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
-                {{'form.status-false'|translate}}</mat-radio-button>
-            </mat-radio-group>
-          </div>
+
         </div>
       </div>
       <div class="col">
@@ -72,15 +64,15 @@
               </mat-error>
             </mat-form-field>
           </div>
+
           <div>
-            <span>{{'form.filter-subject-createTime'|translate}}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="picker" [disabled]="formMode===2"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <span>{{'form.status'|translate}}</span>
+            <mat-radio-group class="mat-form" formControlName="status">
+              <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
+                {{'form.status-true'|translate}}</mat-radio-button>
+              <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
+                {{'form.status-false'|translate}}</mat-radio-button>
+            </mat-radio-group>
           </div>
         </div>
       </div>
