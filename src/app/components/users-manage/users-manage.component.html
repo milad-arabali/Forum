@@ -1,0 +1,164 @@
+<mat-card class="header-card1">
+  <mat-card-header class="header-card">
+    <mat-card-title>
+      <div class="title-container">
+        <div class="card-header-title">
+          <mat-icon aria-hidden="false">people</mat-icon>
+          {{'form.users-manage-form'|translate}}
+        </div>
+                <div class="button">
+                  <button mat-raised-button color="primary" [routerLink]="['/users-mange/add']">
+                    {{'form.add-btn'|translate}}
+                  </button>
+                </div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <!--    <div class="filterList">-->
+    <!--      <mat-icon aria-hidden="false" class="filterListIcon">filter_list</mat-icon>-->
+    <!--      <p>{{'form.filter-subject'|translate}}</p>-->
+    <!--    </div>-->
+    <!--    <div class="container" [formGroup]="form">-->
+    <!--      <div class="col">-->
+    <!--        <div class="row">-->
+    <!--          <div>-->
+    <!--            <span>{{'form.filter-subject-category'|translate}}</span>-->
+    <!--            <mat-form-field class="mat-form">-->
+    <!--              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>-->
+    <!--              <input type="text" matInput formControlName="parentTitle" [readonly]="true">-->
+    <!--              <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>-->
+    <!--            </mat-form-field>-->
+    <!--          </div>-->
+    <!--          <div>-->
+    <!--            <span>{{'form.filter-subject-creatorUser'|translate}} </span>-->
+    <!--            <mat-form-field class="mat-form">-->
+    <!--              <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>-->
+    <!--              <input type="text" matInput formControlName="creatorUser">-->
+    <!--            </mat-form-field>-->
+    <!--          </div>-->
+    <!--          <div>-->
+    <!--            <span>{{'form.status'|translate}}</span>-->
+    <!--            <mat-radio-group class="mat-form" formControlName="status">-->
+    <!--              <mat-radio-button value="true">-->
+    <!--                {{'form.status-true'|translate}}</mat-radio-button>-->
+    <!--              <mat-radio-button value="false">-->
+    <!--                {{'form.status-false'|translate}}</mat-radio-button>-->
+    <!--            </mat-radio-group>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="col">-->
+    <!--        <div class="row">-->
+    <!--          <div>-->
+    <!--            <span>{{'form.title'|translate}}</span>-->
+    <!--            <mat-form-field class="mat-form">-->
+    <!--              <mat-label>{{'form.title'|translate}}</mat-label>-->
+    <!--              <input type="text" matInput formControlName="title">-->
+    <!--              &lt;!&ndash;              <mat-icon matSuffix>mode_edit</mat-icon>&ndash;&gt;-->
+    <!--              <mat-error *ngIf="form.controls['title'].invalid &&-->
+    <!--              form.controls['title'].hasError('pattern')">-->
+    <!--                {{'form.subject-valid-error'|translate}}-->
+    <!--              </mat-error>-->
+    <!--            </mat-form-field>-->
+    <!--          </div>-->
+
+    <!--          <div>-->
+    <!--            <span>{{'form.filter-subject-createTime'|translate}}</span>-->
+    <!--            <mat-form-field class="mat-form">-->
+    <!--              <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>-->
+    <!--              <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">-->
+    <!--              <mat-hint>MM/DD/YYYY</mat-hint>-->
+    <!--              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
+    <!--              <mat-datepicker #picker></mat-datepicker>-->
+    <!--            </mat-form-field>-->
+    <!--          </div>-->
+
+    <!--          <div>-->
+    <!--            <div class="button">-->
+    <!--              <button mat-raised-button type="submit" color="primary" (click)="formReset()">-->
+    <!--                {{'form.clean-btn'|translate}}-->
+    <!--              </button>-->
+    <!--              <button mat-raised-button color="accent" (click)="searchObject()">-->
+    <!--                {{'form.search-btn'|translate}}-->
+    <!--              </button>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="scrolling-container">-->
+    <!--      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>-->
+    <!--      <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"-->
+    <!--             [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList-->
+    <!--             (matSortChange)="sortData($event)">-->
+    <!--        <ng-container matColumnDef="id" class="tableDesign">-->
+    <!--          <th mat-header-cell *matHeaderCellDef  cdkDrag-->
+    <!--          >-->
+    <!--            {{'table.row'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element ; let i=index">-->
+    <!--            &lt;!&ndash;            {{index(i)}} &ndash;&gt;-->
+    <!--            {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}-->
+    <!--          </td>-->
+    <!--        </ng-container>-->
+    <!--        <ng-container matColumnDef="title">-->
+    <!--          <th mat-header-cell *matHeaderCellDef  cdkDrag-->
+    <!--              mat-sort-header>-->
+    <!--            {{'table.title'|translate}} </th>-->
+    <!--          <td mat-cell *matCellDef="let element">{{element.title}} </td>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-container matColumnDef="categoryTitle">-->
+    <!--          <th mat-header-cell  mat-sort-header="categoryTitle" *matHeaderCellDef cdkDrag>-->
+    <!--            {{'table.category-title'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element"> {{element.categoryTitle}} </td>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-container matColumnDef="creatorUser">-->
+    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.create-user'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element">{{element.creatorUser}} </td>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-container matColumnDef="createDateTime">-->
+    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.create-time'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element">{{element.createDateTime}} </td>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-container matColumnDef="status">-->
+    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element">{{changeStatusTitle(element.status)}} </td>-->
+    <!--        </ng-container>-->
+
+    <!--        <ng-container matColumnDef="actions">-->
+    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.action'|translate}}</th>-->
+    <!--          <td mat-cell *matCellDef="let element" class="button">-->
+    <!--            <button mat-raised-button color="accent" [routerLink]="['/subject/edit/',element.id]"-->
+    <!--                    matTooltip="ویرایش">-->
+    <!--              <mat-icon>edit</mat-icon>-->
+    <!--            </button>-->
+    <!--            <button mat-raised-button color="primary" [routerLink]="['/subject/',element.id]"-->
+    <!--                    matTooltip="مشاهده">-->
+    <!--              <mat-icon>visibility</mat-icon>-->
+    <!--            </button>-->
+    <!--            <button mat-raised-button color="warn" (click)="deleteSubject(element.id)"-->
+    <!--                    matTooltip="حذف">-->
+    <!--              <mat-icon>delete</mat-icon>-->
+    <!--            </button>-->
+    <!--          </td>-->
+    <!--        </ng-container>-->
+    <!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+    <!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+    <!--      </table>-->
+    <!--      &lt;!&ndash;      <mat-paginator #paginator class="mat-elevation-z8 paginator"&ndash;&gt;-->
+    <!--      &lt;!&ndash;                     showFirstLastButtons&ndash;&gt;-->
+    <!--      &lt;!&ndash;                     [pageSizeOptions]="getPageSizeOptions()">&ndash;&gt;-->
+    <!--      &lt;!&ndash;      </mat-paginator>&ndash;&gt;-->
+    <!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator-->
+    <!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->
+    <!--      </mat-paginator>-->
+    <!--    </div>-->
+  </mat-card-content>
+  <mat-card-footer>
+  </mat-card-footer>
+</mat-card>

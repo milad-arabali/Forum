@@ -10,10 +10,12 @@
     "home": "خانه",
     "category": "دسته بندی موضوع",
     "category-manager": "مدیریت موضوع",
+    "users-manager": "مدیریت کاربران",
     "description": "توضیحات",
     "guide": "راهنما"
   },
   "form": {
+
     "userName": "نام کاربری",
     "passWord": "کلمه عبور",
     "passWord-error": "کلمه عبور وارد شود.",
@@ -89,7 +91,11 @@
     "filter-subject": "فیلتر دسته بندی موضوع",
     "filter-subject-category": "دسته بندی :",
     "filter-subject-creatorUser": "کاربر ایجاد کننده :",
-    "filter-subject-createTime": " تاریخ ایجاد :"
+    "filter-subject-createTime": " تاریخ ایجاد :",
+    "users-manage-form": "مدیریت کاربران",
+    "add-users-manage": "افزودن کاربر",
+    "view-users-manage": "مشاهده کاربر",
+    "edit-users-manage": "ویرایش کاربر"
   },
   "table": {
     "row": "ردیف",

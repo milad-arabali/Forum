@@ -20,6 +20,7 @@ import {NgIf} from "@angular/common";
 import {MatSortModule} from "@angular/material/sort";
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -30,30 +31,31 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     SubjectManagerComponent,
 
   ],
-    imports: [
-        DeleteSubjectModule,
-        DetailSubjectModule,
-        SelectSubjectModule,
-        RoutingSubjectModule,
-        MatPaginatorModule,
-        MatCardModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDatepickerModule,
-        MatInputModule,
-        TranslateModule,
-        MatRadioModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatListModule,
-        RouterLink,
-        NgIf,
-        MatSortModule,
-        CdkDropListGroup,
-        CdkDropList,
-        CdkDrag,
-        MatProgressBarModule
-    ]
+  imports: [
+    DeleteSubjectModule,
+    DetailSubjectModule,
+    SelectSubjectModule,
+    RoutingSubjectModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatInputModule,
+    TranslateModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatListModule,
+    RouterLink,
+    NgIf,
+    MatSortModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
+    MatProgressBarModule,
+    MatTooltipModule
+  ]
 })
 
 

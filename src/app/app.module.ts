@@ -17,13 +17,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {
   UserAuthenticationModule
 } from "./components/user-authentication/user-authentication.module";
-import {
-  RoutingSubjectCategoryModule
-} from "./components/subject-category/routing-subject-category.module";
 import {AppRoutingModule} from "./app-routing.module";
 import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-validator.directive";
 import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
 import {SubjectManagerModule} from "./components/subject-manager/subject-manager.module";
+
+import {UsersManageModule} from "./components/users-manage/users-manage.module";
 
 
 
@@ -42,10 +41,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     NationalCodeValidatorDirective,
 
 
+
   ],
   imports: [
     BrowserModule,
     ThemeModule,
+    UsersManageModule,
     UserAuthenticationModule,
     UserLoginModule,
     BrowserAnimationsModule,

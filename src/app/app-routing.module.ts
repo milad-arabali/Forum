@@ -9,21 +9,29 @@ import {ResetPassWordComponent} from "./components/user-authentication/reset-pas
 import {HomeComponent} from "./components/home/home.component";
 
 
-
 const routes: Routes = [
-  {path: '', redirectTo:'/home' , pathMatch:"full" },
+  {path: '', redirectTo: '/home', pathMatch: "full"},
   {path: 'signup', component: SignupUserComponent},
   {path: 'signin', component: SigninUserComponent},
   {path: 'resetpassword', component: ResetPassWordComponent},
   {path: 'home', canActivate: [AuthGuard], component: HomeComponent},
   {path: 'profile', component: EditUserComponent, canActivate: [AuthGuard]},
   {path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {path: 'subject-category',
-  loadChildren:()=>import('./components/subject-category/subject-category.module')
-    .then(m=>m.SubjectCategoryModule)},
-  {path: 'subject',
-    loadChildren:()=>import('./components/subject-manager/subject-manager.module')
-      .then(m=>m.SubjectManagerModule)},
+  {
+    path: 'subject-category',
+    loadChildren: () => import('./components/subject-category/subject-category.module')
+      .then(m => m.SubjectCategoryModule)
+  },
+  {
+    path: 'subject',
+    loadChildren: () => import('./components/subject-manager/subject-manager.module')
+      .then(m => m.SubjectManagerModule)
+  },
+  {
+    path: 'users-mange',
+    loadChildren: () => import('./components/users-manage/users-manage.module')
+      .then((m) => m.UsersManageModule)
+  },
   {path: '**', component: SigninUserComponent}
 ]
 

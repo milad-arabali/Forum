@@ -1,0 +1,96 @@
+<mat-card class="header-card1">
+  <mat-card-header class="header-card">
+    <mat-card-title>
+      <div class="title-container">
+        <div class="card-header-title" *ngIf="formMode=== 0">
+          <mat-icon>people</mat-icon>
+          {{'form.add-users-manage'|translate}}
+        </div>
+        <div class="card-header-title" *ngIf="formMode===1">
+          <mat-icon>people</mat-icon>
+          {{'form.edit-users-manage'|translate}}</div>
+        <div class="card-header-title" *ngIf="formMode===2">
+          <mat-icon>people</mat-icon>
+          {{'form.view-users-manage'|translate}}</div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div [formGroup]="form" class="subjectCategoryForm">
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.filter-subject-category'|translate}}</span>
+            <mat-form-field class="mat-form" >
+              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
+              <input type="text" matInput  formControlName="categoryTitle"[readonly]="true">
+              <mat-icon matSuffix (click)="selectCategory()"
+                        style="cursor: pointer" *ngIf="formMode!==2">mode_edit</mat-icon>
+              <mat-error *ngIf="form.controls['parentId'].invalid &&
+                 form.controls['parentId'].hasError('required')">
+                {{'form.parent-error'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.filter-subject-creatorUser'|translate}}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>
+              <input type="text" matInput formControlName="creatorUser"  [readonly]="true">
+            </mat-form-field>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div>
+            <span> {{'form.title'|translate}}</span>
+            <mat-form-field class="mat-form">
+              <mat-label> {{'form.title'|translate}}</mat-label>
+              <input type="text" matInput formControlName="title" [readonly]="formMode===2">
+              <mat-error *ngIf="form.controls['title'].invalid && form.controls['title'].hasError('maxlength')">
+                {{'form.title-error-maxlength'|translate}}
+              </mat-error>
+              <mat-error *ngIf="form.controls['title'].invalid &&
+              form.controls['title'].hasError('required')">
+                {{'form.title-error-required'|translate}}
+              </mat-error>
+              <mat-error *ngIf="form.controls['title'].invalid &&
+                form.controls['title'].hasError('pattern')">
+                {{'form.subject-valid-error'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <span>{{'form.status'|translate}}</span>
+            <mat-radio-group class="mat-form" formControlName="status">
+              <mat-radio-button value="true" [value]="true" [disabled]="formMode===2">
+                {{'form.status-true'|translate}}</mat-radio-button>
+              <mat-radio-button value="false" [value]="false" [disabled]="formMode===2">
+                {{'form.status-false'|translate}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-footer>
+    <div class="button">
+      <button mat-raised-button type="submit" color="primary" (click)="editSubjectCategory()"
+              [disabled]="form.invalid" [hidden]="formMode===2">
+        <span *ngIf="formMode===0"> {{'form.add-btn'|translate}}</span>
+        <span *ngIf="formMode===1">
+          {{'form.edit-btn'|translate}}
+        </span>
+      </button>
+      <button mat-raised-button color="accent" [routerLink]="['/users-mange']">
+        {{'form.exit-btn'|translate}}
+      </button>
+    </div>
+  </mat-card-footer>
+</mat-card>
