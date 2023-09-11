@@ -11,6 +11,9 @@ import {MatRadioModule} from "@angular/material/radio";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {RouterLink} from "@angular/router";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 
 
@@ -29,7 +32,10 @@ import {RouterLink} from "@angular/router";
     MatRadioModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterLink
+    RouterLink,
+    MatDatepickerModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class DetailUsersManageModule { }

@@ -6,158 +6,235 @@
           <mat-icon aria-hidden="false">people</mat-icon>
           {{'form.users-manage-form'|translate}}
         </div>
-                <div class="button">
-                  <button mat-raised-button color="primary" [routerLink]="['/users-mange/add']">
-                    {{'form.add-btn'|translate}}
-                  </button>
-                </div>
+        <div class="button">
+          <button mat-raised-button color="primary" [routerLink]="['/users-mange/add']">
+            {{'form.add-btn'|translate}}
+          </button>
+        </div>
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <!--    <div class="filterList">-->
-    <!--      <mat-icon aria-hidden="false" class="filterListIcon">filter_list</mat-icon>-->
-    <!--      <p>{{'form.filter-subject'|translate}}</p>-->
-    <!--    </div>-->
-    <!--    <div class="container" [formGroup]="form">-->
-    <!--      <div class="col">-->
-    <!--        <div class="row">-->
-    <!--          <div>-->
-    <!--            <span>{{'form.filter-subject-category'|translate}}</span>-->
-    <!--            <mat-form-field class="mat-form">-->
-    <!--              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>-->
-    <!--              <input type="text" matInput formControlName="parentTitle" [readonly]="true">-->
-    <!--              <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>-->
-    <!--            </mat-form-field>-->
-    <!--          </div>-->
-    <!--          <div>-->
-    <!--            <span>{{'form.filter-subject-creatorUser'|translate}} </span>-->
-    <!--            <mat-form-field class="mat-form">-->
-    <!--              <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>-->
-    <!--              <input type="text" matInput formControlName="creatorUser">-->
-    <!--            </mat-form-field>-->
-    <!--          </div>-->
-    <!--          <div>-->
-    <!--            <span>{{'form.status'|translate}}</span>-->
-    <!--            <mat-radio-group class="mat-form" formControlName="status">-->
-    <!--              <mat-radio-button value="true">-->
-    <!--                {{'form.status-true'|translate}}</mat-radio-button>-->
-    <!--              <mat-radio-button value="false">-->
-    <!--                {{'form.status-false'|translate}}</mat-radio-button>-->
-    <!--            </mat-radio-group>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="col">-->
-    <!--        <div class="row">-->
-    <!--          <div>-->
-    <!--            <span>{{'form.title'|translate}}</span>-->
-    <!--            <mat-form-field class="mat-form">-->
-    <!--              <mat-label>{{'form.title'|translate}}</mat-label>-->
-    <!--              <input type="text" matInput formControlName="title">-->
-    <!--              &lt;!&ndash;              <mat-icon matSuffix>mode_edit</mat-icon>&ndash;&gt;-->
-    <!--              <mat-error *ngIf="form.controls['title'].invalid &&-->
-    <!--              form.controls['title'].hasError('pattern')">-->
-    <!--                {{'form.subject-valid-error'|translate}}-->
-    <!--              </mat-error>-->
-    <!--            </mat-form-field>-->
-    <!--          </div>-->
+    <div class="filterList">
+      <mat-icon aria-hidden="false" class="filterListIcon">filter_list</mat-icon>
+      <p>{{'form.filter-subject'|translate}}</p>
+    </div>
+    <div [formGroup]="filterUsersForm" class="filterUsersForm">
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.userName' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.userName' | translate }}</mat-label>
+              <input type="text" matInput formControlName="userName" #userName>
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="filterUsersForm.controls['userName'].invalid &&
+              filterUsersForm.controls['userName'].hasError('pattern')">
+                {{'form.userNamePersianChar-error' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.name' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.name' | translate }}</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error
+                *ngIf="filterUsersForm.controls['name'].invalid && filterUsersForm.controls['name'].hasError('pattern')">
+                {{'form.user-errorPattern'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.nationalCode' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.nationalCode' | translate }}</mat-label>
+              <input type="text" matInput formControlName="nationalCode">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="filterUsersForm.controls['nationalCode'].invalid &&
+              (filterUsersForm.controls['nationalCode'].hasError('minLength') ||
+               filterUsersForm.controls['nationalCode'].hasError('maxLength'))">
+                {{'form.nationalCode-wrong'|translate}}
+              </mat-error>
+              <mat-error *ngIf="filterUsersForm.controls['nationalCode'].invalid &&
+              filterUsersForm.controls['nationalCode'].errors['wrong']">
+                {{'form.nationalCode-wrong'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.isAdmin' | translate }}</span>
+            <mat-radio-group class="mat-form" formControlName="isAdmin">
+              <mat-radio-button *ngFor="let isAdmin of isAdmin" [value]="isAdmin">{{isAdminUsersStatus(isAdmin)}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
 
-    <!--          <div>-->
-    <!--            <span>{{'form.filter-subject-createTime'|translate}}</span>-->
-    <!--            <mat-form-field class="mat-form">-->
-    <!--              <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>-->
-    <!--              <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">-->
-    <!--              <mat-hint>MM/DD/YYYY</mat-hint>-->
-    <!--              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>-->
-    <!--              <mat-datepicker #picker></mat-datepicker>-->
-    <!--            </mat-form-field>-->
-    <!--          </div>-->
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.status' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.status' | translate }}</mat-label>
+              <mat-select formControlName="status">
+                <mat-option *ngFor="let status of status" [value]="status.statusValue" >
+                  {{status.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.nameFamily' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.nameFamily' | translate }}</mat-label>
+              <input type="text" matInput formControlName="nameFamily">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="filterUsersForm.controls['nameFamily'].invalid &&
+               filterUsersForm.controls['nameFamily'].hasError('pattern')">
+                {{'form.nameFamily-errorPattern'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.DateOfBirth' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.DateOfBirth' | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
 
-    <!--          <div>-->
-    <!--            <div class="button">-->
-    <!--              <button mat-raised-button type="submit" color="primary" (click)="formReset()">-->
-    <!--                {{'form.clean-btn'|translate}}-->
-    <!--              </button>-->
-    <!--              <button mat-raised-button color="accent" (click)="searchObject()">-->
-    <!--                {{'form.search-btn'|translate}}-->
-    <!--              </button>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="scrolling-container">-->
-    <!--      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>-->
-    <!--      <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"-->
-    <!--             [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList-->
-    <!--             (matSortChange)="sortData($event)">-->
-    <!--        <ng-container matColumnDef="id" class="tableDesign">-->
-    <!--          <th mat-header-cell *matHeaderCellDef  cdkDrag-->
-    <!--          >-->
-    <!--            {{'table.row'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element ; let i=index">-->
-    <!--            &lt;!&ndash;            {{index(i)}} &ndash;&gt;-->
-    <!--            {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}-->
-    <!--          </td>-->
-    <!--        </ng-container>-->
-    <!--        <ng-container matColumnDef="title">-->
-    <!--          <th mat-header-cell *matHeaderCellDef  cdkDrag-->
-    <!--              mat-sort-header>-->
-    <!--            {{'table.title'|translate}} </th>-->
-    <!--          <td mat-cell *matCellDef="let element">{{element.title}} </td>-->
-    <!--        </ng-container>-->
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.gender' | translate }}</span>
+            <mat-radio-group class="mat-form" formControlName="gender">
+              <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <div>
+          </div>
+        </div>
+        <div class="button">
+          <button mat-raised-button type="submit" color="primary" (click)="formReset()">
+            {{'form.clean-btn'|translate}}
+          </button>
+          <button mat-raised-button color="accent" (click)="searchUsers()">
+            {{'form.search-btn'|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="scrolling-container">
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+      <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
+             [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList
+             (matSortChange)="sortData($event)">
+        <ng-container matColumnDef="id" class="tableDesign">
+          <th mat-header-cell *matHeaderCellDef cdkDrag
+          >
+            {{'table.row'|translate}}</th>
+          <td mat-cell *matCellDef="let element ; let i=index">
+            <!--            {{index(i)}} -->
+            {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef cdkDrag
+              mat-sort-header>
+            {{'table.username'|translate}} </th>
+          <td mat-cell *matCellDef="let element">{{element.userName}} </td>
+        </ng-container>
 
-    <!--        <ng-container matColumnDef="categoryTitle">-->
-    <!--          <th mat-header-cell  mat-sort-header="categoryTitle" *matHeaderCellDef cdkDrag>-->
-    <!--            {{'table.category-title'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element"> {{element.categoryTitle}} </td>-->
-    <!--        </ng-container>-->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header="name" *matHeaderCellDef cdkDrag>
+            {{'table.name'|translate}}</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-    <!--        <ng-container matColumnDef="creatorUser">-->
-    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.create-user'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element">{{element.creatorUser}} </td>-->
-    <!--        </ng-container>-->
+        <ng-container matColumnDef="nameFamily">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.nameFamily'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{element.nameFamily}} </td>
+        </ng-container>
 
-    <!--        <ng-container matColumnDef="createDateTime">-->
-    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.create-time'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element">{{element.createDateTime}} </td>-->
-    <!--        </ng-container>-->
+        <ng-container matColumnDef="nationalCode">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.nationalCode'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{element.nationalCode}} </td>
+        </ng-container>
 
-    <!--        <ng-container matColumnDef="status">-->
-    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element">{{changeStatusTitle(element.status)}} </td>-->
-    <!--        </ng-container>-->
-
-    <!--        <ng-container matColumnDef="actions">-->
-    <!--          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.action'|translate}}</th>-->
-    <!--          <td mat-cell *matCellDef="let element" class="button">-->
-    <!--            <button mat-raised-button color="accent" [routerLink]="['/subject/edit/',element.id]"-->
-    <!--                    matTooltip="ویرایش">-->
-    <!--              <mat-icon>edit</mat-icon>-->
-    <!--            </button>-->
-    <!--            <button mat-raised-button color="primary" [routerLink]="['/subject/',element.id]"-->
-    <!--                    matTooltip="مشاهده">-->
-    <!--              <mat-icon>visibility</mat-icon>-->
-    <!--            </button>-->
-    <!--            <button mat-raised-button color="warn" (click)="deleteSubject(element.id)"-->
-    <!--                    matTooltip="حذف">-->
-    <!--              <mat-icon>delete</mat-icon>-->
-    <!--            </button>-->
-    <!--          </td>-->
-    <!--        </ng-container>-->
-    <!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-    <!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-    <!--      </table>-->
-    <!--      &lt;!&ndash;      <mat-paginator #paginator class="mat-elevation-z8 paginator"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                     showFirstLastButtons&ndash;&gt;-->
-    <!--      &lt;!&ndash;                     [pageSizeOptions]="getPageSizeOptions()">&ndash;&gt;-->
-    <!--      &lt;!&ndash;      </mat-paginator>&ndash;&gt;-->
-    <!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator-->
-    <!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->
-    <!--      </mat-paginator>-->
-    <!--    </div>-->
+        <ng-container matColumnDef="gender">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.gender'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{element.gender === "male" ? 'مرد' : 'زن'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="DateOfBirth">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.DateOfBirth'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{element.DateOfBirth}} </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{usersStatus(element.status)}} </td>
+        </ng-container>
+        <ng-container matColumnDef="isAdmin">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.isAdmin'|translate}}</th>
+          <td mat-cell *matCellDef="let element">{{element.isAdmin === true ? 'بله' : 'خیر'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.action'|translate}}</th>
+          <td mat-cell *matCellDef="let element" class="button">
+            <a mat-button [matMenuTriggerFor]="dropdown">
+              <mat-icon>person</mat-icon>
+              <span>ویرایش</span>
+            </a>
+            <mat-menu #dropdown>
+              <button mat-menu-item [routerLink]="['/users-mange/',element.id]">
+                <mat-icon>person</mat-icon>
+                <span> {{'table.view' | translate }} </span>
+              </button>
+              <button mat-menu-item [routerLink]="['/users-mange/edit/',element.id]">
+                <mat-icon>login</mat-icon>
+                <span>{{'table.edit' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>delete</mat-icon>
+                <span>{{'table.delete' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>check_circle</mat-icon>
+                <span>{{'table.confirm' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>block</mat-icon>
+                <span>{{'table.reject' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>lock</mat-icon>
+                <span>{{'table.change-password' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>library_books</mat-icon>
+                <span>{{'table.isAdmin' | translate }}</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>library_books</mat-icon>
+                <span>{{'table.isNotAdmin' | translate }}</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <!--      <mat-paginator #paginator class="mat-elevation-z8 paginator"-->
+      <!--                     showFirstLastButtons-->
+      <!--                     [pageSizeOptions]="getPageSizeOptions()">-->
+      <!--      </mat-paginator>-->
+      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator" #paginator
+                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
+      </mat-paginator>
+    </div>
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>

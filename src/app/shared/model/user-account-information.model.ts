@@ -7,6 +7,6 @@ export class UserAccountInformationModel {
   nationalCode: number;
   gender: string;
   DateOfBirth: Date;
-
-
+  status:string;
+  isAdmin:Boolean;
 }

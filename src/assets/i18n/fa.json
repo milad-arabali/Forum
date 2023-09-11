@@ -15,7 +15,6 @@
     "guide": "راهنما"
   },
   "form": {
-
     "userName": "نام کاربری",
     "passWord": "کلمه عبور",
     "passWord-error": "کلمه عبور وارد شود.",
@@ -95,16 +94,31 @@
     "users-manage-form": "مدیریت کاربران",
     "add-users-manage": "افزودن کاربر",
     "view-users-manage": "مشاهده کاربر",
-    "edit-users-manage": "ویرایش کاربر"
+    "edit-users-manage": "ویرایش کاربر",
+    "isAdmin": "مدیر می باشد:"
   },
   "table": {
     "row": "ردیف",
     "title": "عنوان",
     "category-title": "عنوان دسته بندی",
     "create-user": "کاربر ایجاد کننده",
+    "username": "نام کاربری",
+    "name": "نام",
     "status": "وضیعت",
     "create-time": "تاریخ ایجاد",
-    "action": "عملیات"
+    "action": "عملیات",
+    "nameFamily": "نام خانوادگی",
+    "nationalCode": "کد ملی",
+    "gender": "جنسیت",
+    "DateOfBirth": "تاریخ تولد",
+    "view": "مشاهده",
+    "edit": "ویرایش",
+    "delete": "حذف",
+    "confirm": "تایید",
+    "reject": "لغو",
+    "change-password": "تغییر کلمه عبور",
+    "isAdmin": "انتصاب به عنوان مدیریت",
+    "isNotAdmin": "انفصال از مدیریت"
   },
   "snackbar": {
     "subject-manager-value-error": "موضوع مورد نظر وجود ندارد.",

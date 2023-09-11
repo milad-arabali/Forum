@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as moment from "jalali-moment";
@@ -12,7 +12,8 @@ import {DateAdapter} from "@angular/material/core";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
-import {SelectSubjectComponent} from "../../subject-manager/select-subject/select-subject.component";
+import {UsersManageService} from "../shared/services/users-manage.service";
+import {checkNationalCode} from "../../../shared/directive/natonal-code-validator.directive";
 
 @Component({
   selector: 'app-detail-users-manage',
@@ -20,16 +21,27 @@ import {SelectSubjectComponent} from "../../subject-manager/select-subject/selec
   styleUrls: ['./detail-users-manage.component.css']
 })
 export class DetailUsersManageComponent implements OnInit {
+  @ViewChild("userName") private _inputElement: ElementRef;
+  gender  = [
+    {Value: 'male', viewValue: 'مرد'},
+    {Value: 'female', viewValue: 'زن'}
+  ]
   formMode: FormMode = FormMode.ADD;
   id: number;
-  form: FormGroup;
+  manageUsersForm: FormGroup;
   parentId: number;
   date = moment().locale('fa');
   name: string;
+  isAdmin: boolean[] = [true, false]
+  status = [
+    {statusValue: 'Registered', viewValue: 'ثبت نام اولیه شده'},
+    {statusValue: 'reject', viewValue: 'لغو شده'},
+    {statusValue: 'confirm', viewValue: 'تایید شده'},
+  ];
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
-              private subjectService: SubjectService,
+              private userInformationServices: UsersManageService,
               private fb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
@@ -39,17 +51,22 @@ export class DetailUsersManageComponent implements OnInit {
               private dateAdapter: DateAdapter<any>,
               private subject: SubjectService,
               private cookie: CookieService,
-              private translate:TranslateService
+              private translate: TranslateService
   ) {
     this.dateAdapter.setLocale('fa-IR');
-    this.form = this.fb.group({
-      title: ['', [Validators.required, Validators.maxLength(255),
-        Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
-      parentId: [-1],
-      categoryTitle: ['', Validators.required],
-      creatorUser: [this.cookie.get('users')],
-      status: [true, Validators.required],
-      createDateTime: [this.date.format('YYYY/MM/DD')],
+    this.manageUsersForm = this.fb.group({
+      userName: [, [
+        Validators.minLength(5),
+        Validators.maxLength(60),
+        Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
+      status: [,],
+      name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
+        checkNationalCode()]],
+      gender: [, []],
+      isAdmin: [, []],
+      DateOfBirth: [, []]
     })
   }
 
@@ -59,31 +76,35 @@ export class DetailUsersManageComponent implements OnInit {
       if (url[1].path === 'add') {
         this.formMode = FormMode.ADD;
         this.checkSubject(Number(url[2].path))
-
       } else if (url[1].path === 'edit') {
         this.checkSubject(Number(url[2].path))
         this.formMode = FormMode.EDIT;
-        this.api.getSubject(this.id).subscribe(
+        this.api.getUserInformation(this.id).subscribe(
           value => {
-            this.form.controls['title'].setValue(value.title)
-            this.form.controls['createDateTime'].setValue(value.createDateTime)
-            this.form.controls['status'].setValue(value.status)
-            this.form.controls['creatorUser'].setValue(value.creatorUser)
-            this.form.controls['categoryTitle'].setValue(value.categoryTitle)
+            this.manageUsersForm.controls['userName'].setValue(value.userName)
+            this.manageUsersForm.controls['name'].setValue(value.name)
+            this.manageUsersForm.controls['status'].setValue(value.status)
+            this.manageUsersForm.controls['nameFamily'].setValue(value.nameFamily)
+            this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
+            this.manageUsersForm.controls['gender'].setValue(value.gender)
+            this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
+            this.manageUsersForm.controls['DateOfBirth'].setValue(value.DateOfBirth)
           }
         )
       } else if (url[1].path === this.id.toString()) {
         this.formMode = FormMode.VIEW;
         this.checkSubject(Number(url[1].path))
-        this.formMode = FormMode.VIEW;
-        this.checkSubject(Number(url[1].path))
-        this.api.getSubject(this.id).subscribe(
+        this.api.getUserInformation(this.id).subscribe(
           value => {
-            this.form.controls['title'].setValue(value.title)
-            this.form.controls['createDateTime'].setValue(value.createDateTime)
-            this.form.controls['status'].setValue(value.status)
-            this.form.controls['creatorUser'].setValue(value.creatorUser)
-            this.form.controls['categoryTitle'].setValue(value.categoryTitle)
+            this.manageUsersForm.controls['userName'].setValue(value.userName)
+            this.manageUsersForm.controls['name'].setValue(value.name)
+            this.manageUsersForm.controls['status'].setValue(value.status)
+            this.manageUsersForm.controls['nameFamily'].setValue(value.nameFamily)
+            this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
+            this.manageUsersForm.controls['gender'].setValue(value.gender)
+            this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
+            this.manageUsersForm.controls['DateOfBirth'].setValue(value.DateOfBirth)
+
           }
         )
       }
@@ -91,7 +112,7 @@ export class DetailUsersManageComponent implements OnInit {
   }
 
   checkSubject(url: number) {
-    this.subjectService.checkId().subscribe(
+    this.userInformationServices.checkId().subscribe(
       value => {
         let path = url
         let id = value.find((a) => a.id === path)
@@ -103,7 +124,7 @@ export class DetailUsersManageComponent implements OnInit {
             horizontalPosition: "end",
             verticalPosition: "top"
           })
-          this.route.navigate(['subject'])
+          this.route.navigate(['/users-mange'])
         }
       })
   }
@@ -112,7 +133,7 @@ export class DetailUsersManageComponent implements OnInit {
     if (this.formMode === FormMode.ADD) {
       let subject = new SubjectMangerModel();
       // this.form.removeControl('parentTitle')
-      subject = this.form.getRawValue()
+      subject = this.manageUsersForm.getRawValue()
       let s = this.api.addSubject(subject).subscribe(
         res => {
           this.snack.open(this.translate.instant('snackbar.subject-manager-save-value'), "", {
@@ -121,13 +142,12 @@ export class DetailUsersManageComponent implements OnInit {
             verticalPosition: "top"
           })
         });
-      this.route.navigate(['/subject'])
-    }
-    else if (this.formMode === FormMode.EDIT) {
+      this.route.navigate(['/users-mange'])
+    } else if (this.formMode === FormMode.EDIT) {
       let editSubject = new SubjectMangerModel();
-      if (this.form) {
-        editSubject = this.form.getRawValue()
-        this.api.updateSubject(editSubject,this.id).subscribe(
+      if (this.manageUsersForm) {
+        editSubject = this.manageUsersForm.getRawValue()
+        this.api.updateSubject(editSubject, this.id).subscribe(
           res => {
             this.snack.open(this.translate.instant('snackbar.subject-manager-edit-value'), "", {
               duration: 3000,
@@ -137,15 +157,15 @@ export class DetailUsersManageComponent implements OnInit {
           }
         )
       }
-      this.route.navigate(['/subject'])
+      this.route.navigate(['/users-mange'])
     }
   }
 
-  selectCategory() {
-    const dialogRef = this.dialog.open(SelectSubjectComponent)
-    dialogRef.afterClosed().subscribe(result => {
-      this.form.controls['parentId'].setValue(result.id)
-      this.form.controls['categoryTitle'].setValue(result.title)
-    })
+  isAdminUsersStatus(status: Boolean) {
+    if (status === true) {
+      return "بلی"
+    } else {
+      return "خیر"
+    }
   }
 }

@@ -8,13 +8,16 @@ import {SubjectMangerModel} from "../model/subject-manger.model";
   providedIn: 'root'
 })
 export class ApiService {
-   public  apiUrl: string ='http://localhost:3000/enquiry'
-   public  apiUrlSubjectCategory: string ='http://localhost:3000/subject-category'
+  public  apiUrl: string ='http://localhost:3000/enquiry'
+  public  apiUrlSubjectCategory: string ='http://localhost:3000/subject-category'
   public  apiUrlSubject: string ='http://localhost:3000/subject'
   constructor(private httpClient: HttpClient) { }
 
   updateRegisterUser(registerObj: UserAccountInformationModel, id : number){
     return this.httpClient.patch<UserAccountInformationModel[]>(`${this.apiUrl}/${id}`,registerObj)
+  }
+  getUserInformation(id:number){
+    return this.httpClient.get<UserAccountInformationModel>(`${this.apiUrl}/${id}`)
   }
   getSubjectCategory(id : number){
     return this.httpClient.get<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`)
@@ -33,7 +36,7 @@ export class ApiService {
     return this.httpClient.post<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}`,subjectCategoryModel)
   }
   postRegistration(registerObj: UserAccountInformationModel){
-     return this.httpClient.post<UserAccountInformationModel>(`${this.apiUrl}`,registerObj)
+    return this.httpClient.post<UserAccountInformationModel>(`${this.apiUrl}`,registerObj)
   }
   SubjectCategoryUser(user:string){
     return this.httpClient.get<UserAccountInformationModel>(`http://localhost:3000/enquiry?userName=`+ `${user}`)
@@ -47,7 +50,7 @@ export class ApiService {
   updateSubject(subjectManger: SubjectMangerModel,id : number){
     return this.httpClient.patch<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`,subjectManger)
   }
-   deleteSubject(id : number){
+  deleteSubject(id : number){
     return this.httpClient.delete<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`)
   }
 }

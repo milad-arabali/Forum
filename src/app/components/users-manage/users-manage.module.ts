@@ -22,6 +22,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TranslateModule} from "@ngx-translate/core";
 import {RouterLink} from "@angular/router";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -56,7 +59,10 @@ import {RouterLink} from "@angular/router";
     MatTooltipModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterLink
+    RouterLink,
+    MatOptionModule,
+    MatSelectModule,
+    MatMenuModule
   ]
 })
 export class UsersManageModule { }
