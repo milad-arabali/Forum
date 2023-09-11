@@ -51,7 +51,7 @@
     {
       "userName": "test3",
       "password": "test3",
-      "name": "سلام",
+      "name": "سلام2",
       "nameFamily": "صص",
       "nationalCode": "0021655235",
       "gender": "female",
@@ -73,54 +73,6 @@
       "id": 15
     }
   ],
-  "subject-category": [
-    {
-      "title": "d",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Sun Sep 03 2023 21:24:45 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 1
-    },
-    {
-      "title": "w",
-      "parentId": 8,
-      "status": true,
-      "createDateTime": "Fri Sep 08 2023 20:46:00 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 2
-    },
-    {
-      "title": "s",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Fri Sep 08 2023 20:43:24 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 7
-    },
-    {
-      "title": "sss",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Fri Sep 08 2023 20:43:57 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 8
-    },
-    {
-      "title": "aaa",
-      "parentId": 7,
-      "status": true,
-      "createDateTime": "Fri Sep 08 2023 20:46:42 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 10
-    }
-  ],
-
   "subject-category": [
     {
       "title": "d",

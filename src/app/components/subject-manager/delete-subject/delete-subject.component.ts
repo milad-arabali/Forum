@@ -18,6 +18,8 @@ export class DeleteSubjectComponent implements OnInit{
     private api:ApiService,
     private snack:MatSnackBar,
     private subjectService:SubjectService,
+
+
     private translate:TranslateService) {
   }
 

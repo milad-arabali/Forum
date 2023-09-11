@@ -12,6 +12,8 @@ import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
+import {DeleteSubjectComponent} from "../subject-manager/delete-subject/delete-subject.component";
+import {DeleteUsersComponent} from "./delete-users/delete-users.component";
 
 @Component({
   selector: 'app-users-manage',
@@ -71,7 +73,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
     }, 100)
     this.sourceTable()
-    // this.subject.deleteSubjectGrid.next(0)
+    this.userManagerServices.deleteUsersGrid.next(0)
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -211,7 +213,14 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     }
   }
 
-  deleteSubject(id) {
 
+
+  deleteUsers(id) {
+    this.userManagerServices.deleteUsersGrid.next(id)
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {})
+    dialogRef.afterClosed().subscribe(result => {
+        this.sourceTable()
+      }
+    )
   }
 }

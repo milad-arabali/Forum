@@ -1,0 +1,11 @@
+.edit-course-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.button button{
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}

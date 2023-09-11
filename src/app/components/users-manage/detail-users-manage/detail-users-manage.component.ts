@@ -14,6 +14,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 import {UsersManageService} from "../shared/services/users-manage.service";
 import {checkNationalCode} from "../../../shared/directive/natonal-code-validator.directive";
+import {UserAccountInformationModel} from "../../../shared/model/user-account-information.model";
 
 @Component({
   selector: 'app-detail-users-manage',
@@ -144,12 +145,12 @@ export class DetailUsersManageComponent implements OnInit {
         });
       this.route.navigate(['/users-mange'])
     } else if (this.formMode === FormMode.EDIT) {
-      let editSubject = new SubjectMangerModel();
+      let editUsers = new UserAccountInformationModel();
       if (this.manageUsersForm) {
-        editSubject = this.manageUsersForm.getRawValue()
-        this.api.updateSubject(editSubject, this.id).subscribe(
+        editUsers = this.manageUsersForm.getRawValue()
+        this.api.updateRegisterUser(editUsers, this.id).subscribe(
           res => {
-            this.snack.open(this.translate.instant('snackbar.subject-manager-edit-value'), "", {
+            this.snack.open(this.translate.instant('snackbar.users-edit-value'), "", {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"

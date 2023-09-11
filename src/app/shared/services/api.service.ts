@@ -53,4 +53,7 @@ export class ApiService {
   deleteSubject(id : number){
     return this.httpClient.delete<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`)
   }
+  deleteUsers(id : number){
+    return this.httpClient.delete<UserAccountInformationModel>(`${this.apiUrl}/${id}`)
+  }
 }

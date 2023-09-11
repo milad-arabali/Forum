@@ -197,7 +197,7 @@
                 <mat-icon>login</mat-icon>
                 <span>{{'table.edit' | translate }}</span>
               </button>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="deleteUsers(element.id)">
                 <mat-icon>delete</mat-icon>
                 <span>{{'table.delete' | translate }}</span>
               </button>
