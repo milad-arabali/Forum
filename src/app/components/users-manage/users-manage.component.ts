@@ -12,8 +12,9 @@ import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {DeleteSubjectComponent} from "../subject-manager/delete-subject/delete-subject.component";
 import {DeleteUsersComponent} from "./delete-users/delete-users.component";
+import {CookieService} from "ngx-cookie-service";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-users-manage',
@@ -38,9 +39,13 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     {statusValue: 'Registered', viewValue: 'ثبت نام اولیه شده'},
     {statusValue: 'reject', viewValue: 'لغو شده'},
     {statusValue: 'confirm', viewValue: 'تایید شده'},
+    {statusValue: '', viewValue: 'هیچ کدام'},
   ];
   maxall = 100;
   search:string;
+  isSearchButtonActive=false;
+  minDate:Date;
+  maxDate:Date;
   constructor(private router: ActivatedRoute,
               private userManagerServices: UsersManageService,
               private fb: FormBuilder,
@@ -50,6 +55,8 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
               private route: Router,
               private activateRoute: ActivatedRoute,
               private dateAdapter: DateAdapter<any>,
+              private cookie:CookieService,
+
   ) {
     this.dateAdapter.setLocale('fa-IR');
     this.filterUsersForm = this.fb.group({
@@ -61,6 +68,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
+        Validators.maxLength(10),
         checkNationalCode()]],
       gender: [, []],
       isAdmin: [, []],
@@ -68,12 +76,15 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     })
   }
   ngOnInit() {
+    this.minDate = new Date(1990, 0, 1);
+    this.maxDate = new Date(2020,0,1);
+    // this.userManagerServices.checkIsAdmin(this.cookie.get('users'))
     setTimeout(() => {
       this.sourceTable()
       this.dataSource.paginator = this.paginator;
     }, 100)
     this.sourceTable()
-    this.userManagerServices.deleteUsersGrid.next(0)
+
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -83,7 +94,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     this.isLoading = true;
     this.userManagerServices.UsersSorting(this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe(
       (res) => {
-        this.dataSource.data = res;
+        this.dataSource.data = res.filter(user=>user.userName!== this.cookie.get('users'));
         this.isLoading = false;
       },
       (err) => {
@@ -92,7 +103,6 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       },
       () => console.log('done a lot  with news!')
     );
-
   }
 
   formReset() {
@@ -126,7 +136,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       name = `&`
     }
     if (searchModel.nameFamily) {
-      nameFamily = `nameFamily=${searchModel.nameFamily}`
+      nameFamily = `nameFamily_like=${searchModel.nameFamily}`
     } else {
       nameFamily = `&`
     }
@@ -152,10 +162,10 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     if (searchModel.isAdmin) {
       isAdmin = `isAdmin=${searchModel.isAdmin}`
     } else {
-      isAdmin = `isAdmin=false`
+      isAdmin = `&`
     }
     if (time) {
-      DateOfBirth = `createDateTime=${time.format('YYYY/MM/DD')}`
+      DateOfBirth = `createDateTime=${formatDate(this.filterUsersForm.controls['DateOfBirth'].value,'yyyy/MM/dd','en')}`
     } else {
       DateOfBirth = `&`
     }
@@ -167,7 +177,9 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
         this.dataSource.data = value
       })
   }
-
+  checkInputValue(){
+    this.isSearchButtonActive= this.filterUsersForm.controls['userName'].value.trim()!== ''
+  }
   pageChanged(event: PageEvent) {
     console.log({event});
     this.pageSize = event.pageSize;
@@ -188,11 +200,11 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   }
 
   sortData(event: Sort) {
-    // this.subject.sortingCell(event.active,event.direction).subscribe(
-    //   value => {
-    //     this.dataSource.data=value
-    //   }
-    // )
+    this.userManagerServices.sortingCellUsers(event.active,event.direction).subscribe(
+      value => {
+        this.dataSource.data=value
+      }
+    )
   }
 
   usersStatus(status: string) {
@@ -216,8 +228,63 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
 
 
   deleteUsers(id) {
-    this.userManagerServices.deleteUsersGrid.next(id)
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {})
+
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+      data:{
+        id:id,
+        formModeDialog:3
+      }})
+    dialogRef.afterClosed().subscribe(result => {
+        this.sourceTable()
+      }
+    )
+  }
+
+
+  confirmUsers(id) {
+
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+      data:{
+        id:id,
+        formModeDialog:4
+      }})
+    dialogRef.afterClosed().subscribe(result => {
+        this.sourceTable()
+      }
+    )
+  }
+
+  rejectUsers(id) {
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+      data:{
+        id:id,
+        formModeDialog:7
+      }})
+    dialogRef.afterClosed().subscribe(result => {
+        this.sourceTable()
+      }
+    )
+  }
+
+  toAdmin(id) {
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+      data:{
+        id:id,
+        formModeDialog:5
+      }})
+    dialogRef.afterClosed().subscribe(result => {
+        this.sourceTable()
+      }
+    )
+  }
+
+  disAdmin(id) {
+    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+      data:{
+        id:id,
+        formModeDialog:6
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }

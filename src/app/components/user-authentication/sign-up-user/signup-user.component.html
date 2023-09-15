@@ -69,8 +69,9 @@
           </div>
           <div>
             <span>{{'form.gender' | translate }}</span>
-            <mat-radio-group class="mat-form" formControlName="gender">
-              <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
+            <mat-radio-group class="mat-form radio-group" formControlName="gender">
+              <mat-radio-button *ngFor="let gender of gender" [value]="gender.Value"
+              >{{gender.viewValue}}</mat-radio-button>
             </mat-radio-group>
           </div>
         </div>

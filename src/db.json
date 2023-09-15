@@ -9,7 +9,7 @@
       "gender": "male",
       "DateOfBirth": "1402/06/19",
       "isAdmin": true,
-      "status": "Registered",
+      "status": "reject",
       "id": 10
     },
     {
@@ -23,18 +23,6 @@
       "isAdmin": false,
       "status": "reject",
       "id": 11
-    },
-    {
-      "userName": "ali12345",
-      "password": "ali12345",
-      "name": "sssss",
-      "nameFamily": "ssss",
-      "nationalCode": "1111111",
-      "gender": "male",
-      "DateOfBirth": "1402/06/19",
-      "isAdmin": false,
-      "status": "confirm",
-      "id": 12
     },
     {
       "userName": "test1",

@@ -13,9 +13,10 @@ import {TimePipe} from "../../../../shared/pipe/time.pipe";
         FooterComponent,
         TimePipe
     ],
-  exports: [
-    FooterComponent
-  ],
+    exports: [
+        FooterComponent,
+        TimePipe
+    ],
   imports: [
     CommonModule,
     TranslateModule,

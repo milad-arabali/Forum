@@ -16,6 +16,12 @@ export class ApiService {
   updateRegisterUser(registerObj: UserAccountInformationModel, id : number){
     return this.httpClient.patch<UserAccountInformationModel[]>(`${this.apiUrl}/${id}`,registerObj)
   }
+  updatePasswordUser(registerObj: UserAccountInformationModel, id : number){
+    return this.httpClient.patch<UserAccountInformationModel>(`${this.apiUrl}/${id}`,registerObj)
+  }
+  getIsAdmin(name:String){
+    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?userName=`+ `${name}`)
+  }
   getUserInformation(id:number){
     return this.httpClient.get<UserAccountInformationModel>(`${this.apiUrl}/${id}`)
   }
@@ -43,6 +49,9 @@ export class ApiService {
   }
   addSubject(subjectMangerModel: SubjectMangerModel){
     return this.httpClient.post<SubjectMangerModel>(`${this.apiUrlSubject}`,subjectMangerModel)
+  }
+  addUsers(UsersModel: UserAccountInformationModel){
+    return this.httpClient.post<UserAccountInformationModel>(`${this.apiUrl}`,UsersModel)
   }
   getSubject(id : number){
     return this.httpClient.get<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`)

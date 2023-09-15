@@ -1,15 +1,20 @@
 <div class="edit-course-form">
 
-  <h2 mat-dialog-title>{{"form.delete-Users" | translate}}</h2>
-
+  <h2 mat-dialog-title *ngIf="this.formMode === 3">{{"form.delete-Users" | translate}}</h2>
+  <h2 mat-dialog-title *ngIf="this.formMode === 4">آیا میخواهید کاربر مورد نظر را تایید کنید؟</h2>
+  <h2 mat-dialog-title *ngIf="this.formMode === 5">آیا میخواهید کاربر مورد نظر انتصاب ادمین شود؟</h2>
+  <h2 mat-dialog-title *ngIf="this.formMode === 6">آیا میخواهید کاربر مورد نظر انفصال ادمین شود؟</h2>
+  <h2 mat-dialog-title *ngIf="this.formMode === 7">آیا میخواهید کاربر مورد نظر لغو شود؟</h2>
   <mat-dialog-content>
 
   </mat-dialog-content>
   <mat-dialog-actions class="button">
-    <button mat-raised-button color="warn"
-            (click)="delete()">{{"form.yesButton" | translate}}</button>
-    <button mat-raised-button color="primary"
-            (click)="close()">{{"form.noButton" | translate}}</button>
+    <button mat-raised-button color="warn" *ngIf="this.formMode === 3" (click)="delete()">{{"form.yesButton" | translate}}</button>
+    <button mat-raised-button color="warn" *ngIf="this.formMode === 4" (click)="confirmUsers()">{{"form.yesButton" | translate}}</button>
+    <button mat-raised-button color="warn" *ngIf="this.formMode === 5" (click)="toAdmin()">{{"form.yesButton" | translate}}</button>
+    <button mat-raised-button color="warn" *ngIf="this.formMode === 6" (click)="disAdmin()">{{"form.yesButton" | translate}}</button>
+    <button mat-raised-button color="warn" *ngIf="this.formMode === 7" (click)="rejectUsers()">{{"form.yesButton" | translate}}</button>
+    <button mat-raised-button color="primary" (click)="close()">{{"form.noButton" | translate}}</button>
   </mat-dialog-actions>
 
 </div>

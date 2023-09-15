@@ -11,7 +11,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {DateAdapter} from "@angular/material/core";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
-import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 import {UsersManageService} from "../shared/services/users-manage.service";
 import {checkNationalCode} from "../../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../../shared/model/user-account-information.model";
@@ -39,7 +38,7 @@ export class DetailUsersManageComponent implements OnInit {
     {statusValue: 'reject', viewValue: 'لغو شده'},
     {statusValue: 'confirm', viewValue: 'تایید شده'},
   ];
-
+  isSearchButtonActive=false;
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
               private userInformationServices: UsersManageService,
@@ -56,22 +55,24 @@ export class DetailUsersManageComponent implements OnInit {
   ) {
     this.dateAdapter.setLocale('fa-IR');
     this.manageUsersForm = this.fb.group({
-      userName: [, [
+      userName: [, [Validators.required,
         Validators.minLength(5),
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
-      status: [,],
-      name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
-      nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      status: ["Registered",],
+      password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
+      name: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
-      gender: [, []],
-      isAdmin: [, []],
-      DateOfBirth: [, []]
+      gender: ['male', []],
+      isAdmin: [false, []],
+      DateOfBirth: [,]
     })
   }
 
   ngOnInit() {
+    // this.userInformationServices.checkIsAdmin(this.cookie.get('users'))
     this.id = this.router.snapshot.params['id']
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
@@ -89,7 +90,7 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
-            this.manageUsersForm.controls['DateOfBirth'].setValue(value.DateOfBirth)
+            this.manageUsersForm.controls['DateOfBirth'].setValue(formatDate(value.DateOfBirth))
           }
         )
       } else if (url[1].path === this.id.toString()) {
@@ -104,7 +105,7 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
-            this.manageUsersForm.controls['DateOfBirth'].setValue(value.DateOfBirth)
+            this.manageUsersForm.controls['DateOfBirth'].setValue(formatDate(value.DateOfBirth))
 
           }
         )
@@ -120,7 +121,7 @@ export class DetailUsersManageComponent implements OnInit {
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open(this.translate.instant('snackbar.subject-manager-value-error'), "", {
+          this.snack.open(this.translate.instant('حساب کاربر موردنظر ایجاد شد'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -132,10 +133,9 @@ export class DetailUsersManageComponent implements OnInit {
 
   editSubjectCategory() {
     if (this.formMode === FormMode.ADD) {
-      let subject = new SubjectMangerModel();
-      // this.form.removeControl('parentTitle')
-      subject = this.manageUsersForm.getRawValue()
-      let s = this.api.addSubject(subject).subscribe(
+      let users = new UserAccountInformationModel()
+      users = this.manageUsersForm.getRawValue()
+      let s = this.api.addUsers(users).subscribe(
         res => {
           this.snack.open(this.translate.instant('snackbar.subject-manager-save-value'), "", {
             duration: 3000,
@@ -145,6 +145,9 @@ export class DetailUsersManageComponent implements OnInit {
         });
       this.route.navigate(['/users-mange'])
     } else if (this.formMode === FormMode.EDIT) {
+      this.manageUsersForm.removeControl('password')
+      this.manageUsersForm.removeControl('isAdmin')
+      this.manageUsersForm.removeControl('status')
       let editUsers = new UserAccountInformationModel();
       if (this.manageUsersForm) {
         editUsers = this.manageUsersForm.getRawValue()
@@ -168,5 +171,16 @@ export class DetailUsersManageComponent implements OnInit {
     } else {
       return "خیر"
     }
+  }
+}
+
+export function formatDate(date: Date): string {
+  if (isNaN(date.getTime())) {
+    return '';
+  } else {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return ('00' + month).slice(-2) + '/' + ('00' + day).slice(-2) + '/' + year; //You can define your format here.
   }
 }

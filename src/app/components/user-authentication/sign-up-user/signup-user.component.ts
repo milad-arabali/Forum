@@ -17,9 +17,12 @@ import {checkNationalCode} from "../../../shared/directive/natonal-code-validato
 })
 export class SignupUserComponent {
   @ViewChild("userName") private _inputElement: ElementRef;
-  gender: string[] = ['مرد', 'زن']
-  form: FormGroup;
 
+  form: FormGroup;
+  gender  = [
+    {Value: 'male', viewValue: 'مرد'},
+    {Value: 'female', viewValue: 'زن'}
+  ]
   constructor(private signUpfb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
@@ -40,10 +43,12 @@ export class SignupUserComponent {
       password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
       name: [, [Validators.required ,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
-      nationalCode: [, [Validators.required,Validators.minLength(10), Validators.maxLength(10),
+      nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
       gender: ['مرد', [Validators.required]],
-      DateOfBirth: [, [Validators.required]]
+      DateOfBirth: [,],
+      status: ['Registered',],
+      isAdmin: [false, []],
     })
   }
 

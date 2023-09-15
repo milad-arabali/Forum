@@ -21,18 +21,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-validator.directive";
 import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
 import {SubjectManagerModule} from "./components/subject-manager/subject-manager.module";
-
 import {UsersManageModule} from "./components/users-manage/users-manage.module";
-
-
-
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-
-
 
 
 @NgModule({

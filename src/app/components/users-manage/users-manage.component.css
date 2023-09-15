@@ -98,6 +98,10 @@
 .mat-form{
   width: 100%;
 }
+.radio-group{
+  display: flex;
+  justify-content: flex-start;
+}
 .card-header-title{
   font-family: BTitrBold;
   font-weight: bold;
@@ -122,6 +126,10 @@
   font-weight: bold;
   color: #000000;
 
+}
+.button{
+  display: flex;
+  justify-content: flex-end;
 }
 .button button{
 

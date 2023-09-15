@@ -1,19 +1,19 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {TranslateService} from "@ngx-translate/core";
-import {ApiService} from "../../../shared/services/api.service";
-import {CookieService} from "ngx-cookie-service";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {ConfirmedValidator} from "./confrim.validator";
 import {UserAccountInformationModel} from "../../../shared/model/user-account-information.model";
+import {ConfirmedValidator} from "../reset-password/confrim.validator";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActivatedRoute, Router} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
+import {ApiService} from "../../../shared/services/api.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+  selector: 'app-reset-password-users',
+  templateUrl: './reset-password-users.component.html',
+  styleUrls: ['./reset-password-users.component.css']
 })
-export class ResetPasswordComponent implements OnInit{
+export class ResetPasswordUsersComponent  implements OnInit{
   changePassword: FormGroup;
   @ViewChild("password") private _inputElement: ElementRef;
   id:number;
@@ -22,7 +22,7 @@ export class ResetPasswordComponent implements OnInit{
               private fb: FormBuilder,
               private logOut: CookieService,
               private route: Router ,
-
+              private ActivateRoute: ActivatedRoute ,
               private snack:MatSnackBar
   ) {
     this.changePassword = this.fb.group({
@@ -41,12 +41,8 @@ export class ResetPasswordComponent implements OnInit{
   }
 
   ngOnInit() {
-    // this.id = this.ActivatedRoute.snapshot.params['id']
+    this.id = this.ActivateRoute.snapshot.params['id']
   }
-
-  // ngOnInit() {
-  //   // this.id = this.ActivatedRoute.snapshot.params['id']
-  // }
 
   submit() {
     let changePassword=new UserAccountInformationModel();
