@@ -66,7 +66,7 @@
               </mat-error>
               <mat-error *ngIf="form.controls['title'].invalid &&
                 form.controls['title'].hasError('pattern')">
-                عنوان دسته بندی نامعتبر است.
+               {{'form.title-error-pattern'|translate}}
               </mat-error>
             </mat-form-field>
           </div>

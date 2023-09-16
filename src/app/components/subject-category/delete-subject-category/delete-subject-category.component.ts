@@ -27,7 +27,6 @@ export class DeleteSubjectCategoryComponent implements OnInit {
               private dialogRef: MatDialogRef<DeleteSubjectCategoryComponent>,
               private translate: TranslateService,
               @Inject(MAT_DIALOG_DATA) private data
-
   ) {
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
@@ -35,22 +34,16 @@ export class DeleteSubjectCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.subjectCategoryService.deleteSubject.subscribe(
-    //   a => {
-    //     this.id = a
-    //   }
-    // )
+    this.api.getSubjectCategory(this.data.id).subscribe(
+      value => {
+        this.parentId = value.parentId
+      })
   }
+
   close() {
     this.dialogRef.close();
   }
-  getParentId() {
-    this.api.getSubjectCategory(this.id).subscribe(
-      value => {
-        this.parentId = value.parentId
-      }
-    )
-  }
+
   delete() {
     setTimeout(() => {
       this.api.getAllSubjectCategory()
@@ -62,13 +55,14 @@ export class DeleteSubjectCategoryComponent implements OnInit {
             let subjectModel = new SubjectCategoryModel()
             subjectModel.hasChild = false;
             this.api.updateSubjectCategory(subjectModel, this.parentId)
-              .subscribe()
-          }
-          else if(subject){
+              .subscribe(value=>
+              console.log("true"))
+          } else if (subject) {
             let subjectModel = new SubjectCategoryModel()
-            subjectModel.hasChild = false;
+            subjectModel.hasChild = true;
             this.api.updateSubjectCategory(subjectModel, this.parentId)
-              .subscribe()
+              .subscribe(value=>
+                console.log("true"))
           }
         })
     }, 100)

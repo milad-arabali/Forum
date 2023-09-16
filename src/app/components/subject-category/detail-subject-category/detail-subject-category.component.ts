@@ -23,6 +23,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   form: FormGroup;
   subjectModel = new SubjectCategoryModel();
   parentId: number;
+  currentParentId: number;
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -49,6 +50,10 @@ export class DetailSubjectCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.router.snapshot.params['id']
+    this.api.getSubjectCategory(this.id).subscribe(
+      value => {
+        this.currentParentId = value.parentId
+      })
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
         console.log("url[2].path", url[2].path)
@@ -155,17 +160,23 @@ export class DetailSubjectCategoryComponent implements OnInit {
     } else if (this.formMode === FormMode.EDIT) {
       let editSubject = new SubjectCategoryModel();
       this.form.removeControl('parentTitle')
-
       this.api.getAllSubjectCategory()
         .subscribe(value => {
           let subject = value.find((a: any) => {
-            return a.parentId === this.parentId
+            return a.parentId === this.currentParentId
           })
-          if (subject) {
+          if (!subject) {
+            let subjectModel = new SubjectCategoryModel()
+            subjectModel.hasChild = true;
+            this.api.updateSubjectCategory(subjectModel, this.currentParentId)
+              .subscribe(value=>
+                console.log("true"))
+          } else if (subject) {
             let subjectModel = new SubjectCategoryModel()
             subjectModel.hasChild = false;
-            this.api.updateSubjectCategory(subjectModel, this.parentId)
-              .subscribe()
+            this.api.updateSubjectCategory(subjectModel, this.currentParentId)
+              .subscribe(value=>
+                console.log("true"))
           }
         })
       if (this.form) {

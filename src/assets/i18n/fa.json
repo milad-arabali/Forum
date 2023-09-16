@@ -103,7 +103,8 @@
     "edit-users-manage": "ویرایش کاربر",
     "isAdmin": "مدیر می باشد:",
     "true": "بله",
-    "false": "خیر"
+    "false": "خیر",
+    "title-error-pattern": " عنوان دسته بندی نامعتبر است."
   },
   "table": {
     "row": "ردیف",
