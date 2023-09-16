@@ -12,13 +12,6 @@
   justify-content: space-between;
 }
 
-.container1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-}
 
 .header-card {
   padding: 10px;
@@ -44,7 +37,7 @@
 .example-menu {
   display: inline-flex;
   flex-direction: column;
-  min-width: 180px;
+  min-width: 150px;
   max-width: 280px;
   background-color: rgb(255, 255, 255);
   padding: 6px 0;
@@ -64,6 +57,13 @@
   flex: 1;
 }
 
+.filterUsersForm {
+  margin-top: 30px;
+  display: flex;
+  height: 320px;
+  padding: 0
+}
+
 .example-menu-item:hover {
   background-color: rgb(208, 208, 208);
 }
@@ -71,46 +71,97 @@
 .example-menu-item:active {
   background-color: rgb(170, 170, 170);
 }
-.container{
+
+.container {
   margin-top: 20px;
   display: flex;
-  height: 280px;
+  height: 130px;
   padding: 0;
 }
-.col{
+
+.col {
   flex-direction: column;
   width: 50%;
   margin: 0 10px;
   align-items: flex-start;
 
 }
-.row{
+
+.row {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0;
 }
 
-.mat-form{
+.mat-form {
   width: 100%;
 }
-.card-header-title{
+
+.radio-group {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-header-title {
   font-family: BTitrBold;
   font-weight: bold;
   font-size: 25px;
 }
-.card-header{
 
-  height: 30px;
-  margin-bottom: 10px ;
+.list-container {
+  display: flex;
+  padding: 0;
+
 }
 
-.row div  {
+.list-item {
+  display: flex;
+  padding-left: 0;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemIcon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: -150px;
+}
+mdc-list-item__content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  align-self: center;
+   /*flex: 1; */
+  pointer-events: none;
+}
+.list-item p {
+  text-align: center;
+  width: 200px;
+}
+
+.list-item h3 {
+  text-align: center;
+  width: 200px;
+}
+
+.card-header {
+
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.row div {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
 }
-.row span  {
+
+.row span {
   width: 30%;
   font-family: BYekan-bold;
   font-size: 18px;
@@ -118,64 +169,45 @@
   color: #000000;
 
 }
-.radio-group{
-  display: flex;
-  justify-content: flex-start;
-}
-.manageButton{
+
+.button {
   display: flex;
   justify-content: flex-end;
 }
-.button button{
+
+.button button {
+
   margin: 10px 10px;
   font-family: BYekan;
   font-weight: bold;
   font-size: 15px;
 }
-.button button mat-icon{
- padding: 0;
+
+.button button mat-icon {
+  padding: 0;
   margin: 0;
 }
-.button{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.filterList{
+
+.filterList {
   margin-right: 30px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
 }
-.filterList p{
+
+.filterList p {
   font-family: BYekan;
   font-weight: bold;
   font-size: 17px;
 }
-.filterListIcon{
+
+.filterListIcon {
   padding: 15px;
 }
 
-.scrolling-container{
-  min-height: 300px;
-}
-tableSubject{
-  text-align: center;
-}
 
-.paginator{
-  margin-bottom: 17px;
-}
-
-td, th {
-  text-align: center !important;
-  vertical-align: middle !important;
-}
-
-:host ::ng-deep .mat-sort-header-container {
-  display: flex;
-  justify-content: center;
-}
-input{
+input {
   font-family: BNAZANIN;
 }
+
+

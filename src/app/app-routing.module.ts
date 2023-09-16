@@ -7,7 +7,7 @@ import {EditUserComponent} from "./components/user-panel/edit-user/edit-user.com
 import {ChangePasswordComponent} from "./components/user-panel/change-password/change-password.component";
 import {ResetPassWordComponent} from "./components/user-authentication/reset-pass-word/reset-pass-word.component";
 import {HomeComponent} from "./components/home/home.component";
-import {IsAdminGuard} from "./core/guard/is-admin.guard";
+
 
 
 const routes: Routes = [
@@ -26,9 +26,13 @@ const routes: Routes = [
     loadChildren: () => import('./components/subject-manager/subject-manager.module')
       .then(m => m.SubjectManagerModule)
   },
-  {path: 'users-mange',
+  {path: 'users-manage',
     loadChildren: () => import('./components/users-manage/users-manage.module')
       .then((m) => m.UsersManageModule)
+  },
+  {path: 'forum',
+    loadChildren: () => import('./components/forum/forum.module')
+      .then(m => m.ForumModule)
   },
   {path: '**', component: SigninUserComponent}
 ]

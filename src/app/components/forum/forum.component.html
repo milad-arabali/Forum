@@ -1,0 +1,55 @@
+<mat-card class="header-card1">
+  <mat-card-header class="header-card">
+    <mat-card-title>
+      <div class="title-container">
+        <div class="card-header-title">
+          <mat-icon aria-hidden="false">people</mat-icon>
+          {{'form.forum'|translate}}
+        </div>
+        <div class="button">
+          <button mat-raised-button color="primary" >
+            {{'form.add-btn'|translate}}
+          </button>
+        </div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="container">
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.filter-subject-category'|translate}}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
+              <input type="text" matInput  [readonly]="true" value="{{categoryTitle}}">
+              <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-list class="list-container" >
+      <mat-list-item *ngFor="let message of subjectManager" class="list-item">
+        <mat-icon matListItemIcon class="itemIcon">folder</mat-icon>
+        <h3 matListItemTitle>{{'list.subject-category'| translate}}{{message.categoryTitle}}</h3>
+        <p matListItemLine>
+          <span>{{'list.subject-title'| translate}}{{message.title}}</span>
+        </p>
+        <p matListItemLine>
+          <span>{{'list.subject-creatorUser'| translate}}{{message.creatorUser}}</span>
+        </p>
+        <p matListItemLine>
+          <span>{{'list.subject-createDateTime'| translate}}{{message.createDateTime}}</span>
+        </p>
+        <p matListItemLine>
+          <span>{{'list.subject-status'| translate}}{{changeStatusTitle(message.status)}}</span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-footer>
+  </mat-card-footer>
+</mat-card>
+

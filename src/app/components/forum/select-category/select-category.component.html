@@ -13,8 +13,7 @@
           <span class="iransans">{{node.item.title}}</span>
         </button>
       </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
-      >
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
         <div class="mat-tree-node">
           <button [attr.aria-label]="'Toggle ' + node.item.title" mat-icon-button
                   matTreeNodeToggle>
@@ -41,3 +40,4 @@
     </button>
   </mat-dialog-actions>
 </div>
+

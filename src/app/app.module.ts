@@ -22,6 +22,7 @@ import {NationalCodeValidatorDirective} from "./shared/directive/natonal-code-va
 import {SubjectCategoryModule} from "./components/subject-category/subject-category.module";
 import {SubjectManagerModule} from "./components/subject-manager/subject-manager.module";
 import {UsersManageModule} from "./components/users-manage/users-manage.module";
+import {ForumModule} from "./components/forum/forum.module";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -34,8 +35,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 
+
   ],
   imports: [
+
     BrowserModule,
     ThemeModule,
     UsersManageModule,
@@ -46,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     SubjectCategoryModule,
     SubjectManagerModule,
+    ForumModule,
     AppRoutingModule,
     TranslateModule.forRoot(
       {

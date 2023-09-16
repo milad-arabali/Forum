@@ -10,6 +10,7 @@ import {SubjectService} from "./shared/services/subject.service";
 import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {DeleteSubjectComponent} from "./delete-subject/delete-subject.component";
 import {CdkDragDrop, CdkDragStart, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
+import {TranslateService} from "@ngx-translate/core";
 
 
 
@@ -39,6 +40,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
               private dialog: MatDialog,
               private dateAdapter: DateAdapter<any>,
               public subject: SubjectService,
+              private translate:TranslateService
   ) {
     this.form = this.Fb.group({
       title: [, [Validators.required, Validators.maxLength(255),
@@ -58,7 +60,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       this.dataSource.paginator = this.paginator;
     },100)
 
-    this.subject.deleteSubjectGrid.next(0)
+
 
   }
   ngAfterViewInit() {
@@ -79,34 +81,6 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       },
       () => console.log('done a lot  with news!')
     );
-    // this.subject.checkId().subscribe(
-    //   (res) => {
-    //
-    //     this.dataSource.data = res;
-    //     this.isLoading = false;
-    //   },
-    //   (err) => {
-    //     console.log("ok");
-    //     // alert("Kolla nätverksanslutnignen(CORS)");
-    //   },
-    //   () => console.log('done a lot  with news!')
-    // );
-
-    // this.isLoading = true;
-    // let URL = `http://localhost:3000/subject?_page=${this.currentPage}&_prev=${this.pageSize}`;
-    // fetch(URL)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.dataSource.data = data.rows;
-    //     setTimeout(() => {
-    //       this.paginator.pageIndex = this.currentPage;
-    //       this.paginator.length = data.count;
-    //     });
-    //     this.isLoading = false;
-    //   }, error => {
-    //     console.log(error);
-    //     this.isLoading = false;
-    //   });
   }
   selectCategory() {
     const dialogRef = this.dialog.open(SelectSubjectComponent)
@@ -141,7 +115,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       title = `&`
     }
     if (searchModel.creatorUser) {
-      creatorUser = `creatorUser=${searchModel.creatorUser}`
+      creatorUser = `creatorUser_like=${searchModel.creatorUser}`
     } else {
       creatorUser = `&`
     }
@@ -168,8 +142,12 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
   deleteSubject(id: number) {
-    this.subject.deleteSubjectGrid.next(id)
-    const dialogRef = this.dialog.open(DeleteSubjectComponent, {})
+
+    const dialogRef = this.dialog.open(DeleteSubjectComponent, {
+      data:{
+        id:id
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }
@@ -177,9 +155,9 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
   changeStatusTitle(title: boolean) {
     if (title) {
-      return 'فعال'
+      return this.translate.instant('form.status-true')
     } else {
-      return "غیرفعال"
+      return this.translate.instant('form.status-false')
     }
   }
 

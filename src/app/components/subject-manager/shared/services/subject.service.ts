@@ -12,7 +12,6 @@ import {UserAccountInformationModel} from "../../../../shared/model/user-account
 })
 export class SubjectService {
   fullNameUser = new UserAccountInformationModel();
-  public deleteSubjectGrid: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient,
               private api: ApiService,

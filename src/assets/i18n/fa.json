@@ -11,10 +11,13 @@
     "category": "دسته بندی موضوع",
     "category-manager": "مدیریت موضوع",
     "users-manager": "مدیریت کاربران",
+    "forum": "تالارگفتمان",
     "description": "توضیحات",
     "guide": "راهنما"
   },
   "form": {
+    "select-category": " انتخاب دسته بندی موضوع",
+    "forum": "تالارگفتمان",
     "female": "زن",
     "male": "مرد",
     "userName": "نام کاربری",
@@ -150,5 +153,12 @@
     "access-users": "حساب کاربری مورد نظر فعال شد.",
     "isAdmin-users": "حساب کاربری مورد به عنوان ادمین انتخاب شد.",
     "disAdmin-users": "حساب کاربری مورد به عنوان کاربر عادی انتخاب شد."
+  },
+  "list": {
+    "subject-title": "عنوان مقاله:",
+    "subject-category": "عنوان دسته بندی:",
+    "subject-creatorUser": "کاربر ایجاد کننده:",
+    "subject-createDateTime": "تاریخ ایجاد:",
+    "subject-status": "وضیعت:"
   }
 }

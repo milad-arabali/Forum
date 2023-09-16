@@ -96,15 +96,6 @@
       "id": 1
     },
     {
-      "title": "w",
-      "parentId": 8,
-      "status": true,
-      "createDateTime": "Fri Sep 08 2023 20:46:00 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 2
-    },
-    {
       "title": "s",
       "parentId": -1,
       "status": true,
@@ -153,10 +144,10 @@
     },
     {
       "title": "تست 2",
-      "parentId": 10,
+      "parentId": -1,
       "categoryTitle": "aaa",
       "creatorUser": "test1",
-      "status": true,
+      "status": false,
       "createDateTime": "1402/06/19",
       "id": 25
     },
@@ -168,15 +159,6 @@
       "status": true,
       "createDateTime": "1402/06/19",
       "id": 26
-    },
-    {
-      "title": "تست 4",
-      "parentId": 10,
-      "categoryTitle": "aaa",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "1402/06/19",
-      "id": 27
     }
   ]
 }

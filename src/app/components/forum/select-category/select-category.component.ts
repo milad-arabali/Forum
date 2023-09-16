@@ -1,19 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {SubjectCategoryFlatNodeModel} from "../../../shared/model/subject-category-flat-node.model";
-import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
-import {FlatTreeControl} from "@angular/cdk/tree";
-import {MatDialogRef} from "@angular/material/dialog";
-import {Router} from "@angular/router";
 import {SubjectCategoryService} from "../../subject-category/shared/services/subject-category.service";
+import {Router} from "@angular/router";
+import {MatDialogRef} from "@angular/material/dialog";
+import {FlatTreeControl} from "@angular/cdk/tree";
+import {SubjectCategoryFlatNodeModel} from "../../../shared/model/subject-category-flat-node.model";
 import {SubjectCategoryDataSource} from "../../subject-category/subject-category-data-source";
-
+import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 
 @Component({
-  selector: 'app-select-subject',
-  templateUrl: './select-subject.component.html',
-  styleUrls: ['./select-subject.component.css']
+  selector: 'app-select-category',
+  templateUrl: './select-category.component.html',
+  styleUrls: ['./select-category.component.css']
 })
-export class SelectSubjectComponent implements OnInit{
+export class SelectCategoryComponent implements OnInit{
   id: number;
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
@@ -24,14 +23,11 @@ export class SelectSubjectComponent implements OnInit{
   selectParentBtn: Boolean = false;
 
   constructor(private subjectCategoryService: SubjectCategoryService,
-              private route: Router,
-              private dialogRef: MatDialogRef<SelectSubjectComponent>,
-
-  ) {
+            private route: Router,
+            private dialogRef: MatDialogRef<SelectCategoryComponent>) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
-  }
-
+}
   ngOnInit() {
     this.loadTree()
   }
@@ -75,7 +71,4 @@ export class SelectSubjectComponent implements OnInit{
     // console.log("id:", this.id)
     this.dialogRef.close(s)
   }
-
-
-
 }

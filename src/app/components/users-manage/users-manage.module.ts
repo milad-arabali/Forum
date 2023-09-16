@@ -24,7 +24,6 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatMenuModule} from "@angular/material/menu";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
-
 import {ResetPasswordUsersModule} from "./reset-password-users/reset-password-users.module";
 import {MatTreeModule} from "@angular/material/tree";
 import {ManageAccessUsersModule} from "./manage-access-users/manage-access-users.module";
@@ -36,37 +35,37 @@ import {ManageAccessUsersModule} from "./manage-access-users/manage-access-users
 
 
   ],
-    imports: [
-        CommonModule,
-      ManageAccessUsersModule,
-        ResetPasswordUsersModule,
-        DetailUsersManageModule,
-        RoutingUsersManageModule,
-        CdkDrag,
-        CdkDropList,
-        MatButtonModule,
-        MatCardModule,
-        MatDatepickerModule,
-        MatDividerModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatRadioModule,
-        MatSortModule,
-        MatTableModule,
-        MatTooltipModule,
-        ReactiveFormsModule,
-        TranslateModule,
-        RouterLink,
-        MatOptionModule,
-        MatSelectModule,
-        MatMenuModule,
-        FooterModule,
-        MatTreeModule,
+  imports: [
+    CommonModule,
+    ManageAccessUsersModule,
+    ResetPasswordUsersModule,
+    DetailUsersManageModule,
+    RoutingUsersManageModule,
+    CdkDrag,
+    CdkDropList,
+    MatButtonModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSortModule,
+    MatTableModule,
+    MatTooltipModule,
+    ReactiveFormsModule,
+    TranslateModule,
+    RouterLink,
+    MatOptionModule,
+    MatSelectModule,
+    MatMenuModule,
+    FooterModule,
+    MatTreeModule,
 
-    ]
+  ]
 })
 export class UsersManageModule {
 }

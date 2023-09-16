@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {SubjectService} from "../shared/services/subject.service";
@@ -18,8 +17,7 @@ export class DeleteSubjectComponent implements OnInit{
     private api:ApiService,
     private snack:MatSnackBar,
     private subjectService:SubjectService,
-
-
+    @Inject(MAT_DIALOG_DATA) private data,
     private translate:TranslateService) {
   }
 
@@ -27,14 +25,11 @@ export class DeleteSubjectComponent implements OnInit{
     this.dialogRef.close();
   }
 ngOnInit() {
-    this.subjectService.deleteSubjectGrid.subscribe(
-      value =>
-        this.id=value
-    )
+
 }
 
   delete() {
-    this.api.deleteSubject(this.id).subscribe(
+    this.api.deleteSubject(this.data.id).subscribe(
       res => {
         this.snack.open(this.translate.instant('snackbar.subject-manager-delete-value'), "", {
           duration: 3000,
