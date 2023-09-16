@@ -162,8 +162,11 @@
   <mat-card-footer>
     <div class="button">
       <button mat-raised-button type="submit" color="primary" [disabled]="manageUsersForm.invalid" (click)="editSubjectCategory()"
-              [hidden]="formMode===2">
-        <span *ngIf="formMode===0"> {{'form.add-btn'|translate}}</span>
+              [hidden]="(formMode===1 || formMode===2) ">
+        <span > {{'form.add-btn'|translate}}</span>
+      </button>
+      <button mat-raised-button type="submit" color="primary"  (click)="editSubjectCategory()"
+              [hidden]="formMode===0 ">
         <span *ngIf="formMode===1">
           {{'form.edit-btn'|translate}}
         </span>

@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {UsersManageComponent} from "./users-manage.component";
-import {DeleteUsersModule} from "./delete-users/delete-users.module";
 import {DetailUsersManageModule} from "./detail-users-manage/detail-users-manage.module";
 import {RoutingUsersManageModule} from "./routing-users-manage.module";
 import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
@@ -25,9 +24,10 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatMenuModule} from "@angular/material/menu";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
-import {ResetPasswordUsersComponent} from "./reset-password-users/reset-password-users.component";
+
 import {ResetPasswordUsersModule} from "./reset-password-users/reset-password-users.module";
 import {MatTreeModule} from "@angular/material/tree";
+import {ManageAccessUsersModule} from "./manage-access-users/manage-access-users.module";
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import {MatTreeModule} from "@angular/material/tree";
   ],
     imports: [
         CommonModule,
-        DeleteUsersModule,
+      ManageAccessUsersModule,
         ResetPasswordUsersModule,
         DetailUsersManageModule,
         RoutingUsersManageModule,

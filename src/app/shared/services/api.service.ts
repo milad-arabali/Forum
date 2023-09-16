@@ -28,7 +28,9 @@ export class ApiService {
   getSubjectCategory(id : number){
     return this.httpClient.get<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`)
   }
-
+  getAllUsers(){
+    return this.httpClient.get<UserAccountInformationModel[]>(`${this.apiUrl}`)
+  }
   getAllSubjectCategory(){
     return this.httpClient.get<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}`)
   }

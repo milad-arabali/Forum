@@ -7,7 +7,7 @@
           {{'form.users-manage-form'|translate}}
         </div>
         <div class="button">
-          <button mat-raised-button color="primary" [routerLink]="['/users-mange/add']">
+          <button mat-raised-button color="primary" [routerLink]="['/users-manage/add']">
             {{'form.add-btn'|translate}}
           </button>
         </div>
@@ -201,11 +201,11 @@
 
             </a>
             <mat-menu #dropdown>
-              <button mat-menu-item [routerLink]="['/users-mange/',element.id]">
+              <button mat-menu-item [routerLink]="['/users-manage/',element.id]">
                 <mat-icon>person</mat-icon>
                 <span> {{'table.view' | translate }} </span>
               </button>
-              <button mat-menu-item [routerLink]="['/users-mange/edit/',element.id]">
+              <button mat-menu-item [routerLink]="['/users-manage/edit/',element.id]">
                 <mat-icon>login</mat-icon>
                 <span>{{'table.edit' | translate }}</span>
               </button>
@@ -221,7 +221,7 @@
                 <mat-icon>block</mat-icon>
                 <span>{{'table.reject' | translate }}</span>
               </button>
-              <button mat-menu-item [routerLink]="['/users-mange/reset-password',element.id]">
+              <button mat-menu-item [routerLink]="['/users-manage/reset-password',element.id]">
                 <mat-icon>lock</mat-icon>
                 <span>{{'table.change-password' | translate }}</span>
               </button>

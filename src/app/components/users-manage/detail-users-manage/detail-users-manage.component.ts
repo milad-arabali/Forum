@@ -125,7 +125,7 @@ export class DetailUsersManageComponent implements OnInit {
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open(this.translate.instant('حساب کاربر موردنظر ایجاد شد'), "", {
+          this.snack.open(this.translate.instant('snackbar.user-register'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -141,13 +141,13 @@ export class DetailUsersManageComponent implements OnInit {
       users = this.manageUsersForm.getRawValue()
       let s = this.api.addUsers(users).subscribe(
         res => {
-          this.snack.open(this.translate.instant('snackbar.subject-manager-save-value'), "", {
+          this.snack.open(this.translate.instant('snackbar.user-register'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
           })
         });
-      this.route.navigate(['/users-mange'])
+      this.route.navigate(['/users-manage'])
     } else if (this.formMode === FormMode.EDIT) {
       this.manageUsersForm.removeControl('password')
       this.manageUsersForm.removeControl('isAdmin')
@@ -165,7 +165,7 @@ export class DetailUsersManageComponent implements OnInit {
           }
         )
       }
-      this.route.navigate(['/users-mange'])
+      this.route.navigate(['/users-manage'])
     }
   }
 

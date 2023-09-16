@@ -8,16 +8,16 @@ import {UserAccountInformationModel} from "../../../shared/model/user-account-in
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
 
 @Component({
-  selector: 'app-delete-users',
-  templateUrl: './delete-users.component.html',
-  styleUrls: ['./delete-users.component.css']
+  selector: 'app-manage-access-users',
+  templateUrl: './manage-access-users.component.html',
+  styleUrls: ['./manage-access-users.component.css']
 })
-export class DeleteUsersComponent {
+export class ManageAccessUsersComponent {
   id: number;
   formMode: FormMode = FormMode.DELETE;
 
   constructor(
-    private dialogRef: MatDialogRef<DeleteUsersComponent>,
+    private dialogRef: MatDialogRef<ManageAccessUsersComponent>,
     private api: ApiService,
     private snack: MatSnackBar,
     private usersManageService: UsersManageService,
@@ -28,31 +28,10 @@ export class DeleteUsersComponent {
 
   close() {
     this.dialogRef.close();
-    // this.usersManageService.deleteUsersGrid.next(0)
-    // this.usersManageService.formModeDialog.next(0)
-
   }
 
   ngOnInit() {
-    // this.usersManageService.deleteUsersGrid.subscribe(
-    //   value =>
-    //     this.id=value
-    // )
-    // this.usersManageService.formModeDialog.subscribe(
-    //   value =>{
-    //     if(value === 3){
-    //       this.formMode=FormMode.DELETE;
-    //     }else if (value === 4){
-    //       this.formMode=FormMode.CONFIRM;
-    //     }else if (value === 5){
-    //       this.formMode=FormMode.ISADMIN;
-    //     }else if (value === 6){
-    //       this.formMode=FormMode.NOTADMIN;
-    //     }else if (value === 7){
-    //       this.formMode=FormMode.reject;
-    //     }
-    //   }
-    // )
+
     if (this.data.formModeDialog === 3) {
       this.formMode = FormMode.DELETE;
     } else if (this.data.formModeDialog === 4) {
@@ -70,14 +49,14 @@ export class DeleteUsersComponent {
 
     this.api.deleteUsers(this.data.id).subscribe(
       res => {
-        this.snack.open(this.translate.instant('snackbar.users-delete-value'), "", {
+        this.snack.open(this.translate.instant(this.translate.instant('snackbar.users-delete-value')), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
         })
       }
     )
-    // this.usersManageService.deleteUsersGrid.next(0)
+
     this.dialogRef.close();
 
   }
@@ -86,7 +65,7 @@ export class DeleteUsersComponent {
     const usersConfirm = new UserAccountInformationModel();
     usersConfirm.status = 'confirm';
     this.api.updateRegisterUser(usersConfirm, this.data.id).subscribe(value =>
-      this.snack.open("تغییر یافت", "", {
+      this.snack.open(this.translate.instant('snackbar.access-users'), "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
@@ -100,13 +79,13 @@ export class DeleteUsersComponent {
     const usersConfirm = new UserAccountInformationModel();
     usersConfirm.status = 'reject';
     this.api.updateRegisterUser(usersConfirm, this.data.id).subscribe(value =>
-      this.snack.open("تغییر یافت", "", {
+      this.snack.open(this.translate.instant('snackbar.reject-users-access'), "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
       })
     )
-    // this.usersManageService.deleteUsersGrid.next(0)
+
     this.dialogRef.close();
   }
 
@@ -115,7 +94,7 @@ export class DeleteUsersComponent {
     const usersConfirm = new UserAccountInformationModel();
     usersConfirm.isAdmin = true;
     this.api.updateRegisterUser(usersConfirm, this.data.id).subscribe(value =>
-      this.snack.open("تغییر یافت", "", {
+      this.snack.open(this.translate.instant('snackbar.isAdmin-users'), "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
@@ -124,19 +103,17 @@ export class DeleteUsersComponent {
     // this.usersManageService.deleteUsersGrid.next(0)
     this.dialogRef.close();
   }
-
   disAdmin() {
 
     const usersConfirm = new UserAccountInformationModel();
     usersConfirm.isAdmin = false;
     this.api.updateRegisterUser(usersConfirm, this.data.id).subscribe(value =>
-      this.snack.open("تغییر یافت", "", {
+      this.snack.open(this.translate.instant('snackbar.disAdmin-users'), "", {
         duration: 3000,
         horizontalPosition: "end",
         verticalPosition: "top"
       })
     )
-    // this.usersManageService.deleteUsersGrid.next(0)
     this.dialogRef.close();
   }
 }

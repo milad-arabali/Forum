@@ -8,11 +8,11 @@ import {ResetPasswordUsersComponent} from "./reset-password-users/reset-password
 
 
 const routingUsers: Routes = [
-  {path: 'users-mange', canActivate: [AuthGuard], component: UsersManageComponent},
-  {path: 'users-mange/add', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
-  {path: 'users-mange/edit/:id', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
-  {path: 'users-mange/:id', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
-  {path: 'users-mange/reset-password/:id', component: ResetPasswordUsersComponent, canActivate: [AuthGuard]},
+  {path: 'users-manage', canActivate: [AuthGuard], component: UsersManageComponent},
+  {path: 'users-manage/add', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
+  {path: 'users-manage/edit/:id', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
+  {path: 'users-manage/:id', component: DetailUsersManageComponent, canActivate: [AuthGuard]},
+  {path: 'users-manage/reset-password/:id', component: ResetPasswordUsersComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({

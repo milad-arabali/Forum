@@ -12,11 +12,12 @@ import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {DeleteUsersComponent} from "./delete-users/delete-users.component";
+
 import {CookieService} from "ngx-cookie-service";
 import {formatDate} from "@angular/common";
 import {TranslateService} from "@ngx-translate/core";
 import {MatMenuTrigger} from "@angular/material/menu";
+import {ManageAccessUsersComponent} from "./manage-access-users/manage-access-users.component";
 
 @Component({
   selector: 'app-users-manage',
@@ -236,7 +237,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
 
   deleteUsers(id) {
 
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+    const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
       data:{
         id:id,
         formModeDialog:3
@@ -250,7 +251,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
 
   confirmUsers(id) {
 
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+    const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
       data:{
         id:id,
         formModeDialog:4
@@ -262,7 +263,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   }
 
   rejectUsers(id) {
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+    const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
       data:{
         id:id,
         formModeDialog:7
@@ -272,9 +273,8 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       }
     )
   }
-
   toAdmin(id) {
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+    const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
       data:{
         id:id,
         formModeDialog:5
@@ -286,7 +286,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   }
 
   disAdmin(id) {
-    const dialogRef = this.dialog.open(DeleteUsersComponent, {
+    const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
       data:{
         id:id,
         formModeDialog:6
@@ -298,7 +298,4 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     )
   }
 
-  navigateAdd() {
-
-  }
 }

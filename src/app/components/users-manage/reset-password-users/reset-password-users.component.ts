@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {UserAccountInformationModel} from "../../../shared/model/user-account-information.model";
-import {ConfirmedValidator} from "../reset-password/confrim.validator";
+import {ConfirmedValidator} from "./confrim.validator";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -51,13 +51,13 @@ export class ResetPasswordUsersComponent  implements OnInit{
     this._inputElement.nativeElement.focus();
     this.api.updatePasswordUser(changePassword,this.id).subscribe(
       value =>
-        this.snack.open('تغییر یافت', "", {
+        this.snack.open(this.translate.instant('snackbar.password-edit'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
         })
 
     )
-    // this.route.navigate(['./users-mange'])
+    this.route.navigate(['./users-manage'])
   }
 }

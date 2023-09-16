@@ -20,7 +20,6 @@ export class UserLoginService {
   public showUserLastName$ = new BehaviorSubject<any>('');
   is:boolean;
   public user: UserAccountInformationModel;
-  isAdminUsers:UserAccountInformationModel;
   public userDb: UserInformationModel[] = [
     new UserInformationModel(
       1,
@@ -53,7 +52,7 @@ export class UserLoginService {
   }
   singIn(username, value,name,family) {
     const api = this.api.apiUrl
-    let users1 = this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+    this.api.getAllUsers().subscribe(
       res => {
         if (res.find(
           x => x.userName === username,
@@ -69,10 +68,7 @@ export class UserLoginService {
           const a = res.find(a => {
             return a => a === value
           })
-          this.c.set('users', username)
-          this.userLogin.logIn().then(() => {
-            this.router.navigate(['/home'])
-          })
+          this.router.navigate(['/signin'])
           this.api.postRegistration(value).subscribe(res => {
               this.snack.open(this.translate.instant('snackbar.user-register'), "", {
                 duration: 3000,
@@ -81,8 +77,6 @@ export class UserLoginService {
               })
             }
           )
-          this.showUserName$.next(name)
-          this.showUserLastName$.next(family)
 
         }
 
@@ -93,32 +87,35 @@ export class UserLoginService {
   signOn(username, password) {
     const message: string = ` کاربر ${username} وارد شدید `
     const api = this.api.apiUrl
-    this.httpClient.get<UserAccountInformationModel[]>(`${api}`).subscribe(
+    this.api.getAllUsers().subscribe(
       res => {
         // console.log("sss", res)
         const a = res.find(a => {
           return a.userName === username && a.password === password
         })
         if (a) {
-          this.c.set('users', username)
-          this.userLogin.logIn().then(() => {
-            this.router.navigate(['/home'])
-          })
-          this.isAdmin(username).subscribe(
-            value => {
-             this.isAdminUsers=value
-
-            }
-          )
-
-          this.snack.open(message, "", {
+          if(a.status==='reject'||a.status==='Registered'){
+            this.snack.open(this.translate.instant('snackbar.reject-users'), "", {
               duration: 3000,
               horizontalPosition: "end",
               verticalPosition: "top"
-            }
-          )
-          this.showUserName$.next(a.name)
-          this.showUserLastName$.next(a.nameFamily)
+            })
+          }else {
+            this.c.set('users', username)
+            this.userLogin.logIn().then(() => {
+              this.router.navigate(['/home'])
+            })
+
+            this.snack.open(message, "", {
+                duration: 3000,
+                horizontalPosition: "end",
+                verticalPosition: "top"
+              }
+            )
+            this.showUserName$.next(a.name)
+            this.showUserLastName$.next(a.nameFamily)
+          }
+
 
         } else {
           this.snack.open(this.translate.instant('snackbar.user-valid-error'), "", {
