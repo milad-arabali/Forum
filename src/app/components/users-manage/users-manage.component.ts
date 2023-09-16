@@ -15,6 +15,8 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {DeleteUsersComponent} from "./delete-users/delete-users.component";
 import {CookieService} from "ngx-cookie-service";
 import {formatDate} from "@angular/common";
+import {TranslateService} from "@ngx-translate/core";
+import {MatMenuTrigger} from "@angular/material/menu";
 
 @Component({
   selector: 'app-users-manage',
@@ -46,6 +48,8 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   isSearchButtonActive=false;
   minDate:Date;
   maxDate:Date;
+  contextMenu: MatMenuTrigger;
+  contextMenuPosition = {x: '0px', y: '0px'};
   constructor(private router: ActivatedRoute,
               private userManagerServices: UsersManageService,
               private fb: FormBuilder,
@@ -56,6 +60,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
               private activateRoute: ActivatedRoute,
               private dateAdapter: DateAdapter<any>,
               private cookie:CookieService,
+              private translate:TranslateService
 
   ) {
     this.dateAdapter.setLocale('fa-IR');
@@ -77,7 +82,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   }
   ngOnInit() {
     this.minDate = new Date(1990, 0, 1);
-    this.maxDate = new Date(2020,0,1);
+    this.maxDate = new Date(2016,0,1);
     // this.userManagerServices.checkIsAdmin(this.cookie.get('users'))
     setTimeout(() => {
       this.sourceTable()
@@ -109,7 +114,13 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     this.filterUsersForm.reset();
     this.sourceTable()
   }
-
+  onContextMenu(event: MouseEvent) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
+  }
   searchUsers() {
     let time = this.filterUsersForm.controls['DateOfBirth'].value
     // console.log(this.form.getRawValue())
@@ -177,9 +188,6 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
         this.dataSource.data = value
       })
   }
-  checkInputValue(){
-    this.isSearchButtonActive= this.filterUsersForm.controls['userName'].value.trim()!== ''
-  }
   pageChanged(event: PageEvent) {
     console.log({event});
     this.pageSize = event.pageSize;
@@ -219,12 +227,11 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
 
   isAdminUsersStatus(status: Boolean) {
     if (status === true) {
-      return "بلی"
+      return this.translate.instant('form.true')
     } else {
-      return "خیر"
+      return this.translate.instant('form.false')
     }
   }
-
 
 
   deleteUsers(id) {
@@ -289,5 +296,9 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
         this.sourceTable()
       }
     )
+  }
+
+  navigateAdd() {
+
   }
 }

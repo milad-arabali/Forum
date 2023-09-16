@@ -15,6 +15,8 @@
     "guide": "راهنما"
   },
   "form": {
+    "female": "زن",
+    "male": "مرد",
     "userName": "نام کاربری",
     "passWord": "کلمه عبور",
     "passWord-error": "کلمه عبور وارد شود.",
@@ -96,7 +98,9 @@
     "add-users-manage": "افزودن کاربر",
     "view-users-manage": "مشاهده کاربر",
     "edit-users-manage": "ویرایش کاربر",
-    "isAdmin": "مدیر می باشد:"
+    "isAdmin": "مدیر می باشد:",
+    "true": "بله",
+    "false": "خیر"
   },
   "table": {
     "row": "ردیف",

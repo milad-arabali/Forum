@@ -17,10 +17,11 @@ import {checkNationalCode} from "../../../shared/directive/natonal-code-validato
 })
 export class SignupUserComponent {
   @ViewChild("userName") private _inputElement: ElementRef;
-
+  minDate:Date;
+  maxDate:Date;
   form: FormGroup;
   gender  = [
-    {Value: 'male', viewValue: 'مرد'},
+    {Value: 'male', viewValue:'مرد'},
     {Value: 'female', viewValue: 'زن'}
   ]
   constructor(private signUpfb: FormBuilder,
@@ -29,8 +30,10 @@ export class SignupUserComponent {
               private usersAth: UserLoginService,
               private cookie: CookieService,
               private c: CookieService,
-              translate: TranslateService,
+              private translate: TranslateService,
               private dateAdapter: DateAdapter<any>) {
+    this.minDate = new Date(1990, 0, 1);
+    this.maxDate = new Date(2016,0,1);
     this.dateAdapter.setLocale('fa-IR');
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');

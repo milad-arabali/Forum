@@ -1,21 +1,14 @@
 import { Injectable } from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
+import {ApiService} from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CookieServiceLogin {
-  // private cookie$ = new BehaviorSubject<any>({});
-  // selectedUser$ = this.cookie$.asObservable();
-  constructor(private cookie: CookieService) { }
-
-  // userLogin(cookie : any){
-  //   this.cookie$.next(cookie)
-  //   // console.log(cookie)
-  // }
-
+  constructor(private cookie: CookieService,
+              private api:ApiService) { }
     logIn( ):Promise<any>{
-
       return new Promise((resolve)=>{
       this.cookie.set('login','true');
       resolve(true)
@@ -24,4 +17,5 @@ export class CookieServiceLogin {
     isLogin():boolean{
     return !!this.cookie.get('login');
     }
+
 }

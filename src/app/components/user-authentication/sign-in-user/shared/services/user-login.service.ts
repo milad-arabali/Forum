@@ -18,7 +18,9 @@ import {TranslateService} from "@ngx-translate/core";
 export class UserLoginService {
   public showUserName$ = new BehaviorSubject<any>('');
   public showUserLastName$ = new BehaviorSubject<any>('');
+  is:boolean;
   public user: UserAccountInformationModel;
+  isAdminUsers:UserAccountInformationModel;
   public userDb: UserInformationModel[] = [
     new UserInformationModel(
       1,
@@ -47,6 +49,7 @@ export class UserLoginService {
               private api: ApiService,
               private c: CookieService,
               private translate:TranslateService) {
+
   }
   singIn(username, value,name,family) {
     const api = this.api.apiUrl
@@ -85,31 +88,6 @@ export class UserLoginService {
 
 
       })
-
-    // if (users1) {
-    //
-    //   this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
-    //     duration: 3000,
-    //     horizontalPosition: "end",
-    //     verticalPosition: "top"
-    //
-    //   })
-    //
-    // } else {
-    //   this.c.set('users', username)
-    //   this.userLogin.logIn().then(() => {
-    //     this.router.navigate(['/home-module'])
-    //
-    //   })
-    //   this.snack.open("کاربر جدید با موفقیت ثبت شد", "", {
-    //       duration: 3000,
-    //       horizontalPosition: "end",
-    //       verticalPosition: "top"
-    //
-    //     }
-    //   )
-    // }
-
   }
 
   signOn(username, password) {
@@ -121,13 +99,18 @@ export class UserLoginService {
         const a = res.find(a => {
           return a.userName === username && a.password === password
         })
-
-        console.log("ddddd", a)
         if (a) {
           this.c.set('users', username)
           this.userLogin.logIn().then(() => {
             this.router.navigate(['/home'])
           })
+          this.isAdmin(username).subscribe(
+            value => {
+             this.isAdminUsers=value
+
+            }
+          )
+
           this.snack.open(message, "", {
               duration: 3000,
               horizontalPosition: "end",
@@ -139,42 +122,16 @@ export class UserLoginService {
 
         } else {
           this.snack.open(this.translate.instant('snackbar.user-valid-error'), "", {
-
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
-
           })
         }
       })
-    // console.log("dds",this.user)
-    //   let user = this.userDb.filter(
-    //     x => x.userName === username
-    //   ).filter(
-    //     y => y.password === password)
-    //
-    //   if (user && user.length === 1 || this.user) {
-    //     console.log("test")
-    //
-    //     this.userLogin.logIn().then(() => {
-    //       this.router.navigate(['/home-module'])
-    //     })
-    //     this.snack.open(message, "", {
-    //         duration: 3000,
-    //         horizontalPosition: "end",
-    //         verticalPosition: "top"
-    //       }
-    //     )
-    //   } else {
-    //     this.snack.open("نام کاربری یا پسورد وجود ندارد", "", {
-    //
-    //       duration: 3000,
-    //       horizontalPosition: "end",
-    //       verticalPosition: "top"
-    //
-    //     })
-    //   }
+   ;
   }
 
-
+  isAdmin(userName: string) {
+    return  this.api.getIsAdmin(userName)
+  }
 }

@@ -20,7 +20,7 @@ export class ApiService {
     return this.httpClient.patch<UserAccountInformationModel>(`${this.apiUrl}/${id}`,registerObj)
   }
   getIsAdmin(name:String){
-    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?userName=`+ `${name}`)
+    return this.httpClient.get<UserAccountInformationModel>(`http://localhost:3000/enquiry?userName=`+ `${name}`)
   }
   getUserInformation(id:number){
     return this.httpClient.get<UserAccountInformationModel>(`${this.apiUrl}/${id}`)

@@ -27,6 +27,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
 import {ResetPasswordUsersComponent} from "./reset-password-users/reset-password-users.component";
 import {ResetPasswordUsersModule} from "./reset-password-users/reset-password-users.module";
+import {MatTreeModule} from "@angular/material/tree";
 
 
 @NgModule({
@@ -35,36 +36,37 @@ import {ResetPasswordUsersModule} from "./reset-password-users/reset-password-us
 
 
   ],
-  imports: [
-    CommonModule,
-    DeleteUsersModule,
-    ResetPasswordUsersModule,
-    DetailUsersManageModule,
-    RoutingUsersManageModule,
-    CdkDrag,
-    CdkDropList,
-    MatButtonModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatRadioModule,
-    MatSortModule,
-    MatTableModule,
-    MatTooltipModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    RouterLink,
-    MatOptionModule,
-    MatSelectModule,
-    MatMenuModule,
-    FooterModule,
+    imports: [
+        CommonModule,
+        DeleteUsersModule,
+        ResetPasswordUsersModule,
+        DetailUsersManageModule,
+        RoutingUsersManageModule,
+        CdkDrag,
+        CdkDropList,
+        MatButtonModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatRadioModule,
+        MatSortModule,
+        MatTableModule,
+        MatTooltipModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        RouterLink,
+        MatOptionModule,
+        MatSelectModule,
+        MatMenuModule,
+        FooterModule,
+        MatTreeModule,
 
-  ]
+    ]
 })
 export class UsersManageModule {
 }

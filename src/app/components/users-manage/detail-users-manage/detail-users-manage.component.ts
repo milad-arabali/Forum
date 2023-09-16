@@ -33,6 +33,8 @@ export class DetailUsersManageComponent implements OnInit {
   date = moment().locale('fa');
   name: string;
   isAdmin: boolean[] = [true, false]
+  minDate:Date;
+  maxDate:Date;
   status = [
     {statusValue: 'Registered', viewValue: 'ثبت نام اولیه شده'},
     {statusValue: 'reject', viewValue: 'لغو شده'},
@@ -72,6 +74,8 @@ export class DetailUsersManageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.minDate = new Date(1990, 0, 1);
+    this.maxDate = new Date(2016,0,1);
     // this.userInformationServices.checkIsAdmin(this.cookie.get('users'))
     this.id = this.router.snapshot.params['id']
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {

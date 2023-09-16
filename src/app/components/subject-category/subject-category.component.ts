@@ -80,7 +80,11 @@ export class SubjectCategoryComponent implements OnInit  {
         verticalPosition: "top"
       })
     }else {
-      const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent, {})
+      const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent, {
+        data:{
+          id:this.activeNode.item.id
+        }
+      })
       dialogRef.afterClosed().subscribe(result => {
         setTimeout(()=>{
           this.loadTree()

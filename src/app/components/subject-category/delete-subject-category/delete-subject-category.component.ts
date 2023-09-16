@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
 import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {ApiService} from "../../../shared/services/api.service";
@@ -26,6 +26,7 @@ export class DeleteSubjectCategoryComponent implements OnInit {
               private http: HttpClient,
               private dialogRef: MatDialogRef<DeleteSubjectCategoryComponent>,
               private translate: TranslateService,
+              @Inject(MAT_DIALOG_DATA) private data
 
   ) {
     translate.addLangs(['fa', 'klingon']);
@@ -34,11 +35,11 @@ export class DeleteSubjectCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subjectCategoryService.deleteSubject.subscribe(
-      a => {
-        this.id = a
-      }
-    )
+    // this.subjectCategoryService.deleteSubject.subscribe(
+    //   a => {
+    //     this.id = a
+    //   }
+    // )
   }
   close() {
     this.dialogRef.close();
@@ -71,7 +72,7 @@ export class DeleteSubjectCategoryComponent implements OnInit {
           }
         })
     }, 100)
-    this.api.deleteSubjectCategory(this.id).subscribe(
+    this.api.deleteSubjectCategory(this.data.id).subscribe(
       a => {
         this.snack.open(this.translate.instant('snackbar.subject-delete-value'), "", {
           duration: 3000,

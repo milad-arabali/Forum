@@ -7,6 +7,7 @@ import {EditUserComponent} from "./components/user-panel/edit-user/edit-user.com
 import {ChangePasswordComponent} from "./components/user-panel/change-password/change-password.component";
 import {ResetPassWordComponent} from "./components/user-authentication/reset-pass-word/reset-pass-word.component";
 import {HomeComponent} from "./components/home/home.component";
+import {IsAdminGuard} from "./core/guard/is-admin.guard";
 
 
 const routes: Routes = [
@@ -17,18 +18,15 @@ const routes: Routes = [
   {path: 'home', canActivate: [AuthGuard], component: HomeComponent},
   {path: 'profile', component: EditUserComponent, canActivate: [AuthGuard]},
   {path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {
-    path: 'subject-category',
+  {path: 'subject-category',
     loadChildren: () => import('./components/subject-category/subject-category.module')
       .then(m => m.SubjectCategoryModule)
   },
-  {
-    path: 'subject',
+  {path: 'subject',
     loadChildren: () => import('./components/subject-manager/subject-manager.module')
       .then(m => m.SubjectManagerModule)
   },
-  {
-    path: 'users-mange',
+  {path: 'users-mange',
     loadChildren: () => import('./components/users-manage/users-manage.module')
       .then((m) => m.UsersManageModule)
   },

@@ -25,7 +25,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.userName' | translate }}</mat-label>
               <input type="text" matInput formControlName="userName"  [readonly]="formMode===2" >
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>person</mat-icon>
               <mat-error *ngIf="manageUsersForm.controls['userName'].invalid &&
               manageUsersForm.controls['userName'].hasError('minlength')">
                 {{'form.userNameChar-error' | translate }}
@@ -59,7 +59,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.name' | translate }}</mat-label>
               <input type="text" matInput formControlName="name"  [readonly]="formMode===2">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>people</mat-icon>
               <mat-error
                 *ngIf="manageUsersForm.controls['name'].invalid &&
                 manageUsersForm.controls['name'].hasError('pattern')">
@@ -77,7 +77,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode' | translate }}</mat-label>
               <input type="text" matInput formControlName="nationalCode"  [readonly]="formMode===2">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="manageUsersForm.controls['nationalCode'].invalid &&
               (manageUsersForm.controls['nationalCode'].hasError('minLength') ||
                manageUsersForm.controls['nationalCode'].hasError('maxLength'))">
@@ -96,7 +96,7 @@
           </div>
           <div  *ngIf="!(formMode===0 || formMode===1)">
             <span>{{'form.isAdmin' | translate }}</span>
-            <mat-radio-group class="mat-form" formControlName="isAdmin">
+            <mat-radio-group class="mat-form radio-group" formControlName="isAdmin">
               <mat-radio-button *ngFor="let isAdmin of isAdmin"
                                 [value]="isAdmin"
                                 [disabled]="formMode===2">{{isAdminUsersStatus(isAdmin)}}</mat-radio-button>
@@ -122,7 +122,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nameFamily' | translate }}</mat-label>
               <input type="text" matInput formControlName="nameFamily"  [readonly]="formMode===2">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>people_outline</mat-icon>
               <mat-error *ngIf="manageUsersForm.controls['nameFamily'].invalid &&
                manageUsersForm.controls['nameFamily'].hasError('pattern')">
                 {{'form.nameFamily-errorPattern'|translate}}
@@ -138,7 +138,7 @@
             <span>{{'form.DateOfBirth' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.DateOfBirth' | translate }}</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
+              <input matInput [matDatepicker]="picker" [max]="maxDate" [min]="minDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker [disabled]="formMode===2"></mat-datepicker>
@@ -161,7 +161,7 @@
   <mat-divider></mat-divider>
   <mat-card-footer>
     <div class="button">
-      <button mat-raised-button type="submit" color="primary" (click)="editSubjectCategory()"
+      <button mat-raised-button type="submit" color="primary" [disabled]="manageUsersForm.invalid" (click)="editSubjectCategory()"
               [hidden]="formMode===2">
         <span *ngIf="formMode===0"> {{'form.add-btn'|translate}}</span>
         <span *ngIf="formMode===1">

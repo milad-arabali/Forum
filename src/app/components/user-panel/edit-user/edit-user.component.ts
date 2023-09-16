@@ -21,6 +21,8 @@ export class EditUserComponent implements OnInit {
   form: FormGroup;
   gender: string[] = ['مرد', 'زن']
   a: boolean = true;
+  minDate:Date;
+  maxDate:Date;
 
   constructor(private route: ActivatedRoute,
               private Fb: FormBuilder,
@@ -32,6 +34,8 @@ export class EditUserComponent implements OnInit {
               private dateAdapter: DateAdapter<any>,
               private translate: TranslateService
   ) {
+    this.minDate = new Date(1990, 0, 1);
+    this.maxDate = new Date(2016,0,1);
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
     translate.use('fa');

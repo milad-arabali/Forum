@@ -26,6 +26,7 @@
           <div>
             <span>{{'form.filter-subject-category'|translate}}</span>
             <mat-form-field class="mat-form">
+
               <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
               <input type="text" matInput formControlName="parentTitle" [readonly]="true">
               <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>
@@ -34,13 +35,14 @@
           <div>
             <span>{{'form.filter-subject-creatorUser'|translate}} </span>
             <mat-form-field class="mat-form">
+              <mat-icon matSuffix>account_box</mat-icon>
               <mat-label>{{'form.filter-subject-creatorUser'|translate}}</mat-label>
               <input type="text" matInput formControlName="creatorUser">
             </mat-form-field>
           </div>
           <div>
             <span>{{'form.status'|translate}}</span>
-            <mat-radio-group class="mat-form" formControlName="status">
+            <mat-radio-group class="mat-form radio-group" formControlName="status">
               <mat-radio-button value="true">
                 {{'form.status-true'|translate}}</mat-radio-button>
               <mat-radio-button value="false">
@@ -54,6 +56,7 @@
           <div>
             <span>{{'form.title'|translate}}</span>
             <mat-form-field class="mat-form">
+              <mat-icon matSuffix>description</mat-icon>
               <mat-label>{{'form.title'|translate}}</mat-label>
               <input type="text" matInput formControlName="title">
               <!--              <mat-icon matSuffix>mode_edit</mat-icon>-->
@@ -75,7 +78,7 @@
             </mat-form-field>
           </div>
 
-          <div>
+          <div >
             <div class="button">
               <button mat-raised-button type="submit" color="primary" (click)="formReset()">
                 {{'form.clean-btn'|translate}}

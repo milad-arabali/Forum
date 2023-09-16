@@ -14,7 +14,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.userName'|translate}}</mat-label>
               <input type="text" matInput formControlName="userName" [readonly]="true">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
           </div>
           <div>
@@ -22,7 +22,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.name'|translate}}</mat-label>
               <input type="text" matInput formControlName="name">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>people</mat-icon>
               <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
                 {{'form.user-errorPattern'|translate}}
               </mat-error>
@@ -33,7 +33,7 @@
           </div>
           <div>
             <span>{{'form.gender'|translate}}</span>
-            <mat-radio-group class="mat-form" formControlName="gender">
+            <mat-radio-group class="mat-form radio-group" formControlName="gender">
               <mat-radio-button *ngFor="let gender of gender" [value]="gender">{{gender}}</mat-radio-button>
             </mat-radio-group>
           </div>
@@ -46,7 +46,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode'|translate}}</mat-label>
               <input type="text" matInput formControlName="nationalCode">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
                form.controls['nationalCode'].hasError('maxLength'))">
@@ -67,7 +67,7 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nameFamily'|translate}}</mat-label>
               <input type="text" matInput formControlName="nameFamily">
-              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-icon matSuffix>people_outline</mat-icon>
               <mat-error *ngIf="form.controls['nameFamily'].hasError('pattern')">
                 {{'form.nameFamily-errorPattern'|translate}}
               </mat-error>
@@ -80,7 +80,7 @@
             <span>  {{'form.DateOfBirth'|translate}}</span>
             <mat-form-field class="mat-form">
               <mat-label> {{'form.DateOfBirth'|translate}}</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="DateOfBirth" [readonly]="true">
+              <input matInput [matDatepicker]="picker" [max]="maxDate" [min]="minDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>

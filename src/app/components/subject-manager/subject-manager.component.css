@@ -118,8 +118,15 @@
   color: #000000;
 
 }
+.radio-group{
+  display: flex;
+  justify-content: flex-start;
+}
+.manageButton{
+  display: flex;
+  justify-content: flex-end;
+}
 .button button{
-
   margin: 10px 10px;
   font-family: BYekan;
   font-weight: bold;
@@ -132,7 +139,7 @@
 .button{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .filterList{
   margin-right: 30px;
