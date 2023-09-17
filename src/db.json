@@ -31,7 +31,7 @@
       "nameFamily": "حسینی",
       "nationalCode": "1234567891",
       "gender": "مرد",
-      "DateOfBirth": "1402/06/19",
+      "DateOfBirth": "2015-12-31T20:30:00.000Z",
       "isAdmin": true,
       "status": "confirm",
       "id": 13
@@ -85,53 +85,7 @@
       "id": 17
     }
   ],
-  "subject-category": [
-    {
-      "title": "تست 1",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Sat Sep 16 2023 21:48:04 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 1
-    },
-    {
-      "title": "تست 2",
-      "parentId": 4,
-      "status": true,
-      "createDateTime": "Sat Sep 16 2023 21:51:02 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 2
-    },
-    {
-      "title": "تست 3",
-      "parentId": 2,
-      "status": true,
-      "createDateTime": "Sat Sep 16 2023 21:49:14 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 3
-    },
-    {
-      "title": "تست 4",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Sat Sep 16 2023 21:48:42 GMT+0330 (Iran Standard Time)",
-      "hasChild": true,
-      "priority": 1,
-      "id": 4
-    },
-    {
-      "title": "تست 5",
-      "parentId": -1,
-      "status": true,
-      "createDateTime": "Sat Sep 16 2023 21:48:47 GMT+0330 (Iran Standard Time)",
-      "hasChild": false,
-      "priority": 1,
-      "id": 5
-    }
-  ],
+  "subject-category": [],
   "subject": [
     {
       "title": "تست 1",
@@ -159,6 +113,42 @@
       "status": true,
       "createDateTime": "1402/06/19",
       "id": 26
+    },
+    {
+      "title": "1212",
+      "parentId": 5,
+      "categoryTitle": "تست 5",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "1402/06/26",
+      "id": 27
+    },
+    {
+      "title": "1212",
+      "parentId": 5,
+      "categoryTitle": "تست 5",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "1402/06/26",
+      "id": 29
+    },
+    {
+      "title": "wwww",
+      "parentId": 5,
+      "categoryTitle": "تست 5",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "1402/06/26",
+      "id": 30
+    },
+    {
+      "title": "32323",
+      "parentId": 5,
+      "categoryTitle": "تست 5",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "1402/06/26",
+      "id": 31
     }
   ]
 }

@@ -90,7 +90,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator;
     }, 100)
     this.sourceTable()
-
+    this.checkAdmin()
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -195,7 +195,19 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     this.currentPage = event.pageIndex;
     this.sourceTable();
   }
-
+  checkAdmin() {
+    let isAdmin;
+    this.api.getIsAdmin(this.cookie.get('users')).subscribe(
+      value => {
+        isAdmin = value[0].isAdmin
+        if (isAdmin) {
+          console.log("true")
+        } else {
+          this.route.navigate(['/home'])
+        }
+      }
+    )
+  }
   getPageSizeOptions(): number[] {
     if (this.dataSource.data.length > this.maxall) {
       return [3, 5, this.dataSource.data.length];

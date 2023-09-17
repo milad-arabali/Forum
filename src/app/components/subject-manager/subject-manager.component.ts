@@ -11,9 +11,9 @@ import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {DeleteSubjectComponent} from "./delete-subject/delete-subject.component";
 import {CdkDragDrop, CdkDragStart, CdkDropList, moveItemInArray} from "@angular/cdk/drag-drop";
 import {TranslateService} from "@ngx-translate/core";
-
-
-
+import {Router} from "@angular/router";
+import {ApiService} from "../../shared/services/api.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -21,7 +21,7 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './subject-manager.component.html',
   styleUrls: ['./subject-manager.component.css']
 })
-export class SubjectManagerComponent implements AfterViewInit,OnInit {
+export class SubjectManagerComponent implements AfterViewInit, OnInit {
   form: FormGroup;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -34,13 +34,16 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   pageSize = 0;
   currentPage = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  maxall=100;
+  maxall = 100;
 
   constructor(private Fb: FormBuilder,
               private dialog: MatDialog,
               private dateAdapter: DateAdapter<any>,
               public subject: SubjectService,
-              private translate:TranslateService
+              private translate: TranslateService,
+              private router: Router,
+              private api: ApiService,
+              private cookie: CookieService
   ) {
     this.form = this.Fb.group({
       title: [, [Validators.required, Validators.maxLength(255),
@@ -55,22 +58,24 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
 
   ngOnInit() {
-    setTimeout(()=>{
+    setTimeout(() => {
       this.sourceTable()
       this.dataSource.paginator = this.paginator;
-    },100)
+    }, 100)
 
-
+    this.checkAdmin()
 
   }
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
   }
+
   sourceTable() {
     this.isLoading = true;
-    this.subject.sorting(this.paginator.pageIndex+1,this.paginator.pageSize).subscribe(
+    this.subject.sorting(this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe(
       (res) => {
         this.dataSource.data = res;
         this.isLoading = false;
@@ -82,6 +87,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       () => console.log('done a lot  with news!')
     );
   }
+
   selectCategory() {
     const dialogRef = this.dialog.open(SelectSubjectComponent)
     dialogRef.afterClosed().subscribe(result => {
@@ -89,10 +95,12 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       this.form.controls['parentTitle'].setValue(result.title)
     })
   }
+
   formReset() {
     this.form.reset()
     this.sourceTable()
   }
+
   searchObject() {
     let time = this.form.controls['createDateTime'].value
     // console.log(this.form.getRawValue())
@@ -141,11 +149,26 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
+
+  checkAdmin() {
+    let isAdmin;
+    this.api.getIsAdmin(this.cookie.get('users')).subscribe(
+      value => {
+        isAdmin = value[0].isAdmin
+        if (isAdmin) {
+          console.log("true")
+        } else {
+          this.router.navigate(['/home'])
+        }
+      }
+    )
+  }
+
   deleteSubject(id: number) {
 
     const dialogRef = this.dialog.open(DeleteSubjectComponent, {
-      data:{
-        id:id
+      data: {
+        id: id
       }
     })
     dialogRef.afterClosed().subscribe(result => {
@@ -153,6 +176,7 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
       }
     )
   }
+
   changeStatusTitle(title: boolean) {
     if (title) {
       return this.translate.instant('form.status-true')
@@ -162,11 +186,12 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log({ event });
+    console.log({event});
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.sourceTable();
   }
+
   getPageSizeOptions(): number[] {
     if (this.dataSource.data.length > this.maxall) {
       return [3, 5, this.dataSource.data.length];
@@ -176,9 +201,9 @@ export class SubjectManagerComponent implements AfterViewInit,OnInit {
   }
 
   sortData(event: Sort) {
-    this.subject.sortingCell(event.active,event.direction).subscribe(
+    this.subject.sortingCell(event.active, event.direction).subscribe(
       value => {
-        this.dataSource.data=value
+        this.dataSource.data = value
       }
     )
   }

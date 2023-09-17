@@ -29,7 +29,10 @@ export class ForumComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.forumServices.findSubject(result.id).subscribe(
         value => {
-          this.subjectManager=value
+          if(value[0].status===true){
+            this.subjectManager=value
+          }
+
         }
       )
      this.categoryTitle=result.title

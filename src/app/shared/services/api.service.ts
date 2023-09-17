@@ -20,7 +20,7 @@ export class ApiService {
     return this.httpClient.patch<UserAccountInformationModel>(`${this.apiUrl}/${id}`,registerObj)
   }
   getIsAdmin(name:String){
-    return this.httpClient.get<UserAccountInformationModel>(`http://localhost:3000/enquiry?userName=`+ `${name}`)
+    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?userName=`+ `${name}`)
   }
   getUserInformation(id:number){
     return this.httpClient.get<UserAccountInformationModel>(`${this.apiUrl}/${id}`)
@@ -36,6 +36,9 @@ export class ApiService {
   }
   updateSubjectCategory(registerObj: SubjectCategoryModel, id : number){
     return this.httpClient.patch<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`,registerObj)
+  }
+  changeHasChild(id : number, body:any){
+    return this.httpClient.patch(`${this.apiUrlSubjectCategory}/${id}`,body)
   }
   deleteSubjectCategory(id : number){
     return this.httpClient.delete<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`)

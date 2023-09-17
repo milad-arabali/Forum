@@ -9,6 +9,8 @@ import {DeleteSubjectCategoryComponent} from "./delete-subject-category/delete-s
 import {MatMenuTrigger} from "@angular/material/menu";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
+import {ApiService} from "../../shared/services/api.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-subject-category-module',
@@ -32,7 +34,9 @@ export class SubjectCategoryComponent implements OnInit  {
               private router: Router,
               private dialog: MatDialog,
               private snack:MatSnackBar,
-              private translate:TranslateService) {
+              private translate:TranslateService,
+              private api:ApiService,
+              private cookie:CookieService) {
     this.treeControl = new FlatTreeControl<SubjectCategoryFlatNodeModel>(this.getLevel, this.isExpandable);
     this.dataSource = new SubjectCategoryDataSource(this.treeControl, subjectCategoryService);
   }
@@ -42,6 +46,7 @@ export class SubjectCategoryComponent implements OnInit  {
     this.subjectCategoryService.selectParentId$.next(0)
     this.id=0;
     this.contextmenu=true;
+    this.checkAdmin()
   }
 
   /**
@@ -71,7 +76,19 @@ export class SubjectCategoryComponent implements OnInit  {
       });
 
   }
-
+  checkAdmin() {
+    let isAdmin;
+    this.api.getIsAdmin(this.cookie.get('users')).subscribe(
+      value => {
+        isAdmin = value[0].isAdmin
+        if (isAdmin) {
+          console.log("true")
+        } else {
+          this.router.navigate(['/home'])
+        }
+      }
+    )
+  }
   deleteSubject()  {
     if (this.activeNode.item.hasChild === true) {
       this.snack.open(this.translate.instant('snackbar.child-value-error'), "", {

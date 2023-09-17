@@ -16,6 +16,7 @@
     "guide": "راهنما"
   },
   "form": {
+    "usersName-error":"نام کاربری نامعتیر است.",
     "select-category": " انتخاب دسته بندی موضوع",
     "forum": "تالارگفتمان",
     "female": "زن",

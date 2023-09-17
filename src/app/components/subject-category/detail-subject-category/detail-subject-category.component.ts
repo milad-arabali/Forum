@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
 import {TranslateService} from "@ngx-translate/core";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -34,7 +35,8 @@ export class DetailSubjectCategoryComponent implements OnInit {
               private dialog: MatDialog,
               private route: Router,
               private activateRoute: ActivatedRoute,
-              private translate:TranslateService) {
+              private translate:TranslateService,
+              private cookie:CookieService) {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255),
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
@@ -50,6 +52,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.router.snapshot.params['id']
+    this.checkAdmin()
     this.api.getSubjectCategory(this.id).subscribe(
       value => {
         this.currentParentId = value.parentId
@@ -131,7 +134,19 @@ export class DetailSubjectCategoryComponent implements OnInit {
         }
       })
   }
-
+  checkAdmin() {
+    let isAdmin;
+    this.api.getIsAdmin(this.cookie.get('users')).subscribe(
+      value => {
+        isAdmin = value[0].isAdmin
+        if (isAdmin) {
+          console.log("true")
+        } else {
+          this.route.navigate(['/home'])
+        }
+      }
+    )
+  }
   editSubjectCategory() {
     if (this.formMode === FormMode.ADD) {
       if (this.form.controls['parentId'].value !== -1) {
