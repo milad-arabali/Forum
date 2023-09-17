@@ -24,6 +24,7 @@ export class SubjectCategoryComponent implements OnInit  {
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
   activeNode: SubjectCategoryFlatNodeModel;
+  statusSubject:Boolean;
   getLevel = (node: SubjectCategoryFlatNodeModel) => node.level;
   isExpandable = (node: SubjectCategoryFlatNodeModel) => true;
   hasChild = (_: number, _nodeData: SubjectCategoryFlatNodeModel) => _nodeData.item.hasChild;
@@ -56,26 +57,35 @@ export class SubjectCategoryComponent implements OnInit  {
   selectNode(node: SubjectCategoryFlatNodeModel) {
     if (this.activeNode && this.activeNode.item.id === node.item.id) {
       this.activeNode = undefined;
-      this.subjectCategoryService.deleteSubject.next(0)
+      // this.subjectCategoryService.deleteSubject.next(0)
       this.showButton=true;
       this.id =0
       this.contextmenu=true;
     } else {
       this.activeNode = node;
       this.showButton=false;
-      this.subjectCategoryService.deleteSubject.next(node.item.id)
+      // this.subjectCategoryService.deleteSubject.next(node.item.id)
       this.id = node.item.id
       this.contextmenu=false;
     }
   }
   loadTree() {
-
       this.subjectCategoryService.findByParentId(-1).subscribe(result => {
         this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
         (item, 0, true, false));
       });
+    this.subjectCategoryService.checkId().subscribe(
+      value =>{
+        let d = value.find((a)=>a.status === true)
+        if(d){
+          this.statusSubject=true
+        }
+      }
+
+    )
 
   }
+
   checkAdmin() {
     let isAdmin;
     this.api.getIsAdmin(this.cookie.get('users')).subscribe(

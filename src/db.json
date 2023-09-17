@@ -85,7 +85,35 @@
       "id": 17
     }
   ],
-  "subject-category": [],
+  "subject-category": [
+    {
+      "title": "تست 1",
+      "parentId": -1,
+      "status": false,
+      "createDateTime": "Sun Sep 17 2023 21:48:31 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 1,
+      "id": 1
+    },
+    {
+      "title": "تست 2",
+      "parentId": -1,
+      "status": true,
+      "createDateTime": "Sun Sep 17 2023 21:48:45 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 1,
+      "id": 2
+    },
+    {
+      "title": "s",
+      "parentId": -1,
+      "status": true,
+      "createDateTime": "Sun Sep 17 2023 21:52:10 GMT+0330 (Iran Standard Time)",
+      "hasChild": false,
+      "priority": 1,
+      "id": 3
+    }
+  ],
   "subject": [
     {
       "title": "تست 1",
