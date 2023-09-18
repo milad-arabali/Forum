@@ -14,6 +14,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {Router} from "@angular/router";
 import {ApiService} from "../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -43,7 +44,8 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
               private translate: TranslateService,
               private router: Router,
               private api: ApiService,
-              private cookie: CookieService
+              private cookie: CookieService,
+              private snack:MatSnackBar
   ) {
     this.form = this.Fb.group({
       title: [, [Validators.required, Validators.maxLength(255),
@@ -93,6 +95,17 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['parentTitle'].setValue(result.title)
+      this.api.getSubjectCategory(result.id).subscribe(
+        value => {
+          if (value.status === false) {
+            this.snack.open(this.translate.instant('form.category-parent-status'), "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            })
+            this.form.controls['parentTitle'].setValue('')
+          }
+        })
     })
   }
 

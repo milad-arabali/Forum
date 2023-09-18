@@ -4,6 +4,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {ForumService} from "./shared/services/forum.service";
 import {TranslateService} from "@ngx-translate/core";
+import {ApiService} from "../../shared/services/api.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-forum',
@@ -17,7 +19,9 @@ export class ForumComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               private forumServices: ForumService,
-              private translate:TranslateService) {
+              private translate:TranslateService,
+              private api:ApiService,
+              private snack:MatSnackBar) {
   }
 
   ngOnInit() {
@@ -27,15 +31,28 @@ export class ForumComponent implements OnInit {
   selectCategory() {
     const dialogRef = this.dialog.open(SelectSubjectComponent)
     dialogRef.afterClosed().subscribe(result => {
-      this.forumServices.findSubject(result.id).subscribe(
+      this.api.getSubjectCategory(result.id).subscribe(
         value => {
-          if(value[0].status===true){
-            this.subjectManager=value
-          }
+          if (value.status === false) {
+            this.snack.open(this.translate.instant('form.category-parent-status'), "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            })
+            this.categoryTitle=''
+          }else {
+            this.forumServices.findSubject(result.id).subscribe(
+              value => {
+                if(value[0].status===true){
+                  this.subjectManager=value
+                }
 
-        }
-      )
-     this.categoryTitle=result.title
+              }
+            )
+            this.categoryTitle=result.title
+          }
+        })
+
     })
   }
   changeStatusTitle(title: boolean) {

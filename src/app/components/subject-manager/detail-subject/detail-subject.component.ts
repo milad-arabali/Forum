@@ -147,6 +147,17 @@ export class DetailSubjectComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
       this.form.controls['categoryTitle'].setValue(result.title)
+      this.api.getSubjectCategory(result.id).subscribe(
+        value => {
+          if (value.status === false) {
+            this.snack.open(this.translate.instant('form.category-parent-status'), "", {
+              duration: 3000,
+              horizontalPosition: "end",
+              verticalPosition: "top"
+            })
+            this.form.controls['categoryTitle'].setValue('')
+          }
+        })
     })
   }
 }
