@@ -29,25 +29,31 @@
   <mat-card-content>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="menu-tree">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding=""
-                     (contextmenu)="onContextMenu($event, node)" >
-        <button mat-flat-button (click)="selectNode(node)"
+                     (contextmenu)="onContextMenu($event, node)">
+        <button mat-flat-button (click)="selectNode(node)" (mouseenter)="buttintoggle(node.item.id)"
                 [color]="activeNode === node ? 'primary' : ''">
-          <span class="iransans" [ngStyle]="{'color': statusSubject ? 'red' : ''}">{{node.item.title}}</span>
+
+          <span  [style.color]="node.item.status === false ? 'red' : ''" class="iransans">{{node.item.title}}</span>
+
         </button>
       </mat-tree-node>
       <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding
                      (contextmenu)="onContextMenu($event, node)"
-                    >
+      >
         <div class="mat-tree-node">
           <button [attr.aria-label]="'Toggle ' + node.item.title" mat-icon-button
                   matTreeNodeToggle>
-            <mat-icon class="mat-icon-rtl-mirror" >
+            <mat-icon class="mat-icon-rtl-mirror">
               {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
           </button>
-          <button mat-flat-button (click)="selectNode(node)"
+          <button mat-flat-button (click)="selectNode(node)" (mouseenter)="buttintoggle(node.item.id)"
                   [color]="activeNode === node ? 'primary' : ''">
-            <span class="iransans">{{node.item.title}} </span>
+
+            <span [style.color]="node.item.status === false ? 'red' : ''"
+                  class="iransans">{{node.item.title}} </span>
+
+
           </button>
         </div>
         <mat-progress-bar *ngIf="node.isLoading"

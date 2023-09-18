@@ -44,7 +44,7 @@ export class SubjectCategoryComponent implements OnInit  {
 
   ngOnInit() {
     this.loadTree()
-    this.subjectCategoryService.selectParentId$.next(0)
+    // this.subjectCategoryService.selectParentId$.next(0)
     this.id=0;
     this.contextmenu=true;
     this.checkAdmin()
@@ -70,20 +70,10 @@ export class SubjectCategoryComponent implements OnInit  {
     }
   }
   loadTree() {
-      this.subjectCategoryService.findByParentId(-1).subscribe(result => {
-        this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
-        (item, 0, true, false));
-      });
-    this.subjectCategoryService.checkId().subscribe(
-      value =>{
-        let d = value.find((a)=>a.status === true)
-        if(d){
-          this.statusSubject=true
-        }
-      }
-
-    )
-
+    this.subjectCategoryService.findByParentId(-1).subscribe(result => {
+      this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
+      (item, 0, true, false));
+    });
   }
 
   checkAdmin() {
@@ -134,5 +124,8 @@ export class SubjectCategoryComponent implements OnInit  {
     }else {
       this.router.navigate(['/subject-category/add'])
     }
+  }
+  buttintoggle(id:number) {
+    console.log("terererer",id);
   }
 }
