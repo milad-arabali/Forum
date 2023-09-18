@@ -53,10 +53,10 @@ export class DetailSubjectCategoryComponent implements OnInit {
   ngOnInit() {
     this.id = this.router.snapshot.params['id']
     this.checkAdmin()
-    // this.api.getSubjectCategory(this.id).subscribe(
-    //   value => {
-    //     this.currentParentId = value.parentId
-    //   })
+    this.api.getSubjectCategory(this.id).subscribe(
+      value => {
+        this.currentParentId = value.parentId
+      })
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
       if (url[1].path === 'add') {
         // console.log("url[2].path", url[2].path)
@@ -205,8 +205,60 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.route.navigate(['/subject-category'])
   }
   editSubject(){
+    this.form.removeControl('parentTitle')
+    this.form.removeControl('currentParentId')
 
+    let editSubject=new SubjectCategoryModel()
+    editSubject= this.form.getRawValue()
+    this.api.addSubjectCategory(editSubject)
+      .subscribe()
+
+    let hasChild = new SubjectCategoryModel();
+    hasChild.hasChild = true;
+    this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].value).subscribe()
+    this.api.getAllSubjectCategory().subscribe(
+      value => {
+        const category= value.find((a:any)=>{
+          return a.parentId=== this.currentParentId
+        })
+        if(!category){
+          let hasChild = new SubjectCategoryModel();
+          hasChild.hasChild = false;
+          this.api.updateSubjectCategory(hasChild,this.currentParentId)
+        }
+      }
+    )
+    this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
+      duration: 3000,
+      horizontalPosition: "end",
+      verticalPosition: "top"
+    })
+    this.route.navigate(['/subject-category'])
   }
+
+
+
+//   onArticleEdit(){
+//     this.treeService.editArticle(this.currentNode ,this.articleForm.value)
+//       .subscribe()
+//     this.treeService.changeHasChild(this.articleForm.controls['parentId'].value , { hasChild : true} )
+//       .subscribe()
+//     this.articleCategoryService.getArticlList()
+//       .subscribe(result =>{
+//         const article = result.find((a : any) => {
+//           return a.parentId === this.currentParentId
+//         })
+//         if (!article){
+//           this.treeService.changeHasChild(this.currentParentId , {hasChild : false})
+//             .subscribe()
+//         }
+//       })
+//     this.router.navigate(['/article-category']).then()
+//     this.snackBar.open(this.translate.instant('successful-edit') , '' ,{duration : 2000 , panelClass : ['p']})
+//
+//   }
+// }
+
 
 
   // editSubjectCategory() {

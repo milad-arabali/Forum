@@ -11,6 +11,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
 import {ApiService} from "../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
+import * as events from "events";
 
 @Component({
   selector: 'app-subject-category-module',
@@ -125,7 +126,10 @@ export class SubjectCategoryComponent implements OnInit  {
       this.router.navigate(['/subject-category/add'])
     }
   }
-  buttintoggle(id:number) {
-    console.log("terererer",id);
+  buttintoggle(event,id:number) {
+    // if(){
+    //   console.log("dsdsd",id);
+    // }
+
   }
 }
