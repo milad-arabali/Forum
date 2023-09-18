@@ -130,6 +130,6 @@ export class SubjectCategoryComponent implements OnInit  {
     // if(){
     //   console.log("dsdsd",id);
     // }
-  //s
+  
   }
 }
