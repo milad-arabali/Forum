@@ -25,7 +25,8 @@
             <mat-form-field class="mat-form" >
               <mat-label> {{'form.parent'|translate}}</mat-label>
               <input type="text" matInput  formControlName="parentTitle"[readonly]="true">
-              <mat-icon matSuffix (click)="this.form.controls['parentTitle'].reset()" style="cursor: pointer" *ngIf="formMode!==2" >clear</mat-icon>
+              <mat-icon matSuffix (click)="deleteParentInput()" style="cursor: pointer"
+                        *ngIf="(this.form.controls['parentTitle'].value && formMode!==2)" >delete</mat-icon>
               <mat-icon matSuffix (click)="selectParent()" style="cursor: pointer" *ngIf="formMode!==2" >mode_edit</mat-icon>
               <mat-error *ngIf="form.controls['parentId'].invalid &&
                  form.controls['parentId'].hasError('required')">
@@ -67,7 +68,7 @@
               </mat-error>
               <mat-error *ngIf="form.controls['title'].invalid &&
                 form.controls['title'].hasError('pattern')">
-               {{'form.title-error-pattern'|translate}}
+                {{'form.title-error-pattern'|translate}}
               </mat-error>
             </mat-form-field>
           </div>

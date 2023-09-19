@@ -133,6 +133,7 @@
     "isNotAdmin": "انفصال از مدیریت"
   },
   "snackbar": {
+    "page-error": "آدرس صفحه مورد نظر اشتباه است.",
     "subject-manager-value-error": "موضوع مورد نظر وجود ندارد.",
     "subject-value-error": "دسته بندی مورد نظر وجود ندارد.",
     "subject-manager-save-value": "موضوع موردنظر با موفقیت ذخیره شد.",

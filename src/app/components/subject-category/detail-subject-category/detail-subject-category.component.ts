@@ -1,15 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
-import {SubjectCategoryService} from "../shared/services/subject-category.service";
-import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
 import {HttpClient} from "@angular/common/http";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ApiService} from "../../../shared/services/api.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
+import {TranslateService} from "@ngx-translate/core";
+import {DateAdapter} from "@angular/material/core";
+import {TreeSubjectService} from "../shared/services/tree-subject.service";
+import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
-import {TranslateService} from "@ngx-translate/core";
+import {SubjectCategoryModel} from "../../../shared/model/subject-category.model";
+import {ApiService} from "../../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
 
 
@@ -29,6 +31,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
               private subjectCategoryService: SubjectCategoryService,
+              private treeService: TreeSubjectService,
               private fb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
@@ -37,12 +40,41 @@ export class DetailSubjectCategoryComponent implements OnInit {
               private activateRoute: ActivatedRoute,
               private translate: TranslateService,
               private cookie: CookieService) {
+
+    this.id = this.router.snapshot.params['id']
+    this.checkAdmin()
+    this.activateRoute.url.subscribe((url: UrlSegment[]) => {
+      if (url[1].path === 'add') {
+        // console.log("url[2].path", url[2].path)
+        this.formMode = FormMode.ADD;
+        if (url[2].path) {
+          this.checkSubject(Number(url[2].path))
+          this.api.getSubjectCategory(this.id).subscribe(
+            value => {
+              if (value.status === false) {
+                this.snack.open(this.translate.instant('form.category-parent-error'), "", {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top"
+                })
+                this.route.navigate(['/subject-category'])
+              }
+            }
+          )
+        }
+      } else if (url[1].path === 'edit') {
+        this.checkSubject(Number(url[2].path))
+        this.formMode = FormMode.EDIT;
+      } else if (url[1].path === this.id.toString()) {
+        this.formMode = FormMode.VIEW;
+        this.checkSubject(Number(url[1].path))
+      }
+    })
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255),
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
       parentId: [-1],
       parentTitle: [''],
-      currentParentId: [],
       status: [true, Validators.required],
       createDateTime: [Date()],
       hasChild: [false],
@@ -51,85 +83,52 @@ export class DetailSubjectCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = this.router.snapshot.params['id']
-    this.checkAdmin()
-    this.api.getSubjectCategory(this.id).subscribe(
-      value => {
-        this.currentParentId = value.parentId
-      })
-    this.activateRoute.url.subscribe((url: UrlSegment[]) => {
-      if (url[1].path === 'add') {
-        // console.log("url[2].path", url[2].path)
-        this.formMode = FormMode.ADD;
-        this.checkSubject(Number(url[2].path))
-        this.api.getSubjectCategory(this.id).subscribe(
-          value => {
-            if (value.status === false) {
-              this.snack.open(this.translate.instant('form.category-parent-error'), "", {
-                duration: 3000,
-                horizontalPosition: "end",
-                verticalPosition: "top"
-              })
-              this.route.navigate(['/subject-category'])
-            } else {
-              if (this.id > 0) {
-                this.api.getSubjectCategory(this.id).subscribe(
-                  value => {
-                    this.form.controls['parentId'].setValue(value.id)
-                    this.form.controls['parentTitle'].setValue(value.title)
-                    this.currentParentId = value.id
-                  })
 
-              }
-            }
-          }
-        )
+    if (this.formMode === 2 || this.formMode === 1) {
+      this.subjectCategoryService.getSubjectByID(this.id)
+        .subscribe(value => {
+          this.currentParentId = value.parentId
+          this.form.setValue({
+            title: value.title,
+            parentId: value.parentId,
+            parentTitle: '',
+            status: value.status,
+            createDateTime: '',
+            hasChild: value.hasChild,
+            priority: value.priority,
 
-      } else if (url[1].path === 'edit') {
-        this.checkSubject(Number(url[2].path))
-        this.api.getSubjectCategory(this.id).subscribe(
-          value => {
-            // console.log(value.id)
-            this.form.controls['title'].setValue(value.title)
-            this.form.controls['priority'].setValue(value.priority)
-            this.form.controls['status'].setValue(value.status)
-            this.form.controls['currentParentId'].setValue(value.parentId)
-            // this.parentId = value.parentId
-            if (value.parentId !== -1) {
-              this.api.getSubjectCategory(value.parentId).subscribe(
-                res => {
-                  this.form.controls['parentTitle'].setValue(res.title)
-                  this.form.controls['parentId'].setValue(res.id)
-                }
-              )
-              // this.form.controls['parentTitle'].setValue(value.title)
-            } else {
+          })
+        })
+      setTimeout(() => {
+        if (this.currentParentId === -1) {
+          this.form.controls['parentTitle'].setValue('')
 
-            }
-          }
-        )
-        this.formMode = FormMode.EDIT;
-      } else if (url[1].path === this.id.toString()) {
-        this.formMode = FormMode.VIEW;
-        this.checkSubject(Number(url[1].path))
-        this.api.getSubjectCategory(this.id).subscribe(
-          value => {
-            this.form.controls['title'].setValue(value.title)
-            this.form.controls['priority'].setValue(value.priority)
-            this.form.controls['status'].setValue(value.status)
-            if (value.parentId === -1) {
-              this.form.controls['parentTitle'].setValue(value.title)
-            } else {
-              this.api.getSubjectCategory(value.parentId).subscribe(
-                res => {
-                  this.form.controls['parentTitle'].setValue(res.title)
-                }
-              )
-            }
-          }
-        )
-      }
-    })
+        } else {
+          this.subjectCategoryService.getSubjectByID(this.currentParentId)
+            .subscribe(result => {
+              this.form.controls['parentTitle'].setValue(result.title)
+            })
+        }
+      }, 100)
+
+    } else if (this.formMode === 0) {
+      this.subjectCategoryService.getSubjectByID(this.id)
+        .subscribe(value => {
+          this.currentParentId = value.parentId
+          this.form.controls['parentId'].setValue(value.id)
+        })
+      setTimeout(() => {
+        if (this.currentParentId === -1) {
+          this.form.controls['parentTitle'].setValue('')
+
+        } else {
+          this.subjectCategoryService.getSubjectByID(this.currentParentId)
+            .subscribe(result => {
+              this.form.controls['parentTitle'].setValue(result.title)
+            })
+        }
+      }, 100)
+    }
   }
 
   checkSubject(url: number) {
@@ -164,71 +163,32 @@ export class DetailSubjectCategoryComponent implements OnInit {
     )
   }
 
-  addSubject(){
-    if (this.form.controls['parentId'].value === -1){
-      this.form.removeControl('parentTitle')
-      this.form.removeControl('currentParentId')
-      this.form.controls['hasChild'].setValue(false)
-
-      let addSubject=new SubjectCategoryModel()
-      addSubject= this.form.getRawValue()
-      this.api.addSubjectCategory(addSubject)
-        .subscribe(
-          res => {
-            this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
-              duration: 3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
-            })
-          }
-        )
-    }else {
-      this.form.removeControl('parentTitle')
-      this.form.removeControl('currentParentId')
-      let hasChild = new SubjectCategoryModel();
-      hasChild.hasChild = true;
-      this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].value).subscribe()
-      let addSubject=new SubjectCategoryModel()
-      addSubject= this.form.getRawValue()
-      this.api.addSubjectCategory(addSubject)
-        .subscribe(
-          res => {
-            this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
-              duration: 3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
-            })
-          })
-
-
-    }
-    this.route.navigate(['/subject-category'])
-  }
-  editSubject(){
-    this.form.removeControl('parentTitle')
-    this.form.removeControl('currentParentId')
-
-    let editSubject=new SubjectCategoryModel()
-    editSubject= this.form.getRawValue()
-    this.api.addSubjectCategory(editSubject)
-      .subscribe()
-
-    let hasChild = new SubjectCategoryModel();
-    hasChild.hasChild = true;
-    this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].value).subscribe()
-    this.api.getAllSubjectCategory().subscribe(
-      value => {
-        const category= value.find((a:any)=>{
-          return a.parentId=== this.currentParentId
+  addSubject() {
+    if (this.form.controls['parentId'].value === -1) {
+      this.treeService.addSubject(
+        {
+          parentId: -1,
+          title: this.form.controls['title'].value,
+          createDateTime: new Date().toDateString(),
+          status: this.form.controls['status'].value,
+          priority: this.form.controls['priority'].value,
+          hasChild: false
         })
-        if(!category){
-          let hasChild = new SubjectCategoryModel();
-          hasChild.hasChild = false;
-          this.api.updateSubjectCategory(hasChild,this.currentParentId)
-        }
-      }
-    )
-    this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
+        .subscribe()
+    } else {
+      this.treeService.addSubject({
+        parentId: this.form.controls['parentId'].value,
+        title: this.form.controls['title'].value,
+        createDateTime: new Date().toDateString(),
+        status: this.form.controls['status'].value,
+        priority: this.form.controls['priority'].value,
+        hasChild: false
+      })
+        .subscribe()
+    }
+    this.treeService.changeHasChild(this.form.controls['parentId'].value, {hasChild: true})
+      .subscribe()
+    this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
       duration: 3000,
       horizontalPosition: "end",
       verticalPosition: "top"
@@ -236,6 +196,44 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.route.navigate(['/subject-category'])
   }
 
+  editSubject() {
+    if (this.form.controls['parentId'].value === -1){
+      this.treeService.editSubject(this.id ,
+        {
+          parentId : -1 ,
+          title : this.form.controls['title'].value,
+          status : this.form.controls['status'].value,
+          priority : this.form.controls['priority'].value
+        })
+        .subscribe()
+    }else {
+      this.treeService.editSubject(this.id , {
+        parentId : this.form.controls['parentId'].value ,
+        title : this.form.controls['title'].value,
+        status : this.form.controls['status'].value,
+        priority : this.form.controls['priority'].value
+      })
+        .subscribe()
+    }
+    this.treeService.changeHasChild(this.form.controls['parentId'].value , { hasChild : true} )
+      .subscribe()
+    this.subjectCategoryService.getSubjectList()
+      .subscribe(result =>{
+        const article = result.find((a : any) => {
+          return a.parentId === this.currentParentId
+        })
+        if (!article){
+          this.treeService.changeHasChild(this.currentParentId , {hasChild : false})
+            .subscribe()
+        }
+      })
+    this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
+      duration: 3000,
+      horizontalPosition: "end",
+      verticalPosition: "top"
+    })
+    this.route.navigate(['/subject-category'])
+  }
 
 
 //   onArticleEdit(){
@@ -258,8 +256,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
 //
 //   }
 // }
-
-
 
   // editSubjectCategory() {
   //   if (this.formMode === FormMode.ADD) {
@@ -371,5 +367,10 @@ export class DetailSubjectCategoryComponent implements OnInit {
         })
     })
 
+  }
+
+  deleteParentInput() {
+    this.form.controls['parentTitle'].reset()
+    this.form.controls['parentId'].setValue(-1)
   }
 }

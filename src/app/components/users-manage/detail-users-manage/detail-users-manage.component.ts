@@ -125,12 +125,12 @@ export class DetailUsersManageComponent implements OnInit {
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open(this.translate.instant('snackbar.user-register'), "", {
+          this.snack.open(this.translate.instant('snackbar.page-error'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
           })
-          this.route.navigate(['/users-mange'])
+          this.route.navigate(['/users-manage'])
         }
       })
   }

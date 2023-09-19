@@ -44,7 +44,8 @@ export class SubjectCategoryComponent implements OnInit  {
   }
 
   ngOnInit() {
-    this.loadTree()
+    setTimeout( ()=>{this.loadTree()},100)
+
     // this.subjectCategoryService.selectParentId$.next(0)
     this.id=0;
     this.contextmenu=true;
@@ -74,6 +75,8 @@ export class SubjectCategoryComponent implements OnInit  {
     this.subjectCategoryService.findByParentId(-1).subscribe(result => {
       this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
       (item, 0, true, false));
+      this.subjectCategoryService.getSubjectList().subscribe(value =>{
+      })
     });
   }
 
@@ -114,10 +117,14 @@ export class SubjectCategoryComponent implements OnInit  {
   }
   onContextMenu(event: MouseEvent, node) {
     event.preventDefault();
+    this.id = node.item.id
+    this.contextmenu=false;
+    this.activeNode = node;
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
+
   }
   navigateAdd() {
     if(this.id){
@@ -131,5 +138,28 @@ export class SubjectCategoryComponent implements OnInit  {
     //   console.log("dsdsd",id);
     // }
 //x
+  }
+
+  deleteSubjectOnContextmenu() {
+    if (this.activeNode.item.hasChild === true) {
+      this.snack.open(this.translate.instant('snackbar.child-value-error'), "", {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top"
+      })
+    }else {
+      const dialogRef = this.dialog.open(DeleteSubjectCategoryComponent, {
+        data:{
+          id:this.activeNode.item.id
+        }
+      })
+      dialogRef.afterClosed().subscribe(result => {
+        setTimeout(()=>{
+          this.loadTree()
+        },100)
+        this.id = 0;
+        this.showButton=true;
+      })
+    }
   }
 }
