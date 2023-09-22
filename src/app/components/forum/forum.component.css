@@ -65,7 +65,6 @@
   font-size: 18px;
   font-weight: bold;
   color: #000000;
-
 }
 
 .button {
@@ -74,7 +73,6 @@
 }
 
 .button button {
-
   margin: 10px 10px;
   font-family: BYekan;
   font-weight: bold;
@@ -84,45 +82,64 @@
 input {
   font-family: BNAZANIN;
 }
-
-:host ::ng-deep .mdc-list-item__content {
-  display: flex;
-  /*flex-direction: row;*/
-  /*width: 100%;*/
-  /*flex-wrap: wrap;*/
+.list{
+  position: relative;
 }
-.item-style{
-  display: flex;
-  flex-direction: column;
+.list p{
+display: flex;
+  justify-content: flex-start;
+  width: 10px;
+  margin-top: 0px;
+
 }
+.list div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-right: 40px;
+  width: 85%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  justify-content: space-between;
 
-
+}
+.list-number{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+}
 :host ::ng-deep .mat-mdc-list-item.mdc-list-item--with-three-lines
 .mat-mdc-list-item-unscoped-content.mdc-list-item__secondary-text {
   display: -webkit-box;
   -webkit-box-orient: unset;
   -webkit-line-clamp: 2;
 }
-:host ::ng-deep .mat-mdc-list-base{
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  /*flex:1;*/
-  /*width: 100%;*/
+:host ::ng-deep .mdc-list-item--with-two-lines .mdc-list-item__content, .mdc-list-item--with-three-lines .mdc-list-item__content {
+  align-self: stretch;
+  text-align: -webkit-right;
 }
 
-
-
-/*.mat-list {*/
-
+/*:host ::ng-deep .mat-mdc-list-base{*/
 /*  display: flex;*/
-/*  !*flex-direction: row;*!*/
-/*  !*flex-wrap: wrap;*!*/
-/*  padding: 0;*/
+/*  flex-direction: row;*/
+/*  flex-wrap: wrap;*/
+/*  !*height: 100px;*!*/
+/*  !*flex:1;*!*/
 /*  !*width: 100%;*!*/
-/*  !*flex: 5;*!*/
 /*}*/
+
+
+.list div p {
+
+  padding: 10px;
+  /*width: 100%;*/
+  /*flex: 5;*/
+}
 
 
 /*:host ::ng-deep .mat-list-item-content {*/

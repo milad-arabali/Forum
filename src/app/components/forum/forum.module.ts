@@ -13,6 +13,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -21,20 +22,21 @@ import {FooterModule} from "../../core/layout/theme/footer/footer.module";
     ForumComponent,
 
   ],
-  imports: [
-    CommonModule,
-    RoutingForumModule,
-    TranslateModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
-    SelectCategoryModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    FooterModule
-  ]
+    imports: [
+        CommonModule,
+        RoutingForumModule,
+        TranslateModule,
+        MatCardModule,
+        MatIconModule,
+        MatListModule,
+        MatButtonModule,
+        SelectCategoryModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        FooterModule,
+        RouterLink
+    ]
 })
 export class ForumModule { }

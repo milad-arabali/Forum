@@ -62,4 +62,9 @@ export class ForumComponent implements OnInit {
       return this.translate.instant('form.status-false')
     }
   }
+
+  reset() {
+    this.categoryTitle=''
+    this.subjectManager=[]
+  }
 }

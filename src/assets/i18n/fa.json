@@ -160,10 +160,10 @@
     "disAdmin-users": "حساب کاربری مورد به عنوان کاربر عادی انتخاب شد."
   },
   "list": {
-    "subject-title": "عنوان مقاله:",
-    "subject-category": "عنوان دسته بندی:",
-    "subject-creatorUser": "کاربر ایجاد کننده:",
-    "subject-createDateTime": "تاریخ ایجاد:",
-    "subject-status": "وضیعت:"
+    "subject-title": "عنوان مقاله :",
+    "subject-category": "عنوان دسته بندی :",
+    "subject-creatorUser": "کاربر ایجاد کننده  :",
+    "subject-createDateTime": "تاریخ ایجاد :",
+    "subject-status": "وضیعت :"
   }
 }
