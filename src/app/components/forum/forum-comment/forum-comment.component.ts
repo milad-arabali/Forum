@@ -6,6 +6,7 @@ import {ApiService} from "../../../shared/services/api.service";
 import {CommentModel} from "../../../shared/model/comment.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
+import {VoteModel} from "../../../shared/model/vote.model";
 
 
 @Component({
@@ -17,14 +18,16 @@ export class ForumCommentComponent implements OnInit {
   commentForm: FormGroup;
   commentsForm: FormGroup;
   id: number;
+  likeStatus:boolean;
+  allComment:CommentModel[]=[];
 
   constructor(private fb: FormBuilder,
               private forumServices: ForumService,
               private api: ApiService,
               private router: ActivatedRoute,
-              private snack:MatSnackBar,
-              private translate:TranslateService
-             ) {
+              private snack: MatSnackBar,
+              private translate: TranslateService
+  ) {
     this.commentForm = this.fb.group({
       subjectCategory: [],
       subjectTitle: [],
@@ -33,7 +36,7 @@ export class ForumCommentComponent implements OnInit {
     })
     this.commentsForm = this.fb.group({
       subjectId: [],
-      content: [],
+      content: [,Validators.required],
       subjectTitle: [],
       createDateTime: [new Date()],
       status: ['created'],
@@ -44,17 +47,25 @@ export class ForumCommentComponent implements OnInit {
 
   ngOnInit() {
     this.loadSubjectData()
+     setTimeout(()=>{
+       this.checkLike(this.id)
+     },10)
+    this.forumServices.allComments().subscribe(
+      value => {
+        this.allComment=value
+      }
+    )
   }
 
   loadSubjectData() {
     this.api.getSubject(this.id).subscribe(
       value => {
-        console.log("sdsd", value);
         this.commentForm.controls['subjectCategory'].setValue(value.categoryTitle)
         this.commentForm.controls['subjectTitle'].setValue(value.title)
         this.commentForm.controls['createDateTime'].setValue(value.createDateTime)
         this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
         this.commentsForm.controls['subjectId'].setValue(value.id)
+
       }
     )
   }
@@ -75,8 +86,45 @@ export class ForumCommentComponent implements OnInit {
         })
         this.commentsForm.controls['content'].reset()
       }
-
     )
 
+  }
+
+
+  checkLike(id: number) {
+    this.forumServices.checkVote(id).subscribe(
+      value => {
+
+        if(value.voteType === 'like'){
+          this.likeStatus=true;
+        }else if(value.voteType === 'reject'){
+          this.likeStatus=false;
+        }
+      }
+    )
+  }
+
+  addLike() {
+    let addLike = new VoteModel();
+    addLike.subjectId = this.commentsForm.controls['subjectId'].value
+    addLike.voteType = 'like'
+    addLike.userName = this.commentForm.controls['creatorUser'].value
+    addLike.createDateTime = this.commentForm.controls['createDateTime'].value
+    addLike.status = this.commentsForm.controls['status'].value
+    this.api.addVote(addLike).subscribe(
+
+    )
+  }
+
+  addDisLike() {
+    let disLike = new VoteModel();
+    disLike.subjectId = this.commentsForm.controls['subjectId'].value
+    disLike.voteType = 'reject'
+    disLike.userName = this.commentForm.controls['creatorUser'].value
+    disLike.createDateTime = this.commentForm.controls['createDateTime'].value
+    disLike.status = this.commentsForm.controls['status'].value
+    this.api.addVote(disLike).subscribe(
+
+    )
   }
 }

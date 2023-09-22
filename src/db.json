@@ -208,40 +208,65 @@
   ],
   "comment": [
     {
-      "subjectId": 25,
+      "subjectId": 26,
       "userName": "test1",
-      "content": "برای تایید دیدگاه نیازمند دسترسی ادمین است ",
+      "content": "sdsdsdsd",
       "status": "created",
       "id": 1
     },
     {
-      "subjectId": 25,
+      "subjectId": 26,
       "userName": "test1",
-      "content": "یبیبیبیبیبی",
+      "content": "sdsdsdsdsdvvvvvv",
       "status": "created",
       "id": 2
     },
     {
-      "subjectId": 25,
+      "subjectId": 26,
       "userName": "test1",
-      "content": "بقثقثقثق",
+      "content": "dadadadadad",
       "status": "created",
       "id": 3
     },
     {
-      "subjectId": 24,
+      "subjectId": 26,
       "userName": "test1",
-      "content": "یسیسیسیسی",
+      "content": "dadadadadadadadadadad",
       "status": "created",
       "id": 4
     },
     {
-      "subjectId": 24,
+      "subjectId": 26,
       "userName": "test1",
-      "content": "ییشیشیشی",
+      "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "status": "created",
       "id": 5
     }
   ],
-  "vote": []
+  "vote": [
+    {
+      "subjectId": 24,
+      "voteType": "like",
+      "userName": "test1",
+      "createDateTime": "1402/06/19",
+      "status": "created",
+      "id": 1
+    },
+    {
+      "subjectId": 26,
+      "voteType": "reject",
+      "userName": "test1",
+      "createDateTime": "1402/06/19",
+      "status": "created",
+      "id": 2
+    },
+    {
+      "subjectId": 26,
+      "voteType": "reject",
+      "userName": "test1",
+      "createDateTime": "1402/06/19",
+      "status": "created",
+      "id": 3
+    }
+  ]
 }

@@ -1,9 +1,8 @@
 export class VoteModel {
-  id:number;
-  parentId: number;
-  title: string;
+  id: number;
+  subjectId: number;
+  voteType: string;
   createDateTime: Date;
-  status: boolean;
-  priority: number;
-  hasChild?: boolean;
+  userName: string;
+  status: string;
 }

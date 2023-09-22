@@ -4,6 +4,7 @@ import {UserAccountInformationModel} from "../model/user-account-information.mod
 import {SubjectCategoryModel} from "../model/subject-category.model";
 import {SubjectMangerModel} from "../model/subject-manger.model";
 import {CommentModel} from "../model/comment.model";
+import {VoteModel} from "../model/vote.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ApiService {
   public  apiUrlSubjectCategory: string ='http://localhost:3000/subject-category'
   public  apiUrlSubject: string ='http://localhost:3000/subject'
   public  apiUrlComment: string ='http://localhost:3000/comment'
+  public  apiUrlVote: string ='http://localhost:3000/vote'
   constructor(private httpClient: HttpClient) { }
 
   updateRegisterUser(registerObj: UserAccountInformationModel, id : number){
@@ -74,5 +76,8 @@ export class ApiService {
   }
   addComment(UsersModel: CommentModel){
     return this.httpClient.post<CommentModel>(`${this.apiUrlComment}`,UsersModel)
+  }
+  addVote(voteModel: VoteModel){
+    return this.httpClient.post<VoteModel>(`${this.apiUrlVote}`,voteModel)
   }
 }
