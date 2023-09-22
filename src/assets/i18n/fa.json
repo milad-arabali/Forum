@@ -107,7 +107,12 @@
     "isAdmin": "مدیر می باشد:",
     "true": "بله",
     "false": "خیر",
-    "title-error-pattern": " عنوان دسته بندی نامعتبر است."
+    "title-error-pattern": " عنوان دسته بندی نامعتبر است.",
+    "comment": "دیدگاه",
+    "subject-title": "عنوان مقاله :",
+    "subject-category": "عنوان دسته بندی :",
+    "subject-creatorUser": "کاربر ایجاد کننده  :",
+    "subject-createDateTime": "تاریخ ایجاد :"
   },
   "table": {
     "row": "ردیف",

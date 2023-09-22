@@ -14,4 +14,5 @@ export class ForumService {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?parentId=' + `${a}`);
   }
+
 }

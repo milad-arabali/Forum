@@ -31,7 +31,7 @@
               <mat-icon matSuffix>person</mat-icon>
               <mat-error *ngIf="filterUsersForm.controls['userName'].invalid &&
               filterUsersForm.controls['userName'].hasError('pattern')">
-                نام کاربری نامعتبر است.
+                {{'form.usersName-error'|translate}}
               </mat-error>
             </mat-form-field>
           </div>

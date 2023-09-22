@@ -1,0 +1,66 @@
+<mat-card class="header-card1">
+  <mat-card-header class="header-card">
+    <mat-card-title>
+      <div class="title-container">
+        <div class="card-header-title">
+          <mat-icon aria-hidden="false">people</mat-icon>
+          {{'form.comment'|translate}}
+        </div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div [formGroup]="commentForm" class="commentForm">
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.subject-title' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.subject-title' | translate }}</mat-label>
+              <input type="text" matInput formControlName="subjectTitle" [readonly]="true">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.subject-creatorUser' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.subject-creatorUser' | translate }}</mat-label>
+              <input type="text" matInput formControlName="creatorUser" [readonly]="true">
+              <mat-icon matSuffix>people</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div>
+            <span>{{'form.subject-category' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.subject-category' | translate }}</mat-label>
+              <input type="text" matInput formControlName="subjectCategory" [readonly]="true">
+              <mat-icon matSuffix>people</mat-icon>
+            </mat-form-field>
+          </div>
+          <div>
+            <span>{{'form.subject-createDateTime' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.subject-createDateTime' | translate }}</mat-label>
+              <input type="text" matInput formControlName="createDateTime" [readonly]="true">
+              <mat-icon matSuffix>people</mat-icon>
+            </mat-form-field>
+          </div>
+          </div>
+        </div>
+    </div>
+    <div class="button">
+      <button mat-raised-button color="accent" [routerLink]="['/forum']">
+        {{'form.exit-btn'|translate}}
+      </button>
+    </div>
+    <hr>
+  </mat-card-content>
+  <mat-card-footer>
+  </mat-card-footer>
+</mat-card>
+

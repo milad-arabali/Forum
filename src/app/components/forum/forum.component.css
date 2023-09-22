@@ -10,6 +10,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 300px;
+  padding: 10px;
 }
 
 .header-card1 {
@@ -82,16 +84,19 @@
 input {
   font-family: BNAZANIN;
 }
-.list{
+
+.list {
   position: relative;
 }
-.list p{
-display: flex;
+
+.list p {
+  display: flex;
   justify-content: flex-start;
   width: 10px;
   margin-top: 0px;
 
 }
+
 .list div {
   display: flex;
   flex-direction: row;
@@ -104,14 +109,16 @@ display: flex;
   justify-content: space-between;
 
 }
-.list-number{
+
+.list-number {
   font-size: 15px;
   font-weight: bold;
   text-align: center;
   margin: 0;
   padding: 0;
-  margin-top: 5px;
+  margin-top: 3px;
 }
+
 :host ::ng-deep .mat-mdc-list-item.mdc-list-item--with-three-lines
 .mat-mdc-list-item-unscoped-content.mdc-list-item__secondary-text {
   display: -webkit-box;

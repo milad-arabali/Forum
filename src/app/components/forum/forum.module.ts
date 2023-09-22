@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ForumComponent} from "./forum.component";
 import {RoutingForumModule} from "./routing-forum.module";
 import {TranslateModule} from "@ngx-translate/core";
@@ -14,7 +14,8 @@ import {MatRadioModule} from "@angular/material/radio";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
 import {RouterLink} from "@angular/router";
-
+import {ForumCommentComponent} from "./forum-comment/forum-comment.component";
+import {ForumCommentModule} from "./forum-comment/forum-comment.module";
 
 
 @NgModule({
@@ -22,21 +23,23 @@ import {RouterLink} from "@angular/router";
     ForumComponent,
 
   ],
-    imports: [
-        CommonModule,
-        RoutingForumModule,
-        TranslateModule,
-        MatCardModule,
-        MatIconModule,
-        MatListModule,
-        MatButtonModule,
-        SelectCategoryModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        ReactiveFormsModule,
-        FooterModule,
-        RouterLink
-    ]
+  imports: [
+    CommonModule,
+    ForumCommentModule,
+    RoutingForumModule,
+    TranslateModule,
+    MatCardModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule,
+    SelectCategoryModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    FooterModule,
+    RouterLink
+  ]
 })
-export class ForumModule { }
+export class ForumModule {
+}
