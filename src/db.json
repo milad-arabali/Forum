@@ -205,5 +205,43 @@
       "createDateTime": "1402/06/26",
       "id": 31
     }
-  ]
+  ],
+  "comment": [
+    {
+      "subjectId": 25,
+      "userName": "test1",
+      "content": "برای تایید دیدگاه نیازمند دسترسی ادمین است ",
+      "status": "created",
+      "id": 1
+    },
+    {
+      "subjectId": 25,
+      "userName": "test1",
+      "content": "یبیبیبیبیبی",
+      "status": "created",
+      "id": 2
+    },
+    {
+      "subjectId": 25,
+      "userName": "test1",
+      "content": "بقثقثقثق",
+      "status": "created",
+      "id": 3
+    },
+    {
+      "subjectId": 24,
+      "userName": "test1",
+      "content": "یسیسیسیسی",
+      "status": "created",
+      "id": 4
+    },
+    {
+      "subjectId": 24,
+      "userName": "test1",
+      "content": "ییشیشیشی",
+      "status": "created",
+      "id": 5
+    }
+  ],
+  "vote": []
 }

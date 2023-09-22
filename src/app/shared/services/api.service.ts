@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {UserAccountInformationModel} from "../model/user-account-information.model";
 import {SubjectCategoryModel} from "../model/subject-category.model";
 import {SubjectMangerModel} from "../model/subject-manger.model";
+import {CommentModel} from "../model/comment.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ApiService {
   public  apiUrl: string ='http://localhost:3000/enquiry'
   public  apiUrlSubjectCategory: string ='http://localhost:3000/subject-category'
   public  apiUrlSubject: string ='http://localhost:3000/subject'
+  public  apiUrlComment: string ='http://localhost:3000/comment'
   constructor(private httpClient: HttpClient) { }
 
   updateRegisterUser(registerObj: UserAccountInformationModel, id : number){
@@ -69,5 +71,8 @@ export class ApiService {
   }
   deleteUsers(id : number){
     return this.httpClient.delete<UserAccountInformationModel>(`${this.apiUrl}/${id}`)
+  }
+  addComment(UsersModel: CommentModel){
+    return this.httpClient.post<CommentModel>(`${this.apiUrlComment}`,UsersModel)
   }
 }
