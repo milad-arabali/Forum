@@ -10,20 +10,19 @@ import {VoteModel} from "../../../shared/model/vote.model";
 import {StatusCommentsModeEnum} from "../../../shared/enumeration/status-comments-mode.enum";
 
 
-
 @Component({
   selector: 'app-forum-comment',
   templateUrl: './forum-comment.component.html',
   styleUrls: ['./forum-comment.component.css']
 })
 export class ForumCommentComponent implements OnInit {
-  statusCommentMode:StatusCommentsModeEnum= StatusCommentsModeEnum.CREATED
+  statusCommentMode: StatusCommentsModeEnum = StatusCommentsModeEnum.CREATED
   commentForm: FormGroup;
   commentsForm: FormGroup;
   id: number;
-  likeStatus: boolean;
+  userName: string = '';
+  likeStatus: number;
   allComment: CommentModel[] = [];
-
   time;
 
   constructor(private fb: FormBuilder,
@@ -45,26 +44,24 @@ export class ForumCommentComponent implements OnInit {
       content: [, Validators.required],
       subjectTitle: [],
       createDateTime: [new Date()],
-      status: ['created'],
+      status: [],
     })
     this.id = this.router.snapshot.params['id']
-
   }
 
   ngOnInit() {
     this.loadSubjectData()
-    setTimeout(() => {
-      this.checkLike(this.id)
-    }, 10)
+    this.checkLike(this.id)
+
     this.viewComments()
   }
 
   viewComments() {
     this.forumServices.allComments(this.id).subscribe(
       value => {
-          this.allComment = value
-      }
+        this.allComment = value
 
+      }
     )
   }
 
@@ -76,8 +73,22 @@ export class ForumCommentComponent implements OnInit {
         this.commentForm.controls['createDateTime'].setValue(value.createDateTime)
         this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
         this.commentsForm.controls['subjectId'].setValue(value.id)
+
       }
     )
+  }
+
+  checkLike(id: number) {
+    this.api.getSubject(id).subscribe(value => {
+      this.forumServices.checkVote(id, value.creatorUser).subscribe(
+        value => {
+          if (value) {
+            this.likeStatus = value[0].voteType;
+          }
+
+        }
+      )
+    })
   }
 
   addComment() {
@@ -98,30 +109,16 @@ export class ForumCommentComponent implements OnInit {
         this.viewComments()
       }
     )
-
-  }
-
-
-  checkLike(id: number) {
-    this.forumServices.checkVote(id).subscribe(
-      value => {
-
-        if (value.voteType === 'like') {
-          this.likeStatus = true;
-        } else if (value.voteType === 'reject') {
-          this.likeStatus = false;
-        }
-      }
-    )
   }
 
   addLike() {
     let addLike = new VoteModel();
     addLike.subjectId = this.commentsForm.controls['subjectId'].value
-    addLike.voteType = 'like'
+    addLike.voteType = 0
     addLike.userName = this.commentForm.controls['creatorUser'].value
-    addLike.createDateTime = this.commentForm.controls['createDateTime'].value
-    addLike.status = this.commentsForm.controls['status'].value
+    addLike.createDateTime = this.commentsForm.controls['createDateTime'].value
+    addLike.status = 0
+    this.likeStatus = 0;
     this.api.addVote(addLike).subscribe(
 
     )
@@ -130,10 +127,11 @@ export class ForumCommentComponent implements OnInit {
   addDisLike() {
     let disLike = new VoteModel();
     disLike.subjectId = this.commentsForm.controls['subjectId'].value
-    disLike.voteType = 'reject'
+    disLike.voteType = 1
     disLike.userName = this.commentForm.controls['creatorUser'].value
-    disLike.createDateTime = this.commentForm.controls['createDateTime'].value
-    disLike.status = this.commentsForm.controls['status'].value
+    disLike.createDateTime = this.commentsForm.controls['createDateTime'].value
+    disLike.status = 0
+    this.likeStatus = 1;
     this.api.addVote(disLike).subscribe(
 
     )

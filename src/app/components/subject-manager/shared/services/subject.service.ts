@@ -36,9 +36,13 @@ export class SubjectService {
   sortingCell(sort:string,order:string){
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);
   }
-
+  sortingCellComment(sort:string,order:string,subjectId:number){
+    return this.http.get<CommentModel[]>(
+      'http://localhost:3000/comment?_sort='+`${sort}`+'&_order='+`${order}`+'&subjectId='+`${subjectId}`);
+  }
   sortingAllComment(pageSize:number,currentPage:number,subjectId:number): Observable<CommentModel[]> {
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
+    return this.http.get<CommentModel[]>(
+      'http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
   }
   allComments(subjectId:number){
     return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');

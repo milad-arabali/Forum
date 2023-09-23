@@ -1,8 +1,8 @@
 export class VoteModel {
   id: number;
   subjectId: number;
-  voteType: string;
+  voteType: number;
   createDateTime: Date;
   userName: string;
-  status: string;
+  status: number;
 }

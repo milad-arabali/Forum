@@ -10,6 +10,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {FooterModule} from "../../../core/layout/theme/footer/footer.module";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 
@@ -27,7 +28,8 @@ import {FooterModule} from "../../../core/layout/theme/footer/footer.module";
         MatIconModule,
         MatInputModule,
         ReactiveFormsModule,
-        FooterModule
+        FooterModule,
+        MatButtonToggleModule
     ]
 })
 export class ForumCommentModule { }

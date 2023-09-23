@@ -26,8 +26,6 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
   form: FormGroup;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-
-
   displayedColumns: string[] = ['id', 'title', 'categoryTitle', 'creatorUser', 'createDateTime', 'status', 'actions'];
   dataSource = new MatTableDataSource();
   search: string;

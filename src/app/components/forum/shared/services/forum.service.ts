@@ -16,8 +16,9 @@ export class ForumService {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?parentId=' + `${a}`);
   }
-  checkVote(subjectId:number){
-    return this.http.get<VoteModel>('http://localhost:3000/vote?subjectId=' + `${subjectId}`);
+  checkVote(subjectId:number| undefined,userName:any){
+    return this.http.get<VoteModel[]>(
+      'http://localhost:3000/vote?subjectId=' + `${subjectId}`+'&userName='+`${userName}`);
   }
   allComments(subjectId:number){
     return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');

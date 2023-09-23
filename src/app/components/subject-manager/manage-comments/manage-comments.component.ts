@@ -29,7 +29,6 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort !: MatSort;
   displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showComment', 'status', 'actions'];
   dataSource = new MatTableDataSource();
-  search: string;
   isLoading = false;
   pageSize = 0;
   currentPage = 5;
@@ -62,8 +61,9 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.loadSubjectData()
-    this.viewComments()
+    this.loadSubjectData();
+    // this.viewComments();
+    this.sourceTable();
   }
 
   ngAfterViewInit() {
@@ -149,7 +149,8 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
 
   sourceTable() {
     this.isLoading = true;
-    this.subjectManagerServices.sortingAllComment(this.paginator.pageIndex + 1, this.paginator.pageSize,this.id).subscribe(
+    this.subjectManagerServices.sortingAllComment(
+      this.paginator.pageIndex + 1, this.paginator.pageSize,this.id).subscribe(
       (res) => {
 
         this.dataSource.data = res;
@@ -185,7 +186,7 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   }
 
   sortData(event: Sort) {
-    this.subjectManagerServices.sortingCell(event.active, event.direction).subscribe(
+    this.subjectManagerServices.sortingCellComment(event.active, event.direction,this.id).subscribe(
       value => {
         this.dataSource.data = value
       }

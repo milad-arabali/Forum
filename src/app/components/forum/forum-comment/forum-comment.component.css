@@ -101,6 +101,9 @@
   width: 90%;
 
 }
+.button-group  button-toggle{
+  margin: 10px;
+}
 
 .commentsForm div {
   width: 90%;

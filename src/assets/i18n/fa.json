@@ -135,6 +135,7 @@
     "name": "نام",
     "status": "وضیعت",
     "create-time": "تاریخ ایجاد",
+    "comment": "دیدگاه",
     "action": "عملیات",
     "nameFamily": "نام خانوادگی",
     "nationalCode": "کد ملی",

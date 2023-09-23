@@ -218,10 +218,35 @@
       "subjectId": 25,
       "userName": "test1",
       "content": "sdsdsdsd",
-      "status": 1,
+      "status": 2,
       "createDateTime": "2023-09-23T16:50:04.635Z",
       "id": 3
+    },
+    {
+      "subjectId": 25,
+      "userName": "test1",
+      "content": "ddd",
+      "status": 0,
+      "createDateTime": "2023-09-23T18:11:13.314Z",
+      "id": 4
     }
   ],
-  "vote": []
+  "vote": [
+    {
+      "subjectId": 25,
+      "voteType": 0,
+      "userName": "test1",
+      "createDateTime": "2023-09-23T18:51:33.748Z",
+      "status": 0,
+      "id": 1
+    },
+    {
+      "subjectId": 26,
+      "voteType": 1,
+      "userName": "test1",
+      "createDateTime": "2023-09-23T19:16:55.696Z",
+      "status": 0,
+      "id": 2
+    }
+  ]
 }

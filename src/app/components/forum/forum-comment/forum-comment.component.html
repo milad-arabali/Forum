@@ -66,12 +66,21 @@
 
       </mat-form-field>
       <div>
-        <mat-icon style="cursor: pointer" [style.color]="likeStatus === true ? 'green' : ''"
-                  (click)="addLike()">thumb_up
-        </mat-icon>
-        <mat-icon style="cursor: pointer" [style.color]="likeStatus === false ? 'red' : ''"
-                  (click)="addDisLike()">thumb_down
-        </mat-icon>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style" class="button-group">
+          <mat-button-toggle value="bold" class="button-toggle"  (click)="addLike()">
+            <mat-icon style="cursor: pointer" [style.color]="likeStatus === 0 ? 'green' : ''"
+                     >thumb_up
+            </mat-icon>
+          </mat-button-toggle>
+          <mat-button-toggle value="italic" class="button-toggle"  (click)="addDisLike()">
+            <mat-icon style="cursor: pointer" [style.color]="likeStatus === 1 ? 'red' : ''"
+                     >thumb_down
+            </mat-icon>
+          </mat-button-toggle>
+
+        </mat-button-toggle-group>
+
+
       </div>
       <button mat-raised-button class="saveBtn-textComment" color="primary"
               [disabled]="commentsForm.invalid" (click)="addComment()">{{'form.save-comment' | translate }}</button>
