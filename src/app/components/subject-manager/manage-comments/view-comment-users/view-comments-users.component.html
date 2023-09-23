@@ -1,0 +1,26 @@
+<div class="edit-comment-modal" *ngIf="this.CommentsMode !== 3">
+    <h2 mat-dialog-title *ngIf="this.CommentsMode === 1">آیا میخواهید کامنت مورد نظر را تایید کنید؟</h2>
+    <h2 mat-dialog-title *ngIf="this.CommentsMode === 2">آیا میخواهید کامنت مورد نظر تایید نشود؟</h2>
+    <h2 mat-dialog-title *ngIf="this.CommentsMode === 4">آیا میخواهید کامنت مورد نظر حذف شود؟</h2>
+  <mat-dialog-content >
+  </mat-dialog-content>
+  <mat-dialog-actions class="button">
+        <button mat-raised-button color="warn" *ngIf="this.CommentsMode === 2" (click)="rejectComment()">{{"form.yesButton" | translate}}</button>
+        <button mat-raised-button color="warn" *ngIf="this.CommentsMode === 1" (click)="confirmComment()">{{"form.yesButton" | translate}}</button>
+        <button mat-raised-button color="warn" *ngIf="this.CommentsMode === 4" (click)="deleteComment()">{{"form.yesButton" | translate}}</button>
+
+    <button mat-raised-button color="primary" (click)="close()">{{'form.cancel-btn'|translate}}</button>
+  </mat-dialog-actions>
+
+</div>
+
+<div class="view-comment-modal" *ngIf="this.CommentsMode === 3">
+  <h2 mat-dialog-title>مشاهده کامنت </h2>
+  <mat-dialog-content class="selectParentDialogContent">
+    <span *ngIf="this.CommentsMode === 3">{{this.commentUsers}}</span>
+  </mat-dialog-content>
+  <mat-dialog-actions class="view-comment-button">
+    <button mat-raised-button color="primary" (click)="close()">{{'form.revers'|translate}}</button>
+  </mat-dialog-actions>
+
+</div>

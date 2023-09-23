@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ManageCommentsComponent } from './manage-comments/manage-comments.component';
+import { ManageCommentsComponent } from './manage-comments.component';
 import {FooterModule} from "../../../core/layout/theme/footer/footer.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
@@ -17,14 +17,18 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {ViewCommentUsersModule} from "./view-comment-users/view-comment-users.module";
+
 
 
 
 @NgModule({
   declarations: [
-    ManageCommentsComponent
+    ManageCommentsComponent,
+
   ],
   imports: [
+   ViewCommentUsersModule,
     CommonModule,
     FooterModule,
     MatButtonModule,

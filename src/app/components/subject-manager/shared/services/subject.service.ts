@@ -37,10 +37,13 @@ export class SubjectService {
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);
   }
 
-  sortingAllComment(pageSize:number,currentPage:number): Observable<CommentModel[]> {
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`);
+  sortingAllComment(pageSize:number,currentPage:number,subjectId:number): Observable<CommentModel[]> {
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
   }
   allComments(subjectId:number){
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=0');
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');
+  }
+  ViewComment(comment:number){
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?id='+`${comment}`);
   }
 }

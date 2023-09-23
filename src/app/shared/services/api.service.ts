@@ -77,7 +77,14 @@ export class ApiService {
   addComment(UsersModel: CommentModel){
     return this.httpClient.post<CommentModel>(`${this.apiUrlComment}`,UsersModel)
   }
+  deleteComment(id : number){
+    return this.httpClient.delete<CommentModel>(`${this.apiUrlComment}/${id}`)
+  }
+  updateComment(commentObj: CommentModel, id : number){
+    return this.httpClient.patch<CommentModel[]>(`${this.apiUrlComment}/${id}`,commentObj)
+  }
   addVote(voteModel: VoteModel){
     return this.httpClient.post<VoteModel>(`${this.apiUrlVote}`,voteModel)
   }
+
 }

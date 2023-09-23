@@ -5,7 +5,7 @@ import {AuthGuard} from "../../core/guard/auth.guard";
 import {SubjectManagerComponent} from "./subject-manager.component";
 import {DetailSubjectComponent} from "./detail-subject/detail-subject.component";
 import {ViewCommentsComponent} from "./view-comments/view-comments.component";
-import {ManageCommentsComponent} from "./manage-comments/manage-comments/manage-comments.component";
+import {ManageCommentsComponent} from "./manage-comments/manage-comments.component";
 
 const routingSubject: Routes = [
   {path: 'subject', canActivate: [AuthGuard], component: SubjectManagerComponent},

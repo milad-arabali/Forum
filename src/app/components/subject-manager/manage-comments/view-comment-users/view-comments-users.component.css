@@ -1,0 +1,36 @@
+.edit-comment-modal{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.button button{
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.selectParentDialogContent{
+  min-height: 300px;
+  padding:10px;
+  width: 100%;
+}
+.selectParentDialogContent span{
+
+}
+.view-comment-modal{
+  min-height: 300px;
+  width: 300px;
+}
+.view-comment-modal h2{
+  background-color: #3f51b5;
+  color: white;
+  font-size: 25px;
+  font-family: BTitrBold;
+
+}
+.view-comment-button {
+display: flex;flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

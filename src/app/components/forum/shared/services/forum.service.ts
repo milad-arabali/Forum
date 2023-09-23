@@ -20,6 +20,6 @@ export class ForumService {
     return this.http.get<VoteModel>('http://localhost:3000/vote?subjectId=' + `${subjectId}`);
   }
   allComments(subjectId:number){
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=0');
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');
   }
 }
