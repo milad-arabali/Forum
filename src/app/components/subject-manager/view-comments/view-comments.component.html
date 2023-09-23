@@ -4,7 +4,7 @@
       <div class="title-container">
         <div class="card-header-title">
           <mat-icon aria-hidden="false">people</mat-icon>
-          {{'form.comment'|translate}}
+          {{'form.view-comment'|translate}}
         </div>
       </div>
     </mat-card-title>
@@ -54,28 +54,11 @@
       </div>
     </div>
     <div class="button">
-      <button mat-raised-button color="accent" [routerLink]="['/forum']">
+      <button mat-raised-button color="accent" [routerLink]="['/subject']">
         {{'form.exit-btn'|translate}}
       </button>
     </div>
     <hr>
-    <div [formGroup]="commentsForm" class="commentsForm">
-      <span>{{'form.save-comments' | translate }}</span>
-      <mat-form-field class="example-full-width" class="textComment">
-        <textarea matInput matTextareaAutosize formControlName="content" placeholder="افزودن دیدگاه"></textarea>
-
-      </mat-form-field>
-      <div>
-        <mat-icon style="cursor: pointer" [style.color]="likeStatus === true ? 'green' : ''"
-                  (click)="addLike()">thumb_up
-        </mat-icon>
-        <mat-icon style="cursor: pointer" [style.color]="likeStatus === false ? 'red' : ''"
-                  (click)="addDisLike()">thumb_down
-        </mat-icon>
-      </div>
-      <button mat-raised-button class="saveBtn-textComment" color="primary"
-              [disabled]="commentsForm.invalid" (click)="addComment()">{{'form.save-comment' | translate }}</button>
-    </div>
     <div class="comments-container">
       <h3>دیدگاه ها </h3>
       <div *ngFor="let comments of allComment" class="commentBox">

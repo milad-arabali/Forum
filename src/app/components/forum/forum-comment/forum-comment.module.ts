@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import {FooterModule} from "../../../core/layout/theme/footer/footer.module";
 
 
 
@@ -16,16 +17,17 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     ForumCommentComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatListModule,
-    TranslateModule,
-    RouterLink,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatListModule,
+        TranslateModule,
+        RouterLink,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FooterModule
+    ]
 })
 export class ForumCommentModule { }

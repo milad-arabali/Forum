@@ -7,6 +7,8 @@ import {CommentModel} from "../../../shared/model/comment.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
 import {VoteModel} from "../../../shared/model/vote.model";
+import {StatusCommentsModeEnum} from "../../../shared/enumeration/status-comments-mode.enum";
+
 
 
 @Component({
@@ -15,11 +17,14 @@ import {VoteModel} from "../../../shared/model/vote.model";
   styleUrls: ['./forum-comment.component.css']
 })
 export class ForumCommentComponent implements OnInit {
+  statusCommentMode:StatusCommentsModeEnum= StatusCommentsModeEnum.CREATED
   commentForm: FormGroup;
   commentsForm: FormGroup;
   id: number;
-  likeStatus:boolean;
-  allComment:CommentModel[]=[];
+  likeStatus: boolean;
+  allComment: CommentModel[] = [];
+
+  time;
 
   constructor(private fb: FormBuilder,
               private forumServices: ForumService,
@@ -28,6 +33,7 @@ export class ForumCommentComponent implements OnInit {
               private snack: MatSnackBar,
               private translate: TranslateService
   ) {
+
     this.commentForm = this.fb.group({
       subjectCategory: [],
       subjectTitle: [],
@@ -36,7 +42,7 @@ export class ForumCommentComponent implements OnInit {
     })
     this.commentsForm = this.fb.group({
       subjectId: [],
-      content: [,Validators.required],
+      content: [, Validators.required],
       subjectTitle: [],
       createDateTime: [new Date()],
       status: ['created'],
@@ -47,13 +53,18 @@ export class ForumCommentComponent implements OnInit {
 
   ngOnInit() {
     this.loadSubjectData()
-     setTimeout(()=>{
-       this.checkLike(this.id)
-     },10)
-    this.forumServices.allComments().subscribe(
+    setTimeout(() => {
+      this.checkLike(this.id)
+    }, 10)
+    this.viewComments()
+  }
+
+  viewComments() {
+    this.forumServices.allComments(this.id).subscribe(
       value => {
-        this.allComment=value
+          this.allComment = value
       }
+
     )
   }
 
@@ -65,7 +76,6 @@ export class ForumCommentComponent implements OnInit {
         this.commentForm.controls['createDateTime'].setValue(value.createDateTime)
         this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
         this.commentsForm.controls['subjectId'].setValue(value.id)
-
       }
     )
   }
@@ -75,16 +85,17 @@ export class ForumCommentComponent implements OnInit {
     addComment.subjectId = this.commentsForm.controls['subjectId'].value
     addComment.userName = this.commentForm.controls['creatorUser'].value
     addComment.content = this.commentsForm.controls['content'].value
-    addComment.status = this.commentsForm.controls['status'].value
+    addComment.status = this.statusCommentMode
+    addComment.createDateTime = this.commentsForm.controls['createDateTime'].value
     this.api.addComment(addComment).subscribe(
       value => {
-
         this.snack.open(this.translate.instant('snackbar.save-comment'), "", {
           duration: 3000,
           horizontalPosition: "end",
           verticalPosition: "top"
         })
         this.commentsForm.controls['content'].reset()
+        this.viewComments()
       }
     )
 
@@ -95,10 +106,10 @@ export class ForumCommentComponent implements OnInit {
     this.forumServices.checkVote(id).subscribe(
       value => {
 
-        if(value.voteType === 'like'){
-          this.likeStatus=true;
-        }else if(value.voteType === 'reject'){
-          this.likeStatus=false;
+        if (value.voteType === 'like') {
+          this.likeStatus = true;
+        } else if (value.voteType === 'reject') {
+          this.likeStatus = false;
         }
       }
     )
@@ -128,3 +139,4 @@ export class ForumCommentComponent implements OnInit {
     )
   }
 }
+

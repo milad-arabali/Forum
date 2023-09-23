@@ -114,7 +114,9 @@
     "subject-creatorUser": "کاربر ایجاد کننده  :",
     "subject-createDateTime": "تاریخ ایجاد :",
     "save-comments": "دیدگاه کاربران:",
-    "save-comment": "ثبت دیدگاه"
+    "save-comment": "ثبت دیدگاه",
+    "view-comment": "مشاهده دیدگاه",
+    "manage-comment": "مدیریت دیدگاه"
   },
   "table": {
     "row": "ردیف",

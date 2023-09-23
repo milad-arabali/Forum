@@ -21,6 +21,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {ViewCommentsModule} from "./view-comments/view-comments.module";
+import {ManageCommentsModule} from "./manage-comments/manage-comments.module";
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 
   ],
   imports: [
+    ManageCommentsModule,
+    ViewCommentsModule,
     DeleteSubjectModule,
     DetailSubjectModule,
     SelectSubjectModule,

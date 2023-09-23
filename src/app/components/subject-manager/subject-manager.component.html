@@ -141,8 +141,16 @@
               <mat-icon>edit</mat-icon>
             </button>
             <button mat-raised-button color="primary" [routerLink]="['/subject/',element.id]"
-                    matTooltip="مشاهده">
+                    matTooltip=" مشاهده موضوع">
               <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="['/subject/comments/',element.id]"
+                    matTooltip=" مشاهده آرا">
+              <mat-icon>poll</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [routerLink]="['/subject/manage-comments',element.id]"
+                    matTooltip=" مدیریت آرا">
+              <mat-icon>dashboard</mat-icon>
             </button>
             <button mat-raised-button color="warn" (click)="deleteSubject(element.id)"
                     matTooltip="حذف">

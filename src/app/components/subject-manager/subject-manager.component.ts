@@ -158,11 +158,9 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
         this.dataSource.data = value
       })
   }
-
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
   }
-
   checkAdmin() {
     let isAdmin;
     this.api.getIsAdmin(this.cookie.get('users')).subscribe(
@@ -176,7 +174,6 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
       }
     )
   }
-
   deleteSubject(id: number) {
 
     const dialogRef = this.dialog.open(DeleteSubjectComponent, {

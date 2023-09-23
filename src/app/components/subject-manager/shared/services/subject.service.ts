@@ -5,6 +5,7 @@ import {SubjectMangerModel} from "../../../../shared/model/subject-manger.model"
 import {ApiService} from "../../../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserAccountInformationModel} from "../../../../shared/model/user-account-information.model";
+import {CommentModel} from "../../../../shared/model/comment.model";
 
 
 @Injectable({
@@ -36,4 +37,10 @@ export class SubjectService {
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);
   }
 
+  sortingAllComment(pageSize:number,currentPage:number): Observable<CommentModel[]> {
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`);
+  }
+  allComments(subjectId:number){
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=0');
+  }
 }

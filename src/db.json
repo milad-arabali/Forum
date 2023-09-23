@@ -123,21 +123,12 @@
       "id": 5
     },
     {
-      "parentId": 7,
-      "title": "r2121",
-      "createDateTime": "Tue Sep 19 2023",
-      "status": true,
-      "priority": 1,
-      "hasChild": false,
-      "id": 6
-    },
-    {
       "parentId": -1,
       "title": "t22",
       "createDateTime": "Tue Sep 19 2023",
       "status": true,
       "priority": 1,
-      "hasChild": true,
+      "hasChild": false,
       "id": 7
     }
   ],
@@ -208,65 +199,37 @@
   ],
   "comment": [
     {
-      "subjectId": 26,
+      "subjectId": 25,
       "userName": "test1",
-      "content": "sdsdsdsd",
-      "status": "created",
+      "content": "eqe",
+      "status": 0,
+      "createDateTime": "2023-09-23T10:09:34.116Z",
       "id": 1
     },
     {
-      "subjectId": 26,
+      "subjectId": 25,
       "userName": "test1",
-      "content": "sdsdsdsdsdvvvvvv",
-      "status": "created",
+      "content": "eeee",
+      "status": 1,
+      "createDateTime": "2023-09-23T10:09:34.116Z",
       "id": 2
     },
     {
-      "subjectId": 26,
+      "subjectId": 25,
       "userName": "test1",
-      "content": "dadadadadad",
-      "status": "created",
+      "content": "ddddd",
+      "status": 1,
+      "createDateTime": "2023-09-23T10:15:25.948Z",
       "id": 3
     },
     {
-      "subjectId": 26,
+      "subjectId": 25,
       "userName": "test1",
-      "content": "dadadadadadadadadadad",
-      "status": "created",
+      "content": "fsf",
+      "status": 1,
+      "createDateTime": "2023-09-23T10:38:51.214Z",
       "id": 4
-    },
-    {
-      "subjectId": 26,
-      "userName": "test1",
-      "content": "aaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "status": "created",
-      "id": 5
     }
   ],
-  "vote": [
-    {
-      "subjectId": 24,
-      "voteType": "like",
-      "userName": "test1",
-      "createDateTime": "1402/06/19",
-      "status": "created",
-      "id": 1
-    },
-    {
-      "subjectId": 26,
-      "voteType": "reject",
-      "userName": "test1",
-      "createDateTime": "1402/06/19",
-      "status": "created",
-      "id": 2
-    },
-    {
-      "subjectId": 26,
-      "voteType": "reject",
-      "userName": "test1",
-      "createDateTime": "1402/06/19",
-      "status": "created",
-      "id": 3
-    }
-  ]
+  "vote": []
 }

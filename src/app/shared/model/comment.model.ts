@@ -3,5 +3,6 @@ export class CommentModel {
   subjectId: number;
   userName: number;
   content: string;
-  status: string
+  status: number
+  createDateTime: Date;
 }

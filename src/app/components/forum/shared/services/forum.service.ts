@@ -19,7 +19,7 @@ export class ForumService {
   checkVote(subjectId:number){
     return this.http.get<VoteModel>('http://localhost:3000/vote?subjectId=' + `${subjectId}`);
   }
-  allComments(){
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment');
+  allComments(subjectId:number){
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=0');
   }
 }

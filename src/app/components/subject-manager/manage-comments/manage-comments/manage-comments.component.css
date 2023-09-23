@@ -139,6 +139,7 @@
   align-items: flex-start;
 
 }
+
 .showtime{
   font-size: 15px;
   font-weight: bold;
@@ -256,3 +257,41 @@
   font-size: 15px;
 }
 
+.scrolling-container{
+  min-height: 300px;
+}
+tableSubject{
+  text-align: center;
+}
+
+.paginator{
+  margin-bottom: 17px;
+}
+
+td, th {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+:host ::ng-deep .mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+}
+input{
+  font-family: BNAZANIN;
+}
+.button button{
+  margin: 10px 10px;
+  font-family: BYekan;
+  font-weight: bold;
+  font-size: 15px;
+}
+.button button mat-icon{
+  padding: 0;
+  margin: 0;
+}
+.button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
