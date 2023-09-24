@@ -13,6 +13,7 @@ import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 
 import {MatDialog} from "@angular/material/dialog";
 import {ViewCommentsUsersComponent} from "./view-comment-users/view-comments-users.component";
+import * as moment from "jalali-moment";
 
 
 @Component({
@@ -89,7 +90,7 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
       value => {
         this.commentForm.controls['subjectCategory'].setValue(value.categoryTitle)
         this.commentForm.controls['subjectTitle'].setValue(value.title)
-        this.commentForm.controls['createDateTime'].setValue(value.createDateTime)
+        this.commentForm.controls['createDateTime'].setValue(moment(value.createDateTime, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
         this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
         this.commentsForm.controls['subjectId'].setValue(value.id)
 

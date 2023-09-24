@@ -45,7 +45,7 @@
             <span>{{'form.nationalCode'|translate}}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode'|translate}}</mat-label>
-              <input type="text" matInput formControlName="nationalCode">
+              <input type="text" maxlength="10" matInput formControlName="nationalCode">
               <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
@@ -82,6 +82,7 @@
               <mat-label> {{'form.DateOfBirth'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" [max]="maxDate" [min]="minDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-icon matIconSuffix *ngIf="this.form.controls['DateOfBirth'].value" style="cursor: pointer" (click)="resetDateOfBirth()">delete</mat-icon>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

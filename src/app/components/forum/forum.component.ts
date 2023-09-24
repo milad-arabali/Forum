@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SelectSubjectComponent} from "../subject-manager/select-subject/select-subject.component";
 import {MatDialog} from "@angular/material/dialog";
 import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {ForumService} from "./shared/services/forum.service";

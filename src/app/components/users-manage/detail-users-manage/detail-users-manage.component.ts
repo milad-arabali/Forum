@@ -30,7 +30,6 @@ export class DetailUsersManageComponent implements OnInit {
   id: number;
   manageUsersForm: FormGroup;
   parentId: number;
-  date = moment().locale('fa');
   name: string;
   isAdmin: boolean[] = [true, false]
   minDate:Date;
@@ -50,12 +49,12 @@ export class DetailUsersManageComponent implements OnInit {
               private dialog: MatDialog,
               private route: Router,
               private activateRoute: ActivatedRoute,
-              private dateAdapter: DateAdapter<any>,
+
               private subject: SubjectService,
               private cookie: CookieService,
               private translate: TranslateService
   ) {
-    this.dateAdapter.setLocale('fa-IR');
+    // this.dateAdapter.setLocale('fa-IR');
     this.manageUsersForm = this.fb.group({
       userName: [, [Validators.required,
         Validators.minLength(5),
@@ -69,7 +68,7 @@ export class DetailUsersManageComponent implements OnInit {
         checkNationalCode()]],
       gender: ['male', []],
       isAdmin: [false, []],
-      DateOfBirth: [,]
+      DateOfBirth: []
     })
   }
 
@@ -94,7 +93,8 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
-            this.manageUsersForm.controls['DateOfBirth'].setValue(formatDate(value.DateOfBirth))
+            this.manageUsersForm.controls['DateOfBirth'].setValue(
+              moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
           }
         )
       } else if (url[1].path === this.id.toString()) {
@@ -109,7 +109,8 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['nationalCode'].setValue(value.nationalCode)
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
-            this.manageUsersForm.controls['DateOfBirth'].setValue(formatDate(value.DateOfBirth))
+            this.manageUsersForm.controls['DateOfBirth'].setValue(
+              moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
 
           }
         )
@@ -141,7 +142,7 @@ export class DetailUsersManageComponent implements OnInit {
       users = this.manageUsersForm.getRawValue()
       let s = this.api.addUsers(users).subscribe(
         res => {
-          this.snack.open(this.translate.instant('snackbar.user-register'), "", {
+          this.snack.open(this.translate.instant('snackbar.add-account'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -176,15 +177,19 @@ export class DetailUsersManageComponent implements OnInit {
       return "خیر"
     }
   }
-}
 
-export function formatDate(date: Date): string {
-  if (isNaN(date.getTime())) {
-    return '';
-  } else {
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const year = date.getFullYear();
-    return ('00' + month).slice(-2) + '/' + ('00' + day).slice(-2) + '/' + year; //You can define your format here.
+  resetDateOfBirth() {
+    this.manageUsersForm.controls['DateOfBirth'].reset()
   }
 }
+
+// export function formatDate(date: Date): string {
+//   if (isNaN(date.getTime())) {
+//     return '';
+//   } else {
+//     const month = date.getMonth() + 1;
+//     const day = date.getDate();
+//     const year = date.getFullYear();
+//     return ('00' + month).slice(-2) + '/' + ('00' + day).slice(-2) + '/' + year; //You can define your format here.
+//   }
+// }

@@ -52,7 +52,7 @@
             <span>{{'form.nationalCode' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode' | translate }}</mat-label>
-              <input type="text" matInput formControlName="nationalCode">
+              <input type="text" maxlength="10" matInput formControlName="nationalCode">
               <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="filterUsersForm.controls['nationalCode'].invalid &&
               (filterUsersForm.controls['nationalCode'].hasError('minLength') ||
@@ -68,7 +68,7 @@
           <div>
             <span>{{'form.isAdmin' | translate }}</span>
             <mat-radio-group class="mat-form radio-group" formControlName="isAdmin">
-              <mat-radio-button *ngFor="let isAdmin of isAdmin" [value]="isAdmin">
+              <mat-radio-button *ngFor="let isAdmin of isAdmin" [value]="isAdmin" >
                 {{isAdminUsersStatus(isAdmin)}}</mat-radio-button>
             </mat-radio-group>
           </div>
@@ -81,8 +81,8 @@
             <span>{{'form.status' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.status' | translate }}</mat-label>
-              <mat-select formControlName="status">
-                <mat-option *ngFor="let status of status" [value]="status.statusValue">
+              <mat-select formControlName="status" >
+                <mat-option *ngFor="let status of status" [value]="status.statusValue" >
                   {{status.viewValue}}
                 </mat-option>
               </mat-select>
@@ -107,6 +107,7 @@
               <input matInput [matDatepicker]="picker" [min]="minDate"
                      [max]="maxDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-icon matIconSuffix *ngIf="this.filterUsersForm.controls['DateOfBirth'].value" style="cursor: pointer" (click)="resetDateOfBirth()">delete</mat-icon>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -213,11 +214,11 @@
                 <mat-icon>delete</mat-icon>
                 <span>{{'table.delete' | translate }}</span>
               </button>
-              <button mat-menu-item  *ngIf="element.status==='reject'" (click)="confirmUsers(element.id)">
+              <button mat-menu-item  *ngIf="element.status==='reject' || element.status==='Registered'" (click)="confirmUsers(element.id)">
                 <mat-icon>check_circle</mat-icon>
                 <span>{{'table.confirm' | translate }}</span>
               </button>
-              <button mat-menu-item *ngIf="element.status==='confirm'" (click)="rejectUsers(element.id)">
+              <button mat-menu-item *ngIf="element.status==='confirm' " (click)="rejectUsers(element.id)">
                 <mat-icon>block</mat-icon>
                 <span>{{'table.reject' | translate }}</span>
               </button>

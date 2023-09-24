@@ -70,7 +70,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
         Validators.minLength(5),
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
-      status: [,],
+      status: ['',],
       name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
@@ -78,7 +78,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
         checkNationalCode()]],
       gender: [, []],
       isAdmin: [, []],
-      DateOfBirth: [, []]
+      DateOfBirth: [,]
     })
   }
   ngOnInit() {
@@ -138,7 +138,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     let DateOfBirth = '';
 
     if (searchModel.userName) {
-      userName = `userName=${searchModel.userName}`
+      userName = `userName_like=${searchModel.userName}`
     } else {
       userName = `&`
     }
@@ -177,7 +177,9 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       isAdmin = `&`
     }
     if (time) {
-      DateOfBirth = `createDateTime=${formatDate(this.filterUsersForm.controls['DateOfBirth'].value,'yyyy/MM/dd','en')}`
+      time = time._d;
+      time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
+      DateOfBirth = `DateOfBirth_like=${time}`
     } else {
       DateOfBirth = `&`
     }
@@ -191,7 +193,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
       })
   }
   pageChanged(event: PageEvent) {
-    console.log({event});
+    // console.log({event});
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.sourceTable();
@@ -311,4 +313,7 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     )
   }
 
+  resetDateOfBirth() {
+    this.filterUsersForm.controls['DateOfBirth'].reset()
+  }
 }

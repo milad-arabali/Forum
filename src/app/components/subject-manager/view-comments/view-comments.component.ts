@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
 import {SubjectService} from "../shared/services/subject.service";
+import * as moment from "jalali-moment";
 
 
 @Component({
@@ -62,7 +63,8 @@ export class ViewCommentsComponent {
       value => {
         this.commentForm.controls['subjectCategory'].setValue(value.categoryTitle)
         this.commentForm.controls['subjectTitle'].setValue(value.title)
-        this.commentForm.controls['createDateTime'].setValue(value.createDateTime)
+        this.commentForm.controls['createDateTime'].setValue(
+          moment(value.createDateTime, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
         this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
         this.commentsForm.controls['subjectId'].setValue(value.id)
 
