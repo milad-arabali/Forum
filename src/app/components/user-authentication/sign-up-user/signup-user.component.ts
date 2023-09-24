@@ -20,6 +20,7 @@ export class SignupUserComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   form: FormGroup;
+  checkUser:string;
   gender = [
     {Value: 'male', viewValue: 'مرد'},
     {Value: 'female', viewValue: 'زن'}
@@ -44,13 +45,13 @@ export class SignupUserComponent implements OnInit {
       userName: [, [Validators.required,
         Validators.minLength(5),
         Validators.maxLength(60),
-        Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
+        Validators.pattern('^[a-zA-Z0-9\-\_\/]+$'),]],
       password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
       name: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
-      gender: ['مرد', [Validators.required]],
+      gender: ['male', [Validators.required]],
       DateOfBirth: [,],
       status: ['Registered',],
       isAdmin: [false, []],
@@ -80,6 +81,16 @@ export class SignupUserComponent implements OnInit {
     this.form.get('password').reset();
     this._inputElement.nativeElement.focus();
   }
+  resetDateOfBirth() {
+    this.form.controls['DateOfBirth'].reset()
+  }
+
+  checkUserName($event) {
+    console.log("Dsd", $event.target.value);
+
+  }
+
+
 }
 
 

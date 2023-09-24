@@ -9,10 +9,24 @@
       <div class="col">
         <div class="row">
           <div>
+            <span>{{'form.name' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.name' | translate }}</mat-label>
+              <input type="text" matInput formControlName="name">
+              <mat-icon matSuffix>people</mat-icon>
+              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
+                {{'form.user-errorPattern'|translate}}
+              </mat-error>
+              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
+                {{'form.user-error'|translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
             <span>{{'form.userName' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.userName' | translate }}</mat-label>
-              <input type="text" matInput formControlName="userName" #userName>
+              <input type="text" matInput formControlName="userName"  (input)="checkUserName($event)" #userName>
               <mat-icon matSuffix>person</mat-icon>
               <mat-error *ngIf="form.controls['userName'].invalid &&
               form.controls['userName'].hasError('minlength')">
@@ -31,20 +45,7 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div>
-            <span>{{'form.name' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.name' | translate }}</mat-label>
-              <input type="text" matInput formControlName="name">
-              <mat-icon matSuffix>people</mat-icon>
-              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('pattern')">
-                {{'form.user-errorPattern'|translate}}
-              </mat-error>
-              <mat-error *ngIf="form.controls['name'].invalid && form.controls['name'].hasError('required')">
-                {{'form.user-error'|translate}}
-              </mat-error>
-            </mat-form-field>
-          </div>
+
           <div>
             <span>{{'form.nationalCode' | translate }}</span>
             <mat-form-field class="mat-form">
@@ -78,17 +79,7 @@
       </div>
       <div class="col">
         <div class="row">
-          <div>
-            <span>{{'form.passWord' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.passWord' | translate }}</mat-label>
-              <input type="password" matInput formControlName="password">
-              <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['password'].invalid ">
-                {{'form.passWord-error' | translate }}
-              </mat-error>
-            </mat-form-field>
-          </div>
+
           <div>
             <span>{{'form.nameFamily' | translate }}</span>
             <mat-form-field class="mat-form">
@@ -106,14 +97,27 @@
             </mat-form-field>
           </div>
 
-
+          <div>
+            <span>{{'form.passWord' | translate }}</span>
+            <mat-form-field class="mat-form">
+              <mat-label>{{'form.passWord' | translate }}</mat-label>
+              <input type="password" maxlength="10" matInput formControlName="password">
+              <mat-icon matSuffix>mode_edit</mat-icon>
+              <mat-error *ngIf="form.controls['password'].invalid ">
+                {{'form.passWord-error' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
           <div>
             <span>{{'form.DateOfBirth' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.DateOfBirth' | translate }}</mat-label>
               <input matInput [matDatepicker]="picker" [max]="maxDate" [min]="minDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-icon matIconSuffix *ngIf="this.form.controls['DateOfBirth'].value"
+                        style="cursor: pointer" (click)="resetDateOfBirth()">delete</mat-icon>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+
               <mat-datepicker #picker></mat-datepicker>
               <mat-error *ngIf="form.controls['DateOfBirth'].invalid ">
                 {{'form.DateOfBirth-invalid' | translate }}

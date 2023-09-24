@@ -218,5 +218,7 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
       }
     )
   }
-
+  resetDateOfBirth() {
+    this.form.controls['createDateTime'].reset()
+  }
 }

@@ -181,6 +181,8 @@ export class DetailUsersManageComponent implements OnInit {
   resetDateOfBirth() {
     this.manageUsersForm.controls['DateOfBirth'].reset()
   }
+
+
 }
 
 // export function formatDate(date: Date): string {

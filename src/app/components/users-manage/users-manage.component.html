@@ -107,7 +107,8 @@
               <input matInput [matDatepicker]="picker" [min]="minDate"
                      [max]="maxDate" formControlName="DateOfBirth" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-icon matIconSuffix *ngIf="this.filterUsersForm.controls['DateOfBirth'].value" style="cursor: pointer" (click)="resetDateOfBirth()">delete</mat-icon>
+              <mat-icon matIconSuffix *ngIf="this.filterUsersForm.controls['DateOfBirth'].value"
+                        style="cursor: pointer" (click)="resetDateOfBirth()">delete</mat-icon>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -137,11 +138,11 @@
       <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
              [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList
              (matSortChange)="sortData($event)"  (contextmenu)="onContextMenu($event)">
-        <ng-container matColumnDef="id" class="tableDesign" >
+        <ng-container matColumnDef="id" class="tableDesign"  >
           <th mat-header-cell *matHeaderCellDef cdkDrag
           >
             {{'table.row'|translate}}</th>
-          <td mat-cell *matCellDef="let element ; let i=index"  >
+          <td mat-cell *matCellDef="let element ; let i=index"  (contextmenu)="onContextMenu($event)">
 <!--                        {{index(i)}} -->
             {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}
 
@@ -151,7 +152,7 @@
           <th mat-header-cell *matHeaderCellDef cdkDrag
               mat-sort-header>
             {{'table.username'|translate}} </th>
-          <td mat-cell *matCellDef="let element" >{{element.userName}} </td>
+          <td mat-cell *matCellDef="let element" (contextmenu)="onContextMenu($event)" >{{element.userName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">

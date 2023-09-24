@@ -73,6 +73,8 @@
               <mat-label>{{'form.filter-subject-createTime'|translate}}</mat-label>
               <input matInput [matDatepicker]="picker" formControlName="createDateTime" [readonly]="true">
               <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-icon matIconSuffix *ngIf="this.form.controls['createDateTime'].value" style="cursor: pointer"
+                        (click)="resetDateOfBirth()">delete</mat-icon>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

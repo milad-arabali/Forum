@@ -25,7 +25,7 @@ export class SubjectCategoryComponent implements OnInit  {
   treeControl: FlatTreeControl<SubjectCategoryFlatNodeModel>;
   dataSource: SubjectCategoryDataSource;
   activeNode: SubjectCategoryFlatNodeModel;
-  statusSubject:Boolean;
+
   getLevel = (node: SubjectCategoryFlatNodeModel) => node.level;
   isExpandable = (node: SubjectCategoryFlatNodeModel) => true;
   hasChild = (_: number, _nodeData: SubjectCategoryFlatNodeModel) => _nodeData.item.hasChild;
