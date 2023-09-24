@@ -13,21 +13,70 @@ body {
   font-family: BYekan;
   font-size: 20px;
 }
-
 @font-face {
   font-family: 'BYekan';
-  src:  url('../src/assets/fonts/BYekan.ttf') format('ttf');
+  src: url('../src/assets/fonts/BYekan.ttf') format('ttf');
 }
+
 @font-face {
   font-family: 'BTitrBold';
-  src:  url('../src/assets/fonts/BTitrBold.ttf') format('ttf');
+  src: url('../src/assets/fonts/BTitrBold.ttf') format('ttf');
 }
 
 @font-face {
   font-family: 'BYekan-bold';
-  src:  url('../src/assets/fonts/BYekan-Bold.ttf') format('ttf');
+  src: url('../src/assets/fonts/BYekan-Bold.ttf') format('ttf');
 }
+
 @font-face {
   font-family: 'BNAZANIN';
-  src:  url('../src/assets/fonts/BNAZANIN.ttf') format('ttf');
+  src: url('../src/assets/fonts/BNAZANIN.ttf') format('ttf');
+}
+
+/*@font-face {*/
+/*  font-family: 'Material Icons';*/
+/*  font-style: normal;*/
+/*  font-weight: 400;*/
+/*  src: url('./assets/mat-icons-4.woff2') format('woff2');*/
+/*}*/
+
+@font-face {
+  font-family: 'IranianSans';
+  src: url('../src/assets/fonts/Iranian-Sans.ttf') format('ttf');
+}
+
+.material-icons {
+  font-family: 'Material Icons', serif !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+
+.mat-calendar-body-label {
+  font-family: IranianSans;
+}
+
+.mat-calendar-body-cell-content.mat-focus-indicator {
+  font-family: IranianSans;
+  font-size: 18px;
+}
+
+.mat-calendar-table-header th {
+  font-family: IranianSans;
+  font-size: 18px;
+}
+
+.mat-calendar-period-button {
+  font-family: IranianSans;
+  font-size: 18px;
 }

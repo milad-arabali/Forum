@@ -10,7 +10,7 @@
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding="">
         <button mat-flat-button (click)="selectNode(node)"
                 [color]="activeNode === node ? 'primary' : ''">
-          <span class="iransans">{{node.item.title}}</span>
+          <span  [hidden]="node.item.status === false" class="iransans">{{node.item.title}}</span>
         </button>
       </mat-tree-node>
       <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
@@ -23,7 +23,7 @@
           </button>
           <button mat-flat-button (click)="selectNode(node)"
                   [color]="activeNode === node ? 'primary' : ''">
-            <span class="iransans">{{node.item.title}} </span>
+            <span [hidden]="node.item.status === false" class="iransans">{{node.item.title}}</span>
           </button>
         </div>
         <mat-progress-bar *ngIf="node.isLoading"

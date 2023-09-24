@@ -6,6 +6,7 @@ import {ForumService} from "./shared/services/forum.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ApiService} from "../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {SelectCategoryComponent} from "./select-category/select-category.component";
 
 @Component({
   selector: 'app-forum',
@@ -29,7 +30,7 @@ export class ForumComponent implements OnInit {
   }
 
   selectCategory() {
-    const dialogRef = this.dialog.open(SelectSubjectComponent)
+    const dialogRef = this.dialog.open(SelectCategoryComponent)
     dialogRef.afterClosed().subscribe(result => {
       this.api.getSubjectCategory(result.id).subscribe(
         value => {

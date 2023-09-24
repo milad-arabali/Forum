@@ -185,8 +185,9 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     console.log(this.search)
     this.userManagerServices.findUser(this.search).subscribe(
       value => {
+        this.dataSource.data = value.filter(user=>user.userName!== this.cookie.get('users'));
         // console.log(value);
-        this.dataSource.data = value
+        // this.dataSource.data = value
       })
   }
   pageChanged(event: PageEvent) {

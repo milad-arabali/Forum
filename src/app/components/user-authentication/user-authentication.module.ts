@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ResetPassWordModule} from "./reset-pass-word/reset-pass-word.module";
 import {SignInUserModule} from "./sign-in-user/sign-in-user.module";
 import {SignUpUserModule} from "./sign-up-user/sign-up-user.module";
 
@@ -13,7 +12,6 @@ import {SignUpUserModule} from "./sign-up-user/sign-up-user.module";
   ],
   imports: [
     CommonModule,
-    ResetPassWordModule,
     SignInUserModule,
     SignUpUserModule
   ]

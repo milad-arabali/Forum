@@ -139,7 +139,10 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
       creatorUser = `&`
     }
     if (time) {
-      createDateTime = `createDateTime=${time.format('YYYY/MM/DD')}`
+      time = time._d;
+      time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
+      createDateTime = `createDateTime_like=${time}`
+
     } else {
       createDateTime = `&`
     }

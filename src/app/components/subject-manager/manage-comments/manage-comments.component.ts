@@ -61,9 +61,13 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.sourceTable()
+      this.dataSource.paginator = this.paginator;
+    }, 100)
     this.loadSubjectData();
     // this.viewComments();
-    this.sourceTable();
+
   }
 
   ngAfterViewInit() {

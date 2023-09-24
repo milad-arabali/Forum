@@ -42,17 +42,14 @@
             {{'list.subject-title'| translate}} {{message.title}}
           </p>
           <p matListItemMeta>
-            {{'list.subject-createDateTime'| translate}} {{message.createDateTime}}
+            {{'list.subject-createDateTime'| translate}} {{message.createDateTime | time}}
           </p>
           <p matListItemMeta>
             {{'list.subject-creatorUser'| translate}} {{message.creatorUser}}
           </p>
         </div>
-
       </mat-list-option>
     </mat-selection-list>
-
-
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>

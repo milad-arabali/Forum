@@ -46,7 +46,6 @@ export class SigninUserComponent implements OnInit {
     console.log('34: ', this.form.get('username').errors)
     const a = this.cookie.get('login')
     if (a) {
-      console.log('dddd', a)
       this.router.navigate(['/home']);
     }
   }

@@ -5,7 +5,6 @@ import {SignupUserComponent} from "./components/user-authentication/sign-up-user
 import {AuthGuard} from "./core/guard/auth.guard";
 import {EditUserComponent} from "./components/user-panel/edit-user/edit-user.component";
 import {ChangePasswordComponent} from "./components/user-panel/change-password/change-password.component";
-import {ResetPassWordComponent} from "./components/user-authentication/reset-pass-word/reset-pass-word.component";
 import {HomeComponent} from "./components/home/home.component";
 
 
@@ -14,7 +13,6 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: "full"},
   {path: 'signup', component: SignupUserComponent},
   {path: 'signin', component: SigninUserComponent},
-  {path: 'resetpassword', component: ResetPassWordComponent},
   {path: 'home', canActivate: [AuthGuard], component: HomeComponent},
   {path: 'profile', component: EditUserComponent, canActivate: [AuthGuard]},
   {path: 'changePassword', component: ChangePasswordComponent, canActivate: [AuthGuard]},
@@ -34,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/forum/forum.module')
       .then(m => m.ForumModule)
   },
-  {path: '**', component: SigninUserComponent}
+  {path: '**',redirectTo: '/signin'}
 ]
 
 @NgModule({

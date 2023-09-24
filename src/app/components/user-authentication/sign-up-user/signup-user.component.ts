@@ -7,7 +7,7 @@ import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../../../shared/directive/natonal-code-validator.directive";
-
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -15,15 +15,16 @@ import {checkNationalCode} from "../../../shared/directive/natonal-code-validato
   templateUrl: './signup-user.component.html',
   styleUrls: ['./signup-user.component.css']
 })
-export class SignupUserComponent {
+export class SignupUserComponent implements OnInit {
   @ViewChild("userName") private _inputElement: ElementRef;
-  minDate:Date;
-  maxDate:Date;
+  minDate: Date;
+  maxDate: Date;
   form: FormGroup;
-  gender  = [
-    {Value: 'male', viewValue:'مرد'},
+  gender = [
+    {Value: 'male', viewValue: 'مرد'},
     {Value: 'female', viewValue: 'زن'}
   ]
+
   constructor(private signUpfb: FormBuilder,
               private api: ApiService,
               private snack: MatSnackBar,
@@ -31,9 +32,10 @@ export class SignupUserComponent {
               private cookie: CookieService,
               private c: CookieService,
               private translate: TranslateService,
+              private router: Router,
               private dateAdapter: DateAdapter<any>) {
     this.minDate = new Date(1990, 0, 1);
-    this.maxDate = new Date(2016,0,1);
+    this.maxDate = new Date(2016, 0, 1);
     this.dateAdapter.setLocale('fa-IR');
     translate.addLangs(['fa', 'klingon']);
     translate.setDefaultLang('fa');
@@ -44,8 +46,8 @@ export class SignupUserComponent {
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
       password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
-      name: [, [Validators.required ,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
-      nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      name: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nameFamily: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
       gender: ['مرد', [Validators.required]],
@@ -56,6 +58,12 @@ export class SignupUserComponent {
   }
 
 
+  ngOnInit() {
+    const a = this.cookie.get('login')
+    if (a) {
+      this.router.navigate(['/home']);
+    }
+  }
 
   submit() {
     if (this.form.valid) {
@@ -64,7 +72,7 @@ export class SignupUserComponent {
       const familyName = this.form.value.nameFamily;
       const value = this.form.value;
 
-      this.usersAth.singIn(name, value,name1,familyName)
+      this.usersAth.singIn(name, value, name1, familyName)
 
 
     }
