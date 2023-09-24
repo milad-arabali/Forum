@@ -8,6 +8,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
 import {VoteModel} from "../../../shared/model/vote.model";
 import {StatusCommentsModeEnum} from "../../../shared/enumeration/status-comments-mode.enum";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -24,13 +25,16 @@ export class ForumCommentComponent implements OnInit {
   likeStatus: number;
   allComment: CommentModel[] = [];
   time;
+  likeNumber:number=0;
+  dislikeNumber:number=0;
 
   constructor(private fb: FormBuilder,
               private forumServices: ForumService,
               private api: ApiService,
               private router: ActivatedRoute,
               private snack: MatSnackBar,
-              private translate: TranslateService
+              private translate: TranslateService,
+              private cookie: CookieService
   ) {
 
     this.commentForm = this.fb.group({
@@ -52,8 +56,9 @@ export class ForumCommentComponent implements OnInit {
   ngOnInit() {
     this.loadSubjectData()
     this.checkLike(this.id)
-
     this.viewComments()
+    this.likeNumberVote()
+    this.disLikeNumberVote()
   }
 
   viewComments() {
@@ -78,9 +83,23 @@ export class ForumCommentComponent implements OnInit {
     )
   }
 
+  likeNumberVote(){
+    this.forumServices.likeNumber(this.id).subscribe(
+      value => {
+        this.likeNumber=value.length
+      }
+    )
+  }
+  disLikeNumberVote(){
+    this.forumServices.disLikeNumber(this.id).subscribe(
+      value => {
+        this.dislikeNumber=value.length
+      }
+    )
+  }
   checkLike(id: number) {
     this.api.getSubject(id).subscribe(value => {
-      this.forumServices.checkVote(id, value.creatorUser).subscribe(
+      this.forumServices.checkVote(id, this.cookie.get('users')).subscribe(
         value => {
           if (value) {
             this.likeStatus = value[0].voteType;
@@ -94,10 +113,11 @@ export class ForumCommentComponent implements OnInit {
   addComment() {
     let addComment = new CommentModel();
     addComment.subjectId = this.commentsForm.controls['subjectId'].value
-    addComment.userName = this.commentForm.controls['creatorUser'].value
+    addComment.userName = this.cookie.get('users')
     addComment.content = this.commentsForm.controls['content'].value
     addComment.status = this.statusCommentMode
     addComment.createDateTime = this.commentsForm.controls['createDateTime'].value
+
     this.api.addComment(addComment).subscribe(
       value => {
         this.snack.open(this.translate.instant('snackbar.save-comment'), "", {
@@ -107,6 +127,8 @@ export class ForumCommentComponent implements OnInit {
         })
         this.commentsForm.controls['content'].reset()
         this.viewComments()
+        this.likeNumberVote()
+        this.checkLike(this.id)
       }
     )
   }
@@ -115,26 +137,28 @@ export class ForumCommentComponent implements OnInit {
     let addLike = new VoteModel();
     addLike.subjectId = this.commentsForm.controls['subjectId'].value
     addLike.voteType = 0
-    addLike.userName = this.commentForm.controls['creatorUser'].value
+    addLike.userName = this.cookie.get('users')
     addLike.createDateTime = this.commentsForm.controls['createDateTime'].value
     addLike.status = 0
-    this.likeStatus = 0;
     this.api.addVote(addLike).subscribe(
-
     )
+    this.likeNumberVote()
+    this.checkLike(this.id)
+
   }
 
   addDisLike() {
     let disLike = new VoteModel();
     disLike.subjectId = this.commentsForm.controls['subjectId'].value
     disLike.voteType = 1
-    disLike.userName = this.commentForm.controls['creatorUser'].value
+    disLike.userName = this.cookie.get('users')
     disLike.createDateTime = this.commentsForm.controls['createDateTime'].value
     disLike.status = 0
     this.likeStatus = 1;
     this.api.addVote(disLike).subscribe(
-
     )
+    this.disLikeNumberVote()
+    this.checkLike(this.id)
   }
 }
 
