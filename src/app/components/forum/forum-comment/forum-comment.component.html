@@ -71,7 +71,7 @@
               [disabled]="commentsForm.invalid" (click)="addComment()">{{'form.save-comment' | translate }}</button>
     </div>
     <div class="comments-container">
-      <h3>دیدگاه ها </h3>
+      <h3>{{'layout.comments' | translate }}</h3>
       <div *ngFor="let comments of allComment" class="commentBox">
         <div>
           <div class="avatarimg">

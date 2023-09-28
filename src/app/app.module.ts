@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent} from './app.component';
 import {ThemeModule} from "./core/layout/theme/theme.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserLoginModule} from "./components/user-panel/user-login.module";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieService} from "ngx-cookie-service";
@@ -11,9 +11,9 @@ import {
   MaterialPersianDateAdapter,
   PERSIAN_DATE_FORMATS
 } from "./core/adapter/material-persian-date.adapter";
-import {TranslateModule,TranslateLoader} from "@ngx-translate/core";
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {
   UserAuthenticationModule
 } from "./components/user-authentication/user-authentication.module";
@@ -23,6 +23,8 @@ import {SubjectCategoryModule} from "./components/subject-category/subject-categ
 import {SubjectManagerModule} from "./components/subject-manager/subject-manager.module";
 import {UsersManageModule} from "./components/users-manage/users-manage.module";
 import {ForumModule} from "./components/forum/forum.module";
+import {HomeModule} from "./components/home/home.module";
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -34,11 +36,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     NationalCodeValidatorDirective,
 
 
-
-
   ],
   imports: [
-
+    HomeModule,
     BrowserModule,
     ThemeModule,
     UsersManageModule,
@@ -63,19 +63,19 @@ export function HttpLoaderFactory(http: HttpClient) {
 
   ],
   providers: [MatSnackBar,
-    CookieService,{
+    CookieService, {
       provide: DateAdapter,
       useClass: MaterialPersianDateAdapter,
       deps: [MAT_DATE_LOCALE],
     },
     {
-      provide:MAT_DATE_FORMATS,
-      useValue:PERSIAN_DATE_FORMATS
+      provide: MAT_DATE_FORMATS,
+      useValue: PERSIAN_DATE_FORMATS
     },
   ],
   bootstrap: [AppComponent],
 
 
-
 })
-export class AppModule { }
+export class AppModule {
+}

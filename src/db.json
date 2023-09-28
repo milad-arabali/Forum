@@ -229,61 +229,14 @@
     }
   ],
   "vote": [
+
     {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "milad",
-      "createDateTime": "2023-09-24T07:18:21.136Z",
-      "status": 0,
-      "id": 1
-    },
-    {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "test1",
-      "createDateTime": "2023-09-24T13:38:47.889Z",
-      "status": 0,
-      "id": 2
-    },
-    {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "test1",
-      "createDateTime": "2023-09-26T14:53:57.508Z",
-      "status": 0,
-      "id": 3
-    },
-    {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "test1",
-      "createDateTime": "2023-09-28T09:10:42.107Z",
-      "status": 0,
-      "id": 4
-    },
-    {
-      "subjectId": 25,
+      "subjectId": "25",
       "voteType": 1,
       "userName": "test1",
-      "createDateTime": "2023-09-28T09:10:42.107Z",
+      "createDateTime": "2023-09-28T17:06:54.606Z",
       "status": 0,
-      "id": 5
-    },
-    {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "test1",
-      "createDateTime": "2023-09-28T09:10:42.107Z",
-      "status": 0,
-      "id": 6
-    },
-    {
-      "subjectId": 25,
-      "voteType": 0,
-      "userName": "test1",
-      "createDateTime": "2023-09-28T09:10:42.107Z",
-      "status": 0,
-      "id": 7
+      "id": 3
     }
   ]
 }

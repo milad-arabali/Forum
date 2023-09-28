@@ -80,5 +80,9 @@ export class ApiService {
   addVote(voteModel: VoteModel){
     return this.httpClient.post<VoteModel>(`${this.apiUrlVote}`,voteModel)
   }
+  updateVote(subjectId:number| undefined,userName:string,vote:VoteModel){
+    return this.httpClient.patch<VoteModel>(
+      'http://localhost:3000/vote?subjectId=' + `${subjectId}`+'&userName='+`${userName}`,vote);
+  }
 
 }
