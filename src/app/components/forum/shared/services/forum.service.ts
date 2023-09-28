@@ -14,7 +14,7 @@ export class ForumService {
 
   findSubject(a: number): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>(
-      'http://localhost:3000/subject?parentId=' + `${a}`);
+      'http://localhost:3000/subject?parentId=' + `${a}`+'&status=true');
   }
   checkVote(subjectId:number| undefined,userName:any){
     return this.http.get<VoteModel[]>(

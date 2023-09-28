@@ -23,7 +23,8 @@ export class EditUserComponent implements OnInit {
   a: boolean = true;
   minDate:Date;
   maxDate:Date;
-
+  nationalCode:number;
+  userName:string;
   constructor(private route: ActivatedRoute,
               private Fb: FormBuilder,
               private userEditForm: UserLoginService,
@@ -77,6 +78,19 @@ export class EditUserComponent implements OnInit {
 
   }
 
+  checkNationalCode($event) {
+    this.api.getAllUsers().subscribe(users => {
+      const checkFilter= users.filter(a=>a.nationalCode !== null)
+        checkFilter.filter(a=>a.nationalCode === this.nationalCode)
+      const user = checkFilter.find((a:any) => {
+        return a.nationalCode === $event.target.value
+      })
+      if (user){
+        this.form.controls['nationalCode'].setErrors({existNationalCode  : true})
+      }
+    })
+  }
+
   showUserConfig(user: UserAccountInformationModel) {
     this.form.setValue({
         userName: user.userName,
@@ -87,13 +101,11 @@ export class EditUserComponent implements OnInit {
         DateOfBirth: user.DateOfBirth
       }
     )
+
   }
 
   submit() {
     const userId = this.userId
-
-
-
     let s = this.api.updateRegisterUser(this.form.value, this.r.id).subscribe(
       res => {
         this.snack.open(this.translate.instant('snackbar.edit-account'), "", {
@@ -103,7 +115,6 @@ export class EditUserComponent implements OnInit {
         })
         this.userEditForm.showUserName$.next(this.form.value.name)
         this.userEditForm.showUserLastName$.next(this.form.value.nameFamily)
-
       })
 
   }
@@ -111,4 +122,5 @@ export class EditUserComponent implements OnInit {
   resetDateOfBirth() {
     this.form.controls['DateOfBirth'].reset()
   }
+
 }

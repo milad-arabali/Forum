@@ -85,11 +85,33 @@ export class SignupUserComponent implements OnInit {
     this.form.controls['DateOfBirth'].reset()
   }
 
-  checkUserName($event) {
-    console.log("Dsd", $event.target.value);
+  // checkUserName($event) {
+  //   console.log("Dsd", $event.target.value);
+  //
+  // }
 
+  checkUserName(value : string) {
+    this.api.getAllUsers().subscribe(users => {
+
+      const user = users.find((a:any) => {
+        return a.userName === value
+      })
+      if (user){
+        this.form.controls['userName'].setErrors({exist  : true})
+      }
+    })
   }
-
+  checkNationalCode(value : number) {
+    this.api.getAllUsers().subscribe(users => {
+      const checkFilter= users.filter(a=>a.nationalCode !== null)
+      const user = checkFilter.find((a:any) => {
+        return a.nationalCode === value
+      })
+      if (user){
+        this.form.controls['nationalCode'].setErrors({existNationalCode  : true})
+      }
+    })
+  }
 
 }
 

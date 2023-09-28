@@ -13,7 +13,7 @@
             <span> {{'form.userName'|translate}}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.userName'|translate}}</mat-label>
-              <input type="text" matInput formControlName="userName" [readonly]="true">
+              <input type="text" matInput formControlName="userName" [readonly]="true" >
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
           </div>
@@ -45,7 +45,8 @@
             <span>{{'form.nationalCode'|translate}}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode'|translate}}</mat-label>
-              <input type="text" maxlength="10" matInput formControlName="nationalCode">
+              <input type="text" maxlength="10" matInput formControlName="nationalCode"
+                     (input)="checkNationalCode($event)">
               <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="form.controls['nationalCode'].invalid &&
               (form.controls['nationalCode'].hasError('minLength') ||
@@ -60,7 +61,12 @@
                 *ngIf="form.controls['nationalCode'].invalid && form.controls['nationalCode'].hasError('required')">
                 {{'form.nationalCode-invalid'|translate}}
               </mat-error>
+              <mat-error *ngIf="form.controls['nationalCode'].invalid &&
+              form.controls['nationalCode'].hasError('existNationalCode')">
+                {{'form.nationalCode-exist' | translate }}
+              </mat-error>
             </mat-form-field>
+
           </div>
           <div>
             <span> {{'form.nameFamily'|translate}}</span>

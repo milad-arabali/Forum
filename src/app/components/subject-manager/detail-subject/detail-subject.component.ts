@@ -46,11 +46,11 @@ export class DetailSubjectComponent implements OnInit {
     this.form = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(255),
         Validators.pattern('^[0-9a-zA-Z\u0600-\u06FF\\s\\.\\,\\-\\(\\)\\:\\?]+$')]],
-      parentId: [-1],
+      parentId: [],
       categoryTitle: ['', Validators.required],
       creatorUser: [this.cookie.get('users')],
       status: [true, Validators.required],
-      createDateTime: [this.date.format('YYYY/MM/DD')],
+      createDateTime: [new Date()],
     })
   }
 
@@ -71,6 +71,7 @@ export class DetailSubjectComponent implements OnInit {
             this.form.controls['status'].setValue(value.status)
             this.form.controls['creatorUser'].setValue(value.creatorUser)
             this.form.controls['categoryTitle'].setValue(value.categoryTitle)
+            this.form.controls['parentId'].setValue(value.parentId)
           }
         )
       } else if (url[1].path === this.id.toString()) {

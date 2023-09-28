@@ -124,7 +124,9 @@
     "revers": "بازگشت",
     "awaiting-confirmation": "در انتظار تایید",
     "confirm-comment": "پذیرفته شده",
-    "reject-comment": "رد شده"
+    "reject-comment": "رد شده",
+    "userName-exist": "نام کاربری وجود دارد.",
+    "nationalCode-exist": "کدملی وجود دارد."
   },
   "table": {
     "row": "ردیف",

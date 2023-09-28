@@ -30,7 +30,7 @@
       "password": "test4",
       "name": "تست چهار",
       "nameFamily": "تست چهارم",
-      "nationalCode": "0021655235",
+      "nationalCode": "0021655231",
       "gender": "male",
       "isAdmin": true,
       "DateOfBirth": "2015-12-25T20:30:00.000Z",
@@ -111,7 +111,7 @@
       "parentId": 1,
       "categoryTitle": "تست 1",
       "creatorUser": "test1",
-      "status": false,
+      "status": true,
       "createDateTime": "2023-09-24T16:44:43.819Z",
       "id": 25
     },
@@ -120,7 +120,7 @@
       "parentId": 1,
       "categoryTitle": "تست 1",
       "creatorUser": "test1",
-      "status": true,
+      "status": false,
       "createDateTime": "2023-09-25T16:44:43.819Z",
       "id": 26
     },
@@ -159,6 +159,15 @@
       "status": true,
       "createDateTime": "2023-09-23T16:44:43.819Z",
       "id": 31
+    },
+    {
+      "title": "ewe",
+      "parentId": 2,
+      "categoryTitle": "تست دو",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "2023-09-28T09:35:58.086Z",
+      "id": 32
     }
   ],
   "comment": [
@@ -235,6 +244,46 @@
       "createDateTime": "2023-09-24T13:38:47.889Z",
       "status": 0,
       "id": 2
+    },
+    {
+      "subjectId": 25,
+      "voteType": 0,
+      "userName": "test1",
+      "createDateTime": "2023-09-26T14:53:57.508Z",
+      "status": 0,
+      "id": 3
+    },
+    {
+      "subjectId": 25,
+      "voteType": 0,
+      "userName": "test1",
+      "createDateTime": "2023-09-28T09:10:42.107Z",
+      "status": 0,
+      "id": 4
+    },
+    {
+      "subjectId": 25,
+      "voteType": 1,
+      "userName": "test1",
+      "createDateTime": "2023-09-28T09:10:42.107Z",
+      "status": 0,
+      "id": 5
+    },
+    {
+      "subjectId": 25,
+      "voteType": 0,
+      "userName": "test1",
+      "createDateTime": "2023-09-28T09:10:42.107Z",
+      "status": 0,
+      "id": 6
+    },
+    {
+      "subjectId": 25,
+      "voteType": 0,
+      "userName": "test1",
+      "createDateTime": "2023-09-28T09:10:42.107Z",
+      "status": 0,
+      "id": 7
     }
   ]
 }

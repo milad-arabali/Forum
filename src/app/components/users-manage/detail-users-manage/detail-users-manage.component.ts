@@ -22,7 +22,7 @@ import {UserAccountInformationModel} from "../../../shared/model/user-account-in
 })
 export class DetailUsersManageComponent implements OnInit {
   @ViewChild("userName") private _inputElement: ElementRef;
-  gender  = [
+  gender = [
     {Value: 'male', viewValue: 'مرد'},
     {Value: 'female', viewValue: 'زن'}
   ]
@@ -32,14 +32,17 @@ export class DetailUsersManageComponent implements OnInit {
   parentId: number;
   name: string;
   isAdmin: boolean[] = [true, false]
-  minDate:Date;
-  maxDate:Date;
+  minDate: Date;
+  maxDate: Date;
+  nationalCode: number;
+  userName: string;
   status = [
     {statusValue: 'Registered', viewValue: 'ثبت نام اولیه شده'},
     {statusValue: 'reject', viewValue: 'لغو شده'},
     {statusValue: 'confirm', viewValue: 'تایید شده'},
   ];
-  isSearchButtonActive=false;
+  isSearchButtonActive = false;
+
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
               private userInformationServices: UsersManageService,
@@ -49,7 +52,6 @@ export class DetailUsersManageComponent implements OnInit {
               private dialog: MatDialog,
               private route: Router,
               private activateRoute: ActivatedRoute,
-
               private subject: SubjectService,
               private cookie: CookieService,
               private translate: TranslateService
@@ -62,8 +64,8 @@ export class DetailUsersManageComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
       status: ["Registered",],
       password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
-      name: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
-      nameFamily: [, [Validators.required,Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      name: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
+      nameFamily: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
         checkNationalCode()]],
       gender: ['male', []],
@@ -74,7 +76,7 @@ export class DetailUsersManageComponent implements OnInit {
 
   ngOnInit() {
     this.minDate = new Date(1990, 0, 1);
-    this.maxDate = new Date(2016,0,1);
+    this.maxDate = new Date(2016, 0, 1);
     // this.userInformationServices.checkIsAdmin(this.cookie.get('users'))
     this.id = this.router.snapshot.params['id']
     this.activateRoute.url.subscribe((url: UrlSegment[]) => {
@@ -95,6 +97,8 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
             this.manageUsersForm.controls['DateOfBirth'].setValue(
               moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
+            this.nationalCode = value.nationalCode;
+            this.userName = value.userName;
           }
         )
       } else if (url[1].path === this.id.toString()) {
@@ -182,6 +186,28 @@ export class DetailUsersManageComponent implements OnInit {
     this.manageUsersForm.controls['DateOfBirth'].reset()
   }
 
+  checkUserName($event) {
+    this.api.getAllUsers().subscribe(users => {
+      const user = users.find((a:any) => {
+        return a.userName === $event.target.value
+      })
+      if (user){
+        this.manageUsersForm.controls['userName'].setErrors({existUserName : true})
+      }
+    })
+  }
+
+  checkNationalCode($event) {
+    this.api.getAllUsers().subscribe(users => {
+      const checkFilter= users.filter(a=>a.nationalCode !== null)
+      const user = checkFilter.find((a:any) => {
+        return a.nationalCode === $event.target.value
+      })
+      if (user){
+        this.manageUsersForm.controls['nationalCode'].setErrors({existNationalCode  : true})
+      }
+    })
+  }
 
 }
 

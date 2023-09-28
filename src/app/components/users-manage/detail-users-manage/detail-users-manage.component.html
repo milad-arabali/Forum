@@ -24,7 +24,8 @@
             <span>{{'form.userName' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.userName' | translate }}</mat-label>
-              <input type="text" matInput formControlName="userName"  [readonly]="formMode===2" >
+              <input type="text" matInput formControlName="userName"  [readonly]="formMode===2"
+                     (input)="checkUserName($event)">
               <mat-icon matSuffix>person</mat-icon>
               <mat-error *ngIf="manageUsersForm.controls['userName'].invalid &&
               manageUsersForm.controls['userName'].hasError('minlength')">
@@ -38,8 +39,9 @@
               manageUsersForm.controls['userName'].hasError('pattern')">
                 {{'form.userNamePersianChar-error' | translate }}
               </mat-error>
-              <mat-error *ngIf="manageUsersForm.controls['userName'].invalid ">
-                {{'form.userName-error' | translate }}
+              <mat-error *ngIf="manageUsersForm.controls['userName'].invalid &&
+              manageUsersForm.controls['userName'].hasError('existUserName')">
+                {{'form.userName-exist' | translate }}
               </mat-error>
             </mat-form-field>
           </div>
@@ -76,7 +78,8 @@
             <span>{{'form.nationalCode' | translate }}</span>
             <mat-form-field class="mat-form">
               <mat-label>{{'form.nationalCode' | translate }}</mat-label>
-              <input type="text"  maxlength="10" matInput formControlName="nationalCode"  [readonly]="formMode===2">
+              <input type="text"  maxlength="10" matInput formControlName="nationalCode"  [readonly]="formMode===2"
+                     (input)="checkNationalCode($event)">
               <mat-icon matSuffix>account_box</mat-icon>
               <mat-error *ngIf="manageUsersForm.controls['nationalCode'].invalid &&
               (manageUsersForm.controls['nationalCode'].hasError('minLength') ||
@@ -91,6 +94,10 @@
                 *ngIf="manageUsersForm.controls['nationalCode'].invalid &&
                 manageUsersForm.controls['nationalCode'].hasError('required')">
                 {{'form.nationalCode-invalid'|translate}}
+              </mat-error>
+              <mat-error *ngIf="manageUsersForm.controls['nationalCode'].invalid &&
+              manageUsersForm.controls['nationalCode'].hasError('existNationalCode')">
+                {{'form.nationalCode-exist'|translate}}
               </mat-error>
             </mat-form-field>
           </div>

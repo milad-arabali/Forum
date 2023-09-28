@@ -33,24 +33,14 @@ export class ForumComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.api.getSubjectCategory(result.id).subscribe(
         value => {
-          if (value.status === false) {
-            this.snack.open(this.translate.instant('form.category-parent-status'), "", {
-              duration: 3000,
-              horizontalPosition: "end",
-              verticalPosition: "top"
-            })
-            this.categoryTitle=''
-          }else {
             this.forumServices.findSubject(result.id).subscribe(
               value => {
                 if(value[0].status===true){
                   this.subjectManager=value
                 }
-
               }
             )
             this.categoryTitle=result.title
-          }
         })
 
     })
