@@ -12,7 +12,7 @@ const routingSubject: Routes = [
   {path: 'subject/add', component: DetailSubjectComponent, canActivate: [AuthGuard]},
   {path: 'subject/edit/:id', component: DetailSubjectComponent, canActivate: [AuthGuard]},
   {path: 'subject/:id', component: DetailSubjectComponent, canActivate: [AuthGuard]},
-  {path: 'subject/comments/:id', component: ManageVoteComponent, canActivate: [AuthGuard]},
+  {path: 'subject/manage-votes/:id', component: ManageVoteComponent, canActivate: [AuthGuard]},
   {path: 'subject/manage-comments/:id', component: ManageCommentsComponent, canActivate: [AuthGuard]},
 ]
 

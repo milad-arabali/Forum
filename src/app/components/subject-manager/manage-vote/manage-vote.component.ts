@@ -84,6 +84,7 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
             horizontalPosition: "end",
             verticalPosition: "top"
           })
+
           this.route.navigate(['subject'])
         }
       })
