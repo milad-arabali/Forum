@@ -41,20 +41,13 @@ export class ApiService {
   updateSubjectCategory(registerObj: SubjectCategoryModel, id : number){
     return this.httpClient.patch<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}/${id}`,registerObj)
   }
-  changeHasChild(id : number, body:any){
-    return this.httpClient.patch(`${this.apiUrlSubjectCategory}/${id}`,body)
-  }
+
   deleteSubjectCategory(id : number){
     return this.httpClient.delete<SubjectCategoryModel[]>(`${this.apiUrlSubjectCategory}/${id}`)
   }
-  addSubjectCategory(subjectCategoryModel:SubjectCategoryModel){
-    return this.httpClient.post<SubjectCategoryModel>(`${this.apiUrlSubjectCategory}`,subjectCategoryModel)
-  }
+
   postRegistration(registerObj: UserAccountInformationModel){
     return this.httpClient.post<UserAccountInformationModel>(`${this.apiUrl}`,registerObj)
-  }
-  SubjectCategoryUser(user:string){
-    return this.httpClient.get<UserAccountInformationModel>(`http://localhost:3000/enquiry?userName=`+ `${user}`)
   }
   addSubject(subjectMangerModel: SubjectMangerModel){
     return this.httpClient.post<SubjectMangerModel>(`${this.apiUrlSubject}`,subjectMangerModel)
@@ -65,6 +58,7 @@ export class ApiService {
   getSubject(id : number){
     return this.httpClient.get<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`)
   }
+
   updateSubject(subjectManger: SubjectMangerModel,id : number){
     return this.httpClient.patch<SubjectMangerModel>(`${this.apiUrlSubject}/${id}`,subjectManger)
   }

@@ -199,7 +199,7 @@
       "subjectId": 25,
       "userName": "test1",
       "content": "ddd",
-      "status": 0,
+      "status": 1,
       "createDateTime": "2023-09-23T18:11:13.314Z",
       "id": 4
     },

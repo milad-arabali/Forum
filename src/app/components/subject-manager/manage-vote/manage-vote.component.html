@@ -4,7 +4,7 @@
       <div class="title-container">
         <div class="card-header-title">
           <mat-icon aria-hidden="false">people</mat-icon>
-          {{'form.manage-comment'|translate}}
+          {{'form.view-comment'|translate}}
         </div>
       </div>
     </mat-card-title>
@@ -16,11 +16,11 @@
         <div class="row">
           <div>
             <span>{{'form.subject-title' | translate }}</span>
-            <mat-label *ngFor="let a of commentFormData">{{a.title}}</mat-label>
+            <mat-label *ngFor="let a of CommentDate">{{a.title}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-creatorUser' | translate }}</span>
-            <mat-label *ngFor="let a of commentFormData">{{a.creatorUser}}</mat-label>
+            <mat-label *ngFor="let a of CommentDate">{{a.creatorUser}}</mat-label>
           </div>
         </div>
       </div>
@@ -28,11 +28,11 @@
         <div class="row">
           <div>
             <span>{{'form.subject-category' | translate }}</span>
-            <mat-label *ngFor="let a of commentFormData">{{a.categoryTitle}}</mat-label>
+            <mat-label *ngFor="let a of CommentDate">{{a.categoryTitle}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-createDateTime' | translate }}</span>
-            <mat-label *ngFor="let a of commentFormData">{{a.createDateTime | time}}</mat-label>
+            <mat-label *ngFor="let a of CommentDate">{{a.createDateTime | time}}</mat-label>
           </div>
         </div>
       </div>
@@ -70,37 +70,14 @@
           <td mat-cell *matCellDef="let element"> {{element.createDateTime | time}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="showComment">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.comment'|translate}}</th>
+        <ng-container matColumnDef="showVote">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status_vote'|translate}}</th>
           <td mat-cell *matCellDef="let element">
-                <span style="cursor: pointer; color: blue" (click)="viewComment(element.id)">{{'table.view'|translate}}</span>
-          </td>
+            <mat-icon *ngIf="element.voteType===1" style="color: red"> check_circle</mat-icon>
+            <mat-icon *ngIf="element.voteType===0" style="color: green"> check_circle</mat-icon>
+            {{changeStatusTitle(element.voteType)}} </td>
         </ng-container>
-        <ng-container matColumnDef="status">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.status'|translate}}</th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon *ngIf="element.status===0" style="color: orange"> check_circle</mat-icon>
-            <mat-icon *ngIf="element.status===1" style="color: green"> check_circle</mat-icon>
-            <mat-icon *ngIf="element.status===2" style="color: red"> block</mat-icon>
-            {{changeStatusTitle(element.status)}} </td>
-        </ng-container>
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell mat-sort-header *matHeaderCellDef cdkDrag>{{'table.action'|translate}}</th>
-          <td mat-cell *matCellDef="let element" class="button">
-            <button mat-raised-button color="primary" (click)="confirmComment(element.id)"
-                    matTooltip=" پذیرفتن" *ngIf="element.status === 2 || element.status === 0">
-              <mat-icon>thumb_up</mat-icon>
-            </button>
-            <button mat-raised-button color="accent" (click)="rejectComment(element.id)"
-                    matTooltip="رد کردن" *ngIf="element.status === 1 || element.status === 0">
-              <mat-icon>thumb_down</mat-icon>
-            </button>
-            <button mat-raised-button color="primary" (click)="deleteComment(element.id)"
-                    matTooltip=" حذف"  >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
@@ -112,7 +89,6 @@
                      [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
       </mat-paginator>
     </div>
-
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>

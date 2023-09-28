@@ -6,15 +6,15 @@
       <h4 class="name">{{name}}  {{familyName}}</h4>
       <p class="designation">{{'layout.job' | translate }}</p>
       <mat-divider class="divider"></mat-divider>
-      <button mat-button class="menu-Button" [routerLink]="['home']">
+      <button mat-button class="menu-Button" [routerLink]="['home']" style="cursor: pointer">
         <mat-icon>home</mat-icon>
         <span>{{'layout.home' | translate }}</span>
       </button>
-      <button mat-button class="menu-Button" [routerLink]="['subject-category']" *ngIf="isAdmin">
+      <button mat-button class="menu-Button" [routerLink]="['subject-category']"  *ngIf="isAdmin">
         <mat-icon>insert_drive_file</mat-icon>
         <span>{{'layout.category' | translate }}</span>
       </button>
-      <button mat-button class="menu-Button" [routerLink]="['subject']" *ngIf="isAdmin">
+      <button mat-button class="menu-Button" [routerLink]="['subject']"  *ngIf="isAdmin">
         <mat-icon>edit_square</mat-icon>
         <span>{{'layout.category-manager' | translate }}</span>
       </button>
@@ -22,13 +22,13 @@
         <mat-icon>people</mat-icon>
         <span>{{'layout.users-manager' | translate }}</span>
       </button>
-      <button mat-button class="menu-Button" [routerLink]="['forum']">
+      <button mat-button class="menu-Button" [routerLink]="['forum']" >
         <mat-icon>forum</mat-icon>
         <span>{{'layout.forum' | translate }}</span>
       </button>
 
       <mat-divider class="divider"></mat-divider>
-      <button mat-button class="menu-Button">
+      <button mat-button class="menu-Button" style="cursor: pointer">
         <mat-icon>help</mat-icon>
         <span>{{'layout.guide' | translate }}</span>
       </button>

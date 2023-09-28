@@ -1,35 +1,32 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommentModel} from "../../../shared/model/comment.model";
-import {SubjectService} from "../shared/services/subject.service";
 import {ApiService} from "../../../shared/services/api.service";
-import {ActivatedRoute, Route, Router, UrlSegment} from "@angular/router";
+import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
+import {SubjectService} from "../shared/services/subject.service";
+import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
+import {ViewCommentsUsersComponent} from "../manage-comments/view-comment-users/view-comments-users.component";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-
-import {MatDialog} from "@angular/material/dialog";
-import {ViewCommentsUsersComponent} from "./view-comment-users/view-comments-users.component";
-import * as moment from "jalali-moment";
-import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 
 
 @Component({
-  selector: 'app-manage-comments',
-  templateUrl: './manage-comments.component.html',
-  styleUrls: ['./manage-comments.component.css']
+  selector: 'app-view-comments',
+  templateUrl: './manage-vote.component.html',
+  styleUrls: ['./manage-vote.component.css']
 })
-export class ManageCommentsComponent implements OnInit, AfterViewInit {
-  commentFormData: SubjectMangerModel[]=[];
+export class ManageVoteComponent implements OnInit, AfterViewInit {
+  CommentDate: SubjectMangerModel[] = [];
   commentsForm: FormGroup;
   id: number;
   allComment: CommentModel[] = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-  displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showComment', 'status', 'actions'];
+  displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showVote'];
   dataSource = new MatTableDataSource();
   isLoading = false;
   pageSize = 0;
@@ -37,15 +34,14 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   pageSizeOptions: number[] = [5, 10, 25, 100];
   maxall = 100;
 
+
   constructor(private fb: FormBuilder,
               private subjectManagerServices: SubjectService,
               private api: ApiService,
               private router: ActivatedRoute,
               private snack: MatSnackBar,
               private translate: TranslateService,
-              private dialog: MatDialog,
               private route:Router
-
   ) {
 
     this.commentsForm = this.fb.group({
@@ -60,17 +56,14 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loadSubjectData()
     setTimeout(() => {
       this.sourceTable()
       this.dataSource.paginator = this.paginator;
     }, 100)
-    this.loadSubjectData();
-    // this.viewComments();
     this.router.url.subscribe((url: UrlSegment[]) => {
-    this.checkSubject(Number(url[2].path))
-
+      this.checkSubject(Number(url[2].path))
     })
-
   }
 
   ngAfterViewInit() {
@@ -78,16 +71,15 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
 
   }
-
   checkSubject(url: number) {
-    this.subjectManagerServices.checkCommentId().subscribe(
+    this.subjectManagerServices.checkVoteId().subscribe(
       value => {
         let path = url
         let id = value.find((a) => a.subjectId === path)
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open(this.translate.instant('snackbar.comment-notExit'), "", {
+          this.snack.open(this.translate.instant('snackbar.vote-notExit'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -100,72 +92,18 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   loadSubjectData() {
     this.api.getSubject(this.id).subscribe(
       value => {
-          this.commentFormData.push(value)
-
+        this.CommentDate.push(value)
       }
     )
   }
 
-
-  viewComment(id) {
-    const dialogRef = this.dialog.open(ViewCommentsUsersComponent, {
-      data: {
-        id: id,
-        formModeDialog: 3
-      }
-    })
-    dialogRef.afterClosed().subscribe(result => {
-        this.sourceTable()
-      }
-    )
-  }
-  deleteComment(id) {
-
-    const dialogRef = this.dialog.open(ViewCommentsUsersComponent, {
-      data: {
-        id: id,
-        formModeDialog: 4
-      }
-    })
-    dialogRef.afterClosed().subscribe(result => {
-        this.sourceTable()
-      }
-    )
-  }
-  confirmComment(id) {
-    const dialogRef = this.dialog.open(ViewCommentsUsersComponent, {
-      data: {
-        id: id,
-        formModeDialog: 1
-      }
-    })
-    dialogRef.afterClosed().subscribe(result => {
-        this.sourceTable()
-      }
-    )
-  }
-  rejectComment(id) {
-
-    const dialogRef = this.dialog.open(ViewCommentsUsersComponent, {
-      data: {
-        id: id,
-        formModeDialog: 2
-      }
-    })
-    dialogRef.afterClosed().subscribe(result => {
-        this.sourceTable()
-      }
-    )
-  }
 
   sourceTable() {
     this.isLoading = true;
-    this.subjectManagerServices.sortingAllComment(
-      this.paginator.pageIndex + 1, this.paginator.pageSize,this.id).subscribe(
+    this.subjectManagerServices.sortingAllVote(
+      this.paginator.pageIndex + 1, this.paginator.pageSize, this.id).subscribe(
       (res) => {
-
         this.dataSource.data = res;
-
         this.isLoading = false;
       },
       (err) => {
@@ -184,11 +122,9 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
 
   changeStatusTitle(title: number) {
     if (title === 0) {
-      return this.translate.instant('form.awaiting-confirmation')
-    } else if (title === 1){
-      return this.translate.instant('form.confirm-comment')
-    }else if (title === 2){
-      return this.translate.instant('form.reject-comment')
+      return this.translate.instant('table.confirm-vote')
+    } else if (title === 1) {
+      return this.translate.instant('table.reject-vote')
     }
   }
 
@@ -197,7 +133,7 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   }
 
   sortData(event: Sort) {
-    this.subjectManagerServices.sortingCellComment(event.active, event.direction,this.id).subscribe(
+    this.subjectManagerServices.sortingCellVote(event.active, event.direction, this.id).subscribe(
       value => {
         this.dataSource.data = value
       }

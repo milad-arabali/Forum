@@ -58,9 +58,7 @@ export class SelectCategoryComponent implements OnInit{
   }
 
   selectParentClose() {
-    const s = new SubjectCategoryModel();
-    s.id = -1
-    this.dialogRef.close(s)
+    this.dialogRef.close()
 
   }
 

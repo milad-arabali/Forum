@@ -11,24 +11,16 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div [formGroup]="commentForm" class="commentForm">
+    <div  class="commentForm">
       <div class="col">
         <div class="row">
           <div>
             <span>{{'form.subject-title' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.subject-title' | translate }}</mat-label>
-              <input type="text" matInput formControlName="subjectTitle" [readonly]="true">
-              <mat-icon matSuffix>mode_edit</mat-icon>
-            </mat-form-field>
+            <mat-label *ngFor="let a of commentData">{{a.title}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-creatorUser' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.subject-creatorUser' | translate }}</mat-label>
-              <input type="text" matInput formControlName="creatorUser" [readonly]="true">
-              <mat-icon matSuffix>account_box</mat-icon>
-            </mat-form-field>
+            <mat-label *ngFor="let a of commentData">{{a.creatorUser}}</mat-label>
           </div>
         </div>
       </div>
@@ -36,19 +28,11 @@
         <div class="row">
           <div>
             <span>{{'form.subject-category' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.subject-category' | translate }}</mat-label>
-              <input type="text" matInput formControlName="subjectCategory" [readonly]="true">
-              <mat-icon matSuffix>description</mat-icon>
-            </mat-form-field>
+            <mat-label *ngFor="let a of commentData">{{a.categoryTitle}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-createDateTime' | translate }}</span>
-            <mat-form-field class="mat-form">
-              <mat-label>{{'form.subject-createDateTime' | translate }}</mat-label>
-              <input type="text" matInput formControlName="createDateTime" [readonly]="true">
-              <mat-icon matSuffix>date_range</mat-icon>
-            </mat-form-field>
+            <mat-label *ngFor="let a of commentData">{{a.createDateTime | time}}</mat-label>
           </div>
         </div>
       </div>

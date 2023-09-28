@@ -6,6 +6,7 @@ import {ApiService} from "../../../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
 import {UserAccountInformationModel} from "../../../../shared/model/user-account-information.model";
 import {CommentModel} from "../../../../shared/model/comment.model";
+import {VoteModel} from "../../../../shared/model/vote.model";
 
 
 @Injectable({
@@ -26,6 +27,12 @@ export class SubjectService {
   checkId(): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject');
   }
+  checkCommentId(): Observable<CommentModel[]> {
+    return this.http.get<CommentModel[]>('http://localhost:3000/comment');
+  }
+  checkVoteId(): Observable<VoteModel[]> {
+    return this.http.get<VoteModel[]>('http://localhost:3000/vote');
+  }
   findSubject(a: string): Observable<SubjectMangerModel[]> {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?' + `${a}`);
@@ -40,9 +47,17 @@ export class SubjectService {
     return this.http.get<CommentModel[]>(
       'http://localhost:3000/comment?_sort='+`${sort}`+'&_order='+`${order}`+'&subjectId='+`${subjectId}`);
   }
+  sortingCellVote(sort:string,order:string,subjectId:number){
+    return this.http.get<VoteModel[]>(
+      'http://localhost:3000/vote?_sort='+`${sort}`+'&_order='+`${order}`+'&subjectId='+`${subjectId}`);
+  }
   sortingAllComment(pageSize:number,currentPage:number,subjectId:number): Observable<CommentModel[]> {
     return this.http.get<CommentModel[]>(
       'http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
+  }
+  sortingAllVote(pageSize:number,currentPage:number,subjectId:number): Observable<VoteModel[]> {
+    return this.http.get<VoteModel[]>(
+      'http://localhost:3000/vote?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
   }
   allComments(subjectId:number){
     return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');

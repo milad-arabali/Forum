@@ -45,13 +45,7 @@ export class ForumComponent implements OnInit {
 
     })
   }
-  changeStatusTitle(title: boolean) {
-    if (title) {
-      return this.translate.instant('form.status-true')
-    } else {
-      return this.translate.instant('form.status-false')
-    }
-  }
+
 
   reset() {
     this.categoryTitle=''

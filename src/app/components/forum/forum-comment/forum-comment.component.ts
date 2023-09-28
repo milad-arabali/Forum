@@ -9,7 +9,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {VoteModel} from "../../../shared/model/vote.model";
 import {StatusCommentsModeEnum} from "../../../shared/enumeration/status-comments-mode.enum";
 import {CookieService} from "ngx-cookie-service";
-import * as moment from "jalali-moment";
+import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 
 
 @Component({
@@ -19,7 +19,7 @@ import * as moment from "jalali-moment";
 })
 export class ForumCommentComponent implements OnInit {
   statusCommentMode: StatusCommentsModeEnum = StatusCommentsModeEnum.CREATED
-  commentForm: FormGroup;
+  commentData: SubjectMangerModel[]=[];
   commentsForm: FormGroup;
   id: number;
   userName: string = '';
@@ -38,12 +38,7 @@ export class ForumCommentComponent implements OnInit {
               private cookie: CookieService
   ) {
     // moment.locale('fa', { useGregorianParser: true });
-    this.commentForm = this.fb.group({
-      subjectCategory: [],
-      subjectTitle: [],
-      createDateTime: [],
-      creatorUser: [],
-    })
+
     this.commentsForm = this.fb.group({
       subjectId: [],
       content: [, Validators.required],
@@ -74,13 +69,7 @@ export class ForumCommentComponent implements OnInit {
   loadSubjectData() {
     this.api.getSubject(this.id).subscribe(
       value => {
-        this.commentForm.controls['subjectCategory'].setValue(value.categoryTitle)
-        this.commentForm.controls['subjectTitle'].setValue(value.title)
-        this.commentForm.controls['createDateTime'].setValue
-        (moment(value.createDateTime, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
-        this.commentForm.controls['creatorUser'].setValue(value.creatorUser)
-        this.commentsForm.controls['subjectId'].setValue(value.id)
-
+        this.commentData.push(value)
       }
     )
   }

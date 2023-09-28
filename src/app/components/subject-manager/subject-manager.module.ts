@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import { SubjectManagerComponent } from './subject-manager.component';
+import {SubjectManagerComponent} from './subject-manager.component';
 import {SelectSubjectModule} from "./select-subject/select-subject.module";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatCardModule} from "@angular/material/card";
@@ -21,49 +21,48 @@ import {MatSortModule} from "@angular/material/sort";
 import {CdkDrag, CdkDropList, CdkDropListGroup} from "@angular/cdk/drag-drop";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {ViewCommentsModule} from "./view-comments/view-comments.module";
+
 import {ManageCommentsModule} from "./manage-comments/manage-comments.module";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
+import {ManageVoteModule} from "./manage-vote/manage-vote.module";
 
 @NgModule({
   declarations: [
 
 
-
-
     SubjectManagerComponent,
 
   ],
-    imports: [
-        ManageCommentsModule,
-        ViewCommentsModule,
-        DeleteSubjectModule,
-        DetailSubjectModule,
-        SelectSubjectModule,
-        RoutingSubjectModule,
-        MatPaginatorModule,
-        MatCardModule,
-        MatButtonModule,
-        MatTableModule,
-        MatDatepickerModule,
-        MatInputModule,
-        TranslateModule,
-        MatRadioModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatListModule,
-        RouterLink,
-        NgIf,
-        MatSortModule,
-        CdkDropListGroup,
-        CdkDropList,
-        CdkDrag,
-        MatProgressBarModule,
-        MatTooltipModule,
-        FooterModule
-    ]
+  imports: [
+    ManageCommentsModule,
+    ManageVoteModule,
+    DeleteSubjectModule,
+    DetailSubjectModule,
+    SelectSubjectModule,
+    RoutingSubjectModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDatepickerModule,
+    MatInputModule,
+    TranslateModule,
+    MatRadioModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatListModule,
+    RouterLink,
+    NgIf,
+    MatSortModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
+    MatProgressBarModule,
+    MatTooltipModule,
+    FooterModule
+  ]
 })
 
 
-
-export class SubjectManagerModule { }
+export class SubjectManagerModule {
+}
