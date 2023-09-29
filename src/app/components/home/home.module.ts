@@ -5,6 +5,8 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {TranslateModule} from "@ngx-translate/core";
 import {MatListModule} from "@angular/material/list";
+import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -17,7 +19,10 @@ import {MatListModule} from "@angular/material/list";
     MatCardModule,
     MatIconModule,
     TranslateModule,
-    MatListModule
+    MatListModule,
+    BarChartModule,
+    MatButtonModule,
+    PieChartModule
   ]
 })
 export class HomeModule { }

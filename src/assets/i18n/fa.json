@@ -198,5 +198,22 @@
     "subject-creatorUser": "کاربر ایجاد کننده  :",
     "subject-createDateTime": "تاریخ ایجاد :",
     "subject-status": "وضیعت :"
+  },
+  "chart": {
+    "category-chart": "نمودار تعداد دسته بندی :",
+    "subject-chart": "نمودار تعداد موضوعات :",
+    "users-chart": "نمودار تعداد کاربران :",
+    "subject-save": "مقالات ثبت شده :",
+    "users-save": "کابران ثبت شده :",
+    "vote-save": "دیدگاه ثبت شده :",
+    "category-exist": " تعداد کل دسته بندی ها:",
+    "category-en": "تعداد دسته بندی های فعال :",
+    "category-dn": "تعداد دسته بندی های غیر فعال :",
+    "subject-exist": " تعداد کل موضوعات :",
+    "subject-en": "تعداد موضوعات فعال :",
+    "subject-dn": "تعداد موضوعات غیر فعال :",
+    "users-exist": " تعداد کل کاربران :",
+    "users-en": "تعداد کاربران فعال :",
+    "users-dn": "تعداد کاربران غیر فعال :"
   }
 }

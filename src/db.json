@@ -35,18 +35,6 @@
       "isAdmin": true,
       "DateOfBirth": "2015-12-25T20:30:00.000Z",
       "id": 15
-    },
-    {
-      "userName": "ddddd",
-      "status": "Registered",
-      "password": "11111",
-      "name": "لللل",
-      "nameFamily": "لللل",
-      "nationalCode": null,
-      "gender": "male",
-      "isAdmin": false,
-      "DateOfBirth": null,
-      "id": 16
     }
   ],
   "subject-category": [
@@ -234,8 +222,24 @@
       "userName": "test1",
       "createDateTime": "2023-09-28T19:58:03.256Z",
       "status": 0,
-      "voteType": 1,
+      "voteType": 0,
       "id": 1
+    },
+    {
+      "subjectId": 25,
+      "userName": "test21",
+      "createDateTime": "2023-09-28T19:58:03.256Z",
+      "status": 0,
+      "voteType": 1,
+      "id": 2
+    },
+    {
+      "subjectId": 24,
+      "userName": "test1",
+      "createDateTime": "2023-09-29T08:30:52.436Z",
+      "status": 0,
+      "voteType": 0,
+      "id": 3
     }
   ]
 }

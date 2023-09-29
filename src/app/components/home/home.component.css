@@ -17,15 +17,6 @@
 }
 
 
-
-.container1 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-}
-
 .header-card {
   padding: 10px;
   height: 50px;
@@ -53,80 +44,93 @@
   font-weight: bold;
   font-size: 15px;
 }
-.example-menu {
-  display: inline-flex;
-  flex-direction: column;
-  min-width: 180px;
-  max-width: 280px;
-  background-color: rgb(255, 255, 255);
-  padding: 6px 0;
-}
 
-.example-menu-item {
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-
-  user-select: none;
-  min-width: 64px;
-  line-height: 36px;
-  padding: 0 16px;
-
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  flex: 1;
+:host ::ng-deep .pie-label {
+  font-size: 20px;
+  width: 50px;
 }
 
 
-.chart-display{
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
-  margin: 0 auto;
+.dataContainer {
+  width: 20%;
+  height: 600px;
 }
-.charts-bar{
-  width: 100%;
-  height: 400px;
-}
-.charts-vertical{
-  width: 100%;
-  height: 400px;
-}
-.charts-pie{
-  width: 100%;
-  height: 400px;
-}
-.container{
+
+.container {
   margin-top: 20px;
   display: flex;
   min-height: 280px;
   padding: 0;
 }
-.col{
+
+.col1 {
   flex-direction: column;
-  width: 100%;
+  width: 85%;
   margin: 0 10px;
   align-items: flex-start;
+  margin-bottom: 10px;
 
 }
-.pchart{
+
+.col2 {
+  flex-direction: column;
+  width: 15%;
+  margin: 0 10px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+
+}
+
+.pchart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  /*width: 100%;*/
+}
+
+.pchart div {
+  width: 200px;
   height: 100px;
-  width:200px;
+  margin: 0 10px;
+
+}
+.charts-vertical{
+  margin-bottom: 30px;
+}
+.pchart div h2{
+  margin: 0;
+  background: #c7c7c7;
+  font-size: 20px;
+}
+.pchart div p{
+  margin: 0;
+  padding: 10px;
+  background: #e5e5e5;
 }
 
-.row{
+.row {
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0;
-  height: 300px;
+
 
 }
+.row div{
+  height: 500px;
+}
+.row1 div{
+  height: 600px;
 
-.boxContainer{
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
+}
+.row p{
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: right;
+  font-size: 20px;
+  font-family: BTitrBold;
+}
+.pchart div p{
+  text-align: center;
 }

@@ -4,94 +4,172 @@
       <div class="title-container">
         <div class="card-header-title">
           <mat-icon aria-hidden="false">insert_drive_file</mat-icon>
-         {{'layout.chart' | translate}}
+          {{'layout.chart' | translate}}
+        </div>
+        <div class="button">
+          <button mat-raised-button color="primary">
+            {{'form.add-btn'|translate}}
+          </button>
         </div>
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-<!--    <div class="container">-->
-<!--      <div class="col">-->
-<!--        <div class="row">-->
-<!--          <div class="pchart">-->
-<!--            <p>ffsffs</p>-->
-<!--            <p-chart type="pie" [data]="data" [options]="options"></p-chart>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="pchart">-->
-<!--            <p-chart type="pie" [data]="dataSubject" [options]="options"></p-chart>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--          <div class="pchart">-->
-<!--            <p-chart type="pie" [data]="dataUsers" [options]="options"></p-chart>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="container">
+      <div class="col1">
+        <div class="row">
+          <div>
+            <p>{{'chart.category-chart'|translate}}</p>
+            <ngx-charts-pie-chart
+              [view]="viewpie"
+              [results]="category"
+              [legend]="showLegend"
+              [explodeSlices]="explodeSlices"
+              [labels]="showLabels"
+              [doughnut]="doughnut"
 
-    <!--        <div>-->
-    <!--          <ngx-charts-bar-vertical class="charts-bar"-->
-    <!--                                   [results]="single"-->
-    <!--                                   [gradient]="gradient"-->
-    <!--                                   [xAxis]="showXAxis"-->
-    <!--                                   [yAxis]="showYAxis"-->
-    <!--                                   [legend]="showLegend"-->
-    <!--                                   [showXAxisLabel]="showXAxisLabel"-->
-    <!--                                   [showYAxisLabel]="showYAxisLabel"-->
-    <!--                                   [xAxisLabel]="xAxisLabel"-->
-    <!--                                   [yAxisLabel]="yAxisLabel"-->
-    <!--                                   (select)="onSelect($event)">-->
-    <!--          </ngx-charts-bar-vertical>-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--          <h1>2.)pair</h1>-->
-    <!--          <ngx-charts-bar-vertical-2d class="charts-vertical"-->
+              [gradient]="gradient">
+            </ngx-charts-pie-chart>
+          </div>
+          <hr>
+          <div>
+            <p>{{'chart.subject-chart'|translate}}</p>
+            <ngx-charts-pie-chart
+              [view]="viewpie"
+              [results]="single"
+              [legend]="showLegend"
+              [explodeSlices]="explodeSlices"
+              [labels]="showLabels"
+              [doughnut]="doughnut"
+              [gradient]="gradient">
+            </ngx-charts-pie-chart>
+          </div>
+          <hr>
+          <div>
+            <p>{{'chart.users-chart'|translate}}</p>
+            <ngx-charts-pie-chart
+              [view]="viewpie"
+              [results]="single"
+              [legend]="showLegend"
+              [explodeSlices]="explodeSlices"
+              [labels]="showLabels"
+              [doughnut]="doughnut"
+              [gradient]="gradient">
+            </ngx-charts-pie-chart>
+          </div>
+          <hr>
+          <div>
+            <p>{{'chart.subject-save'|translate}}</p>
+            <div>
+              <ngx-charts-bar-vertical-2d class="charts-vertical"
 
-    <!--                                      [results]="multi"-->
-    <!--                                      [gradient]="gradient"-->
-    <!--                                      [xAxis]="showXAxis"-->
-    <!--                                      [yAxis]="showYAxis"-->
-    <!--                                      [legend]="showLegend"-->
-    <!--                                      [showXAxisLabel]="showXAxisLabel"-->
-    <!--                                      [showYAxisLabel]="showYAxisLabel"-->
-    <!--                                      [xAxisLabel]="xAxisLabel"-->
-    <!--                                      [yAxisLabel]="yAxisLabel"-->
-    <!--                                      (select)="onSelect($event)">-->
-    <!--          </ngx-charts-bar-vertical-2d>-->
-    <!--          <hr>-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--          <h1>3.)Pai-chart</h1>-->
-    <!--          <ngx-charts-pie-chart class="charts-pie"-->
-    <!--                                [view]="viewpie"-->
-    <!--                                [results]="single"-->
-    <!--                                [legend]="showLegend"-->
-    <!--                                [explodeSlices]="explodeSlices"-->
-    <!--                                [labels]="showLabels"-->
-    <!--                                [doughnut]="doughnut"-->
-    <!--                                [gradient]="gradient"-->
-    <!--          >-->
-    <!--          </ngx-charts-pie-chart>-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--          <h1>3.)Pai-chart</h1>-->
-    <!--          <ngx-charts-pie-chart class="charts-pie"-->
-    <!--                                [view]="viewpie"-->
-    <!--                                [results]="single"-->
-    <!--                                [legend]="showLegend"-->
-    <!--                                [explodeSlices]="explodeSlices"-->
-    <!--                                [labels]="showLabels"-->
-    <!--                                [doughnut]="doughnut"-->
-    <!--                                [gradient]="gradient"-->
-    <!--          >-->
-    <!--          </ngx-charts-pie-chart>-->
-    <!--        </div>-->
+                                          [results]="multi"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+              >
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+          <hr>
 
+          <div>
+            <p>{{'chart.users-save'|translate}}</p>
+            <div>
+              <ngx-charts-bar-vertical-2d class="charts-vertical"
 
-    <!--      </div>-->
+                                          [results]="multi"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+              >
+              </ngx-charts-bar-vertical-2d>
+            </div>
+          </div>
+          <hr>
+          <div>
+            <p>{{'chart.vote-save'|translate}}</p>
+            <div>
+              <ngx-charts-bar-vertical-2d class="charts-vertical"
+
+                                          [results]="multi"
+                                          [gradient]="gradient"
+                                          [xAxis]="showXAxis"
+                                          [yAxis]="showYAxis"
+                                          [legend]="showLegend"
+                                          [showXAxisLabel]="showXAxisLabel"
+                                          [showYAxisLabel]="showYAxisLabel"
+                                          [xAxisLabel]="xAxisLabel"
+                                          [yAxisLabel]="yAxisLabel"
+              >
+              </ngx-charts-bar-vertical-2d>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col2">
+        <div class="row">
+          <div class="pchart">
+            <div>
+              <h2>{{'chart.category-exist'|translate}} </h2>
+              <p>{{this.subjectCategory}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.category-en'|translate}} </h2>
+              <p>{{this.activeCategory}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.category-dn'|translate}} </h2>
+              <p>{{this.inactiveCategory}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="pchart">
+            <div>
+              <h2>{{'chart.subject-exist'|translate}}</h2>
+              <p>{{this.subject}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.subject-en'|translate}}</h2>
+              <p>{{this.activeSubject}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.subject-dn'|translate}} </h2>
+              <p>{{this.inactiveSubject}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="pchart">
+            <div>
+              <h2>{{'chart.users-exist'|translate}} </h2>
+              <p>{{this.allUser}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.users-en'|translate}} </h2>
+              <p>{{this.usersStatusConfirm}}</p>
+            </div>
+            <div>
+              <h2>{{'chart.users-dn'|translate}}</h2>
+              <p>{{this.usersStatusReject}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 
 
   </mat-card-content>
