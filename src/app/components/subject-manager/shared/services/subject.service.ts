@@ -37,8 +37,10 @@ export class SubjectService {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?' + `${a}`);
   }
-  sorting(pageSize:number,currentPage:number): Observable<SubjectMangerModel[]> {
-    return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_page='+`${pageSize}`+'&_limit='+`${currentPage}`);
+  sorting(pageSize:number,currentPage:number) {
+    return this.http.get<any>('http://localhost:3000/subject?_page='+`${pageSize}`+'&_limit='+`${currentPage}`, {
+      observe: 'response'
+    });
   }
   sortingCell(sort:string,order:string){
     return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);

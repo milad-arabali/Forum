@@ -20,26 +20,26 @@ export class UserLoginService {
   public showUserLastName$ = new BehaviorSubject<any>('');
   is:boolean;
   public user: UserAccountInformationModel;
-  public userDb: UserInformationModel[] = [
-    new UserInformationModel(
-      1,
-      'admin',
-      'admin',
-      'admin',
-      'admini',
-      22265656,
-      'male',
-      new Date(7 / 88 / 7)),
-    new UserInformationModel(
-      2,
-      'admin1',
-      'admin1',
-      'admin1',
-      'admini1',
-      22265656,
-      'male',
-      new Date(7 / 88 / 7))
-  ];
+  // public userDb: UserInformationModel[] = [
+  //   new UserInformationModel(
+  //     1,
+  //     'admin',
+  //     'admin',
+  //     'admin',
+  //     'admini',
+  //     22265656,
+  //     'male',
+  //     new Date(7 / 88 / 7)),
+  //   new UserInformationModel(
+  //     2,
+  //     'admin1',
+  //     'admin1',
+  //     'admin1',
+  //     'admini1',
+  //     22265656,
+  //     'male',
+  //     new Date(7 / 88 / 7))
+  // ];
 
   constructor(private router: Router,
               public snack: MatSnackBar,

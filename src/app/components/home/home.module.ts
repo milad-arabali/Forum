@@ -7,6 +7,7 @@ import {TranslateModule} from "@ngx-translate/core";
 import {MatListModule} from "@angular/material/list";
 import {BarChartModule, PieChartModule} from "@swimlane/ngx-charts";
 import {MatButtonModule} from "@angular/material/button";
+import {ChartModule} from "primeng/chart";
 
 
 
@@ -14,15 +15,16 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatIconModule,
-    TranslateModule,
-    MatListModule,
-    BarChartModule,
-    MatButtonModule,
-    PieChartModule
-  ]
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatIconModule,
+        TranslateModule,
+        MatListModule,
+        BarChartModule,
+        MatButtonModule,
+        PieChartModule,
+        ChartModule
+    ]
 })
 export class HomeModule { }

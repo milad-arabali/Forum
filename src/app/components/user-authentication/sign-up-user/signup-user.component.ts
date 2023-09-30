@@ -55,6 +55,7 @@ export class SignupUserComponent implements OnInit {
       DateOfBirth: [,],
       status: ['Registered',],
       isAdmin: [false, []],
+      currentDate:[new Date()]
     })
   }
 

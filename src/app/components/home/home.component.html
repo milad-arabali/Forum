@@ -6,117 +6,72 @@
           <mat-icon aria-hidden="false">insert_drive_file</mat-icon>
           {{'layout.chart' | translate}}
         </div>
-        <div class="button">
-          <button mat-raised-button color="primary">
-            {{'form.add-btn'|translate}}
-          </button>
-        </div>
+        <!--        <div class="button">-->
+        <!--          <button mat-raised-button color="primary" (click)="refresh()">-->
+        <!--          رفرش-->
+        <!--          </button>-->
+        <!--        </div>-->
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
+
     <div class="container">
       <div class="col1">
         <div class="row">
           <div>
             <p>{{'chart.category-chart'|translate}}</p>
-            <ngx-charts-pie-chart
-              [view]="viewpie"
-              [results]="category"
-              [legend]="showLegend"
-              [explodeSlices]="explodeSlices"
-              [labels]="showLabels"
-              [doughnut]="doughnut"
+            <div class="chartWidth">
+              <p-chart type="pie" [data]="this.data" [options]="options"></p-chart>
+            </div>
 
-              [gradient]="gradient">
-            </ngx-charts-pie-chart>
           </div>
           <hr>
           <div>
             <p>{{'chart.subject-chart'|translate}}</p>
-            <ngx-charts-pie-chart
-              [view]="viewpie"
-              [results]="single"
-              [legend]="showLegend"
-              [explodeSlices]="explodeSlices"
-              [labels]="showLabels"
-              [doughnut]="doughnut"
-              [gradient]="gradient">
-            </ngx-charts-pie-chart>
+            <div class="chartWidth">
+              <p-chart type="pie" [data]="this.dataSubject" [options]="options"></p-chart>
+            </div>
+
           </div>
           <hr>
           <div>
             <p>{{'chart.users-chart'|translate}}</p>
-            <ngx-charts-pie-chart
-              [view]="viewpie"
-              [results]="single"
-              [legend]="showLegend"
-              [explodeSlices]="explodeSlices"
-              [labels]="showLabels"
-              [doughnut]="doughnut"
-              [gradient]="gradient">
-            </ngx-charts-pie-chart>
-          </div>
-          <hr>
-          <div>
-            <p>{{'chart.subject-save'|translate}}</p>
-            <div>
-              <ngx-charts-bar-vertical-2d class="charts-vertical"
-
-                                          [results]="multi"
-                                          [gradient]="gradient"
-                                          [xAxis]="showXAxis"
-                                          [yAxis]="showYAxis"
-                                          [legend]="showLegend"
-                                          [showXAxisLabel]="showXAxisLabel"
-                                          [showYAxisLabel]="showYAxisLabel"
-                                          [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
-              >
-              </ngx-charts-bar-vertical-2d>
-            </div>
-          </div>
-          <hr>
-
-          <div>
-            <p>{{'chart.users-save'|translate}}</p>
-            <div>
-              <ngx-charts-bar-vertical-2d class="charts-vertical"
-
-                                          [results]="multi"
-                                          [gradient]="gradient"
-                                          [xAxis]="showXAxis"
-                                          [yAxis]="showYAxis"
-                                          [legend]="showLegend"
-                                          [showXAxisLabel]="showXAxisLabel"
-                                          [showYAxisLabel]="showYAxisLabel"
-                                          [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
-              >
-              </ngx-charts-bar-vertical-2d>
+            <div class="chartWidth">
+              <p-chart type="pie" [data]="this.dataUsers" [options]="options"></p-chart>
             </div>
           </div>
           <hr>
           <div>
-            <p>{{'chart.vote-save'|translate}}</p>
+            <p>مقالات و کاربران ثبت شده:</p>
             <div>
-              <ngx-charts-bar-vertical-2d class="charts-vertical"
+              <div class="chartLineWidth">
+                <p-chart type="bar" [data]="saveSubject" [options]="options"></p-chart>
+              </div>
+              <!--              <ngx-charts-bar-vertical-2d class="charts-vertical"-->
 
-                                          [results]="multi"
-                                          [gradient]="gradient"
-                                          [xAxis]="showXAxis"
-                                          [yAxis]="showYAxis"
-                                          [legend]="showLegend"
-                                          [showXAxisLabel]="showXAxisLabel"
-                                          [showYAxisLabel]="showYAxisLabel"
-                                          [xAxisLabel]="xAxisLabel"
-                                          [yAxisLabel]="yAxisLabel"
-              >
-              </ngx-charts-bar-vertical-2d>
+              <!--                                          [results]="multi"-->
+              <!--                                          [gradient]="gradient"-->
+              <!--                                          [xAxis]="showXAxis"-->
+              <!--                                          [yAxis]="showYAxis"-->
+              <!--                                          [legend]="showLegend"-->
+              <!--                                          [showXAxisLabel]="showXAxisLabel"-->
+              <!--                                          [showYAxisLabel]="showYAxisLabel"-->
+              <!--                                          [xAxisLabel]="xAxisLabel"-->
+              <!--                                          [yAxisLabel]="yAxisLabel"-->
+              <!--              >-->
+              <!--              </ngx-charts-bar-vertical-2d>-->
             </div>
-
           </div>
+          <!--          <hr>-->
+          <!--          <div>-->
+          <!--            <p>{{'chart.vote-save'|translate}}</p>-->
+          <!--            <div class="chartLineWidth">-->
+          <!--              <p-chart type="bar" [data]="saveSubject" [options]="options"></p-chart>-->
+          <!--            </div>-->
+
+          <!--          </div>-->
         </div>
       </div>
       <div class="col2">
@@ -169,9 +124,6 @@
         </div>
       </div>
     </div>
-
-
-
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>

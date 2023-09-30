@@ -32,8 +32,9 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
   isLoading = false;
   pageSize = 0;
   currentPage = 5;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  maxall = 100;
+  // pageSizeOptions: number[] = [5, 10, 25, 100];
+  // maxall = 100;
+  totalElements = 0;
 
   constructor(private Fb: FormBuilder,
               private dialog: MatDialog,
@@ -62,23 +63,33 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
       this.sourceTable()
       this.dataSource.paginator = this.paginator;
     }, 100)
-
     this.checkAdmin()
-
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-
   }
-
+  changePagination(event: PageEvent){
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.sourceTable()
+  }
+  // loadTable() {
+  //   this.userDataService.getAllUsersPaginate(this.currentPage + 1, this.pageSize)
+  //     .subscribe(value => {
+  //       // @ts-ignore
+  //       this.dataSource.data = value.body.filter(user => user.userName !== this.cookie.get('username'))
+  //       this.totalElements = Number(value.headers.get('X-Total-Count')) - 1;
+  //     })
+  // }
   sourceTable() {
     this.isLoading = true;
     this.subject.sorting(this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe(
       (res) => {
-        this.dataSource.data = res;
+        this.dataSource.data = res.body;
         this.isLoading = false;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
       },
       (err) => {
         console.log("ok");
@@ -203,13 +214,13 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
     this.sourceTable();
   }
 
-  getPageSizeOptions(): number[] {
-    if (this.dataSource.data.length > this.maxall) {
-      return [3, 5, this.dataSource.data.length];
-    } else {
-      return [3, 5, this.maxall];
-    }
-  }
+  // getPageSizeOptions(): number[] {
+  //   if (this.dataSource.data.length > this.maxall) {
+  //     return [3, 5, this.dataSource.data.length];
+  //   } else {
+  //     return [3, 5, this.maxall];
+  //   }
+  // }
 
   sortData(event: Sort) {
     this.subject.sortingCell(event.active, event.direction).subscribe(

@@ -166,9 +166,13 @@
       <!--                     showFirstLastButtons-->
       <!--                     [pageSizeOptions]="getPageSizeOptions()">-->
       <!--      </mat-paginator>-->
-      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator
-                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
-      </mat-paginator>
+      <!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator-->
+      <!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->
+      <!--      </mat-paginator>-->
+      <mat-paginator (page)="changePagination($event)" [length]="totalElements"
+                     [pageIndex]="currentPage" [pageSizeOptions]="[5,10,25,50,100]"
+                     [pageSize]="pageSize" class="iransans"
+                     color="primary" showFirstLastButtons="showFirstLastButtons"></mat-paginator>
     </div>
   </mat-card-content>
   <mat-card-footer>

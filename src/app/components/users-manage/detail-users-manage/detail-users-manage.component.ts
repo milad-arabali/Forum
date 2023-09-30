@@ -70,7 +70,8 @@ export class DetailUsersManageComponent implements OnInit {
         checkNationalCode()]],
       gender: ['male', []],
       isAdmin: [false, []],
-      DateOfBirth: []
+      DateOfBirth: [],
+      currentDate:[new Date()]
     })
   }
 
