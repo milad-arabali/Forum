@@ -46,7 +46,7 @@ export class SignupUserComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(60),
         Validators.pattern('^[a-zA-Z0-9\-\_\/]+$'),]],
-      password: [, [Validators.required, Validators.required, Validators.minLength(5)]],
+      password: [, [Validators.required, Validators.minLength(5)]],
       name: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.required, Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),

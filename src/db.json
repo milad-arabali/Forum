@@ -67,7 +67,7 @@
     },
     {
       "userName": "test33",
-      "status": "Registered",
+      "status": "reject",
       "password": "test333",
       "name": "تست",
       "nameFamily": "تست",
@@ -80,7 +80,7 @@
     },
     {
       "userName": "reza2",
-      "status": "Registered",
+      "status": "reject",
       "password": "reza22",
       "name": "رضا",
       "nameFamily": "رضایی",
@@ -309,7 +309,7 @@
       "userName": "test1",
       "createDateTime": "2023-09-29T08:30:52.436Z",
       "status": 0,
-      "voteType": 0,
+      "voteType": 1,
       "id": 3
     }
   ]

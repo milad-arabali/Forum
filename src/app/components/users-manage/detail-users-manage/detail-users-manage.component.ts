@@ -1,14 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormMode} from "../../../shared/enumeration/form-mode.enum";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import * as moment from "jalali-moment";
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {SubjectService} from "../../subject-manager/shared/services/subject.service";
 import {ApiService} from "../../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
-import {DateAdapter} from "@angular/material/core";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {UsersManageService} from "../shared/services/users-manage.service";
@@ -97,7 +95,9 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
             this.manageUsersForm.controls['DateOfBirth'].setValue(
-              moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
+              // moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')
+              value.DateOfBirth
+            )
             this.nationalCode = value.nationalCode;
             this.userName = value.userName;
           }
@@ -115,7 +115,9 @@ export class DetailUsersManageComponent implements OnInit {
             this.manageUsersForm.controls['gender'].setValue(value.gender)
             this.manageUsersForm.controls['isAdmin'].setValue(value.isAdmin)
             this.manageUsersForm.controls['DateOfBirth'].setValue(
-              moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD'))
+              // moment(value.DateOfBirth, 'YYYY/MM/DD').locale('fa').format('YYYY/MM/DD')
+              value.DateOfBirth
+            )
 
           }
         )

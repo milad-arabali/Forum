@@ -74,8 +74,7 @@ export class UsersManageComponent implements OnInit {
       name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nationalCode: [, [Validators.minLength(10), Validators.maxLength(10),
-        Validators.maxLength(10),
-        checkNationalCode()]],
+        Validators.maxLength(10)]],
       gender: [, []],
       isAdmin: [, []],
       DateOfBirth: [,]

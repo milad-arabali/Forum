@@ -10,7 +10,7 @@ import {VoteModel} from "../../../shared/model/vote.model";
 import {StatusCommentsModeEnum} from "../../../shared/enumeration/status-comments-mode.enum";
 import {CookieService} from "ngx-cookie-service";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
-import {considerSettingUpAutocompletion} from "@angular/cli/src/utilities/completion";
+
 
 
 @Component({
