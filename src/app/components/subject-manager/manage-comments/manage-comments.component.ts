@@ -10,11 +10,10 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {MatSort, Sort} from "@angular/material/sort";
 import {MatTableDataSource} from "@angular/material/table";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-
 import {MatDialog} from "@angular/material/dialog";
 import {ViewCommentsUsersComponent} from "./view-comment-users/view-comments-users.component";
-import * as moment from "jalali-moment";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
+import {MatMenuTrigger} from "@angular/material/menu";
 
 
 @Component({
@@ -22,7 +21,7 @@ import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
   templateUrl: './manage-comments.component.html',
   styleUrls: ['./manage-comments.component.css']
 })
-export class ManageCommentsComponent implements OnInit, AfterViewInit {
+export class ManageCommentsComponent implements OnInit {
   commentFormData: SubjectMangerModel[]=[];
   commentsForm: FormGroup;
   id: number;
@@ -35,8 +34,9 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   pageSize = 0;
   currentPage = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-  maxall = 100;
-
+  totalElements = 0;
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  contextMenuPosition= {x: '0px', y: '0px'}
   constructor(private fb: FormBuilder,
               private subjectManagerServices: SubjectService,
               private api: ApiService,
@@ -62,7 +62,7 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     setTimeout(() => {
       this.sourceTable()
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
     }, 100)
     this.loadSubjectData();
     // this.viewComments();
@@ -73,10 +73,24 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  //
+  // }
+  onContextMenu(event: MouseEvent, item: SubjectMangerModel): void {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = {item};
+    // @ts-ignore
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
+  }
+  changePagination(event: PageEvent){
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.sourceTable()
   }
 
   checkSubject(url: number) {
@@ -163,9 +177,8 @@ export class ManageCommentsComponent implements OnInit, AfterViewInit {
     this.subjectManagerServices.sortingAllComment(
       this.paginator.pageIndex + 1, this.paginator.pageSize,this.id).subscribe(
       (res) => {
-
-        this.dataSource.data = res;
-
+        this.dataSource.data = res.body;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
         this.isLoading = false;
       },
       (err) => {

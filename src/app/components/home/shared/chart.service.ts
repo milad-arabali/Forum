@@ -54,6 +54,9 @@ export class ChartService {
   getTimeSaveUsers(time:any){
     return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?currentDate_like=`+`${time}`)
   }
+  getTimeDateComment(time:any){
+    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/comment?createDateTime_like=`+`${time}`)
+  }
   getTimeDateSubjectData(){
     return this.httpClient.get<SubjectMangerModel[]>(`http://localhost:3000/subject?currentDate_gte=2023-09-24`)
   }

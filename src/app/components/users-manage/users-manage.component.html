@@ -137,12 +137,12 @@
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
       <table mat-table matSort matSortActive="position" matSortDisableClear matSortDirection="asc"
              [dataSource]="dataSource" class="mat-elevation-z8" (cdkDropListDropped)="drop($event)" cdkDropList
-             (matSortChange)="sortData($event)"  (contextmenu)="onContextMenu($event)">
+             (matSortChange)="sortData($event)"  >
         <ng-container matColumnDef="id" class="tableDesign"  >
           <th mat-header-cell *matHeaderCellDef cdkDrag
           >
             {{'table.row'|translate}}</th>
-          <td mat-cell *matCellDef="let element ; let i=index"  (contextmenu)="onContextMenu($event)">
+          <td mat-cell *matCellDef="let element ; let i=index"  >
 <!--                        {{index(i)}} -->
             {{ paginator.pageIndex * paginator.pageSize + (i + 1) }}
 
@@ -152,7 +152,7 @@
           <th mat-header-cell *matHeaderCellDef cdkDrag
               mat-sort-header>
             {{'table.username'|translate}} </th>
-          <td mat-cell *matCellDef="let element" (contextmenu)="onContextMenu($event)" >{{element.userName}} </td>
+          <td mat-cell *matCellDef="let element"  >{{element.userName}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -239,11 +239,15 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row (contextmenu)="onContextMenu($event, row)"  *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator" #paginator
-                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
-      </mat-paginator>
+<!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator" #paginator-->
+<!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->
+<!--      </mat-paginator>-->
+      <mat-paginator (page)="changePagination($event)" [length]="totalElements"
+                     [pageIndex]="currentPage" [pageSizeOptions]="[5,10,25,50,100]"
+                     [pageSize]="pageSize" class="iransans"
+                     color="primary" showFirstLastButtons="showFirstLastButtons"></mat-paginator>
     </div>
   </mat-card-content>
   <mat-card-footer>

@@ -17,5 +17,7 @@ export class CookieServiceLogin {
     isLogin():boolean{
     return !!this.cookie.get('login');
     }
-
+  isAdmin():boolean{
+    return !!this.cookie.get('admin');
+   }
 }

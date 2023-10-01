@@ -12,9 +12,7 @@ import {DateAdapter} from "@angular/material/core";
 import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-
 import {CookieService} from "ngx-cookie-service";
-import {formatDate} from "@angular/common";
 import {TranslateService} from "@ngx-translate/core";
 import {MatMenuTrigger} from "@angular/material/menu";
 import {ManageAccessUsersComponent} from "./manage-access-users/manage-access-users.component";
@@ -24,10 +22,11 @@ import {ManageAccessUsersComponent} from "./manage-access-users/manage-access-us
   templateUrl: './users-manage.component.html',
   styleUrls: ['./users-manage.component.css']
 })
-export class UsersManageComponent implements OnInit, AfterViewInit {
+export class UsersManageComponent implements OnInit {
   @ViewChild("userName") private _inputElement: ElementRef;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   gender: string[] = ['مرد', 'زن']
   isAdmin: boolean[] = [true, false]
   filterUsersForm: FormGroup;
@@ -49,8 +48,9 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
   isSearchButtonActive=false;
   minDate:Date;
   maxDate:Date;
-  contextMenu: MatMenuTrigger;
+  // contextMenu: MatMenuTrigger;
   contextMenuPosition = {x: '0px', y: '0px'};
+  totalElements = 0;
   constructor(private router: ActivatedRoute,
               private userManagerServices: UsersManageService,
               private fb: FormBuilder,
@@ -87,21 +87,28 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     // this.userManagerServices.checkIsAdmin(this.cookie.get('users'))
     setTimeout(() => {
       this.sourceTable()
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
     }, 100)
-    this.sourceTable()
+    // this.sourceTable()
     this.checkAdmin()
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
+  changePagination(event: PageEvent){
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.sourceTable()
   }
   sourceTable() {
     this.isLoading = true;
     this.userManagerServices.UsersSorting(this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe(
       (res) => {
-        this.dataSource.data = res.filter(user=>user.userName!== this.cookie.get('users'));
+        this.dataSource.data = res.body.filter(user=>user.userName!== this.cookie.get('users'));
         this.isLoading = false;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
+
       },
       (err) => {
         console.log("ok");
@@ -115,10 +122,12 @@ export class UsersManageComponent implements OnInit, AfterViewInit {
     this.filterUsersForm.reset();
     this.sourceTable()
   }
-  onContextMenu(event: MouseEvent) {
+  onContextMenu(event: MouseEvent, item: UserAccountInformationModel): void {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = {item};
+    // @ts-ignore
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
   }

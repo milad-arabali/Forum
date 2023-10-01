@@ -6,14 +6,15 @@ import {SubjectManagerComponent} from "./subject-manager.component";
 import {DetailSubjectComponent} from "./detail-subject/detail-subject.component";
 import {ManageCommentsComponent} from "./manage-comments/manage-comments.component";
 import {ManageVoteComponent} from "./manage-vote/manage-vote.component";
+import {IsAdminGuard} from "../../core/guard/is-admin.guard";
 
 const routingSubject: Routes = [
-  {path: 'subject', canActivate: [AuthGuard], component: SubjectManagerComponent},
-  {path: 'subject/add', component: DetailSubjectComponent, canActivate: [AuthGuard]},
-  {path: 'subject/edit/:id', component: DetailSubjectComponent, canActivate: [AuthGuard]},
-  {path: 'subject/:id', component: DetailSubjectComponent, canActivate: [AuthGuard]},
-  {path: 'subject/manage-votes/:id', component: ManageVoteComponent, canActivate: [AuthGuard]},
-  {path: 'subject/manage-comments/:id', component: ManageCommentsComponent, canActivate: [AuthGuard]},
+  {path: 'subject', canActivate: [AuthGuard,IsAdminGuard], component: SubjectManagerComponent},
+  {path: 'subject/add', component: DetailSubjectComponent, canActivate: [AuthGuard,IsAdminGuard]},
+  {path: 'subject/edit/:id', component: DetailSubjectComponent, canActivate: [AuthGuard,IsAdminGuard]},
+  {path: 'subject/:id', component: DetailSubjectComponent, canActivate: [AuthGuard,IsAdminGuard]},
+  {path: 'subject/manage-votes/:id', component: ManageVoteComponent, canActivate: [AuthGuard,IsAdminGuard]},
+  {path: 'subject/manage-comments/:id', component: ManageCommentsComponent, canActivate: [AuthGuard,IsAdminGuard]},
 ]
 
 @NgModule({

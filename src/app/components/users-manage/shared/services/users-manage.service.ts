@@ -16,8 +16,10 @@ export class UsersManageService {
   checkId(): Observable<UserAccountInformationModel[]> {
     return this.http.get<UserAccountInformationModel[]>('http://localhost:3000/enquiry');
   }
-  UsersSorting(pageSize:number,currentPage:number): Observable<UserAccountInformationModel[]> {
-    return this.http.get<UserAccountInformationModel[]>('http://localhost:3000/enquiry?_page='+`${pageSize}`+'&_limit='+`${currentPage}`);
+  UsersSorting(pageSize:number,currentPage:number) {
+    return this.http.get<UserAccountInformationModel[]>('http://localhost:3000/enquiry?_page='+`${pageSize}`+'&_limit='+`${currentPage}`,{
+      observe: 'response'
+    });
   }
   findUser(a: string): Observable<UserAccountInformationModel[]> {
     return this.http.get<UserAccountInformationModel[]>(

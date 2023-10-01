@@ -53,13 +53,17 @@ export class SubjectService {
     return this.http.get<VoteModel[]>(
       'http://localhost:3000/vote?_sort='+`${sort}`+'&_order='+`${order}`+'&subjectId='+`${subjectId}`);
   }
-  sortingAllComment(pageSize:number,currentPage:number,subjectId:number): Observable<CommentModel[]> {
+  sortingAllComment(pageSize:number,currentPage:number,subjectId:number) {
     return this.http.get<CommentModel[]>(
-      'http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
+      'http://localhost:3000/comment?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`,{
+        observe: 'response'
+      });
   }
-  sortingAllVote(pageSize:number,currentPage:number,subjectId:number): Observable<VoteModel[]> {
+  sortingAllVote(pageSize:number,currentPage:number,subjectId:number) {
     return this.http.get<VoteModel[]>(
-      'http://localhost:3000/vote?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`);
+      'http://localhost:3000/vote?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`,{
+      observe: 'response'
+    });
   }
   allComments(subjectId:number){
     return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');

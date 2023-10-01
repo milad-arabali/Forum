@@ -160,7 +160,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row  (contextmenu)="onContextMenu($event, row)"  *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <!--      <mat-paginator #paginator class="mat-elevation-z8 paginator"-->
       <!--                     showFirstLastButtons-->
@@ -174,6 +174,30 @@
                      [pageSize]="pageSize" class="iransans"
                      color="primary" showFirstLastButtons="showFirstLastButtons"></mat-paginator>
     </div>
+    <div [matMenuTriggerFor]="contextMenu"
+         [style.left]="contextMenuPosition.x"
+         [style.top]="contextMenuPosition.y"
+         style="visibility: hidden; position: fixed">
+    </div>
+    <mat-menu #contextMenu="matMenu">
+      <ng-template let-item="item" matMenuContent>
+        <button mat-menu-item class="buttont" [routerLink]="['/subject/edit/',item.id]">
+          <span>{{'form.edit-subject'|translate}}</span>
+        </button>
+        <button mat-menu-item class="buttont" [routerLink]="['/subject/',item.id]">
+          <span>  {{'form.view-subject'|translate}}</span>
+        </button>
+        <button mat-menu-item class="buttont" [routerLink]="['/subject/manage-votes/',item.id]">
+          <span>  {{'form.view-comment'|translate}}</span>
+        </button>
+        <button mat-menu-item class="buttont" [routerLink]="['/subject/manage-comments/',item.id]">
+          <span>  {{'form.manage-comment'|translate}}</span>
+        </button>
+        <button mat-menu-item class="buttont" (click)="deleteSubject(item.id)">
+          <span>{{"form.delete-subject" | translate}}</span>
+        </button>
+      </ng-template>
+    </mat-menu>
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>

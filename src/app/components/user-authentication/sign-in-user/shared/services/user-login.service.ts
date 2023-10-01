@@ -93,6 +93,9 @@ export class UserLoginService {
         const a = res.find(a => {
           return a.userName === username && a.password === password
         })
+        const b = res.find(a => {
+          return a.userName === username && a.password === password && a.isAdmin===true
+        })
         if (a) {
           if(a.status==='reject'||a.status==='Registered'){
             this.snack.open(this.translate.instant('snackbar.reject-users'), "", {
@@ -101,6 +104,9 @@ export class UserLoginService {
               verticalPosition: "top"
             })
           }else {
+            if(b){
+              this.c.set('admin', 'true')
+            }
             this.c.set('users', username)
             this.userLogin.logIn().then(() => {
               this.router.navigate(['/home'])

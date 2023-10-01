@@ -7,7 +7,6 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
 import {SubjectService} from "../shared/services/subject.service";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
-import {ViewCommentsUsersComponent} from "../manage-comments/view-comment-users/view-comments-users.component";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {MatSort, Sort} from "@angular/material/sort";
@@ -33,7 +32,7 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
   currentPage = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   maxall = 100;
-
+  totalElements = 0;
 
   constructor(private fb: FormBuilder,
               private subjectManagerServices: SubjectService,
@@ -59,7 +58,7 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
     this.loadSubjectData()
     setTimeout(() => {
       this.sourceTable()
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
     }, 100)
     this.router.url.subscribe((url: UrlSegment[]) => {
       this.checkSubject(Number(url[2].path))
@@ -97,15 +96,20 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
       }
     )
   }
-
+  changePagination(event: PageEvent){
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.sourceTable()
+  }
 
   sourceTable() {
     this.isLoading = true;
     this.subjectManagerServices.sortingAllVote(
       this.paginator.pageIndex + 1, this.paginator.pageSize, this.id).subscribe(
       (res) => {
-        this.dataSource.data = res;
+        this.dataSource.data = res.body;
         this.isLoading = false;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
       },
       (err) => {
         console.log("ok");

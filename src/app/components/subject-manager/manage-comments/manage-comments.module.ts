@@ -18,6 +18,7 @@ import {MatSortModule} from "@angular/material/sort";
 import {MatTableModule} from "@angular/material/table";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ViewCommentUsersModule} from "./view-comment-users/view-comment-users.module";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -27,26 +28,27 @@ import {ViewCommentUsersModule} from "./view-comment-users/view-comment-users.mo
     ManageCommentsComponent,
 
   ],
-  imports: [
-   ViewCommentUsersModule,
-    CommonModule,
-    FooterModule,
-    MatButtonModule,
-    MatCardModule,
-    MatDividerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    TranslateModule,
-    RouterLink,
-    CdkDrag,
-    CdkDropList,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTooltipModule
-  ]
+    imports: [
+        ViewCommentUsersModule,
+        CommonModule,
+        FooterModule,
+        MatButtonModule,
+        MatCardModule,
+        MatDividerModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        TranslateModule,
+        RouterLink,
+        CdkDrag,
+        CdkDropList,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatSortModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatMenuModule
+    ]
 })
 export class ManageCommentsModule { }

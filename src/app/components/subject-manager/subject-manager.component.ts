@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 import {ApiService} from "../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatMenuTrigger} from "@angular/material/menu";
 
 
 @Component({
@@ -22,7 +23,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './subject-manager.component.html',
   styleUrls: ['./subject-manager.component.css']
 })
-export class SubjectManagerComponent implements AfterViewInit, OnInit {
+export class SubjectManagerComponent implements  OnInit {
   form: FormGroup;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
@@ -32,10 +33,9 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
   isLoading = false;
   pageSize = 0;
   currentPage = 5;
-  // pageSizeOptions: number[] = [5, 10, 25, 100];
-  // maxall = 100;
   totalElements = 0;
-
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  contextMenuPosition= {x: '0px', y: '0px'}
   constructor(private Fb: FormBuilder,
               private dialog: MatDialog,
               private dateAdapter: DateAdapter<any>,
@@ -61,15 +61,15 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.sourceTable()
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
     }, 100)
     this.checkAdmin()
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
   changePagination(event: PageEvent){
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -117,7 +117,15 @@ export class SubjectManagerComponent implements AfterViewInit, OnInit {
         })
     })
   }
-
+  onContextMenu(event: MouseEvent, item: SubjectMangerModel): void {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = {item};
+    // @ts-ignore
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
+  }
   formReset() {
     this.form.reset()
     this.sourceTable()

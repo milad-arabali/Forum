@@ -25,6 +25,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {ManageCommentsModule} from "./manage-comments/manage-comments.module";
 import {FooterModule} from "../../core/layout/theme/footer/footer.module";
 import {ManageVoteModule} from "./manage-vote/manage-vote.module";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -33,34 +34,35 @@ import {ManageVoteModule} from "./manage-vote/manage-vote.module";
     SubjectManagerComponent,
 
   ],
-  imports: [
-    ManageCommentsModule,
-    ManageVoteModule,
-    DeleteSubjectModule,
-    DetailSubjectModule,
-    SelectSubjectModule,
-    RoutingSubjectModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDatepickerModule,
-    MatInputModule,
-    TranslateModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatListModule,
-    RouterLink,
-    NgIf,
-    MatSortModule,
-    CdkDropListGroup,
-    CdkDropList,
-    CdkDrag,
-    MatProgressBarModule,
-    MatTooltipModule,
-    FooterModule
-  ]
+    imports: [
+        ManageCommentsModule,
+        ManageVoteModule,
+        DeleteSubjectModule,
+        DetailSubjectModule,
+        SelectSubjectModule,
+        RoutingSubjectModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatButtonModule,
+        MatTableModule,
+        MatDatepickerModule,
+        MatInputModule,
+        TranslateModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatListModule,
+        RouterLink,
+        NgIf,
+        MatSortModule,
+        CdkDropListGroup,
+        CdkDropList,
+        CdkDrag,
+        MatProgressBarModule,
+        MatTooltipModule,
+        FooterModule,
+        MatMenuModule
+    ]
 })
 
 

@@ -213,6 +213,15 @@ export class HomeComponent implements OnInit {
   saveUsers7:number;
   saveUsers8:number;
   saveUsers9:number;
+  saveVote1:number;
+  saveVote2:number;
+  saveVote3:number;
+  saveVote4:number;
+  saveVote5:number;
+  saveVote6:number;
+  saveVote7:number;
+  saveVote8:number;
+  saveVote9:number;
 
 
   time:any;
@@ -223,8 +232,8 @@ export class HomeComponent implements OnInit {
       this.bayGroupList.push(this.daysAgo1)
       this.bayGroupList1.push(this.daysAgo2)
     }
-    console.log("fsfsfsffff", this.bayGroupList);
-    console.log("fsfsfsffff", this.bayGroupList1);
+    // console.log("fsfsfsffff", this.bayGroupList);
+    // console.log("fsfsfsffff", this.bayGroupList1);
   }
 
 
@@ -373,6 +382,51 @@ export class HomeComponent implements OnInit {
         this.saveUsers9 = value.length;
       }
     )
+    this.chartServices.getTimeDateComment(this.currentTime1.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote1 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime2.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote2 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime3.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote3 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime4.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote4 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime5.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote5 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime6.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote6 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime7.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote7 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime8.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote8 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime9.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote9 = value.length;
+      }
+    )
 
     this.bayGroupList.push(moment(this.daysAgo).locale('fa').format('YYYY/MM/DD'))
     const documentStyle = getComputedStyle(document.documentElement);
@@ -428,7 +482,7 @@ export class HomeComponent implements OnInit {
         datasets: [
           {
             data: [this.usersStatusRegistered, this.usersStatusConfirm, this.usersStatusReject],
-            fontFamily:[documentStyle.getPropertyValue('')],
+            fontFamily:[documentStyle.getPropertyValue('font-family: BTitrBold;')],
             backgroundColor:
               [documentStyle.getPropertyValue('--blue-500'),
                 documentStyle.getPropertyValue('--yellow-500'),
@@ -475,6 +529,21 @@ export class HomeComponent implements OnInit {
               this.saveUsers2,
               this.saveUsers1]
           },
+          {
+            type: 'bar',
+            label: 'دیدگاه های ثبت شده',
+            backgroundColor: documentStyle.getPropertyValue('--red-500'),
+            data: [
+              this.saveVote9,
+              this.saveVote8,
+              this.saveVote7,
+              this.saveVote6,
+              this.saveVote5,
+              this.saveVote4,
+              this.saveVote3,
+              this.saveVote2,
+              this.saveVote1]
+          },
         ]
       };
     }, 500)
@@ -501,7 +570,4 @@ export class HomeComponent implements OnInit {
     this.daysAgo = strFor10Days;
   }
 
-  refresh() {
-
-  }
 }

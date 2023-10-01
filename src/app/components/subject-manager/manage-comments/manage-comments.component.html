@@ -102,17 +102,44 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr (contextmenu)="onContextMenu($event, row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <!--      <mat-paginator #paginator class="mat-elevation-z8 paginator"-->
       <!--                     showFirstLastButtons-->
       <!--                     [pageSizeOptions]="getPageSizeOptions()">-->
       <!--      </mat-paginator>-->
-      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator
-                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">
-      </mat-paginator>
+<!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator"  #paginator-->
+<!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->
+<!--      </mat-paginator>-->
+      <mat-paginator (page)="changePagination($event)" [length]="totalElements"
+                     [pageIndex]="currentPage" [pageSizeOptions]="[5,10,25,50,100]"
+                     [pageSize]="pageSize" class="iransans"
+                     color="primary" showFirstLastButtons="showFirstLastButtons"></mat-paginator>
     </div>
+    <div [matMenuTriggerFor]="contextMenu"
+         [style.left]="contextMenuPosition.x"
+         [style.top]="contextMenuPosition.y"
+         style="visibility: hidden; position: fixed">
+    </div>
+    <mat-menu #contextMenu="matMenu">
+      <ng-template let-item="item" matMenuContent>
+        <button mat-menu-item class="buttont"  (click)="confirmComment(item.id)"
+                *ngIf="item.status === 2 || item.status === 0">
+          <span>{{'form.confirm-comment-btn'|translate}}</span>
 
+        </button>
+        <button mat-menu-item class="buttont"  (click)="rejectComment(item.id)"
+                *ngIf="item.status === 1 || item.status === 0">
+          <span>{{'form.reject-comment-btn'|translate}}</span>
+
+        </button>
+        <button mat-menu-item class="buttont"  (click)="deleteComment(item.id)"
+                 >
+          <span>{{'form.delete-comment-btn'|translate}}</span>
+
+        </button>
+      </ng-template>
+    </mat-menu>
   </mat-card-content>
   <mat-card-footer>
   </mat-card-footer>
