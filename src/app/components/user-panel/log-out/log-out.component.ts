@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 import {MatDialogRef} from "@angular/material/dialog";
@@ -13,7 +13,7 @@ import {UserLoginService} from "../../user-authentication/sign-in-user/shared/se
 export class LogOutComponent {
 
   constructor(private logOut: CookieService,
-              private route: Router ,
+              private route: Router,
               private dialogRef: MatDialogRef<LogOutComponent>,
               translate: TranslateService,
               private loginservice: UserLoginService) {
@@ -32,6 +32,6 @@ export class LogOutComponent {
     this.logOut.deleteAll();
     this.route.navigate(['/signin'])
     this.dialogRef.close();
-
+    this.loginservice.showBTN$.next(false)
   }
 }

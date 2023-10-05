@@ -19,8 +19,8 @@
             <mat-form-field class="mat-form">
               <mat-label>{{'form.filter-subject-category'|translate}}</mat-label>
               <input type="text" matInput [readonly]="true" value="{{categoryTitle}}" #input>
-              <mat-icon matSuffix style="cursor: pointer" (click)="selectCategory()">mode_edit</mat-icon>
-              <mat-icon matSuffix style="cursor: pointer" *ngIf="input.value" (click)="reset()">delete</mat-icon>
+              <mat-icon matSuffix style="cursor: pointer;" (click)="selectCategory()">mode_edit</mat-icon>
+              <mat-icon matSuffix style="cursor: pointer;" *ngIf="input.value" (click)="reset()">delete</mat-icon>
             </mat-form-field>
           </div>
         </div>

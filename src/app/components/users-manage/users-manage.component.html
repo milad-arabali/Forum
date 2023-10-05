@@ -239,7 +239,7 @@
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row (contextmenu)="onContextMenu($event, row)"  *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row   *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
 <!--      <mat-paginator showFirstLastButtons class="mat-elevation-z8 paginator" #paginator-->
 <!--                     [pageSizeOptions]="pageSizeOptions" (page)="pageChanged($event)" aria-label="Select page">-->

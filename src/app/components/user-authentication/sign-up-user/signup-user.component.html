@@ -113,7 +113,8 @@
               <mat-label>{{'form.passWord' | translate }}</mat-label>
               <input type="password" maxlength="10" matInput formControlName="password">
               <mat-icon matSuffix>mode_edit</mat-icon>
-              <mat-error *ngIf="form.controls['password'].invalid ">
+              <mat-error *ngIf="form.controls['password'].invalid &&
+               form.controls['password'].hasError('required') ">
                 {{'form.passWord-error' | translate }}
               </mat-error>
             </mat-form-field>

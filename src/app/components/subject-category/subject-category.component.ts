@@ -72,7 +72,7 @@ export class SubjectCategoryComponent implements OnInit  {
     }
   }
   loadTree() {
-    this.subjectCategoryService.findByParentId(-1).subscribe(result => {
+    this.subjectCategoryService.findByParentIdSubjectCategory(-1).subscribe(result => {
       this.dataSource.data = result.map(item => new SubjectCategoryFlatNodeModel
       (item, 0, true, false));
       this.subjectCategoryService.getSubjectList().subscribe(value =>{

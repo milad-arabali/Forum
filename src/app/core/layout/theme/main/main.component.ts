@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private api: ApiService,
-              private usernameLogin: UserLoginService,
+              public usernameLogin: UserLoginService,
               private cookie: CookieService,
               private httpClient: HttpClient,
               public router:Router,
@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
     this.api.getIsAdmin(this.cookie.get('users')).subscribe(
       value =>{
         if(value[0].isAdmin===true){
-          this.isAdmin=true
+          this.usernameLogin.showBTN$.next(true)
         }
       }
     )

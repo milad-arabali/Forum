@@ -18,6 +18,9 @@ export class SubjectCategoryService {
   public deleteSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public selectParentId$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   findByParentId(parentId: number | undefined): Observable<SubjectCategoryModel[]> {
+    return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?_sort=priority&parentId=' + `${parentId}`+'&status=true');
+  }
+  findByParentIdSubjectCategory(parentId: number | undefined): Observable<SubjectCategoryModel[]> {
     return this.http.get<SubjectCategoryModel[]>('http://localhost:3000/subject-category?_sort=priority&parentId=' + `${parentId}`);
   }
   checkId(): Observable<SubjectCategoryModel[]>{
@@ -34,5 +37,6 @@ export class SubjectCategoryService {
   getSubjectByID(id: number | undefined){
     return  this.http.get<SubjectCategoryModel>('http://localhost:3000/subject-category/' + `${id}`)
   }
+
 
 }

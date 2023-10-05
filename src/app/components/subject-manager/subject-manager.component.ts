@@ -31,8 +31,8 @@ export class SubjectManagerComponent implements  OnInit {
   dataSource = new MatTableDataSource();
   search: string;
   isLoading = false;
-  pageSize = 0;
-  currentPage = 5;
+  pageSize = 5;
+  currentPage = 0;
   totalElements = 0;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   contextMenuPosition= {x: '0px', y: '0px'}
@@ -133,7 +133,7 @@ export class SubjectManagerComponent implements  OnInit {
 
   searchObject() {
     let time = this.form.controls['createDateTime'].value
-    // console.log(this.form.getRawValue())
+
     let searchModel = new SubjectMangerModel();
     searchModel = this.form.getRawValue();
     // console.log(searchModel)
@@ -172,11 +172,19 @@ export class SubjectManagerComponent implements  OnInit {
     }
     this.search = `${parentId}&${title}&${creatorUser}&${createDateTime}&${status}`
     // console.log(this.search)
-    this.subject.findSubject(this.search).subscribe(
-      value => {
-        // console.log(value);
-        this.dataSource.data = value
-      })
+    this.subject.sorting(this.paginator.pageIndex + 1, this.paginator.pageSize,this.search).subscribe(
+      (res) => {
+        this.dataSource.data = res.body;
+        this.isLoading = false;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
+      },
+      (err) => {
+        console.log("ok");
+        // alert("Kolla nätverksanslutnignen(CORS)");
+      },
+      () => console.log('done a lot  with news!')
+    );
+
   }
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.displayedColumns, event.previousIndex, event.currentIndex);
@@ -231,9 +239,10 @@ export class SubjectManagerComponent implements  OnInit {
   // }
 
   sortData(event: Sort) {
-    this.subject.sortingCell(event.active, event.direction).subscribe(
+    this.subject.sortingCell(this.paginator.pageIndex + 1, this.paginator.pageSize,event.active, event.direction).subscribe(
       value => {
-        this.dataSource.data = value
+        this.dataSource.data = value.body
+        this.totalElements = Number(value.headers.get('X-Total-Count')) - 1;
       }
     )
   }

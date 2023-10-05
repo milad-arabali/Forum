@@ -31,8 +31,8 @@ export class ManageCommentsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showComment', 'status', 'actions'];
   dataSource = new MatTableDataSource();
   isLoading = false;
-  pageSize = 0;
-  currentPage = 5;
+  pageSize = 5;
+  currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   totalElements = 0;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
@@ -67,7 +67,7 @@ export class ManageCommentsComponent implements OnInit {
     this.loadSubjectData();
     // this.viewComments();
     this.router.url.subscribe((url: UrlSegment[]) => {
-    this.checkSubject(Number(url[2].path))
+      this.checkSubject(Number(url[2].path))
 
     })
 
@@ -114,7 +114,7 @@ export class ManageCommentsComponent implements OnInit {
   loadSubjectData() {
     this.api.getSubject(this.id).subscribe(
       value => {
-          this.commentFormData.push(value)
+        this.commentFormData.push(value)
 
       }
     )

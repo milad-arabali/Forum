@@ -21,7 +21,7 @@ export class ForumComponent implements OnInit {
               private forumServices: ForumService,
               private translate:TranslateService,
               private api:ApiService,
-              private snack:MatSnackBar) {
+  ) {
   }
 
   ngOnInit() {
@@ -33,14 +33,14 @@ export class ForumComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.api.getSubjectCategory(result.id).subscribe(
         value => {
-            this.forumServices.findSubject(result.id).subscribe(
-              value => {
-                if(value[0].status===true){
-                  this.subjectManager=value
-                }
+          this.forumServices.findSubject(value.id).subscribe(
+            value => {
+              if(value[0].status===true){
+                this.subjectManager=value
               }
-            )
-            this.categoryTitle=result.title
+            }
+          )
+          this.categoryTitle=result.title
         })
 
     })

@@ -9,7 +9,8 @@ import {Router} from "@angular/router";
 })
 export class ThemeComponent {
   showSidebar:boolean= true;
-  constructor(public router:Router) {
+  constructor(public router:Router
+              ) {
   }
   changeSidebar(status: boolean) {
     this.showSidebar=status;

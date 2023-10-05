@@ -9,13 +9,12 @@ import {ApiService} from "../../shared/services/api.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {DateAdapter} from "@angular/material/core";
-import {checkNationalCode} from "../../shared/directive/natonal-code-validator.directive";
 import {UserAccountInformationModel} from "../../shared/model/user-account-information.model";
 import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
 import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
-import {MatMenuTrigger} from "@angular/material/menu";
 import {ManageAccessUsersComponent} from "./manage-access-users/manage-access-users.component";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-users-manage',
@@ -26,7 +25,7 @@ export class UsersManageComponent implements OnInit {
   @ViewChild("userName") private _inputElement: ElementRef;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
-  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  // @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   gender: string[] = ['مرد', 'زن']
   isAdmin: boolean[] = [true, false]
   filterUsersForm: FormGroup;
@@ -34,8 +33,8 @@ export class UsersManageComponent implements OnInit {
     ['id', 'userName', 'name', 'nameFamily', 'nationalCode', 'gender', 'DateOfBirth', 'status', 'isAdmin', 'actions'];
   dataSource = new MatTableDataSource();
   isLoading = false;
-  pageSize = 0;
-  currentPage = 5;
+  pageSize = 5;
+  currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   status = [
     {statusValue: 'Registered', viewValue: 'ثبت نام اولیه شده'},
@@ -44,13 +43,15 @@ export class UsersManageComponent implements OnInit {
     {statusValue: '', viewValue: 'هیچ کدام'},
   ];
   maxall = 100;
-  search:string;
-  isSearchButtonActive=false;
-  minDate:Date;
-  maxDate:Date;
+  search: string;
+  isSearchButtonActive = false;
+  minDate: Date;
+  maxDate: Date;
   // contextMenu: MatMenuTrigger;
   contextMenuPosition = {x: '0px', y: '0px'};
   totalElements = 0;
+  items: MenuItem[] | undefined;
+
   constructor(private router: ActivatedRoute,
               private userManagerServices: UsersManageService,
               private fb: FormBuilder,
@@ -60,16 +61,12 @@ export class UsersManageComponent implements OnInit {
               private route: Router,
               private activateRoute: ActivatedRoute,
               private dateAdapter: DateAdapter<any>,
-              private cookie:CookieService,
-              private translate:TranslateService
-
+              private cookie: CookieService,
+              private translate: TranslateService
   ) {
     this.dateAdapter.setLocale('fa-IR');
     this.filterUsersForm = this.fb.group({
-      userName: [, [
-        Validators.minLength(5),
-        Validators.maxLength(60),
-        Validators.pattern('^[a-zA-Z0-9\-\_\/]+$')]],
+      userName: [,],
       status: ['',],
       name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
@@ -80,9 +77,10 @@ export class UsersManageComponent implements OnInit {
       DateOfBirth: [,]
     })
   }
+
   ngOnInit() {
     this.minDate = new Date(1990, 0, 1);
-    this.maxDate = new Date(2016,0,1);
+    this.maxDate = new Date(2016, 0, 1);
     // this.userManagerServices.checkIsAdmin(this.cookie.get('users'))
     setTimeout(() => {
       this.sourceTable()
@@ -90,21 +88,28 @@ export class UsersManageComponent implements OnInit {
     }, 100)
     // this.sourceTable()
     this.checkAdmin()
+    this.items = [
+      {
+        label: 'File',
+        icon: 'pi pi-fw pi-file'
+      }]
   }
+
   // ngAfterViewInit() {
   //   this.dataSource.paginator = this.paginator;
   //   this.dataSource.sort = this.sort;
   // }
-  changePagination(event: PageEvent){
+  changePagination(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.sourceTable()
   }
+
   sourceTable() {
     this.isLoading = true;
     this.userManagerServices.UsersSorting(this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe(
       (res) => {
-        this.dataSource.data = res.body.filter(user=>user.userName!== this.cookie.get('users'));
+        this.dataSource.data = res.body.filter(user => user.userName !== this.cookie.get('users'));
         this.isLoading = false;
         this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
 
@@ -121,21 +126,23 @@ export class UsersManageComponent implements OnInit {
     this.filterUsersForm.reset();
     this.sourceTable()
   }
-  onContextMenu(event: MouseEvent, item: UserAccountInformationModel): void {
-    event.preventDefault();
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
-    this.contextMenu.menuData = {item};
-    // @ts-ignore
-    this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
-  }
+
+  // onContextMenu(event: MouseEvent, item: UserAccountInformationModel): void {
+  //   event.preventDefault();
+  //   this.contextMenuPosition.x = event.clientX + 'px';
+  //   this.contextMenuPosition.y = event.clientY + 'px';
+  //   this.contextMenu.menuData = {item};
+  //   // @ts-ignore
+  //   this.contextMenu.menu.focusFirstItem('mouse');
+  //   this.contextMenu.openMenu();
+  // }
+
   searchUsers() {
     let time = this.filterUsersForm.controls['DateOfBirth'].value
     // console.log(this.form.getRawValue())
     let searchModel = new UserAccountInformationModel()
     searchModel = this.filterUsersForm.getRawValue();
-    console.log(searchModel)
+    // console.log(searchModel)
     let userName = '';
     let name = '';
     let nameFamily = '';
@@ -192,20 +199,35 @@ export class UsersManageComponent implements OnInit {
       DateOfBirth = `&`
     }
     this.search = `${userName}&${name}&${nameFamily}&${status}&${nationalCode}&${gender}&${isAdmin}&${DateOfBirth}`
-    console.log(this.search)
-    this.userManagerServices.findUser(this.search).subscribe(
-      value => {
-        this.dataSource.data = value.filter(user=>user.userName!== this.cookie.get('users'));
-        // console.log(value);
-        // this.dataSource.data = value
-      })
+    // console.log(this.search)
+    this.userManagerServices.UsersSorting(this.paginator.pageIndex + 1, this.paginator.pageSize, this.search).subscribe(
+      (res) => {
+        this.dataSource.data = res.body.filter(user => user.userName !== this.cookie.get('users'));
+        this.isLoading = false;
+        this.totalElements = Number(res.headers.get('X-Total-Count')) - 1;
+
+      },
+      (err) => {
+        console.log("ok");
+        // alert("Kolla nätverksanslutnignen(CORS)");
+      },
+      () => console.log('done a lot  with news!')
+    );
+    // this.userManagerServices.findUser(this.search).subscribe(
+    //   value => {
+    //     this.dataSource.data = value.filter(user=>user.userName!== this.cookie.get('users'));
+    //     // console.log(value);
+    //     // this.dataSource.data = value
+    //   })
   }
+
   pageChanged(event: PageEvent) {
     // console.log({event});
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.sourceTable();
   }
+
   checkAdmin() {
     let isAdmin;
     this.api.getIsAdmin(this.cookie.get('users')).subscribe(
@@ -219,6 +241,7 @@ export class UsersManageComponent implements OnInit {
       }
     )
   }
+
   getPageSizeOptions(): number[] {
     if (this.dataSource.data.length > this.maxall) {
       return [3, 5, this.dataSource.data.length];
@@ -232,9 +255,10 @@ export class UsersManageComponent implements OnInit {
   }
 
   sortData(event: Sort) {
-    this.userManagerServices.sortingCellUsers(event.active,event.direction).subscribe(
+    this.userManagerServices.sortingCellUsers(this.paginator.pageIndex + 1, this.paginator.pageSize, event.active, event.direction).subscribe(
       value => {
-        this.dataSource.data=value
+        this.dataSource.data = value.body.filter(user => user.userName !== this.cookie.get('users'));
+        this.totalElements = Number(value.headers.get('X-Total-Count')) - 1;
       }
     )
   }
@@ -259,12 +283,12 @@ export class UsersManageComponent implements OnInit {
 
 
   deleteUsers(id) {
-
     const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
-      data:{
-        id:id,
-        formModeDialog:3
-      }})
+      data: {
+        id: id,
+        formModeDialog: 3
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }
@@ -275,10 +299,11 @@ export class UsersManageComponent implements OnInit {
   confirmUsers(id) {
 
     const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
-      data:{
-        id:id,
-        formModeDialog:4
-      }})
+      data: {
+        id: id,
+        formModeDialog: 4
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }
@@ -287,21 +312,24 @@ export class UsersManageComponent implements OnInit {
 
   rejectUsers(id) {
     const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
-      data:{
-        id:id,
-        formModeDialog:7
-      }})
+      data: {
+        id: id,
+        formModeDialog: 7
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }
     )
   }
+
   toAdmin(id) {
     const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
-      data:{
-        id:id,
-        formModeDialog:5
-      }})
+      data: {
+        id: id,
+        formModeDialog: 5
+      }
+    })
     dialogRef.afterClosed().subscribe(result => {
         this.sourceTable()
       }
@@ -310,9 +338,9 @@ export class UsersManageComponent implements OnInit {
 
   disAdmin(id) {
     const dialogRef = this.dialog.open(ManageAccessUsersComponent, {
-      data:{
-        id:id,
-        formModeDialog:6
+      data: {
+        id: id,
+        formModeDialog: 6
       }
     })
     dialogRef.afterClosed().subscribe(result => {

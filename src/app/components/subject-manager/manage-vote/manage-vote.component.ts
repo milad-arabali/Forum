@@ -28,8 +28,8 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showVote'];
   dataSource = new MatTableDataSource();
   isLoading = false;
-  pageSize = 0;
-  currentPage = 5;
+  pageSize = 5;
+  currentPage = 0;
   pageSizeOptions: number[] = [5, 10, 25, 100];
   maxall = 100;
   totalElements = 0;

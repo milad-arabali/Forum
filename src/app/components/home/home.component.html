@@ -1,4 +1,4 @@
-<mat-card class="header-card1">
+<mat-card class="header-card1" *ngIf="usernameLogin.showBTN$|async">
   <mat-card-header class="header-card">
     <mat-card-title>
       <div class="title-container">
@@ -6,17 +6,11 @@
           <mat-icon aria-hidden="false">insert_drive_file</mat-icon>
           {{'layout.chart' | translate}}
         </div>
-        <!--        <div class="button">-->
-        <!--          <button mat-raised-button color="primary" (click)="refresh()">-->
-        <!--          رفرش-->
-        <!--          </button>-->
-        <!--        </div>-->
       </div>
     </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-
     <div class="container">
       <div class="col1">
         <div class="row">
@@ -44,34 +38,13 @@
           </div>
           <hr>
           <div>
-            <p>مقالات و کاربران ثبت شده:</p>
+            <p>{{'chart.allUsers-dn'|translate}}</p>
             <div>
               <div class="chartLineWidth">
-                <p-chart type="bar" [data]="saveSubject" [options]="options"></p-chart>
+                <p-chart type="bar" [data]="saveSubject" [options]="options1"></p-chart>
               </div>
-              <!--              <ngx-charts-bar-vertical-2d class="charts-vertical"-->
-
-              <!--                                          [results]="multi"-->
-              <!--                                          [gradient]="gradient"-->
-              <!--                                          [xAxis]="showXAxis"-->
-              <!--                                          [yAxis]="showYAxis"-->
-              <!--                                          [legend]="showLegend"-->
-              <!--                                          [showXAxisLabel]="showXAxisLabel"-->
-              <!--                                          [showYAxisLabel]="showYAxisLabel"-->
-              <!--                                          [xAxisLabel]="xAxisLabel"-->
-              <!--                                          [yAxisLabel]="yAxisLabel"-->
-              <!--              >-->
-              <!--              </ngx-charts-bar-vertical-2d>-->
             </div>
           </div>
-          <!--          <hr>-->
-          <!--          <div>-->
-          <!--            <p>{{'chart.vote-save'|translate}}</p>-->
-          <!--            <div class="chartLineWidth">-->
-          <!--              <p-chart type="bar" [data]="saveSubject" [options]="options"></p-chart>-->
-          <!--            </div>-->
-
-          <!--          </div>-->
         </div>
       </div>
       <div class="col2">
@@ -108,7 +81,7 @@
           <hr>
           <div class="pchart">
             <div>
-              <h2>{{'chart.users-exist'|translate}} </h2>
+              <h2>{{'chart.users-exist'|translate}}</h2>
               <p>{{this.allUser}}</p>
             </div>
             <div>

@@ -1,5 +1,4 @@
 import { Injectable} from '@angular/core';
-import {UserInformationModel} from "../../../../../shared/model/user-information.model";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CookieServiceLogin} from "../../../../../shared/services/cookie.service";
@@ -18,6 +17,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UserLoginService {
   public showUserName$ = new BehaviorSubject<any>('');
   public showUserLastName$ = new BehaviorSubject<any>('');
+  public showBTN$ = new BehaviorSubject<any>('');
   is:boolean;
   public user: UserAccountInformationModel;
   // public userDb: UserInformationModel[] = [
@@ -106,6 +106,7 @@ export class UserLoginService {
           }else {
             if(b){
               this.c.set('admin', 'true')
+              this.showBTN$.next(true)
             }
             this.c.set('users', username)
             this.userLogin.logIn().then(() => {

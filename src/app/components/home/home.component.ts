@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ChartService} from "./shared/chart.service";
-import {Subject} from "rxjs";
 import * as moment from "jalali-moment";
+import {ApiService} from "../../shared/services/api.service";
+import {CookieService} from "ngx-cookie-service";
+import {UserLoginService} from "../user-authentication/sign-in-user/shared/services/user-login.service";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -10,163 +13,15 @@ import * as moment from "jalali-moment";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   test: number;
   name = 'Angular';
   width: number = 700;
   height: number = 300;
   view: any[] = [600, 400];
-  showXAxis = true;
-  showYAxis = true;
-  gradient = true;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Country';
-  showYAxisLabel = true;
-  yAxisLabel = 'Sales';
-  timeline = true;
-  doughnut = true;
-  colorScheme = {
-    domain: ['#9370DB', '#87CEFA', '#FA8072', '#FF7F50', '#90EE90', '#9370DB']
-  };
-
   items: any[] = [];
-  public category = [
-    {
-      "name": "تعداد دسته بندی ها",
-      "value": 1
-    },
-    {
-      "name": "تعداد کل دسته بندی های فعال",
-      "value": 2
-    },
-    {
-      "name": "تعداد کل دسته بندی های غیر فعال",
-      "value": 3
-    }
-  ];
-  public single = [
-    {
-      "name": "تعداد دسته بندی ها",
-      "value": 2
-    },
-    {
-      "name": "تعداد کل دسته بندی های فعال",
-      "value": 23
-    },
-    {
-      "name": "تعداد کل دسته بندی های غیر فعال",
-      "value": 32
-    }
-  ];
-  // public single = [
-  //   {
-  //     "name": "China",
-  //     "value": 50
-  //   },
-  //   {
-  //     "name": "USA",
-  //     "value": 11
-  //   },
-  //   {
-  //     "name": "Norway",
-  //     "value": 29
-  //   },
-  //   {
-  //     "name": "Japan",
-  //     "value": 2
-  //   },
-  //   {
-  //     "name": "Germany",
-  //     "value": 19
-  //   },
-  //   {
-  //     "name": "France",
-  //     "value": 20
-  //   }
-  // ];
-  public multi = [
-    {
-      "name": "China",
-      "series": [
-        {
-          "name": "2018",
-          "value": 22
-        },
-        {
-          "name": "2017",
-          "value": 12
-        }
-      ]
-    },
-    {
-      "name": "USA",
-      "series": [
-        {
-          "name": "2018",
-          "value": 11
-        },
-        {
-          "name": "2017",
-          "value": 30
-        }
-      ]
-    },
-    {
-      "name": "Norway",
-      "series": [
-        {
-          "name": "2018",
-          "value": 29
-        },
-        {
-          "name": "2017",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "name": "Japan",
-      "series": [
-        {
-          "name": "2018",
-          "value": 27
-        },
-        {
-          "name": "2017",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "name": "Germany",
-      "series": [
-        {
-          "name": "2018",
-          "value": 19
-        },
-        {
-          "name": "2017",
-          "value": 12
-        }
-      ]
-    },
-    {
-      "name": "France",
-      "series": [
-        {
-          "name": "2018",
-          "value": 20
-        },
-        {
-          "name": "2017",
-          "value": 14
-        }
-      ]
-    }
-  ];
   data: any;
   options: any;
+  options1: any;
   subjectCategory: number;
   activeCategory: number;
   inactiveCategory: number;
@@ -183,64 +38,73 @@ export class HomeComponent implements OnInit {
   bayGroupList: any[] = [];
   bayGroupList1: any[] = [];
   daysAgo = '';
-
   daysAgo1 = '';
   daysAgo2 = '';
-  currentTime9=moment().add(-9,'days');
-  currentTime8=moment().add(-8,'days');
-  currentTime7=moment().add(-7,'days');
-  currentTime6=moment().add(-6,'days');
-  currentTime5=moment().add(-5,'days');
-  currentTime4=moment().add(-4,'days');
-  currentTime3=moment().add(-3,'days');
-  currentTime2=moment().add(-2,'days');
-  currentTime1=moment().add(-1,'days');
-  saveSubject9:number;
-  saveSubject8:number;
-  saveSubject7:number;
-  saveSubject6:number;
-  saveSubject5:number;
-  saveSubject4:number;
-  saveSubject3:number;
-  saveSubject2:number;
-  saveSubject1:number;
-  saveUsers1:number;
-  saveUsers2:number;
-  saveUsers3:number;
-  saveUsers4:number;
-  saveUsers5:number;
-  saveUsers6:number;
-  saveUsers7:number;
-  saveUsers8:number;
-  saveUsers9:number;
-  saveVote1:number;
-  saveVote2:number;
-  saveVote3:number;
-  saveVote4:number;
-  saveVote5:number;
-  saveVote6:number;
-  saveVote7:number;
-  saveVote8:number;
-  saveVote9:number;
+  currentTime9 = moment().add(-9, 'days');
+  currentTime8 = moment().add(-8, 'days');
+  currentTime7 = moment().add(-7, 'days');
+  currentTime6 = moment().add(-6, 'days');
+  currentTime5 = moment().add(-5, 'days');
+  currentTime4 = moment().add(-4, 'days');
+  currentTime3 = moment().add(-3, 'days');
+  currentTime2 = moment().add(-2, 'days');
+  currentTime1 = moment().add(-1, 'days');
+  saveSubject9: number;
+  saveSubject8: number;
+  saveSubject7: number;
+  saveSubject6: number;
+  saveSubject5: number;
+  saveSubject4: number;
+  saveSubject3: number;
+  saveSubject2: number;
+  saveSubject1: number;
+  saveUsers1: number;
+  saveUsers2: number;
+  saveUsers3: number;
+  saveUsers4: number;
+  saveUsers5: number;
+  saveUsers6: number;
+  saveUsers7: number;
+  saveUsers8: number;
+  saveUsers9: number;
+  saveVote1: number;
+  saveVote2: number;
+  saveVote3: number;
+  saveVote4: number;
+  saveVote5: number;
+  saveVote6: number;
+  saveVote7: number;
+  saveVote8: number;
+  saveVote9: number;
+  time: any;
 
-
-  time:any;
-  constructor(private chartServices: ChartService) {
+  constructor(private chartServices: ChartService,
+              private api: ApiService,
+              private cookie: CookieService,
+              public usernameLogin: UserLoginService,
+              private translate:TranslateService) {
     for (let i = 0; i < 10; i++) {
-      this.daysAgo1 = moment().subtract(i, 'day').locale('fa').format('YYYY-MM-DD')
+      this.daysAgo1 = moment().subtract(i, 'day').locale('fa').format('YYYY/MM/DD')
       this.daysAgo2 = moment().subtract(i, 'day').format('YYYY-MM-DD')
       this.bayGroupList.push(this.daysAgo1)
       this.bayGroupList1.push(this.daysAgo2)
     }
-    // console.log("fsfsfsffff", this.bayGroupList);
-    // console.log("fsfsfsffff", this.bayGroupList1);
+    // console.log("bayGroupList", this.bayGroupList);
+
   }
-
-
   ngOnInit() {
-
+    this.api.getIsAdmin(this.cookie.get('users')).subscribe(
+      value => {
+        if (value[0].isAdmin === true) {
+          this.usernameLogin.showBTN$.next(true)
+        }
+      }
+    )
     this.dateConverter(new Date())
-
+    const documentStyle1 = getComputedStyle(document.documentElement);
+    const textColor1 = documentStyle1.getPropertyValue('--text-color');
+    const textColorSecondary1 = documentStyle1.getPropertyValue('--text-color-secondary');
+    const surfaceBorder1 = documentStyle1.getPropertyValue('--surface-border');
     this.chartServices.getAllSubjectCategory().subscribe(
       value => {
         this.subjectCategory = value.length;
@@ -433,7 +297,8 @@ export class HomeComponent implements OnInit {
     const textColor = documentStyle.getPropertyValue('--text-color');
     setTimeout(() => {
       this.data = {
-        labels: ['دسته بندی فعال', 'دسته بندی غیرفعال'],
+        labels: [this.translate.instant('chart.active-category'),
+          this.translate.instant('chart.deActive-category')],
         datasets: [
           {
             data: [Number(this.activeCategory), Number(this.inactiveCategory)],
@@ -447,7 +312,8 @@ export class HomeComponent implements OnInit {
     }, 500)
     setTimeout(() => {
       this.dataSubject = {
-        labels: ['موضوعات فعال', 'موضوعات غیر فعال'],
+        labels: [this.translate.instant('chart.active-subject'),
+          this.translate.instant('chart.deActive-subject')],
         datasets: [
           {
             data: [Number(this.activeSubject), Number(this.inactiveSubject)],
@@ -462,7 +328,9 @@ export class HomeComponent implements OnInit {
     }, 500)
     setTimeout(() => {
       this.dataUsers = {
-        labels: ['کاربران ثبت نامی ', 'کاربران تایید شد', 'کاربران تایید نشده'],
+        labels: [this.translate.instant('chart.register-users'),
+          this.translate.instant('chart.confirm-users'),
+          this.translate.instant('chart.reject-users')],
         datasets: [
           {
             data: [this.usersStatusRegistered, this.usersStatusConfirm, this.usersStatusReject],
@@ -478,11 +346,13 @@ export class HomeComponent implements OnInit {
     }, 500)
     setTimeout(() => {
       this.dataUsers = {
-        labels: ['کاربران ثبت نامی ', 'کاربران تایید شد', 'کاربران تایید نشده'],
+        labels: [this.translate.instant('chart.register-users'),
+          this.translate.instant('chart.confirm-users'),
+          this.translate.instant('chart.reject-users')],
         datasets: [
           {
             data: [this.usersStatusRegistered, this.usersStatusConfirm, this.usersStatusReject],
-            fontFamily:[documentStyle.getPropertyValue('font-family: BTitrBold;')],
+            fontFamily: [documentStyle.getPropertyValue('font-family: BTitrBold;')],
             backgroundColor:
               [documentStyle.getPropertyValue('--blue-500'),
                 documentStyle.getPropertyValue('--yellow-500'),
@@ -497,52 +367,52 @@ export class HomeComponent implements OnInit {
     }, 500)
     setTimeout(() => {
       this.saveSubject = {
-        labels: this.bayGroupList,
+        labels: this.bayGroupList.reverse(),
         datasets: [
           {
             type: 'bar',
-            label: 'موضوعات ثبت شده',
+            label: this.translate.instant('chart.save-category'),
             backgroundColor: documentStyle.getPropertyValue('--blue-500'),
             data: [
-              this.saveSubject9,
-              this.saveSubject8,
-              this.saveSubject7,
-              this.saveSubject6,
-              this.saveSubject5,
-              this.saveSubject4,
-              this.saveSubject3,
+              this.saveSubject1,
               this.saveSubject2,
-              this.saveSubject1]
+              this.saveSubject3,
+              this.saveSubject4,
+              this.saveSubject5,
+              this.saveSubject6,
+              this.saveSubject7,
+              this.saveSubject8,
+              this.saveSubject9]
           },
           {
             type: 'bar',
-            label: 'کاربران ثبت شده',
+            label: this.translate.instant('chart.users-save') ,
             backgroundColor: documentStyle.getPropertyValue('--green-500'),
             data: [
-              this.saveUsers9,
-              this.saveUsers8,
-              this.saveUsers7,
-              this.saveUsers6,
-              this.saveUsers5,
-              this.saveUsers4,
-              this.saveUsers3,
+              this.saveUsers1,
               this.saveUsers2,
-              this.saveUsers1]
+              this.saveUsers3,
+              this.saveUsers4,
+              this.saveUsers5,
+              this.saveUsers6,
+              this.saveUsers7,
+              this.saveUsers8,
+              this.saveUsers9]
           },
           {
             type: 'bar',
-            label: 'دیدگاه های ثبت شده',
+            label: this.translate.instant('chart.votes-save'),
             backgroundColor: documentStyle.getPropertyValue('--red-500'),
             data: [
-              this.saveVote9,
-              this.saveVote8,
-              this.saveVote7,
-              this.saveVote6,
-              this.saveVote5,
-              this.saveVote4,
-              this.saveVote3,
+              this.saveVote1,
               this.saveVote2,
-              this.saveVote1]
+              this.saveVote3,
+              this.saveVote4,
+              this.saveVote5,
+              this.saveVote6,
+              this.saveVote7,
+              this.saveVote8,
+              this.saveVote9]
           },
         ]
       };
@@ -557,7 +427,43 @@ export class HomeComponent implements OnInit {
         }
       }
     };
+    this.options1 = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor1
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: textColorSecondary1,
+            font: {
+              weight: 500
+            }
+          },
+          grid: {
+            color: surfaceBorder1,
+            drawBorder: false
+          }
+        },
+        y: {
+          ticks: {
+            color: textColorSecondary1
+          },
+          grid: {
+            color: surfaceBorder1,
+            drawBorder: false
+          }
+        }
+
+      }
+    };
   }
+
   dateConverter(dateIn) {
     dateIn.setHours(12);
     let dateIn10days = new Date(dateIn.setDate(dateIn.getDate() + 10));

@@ -10,7 +10,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 300px;
   padding: 10px;
 }
 
@@ -131,21 +130,12 @@ input {
   text-align: -webkit-right;
 }
 
-/*:host ::ng-deep .mat-mdc-list-base{*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  flex-wrap: wrap;*/
-/*  !*height: 100px;*!*/
-/*  !*flex:1;*!*/
-/*  !*width: 100%;*!*/
-/*}*/
 
 
 .list div p {
 
   padding: 10px;
-  /*width: 100%;*/
-  /*flex: 5;*/
+
 }
 
 

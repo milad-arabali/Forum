@@ -13,6 +13,7 @@ import {VoteModel} from "../../../../shared/model/vote.model";
   providedIn: 'root'
 })
 export class SubjectService {
+
   fullNameUser = new UserAccountInformationModel();
 
   constructor(private http: HttpClient,
@@ -37,13 +38,18 @@ export class SubjectService {
     return this.http.get<SubjectMangerModel[]>(
       'http://localhost:3000/subject?' + `${a}`);
   }
-  sorting(pageSize:number,currentPage:number) {
-    return this.http.get<any>('http://localhost:3000/subject?_page='+`${pageSize}`+'&_limit='+`${currentPage}`, {
+  sorting(pageSize:number,currentPage:number , value?: any) {
+    return this.http.get<any>('http://localhost:3000/subject?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&'+value, {
       observe: 'response'
     });
   }
-  sortingCell(sort:string,order:string){
-    return this.http.get<SubjectMangerModel[]>('http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`);
+  sortingCell(pageSize:number,currentPage:number,sort:string,order:string){
+    return this.http.get<SubjectMangerModel[]>(
+      'http://localhost:3000/subject?_sort='+`${sort}`+'&_order='+`${order}`+'&_page='+`${pageSize}`+'&_limit='+`${currentPage}`,
+      {
+        observe: 'response'
+      }
+    );
   }
   sortingCellComment(sort:string,order:string,subjectId:number){
     return this.http.get<CommentModel[]>(
@@ -62,8 +68,8 @@ export class SubjectService {
   sortingAllVote(pageSize:number,currentPage:number,subjectId:number) {
     return this.http.get<VoteModel[]>(
       'http://localhost:3000/vote?_page='+`${pageSize}`+'&_limit='+`${currentPage}`+'&subjectId='+`${subjectId}`,{
-      observe: 'response'
-    });
+        observe: 'response'
+      });
   }
   allComments(subjectId:number){
     return this.http.get<CommentModel[]>('http://localhost:3000/comment?subjectId='+`${subjectId}`+'&status=1');
