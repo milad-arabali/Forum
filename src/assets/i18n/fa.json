@@ -136,7 +136,8 @@
     "delete-comment-btn": "حذف کردن",
     "register-users-title": "ثبت نام اولیه",
     "confirm-users-title": "تایید شده",
-    "reject-users-title": "لغو شده"
+    "reject-users-title": "لغو شده",
+    "filter-users": "فیلتر مدیریت کاربران"
   },
   "table": {
     "row": "ردیف",
@@ -198,7 +199,7 @@
     "reject-comment": "کامنت مورد نظر تایید نگردید",
     "comment-notExit": "دیدگاهی برای موضوع مورد نظر ثبت نگردیده است",
     "vote-notExit": "آرایی برای موضوع مورد نظر ثبت نگردیده است",
-    "comment-notExitForum": "دیدگاه مورد نظر وجود ندارد."
+    "comment-notExitForums": "دیدگاه مورد نظر وجود ندارد."
   },
   "list": {
     "subject-title": "عنوان مقاله :",

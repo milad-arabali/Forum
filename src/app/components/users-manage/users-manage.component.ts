@@ -66,7 +66,7 @@ export class UsersManageComponent implements OnInit {
   ) {
     this.dateAdapter.setLocale('fa-IR');
     this.filterUsersForm = this.fb.group({
-      userName: [,],
+      userName: [],
       status: ['',],
       name: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
       nameFamily: [, [Validators.pattern('^[\u0600-\u06FF\\s]+$')]],
@@ -139,6 +139,7 @@ export class UsersManageComponent implements OnInit {
 
   searchUsers() {
     let time = this.filterUsersForm.controls['DateOfBirth'].value
+    let user = this.filterUsersForm.controls['userName'].value
     // console.log(this.form.getRawValue())
     let searchModel = new UserAccountInformationModel()
     searchModel = this.filterUsersForm.getRawValue();
@@ -152,8 +153,9 @@ export class UsersManageComponent implements OnInit {
     let isAdmin = '';
     let DateOfBirth = '';
 
-    if (searchModel.userName) {
-      userName = `userName_like=${searchModel.userName}`
+    if (user) {
+      console.log("c", user);
+      userName = `userName_like=${user}`
     } else {
       userName = `&`
     }

@@ -46,7 +46,7 @@ export class ChartService {
     return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?status=Registered`)
   }
   getUsersStatusReject(){
-    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?status=reject`)
+    return this.httpClient.get<UserAccountInformationModel[]>(`http://localhost:3000/enquiry?status=Registered&status=reject`)
   }
   getTimeDateSubject(time:any){
     return this.httpClient.get<SubjectMangerModel[]>(`http://localhost:3000/subject?createDateTime_like=`+`${time}`)

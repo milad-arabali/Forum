@@ -61,6 +61,7 @@ export class ForumCommentComponent implements OnInit {
     this.disLikeNumberVote()
     this.router.url.subscribe((url: UrlSegment[]) => {
       this.checkSubject(Number(url[1].path))
+
     })
 
 
@@ -79,11 +80,11 @@ export class ForumCommentComponent implements OnInit {
     this.forumServices.checkCommentId().subscribe(
       value => {
         let path = url
-        let id = value.find((a) => a.subjectId === path)
+        let id = value.find((a) => a.id === path)
         if (Number.isInteger(path) && id) {
 
         } else {
-          this.snack.open(this.translate.instant('snackbar.comment-notExitForum'), "", {
+          this.snack.open(this.translate.instant('snackbar.comment-notExitForums'), "", {
             duration: 3000,
             horizontalPosition: "end",
             verticalPosition: "top"
@@ -128,7 +129,7 @@ export class ForumCommentComponent implements OnInit {
 
   addComment() {
     let addComment = new CommentModel();
-    addComment.subjectId = this.id
+    addComment.subjectId = Number(this.id)
     addComment.userName = this.cookie.get('users')
     addComment.content = this.commentsForm.controls['content'].value
     addComment.status = this.statusCommentMode

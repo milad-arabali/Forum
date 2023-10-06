@@ -1,102 +1,76 @@
 {
   "enquiry": [
     {
-      "userName": "test1",
-      "password": "test2",
+      "userName": "admin",
+      "password": "admin",
       "name": "ممدرضا",
       "nameFamily": "حسینی",
-      "nationalCode": "0021655235",
+      "nationalCode": "0021655231",
       "gender": "مرد",
       "DateOfBirth": "2015-12-28T20:30:00.000Z",
       "currentDate": "2023-09-26T15:39:58.479Z",
       "isAdmin": true,
       "status": "confirm",
-      "id": 13
+      "id": 1
     },
     {
-      "userName": "test3",
-      "status": "confirm",
-      "password": "test3",
-      "name": "تستت",
-      "nameFamily": "تست ",
+      "userName": "test1",
+      "password": "test1",
+      "name": "تست یک",
+      "nameFamily": "تست یک",
       "nationalCode": null,
       "gender": "male",
-      "isAdmin": false,
-      "DateOfBirth": "2015-12-29T20:30:00.000Z",
-      "currentDate": "2023-09-28T15:39:58.479Z",
-      "id": 14
-    },
-    {
-      "userName": "test4",
-      "status": "Registered",
-      "password": "test4",
-      "name": "تست چهار",
-      "nameFamily": "تست چهارم",
-      "nationalCode": "0021655231",
-      "gender": "male",
+      "DateOfBirth": null,
+      "status": "confirm",
       "isAdmin": true,
-      "DateOfBirth": "2015-12-25T20:30:00.000Z",
-      "currentDate": "2023-09-28T15:39:58.479Z",
-      "id": 15
+      "currentDate": "2023-10-06T17:55:34.610Z",
+      "id": 2
     },
     {
-      "userName": "ali22",
-      "password": "ali22",
-      "name": "علی ",
-      "nameFamily": "علی آقا",
-      "nationalCode": "",
+      "userName": "test2",
+      "password": "test2",
+      "name": "تست دو",
+      "nameFamily": "تست دو",
+      "nationalCode": "0021655235",
       "gender": "male",
       "DateOfBirth": "2015-12-27T20:30:00.000Z",
       "status": "Registered",
       "isAdmin": false,
-      "currentDate": "2023-09-30T15:39:58.479Z",
-      "id": 16
+      "currentDate": "2023-10-06T17:56:00.619Z",
+      "id": 3
     },
     {
-      "userName": "ali111",
+      "userName": "test3",
+      "password": "test3",
+      "name": "تست سه",
+      "nameFamily": "تست سه",
+      "nationalCode": null,
+      "gender": "male",
+      "DateOfBirth": "2015-12-25T20:30:00.000Z",
       "status": "Registered",
-      "password": "ali12345",
-      "name": "علی",
-      "nameFamily": "علی",
-      "nationalCode": null,
-      "gender": "male",
       "isAdmin": false,
-      "DateOfBirth": "2015-12-29T20:30:00.000Z",
-      "currentDate": "2023-10-01T14:59:39.099Z",
-      "id": 17
+      "currentDate": "2023-10-06T17:57:01.159Z",
+      "id": 4
     },
     {
-      "userName": "test33",
-      "status": "reject",
-      "password": "test333",
-      "name": "تست",
-      "nameFamily": "تست",
+      "userName": "test4",
+      "password": "test4",
+      "name": "تست چهار",
+      "nameFamily": "تست چهار ",
       "nationalCode": null,
-      "gender": "male",
+      "gender": "female",
+      "DateOfBirth": "2015-12-21T20:30:00.000Z",
+      "status": "Registered",
       "isAdmin": false,
-      "DateOfBirth": null,
-      "currentDate": "2023-10-01T15:00:19.660Z",
-      "id": 18
-    },
-    {
-      "userName": "reza2",
-      "status": "reject",
-      "password": "reza22",
-      "name": "رضا",
-      "nameFamily": "رضایی",
-      "nationalCode": null,
-      "gender": "male",
-      "isAdmin": false,
-      "DateOfBirth": null,
-      "currentDate": "2023-10-01T15:01:37.357Z",
-      "id": 19
+      "currentDate": "2023-10-06T17:57:24.063Z",
+      "id": 5
     }
   ],
   "subject-category": [
     {
       "parentId": -1,
-      "title": "تست 1",
-      "createDateTime": "2023-09-23T16:44:43.819Z",
+      "title": "تست ی",
+      "createDateTime": "2023-10-06T18:05:50.683Z",
       "status": true,
       "priority": 1,
       "hasChild": false,
@@ -105,254 +79,111 @@
     {
       "parentId": -1,
       "title": "تست دو",
-      "createDateTime": "2023-09-23T16:44:43.819Z",
+      "createDateTime": "2023-10-06T18:05:57.255Z",
       "status": true,
       "priority": 1,
-      "hasChild": true,
+      "hasChild": false,
       "id": 2
     },
     {
       "parentId": -1,
-      "title": "تست چهارم",
-      "createDateTime": "2023-09-23T16:44:43.819Z",
+      "title": "تست سه",
+      "createDateTime": "2023-10-06T18:06:04.895Z",
       "status": false,
       "priority": 1,
       "hasChild": false,
-      "id": 4
-    } ,
+      "id": 3
+    },
     {
       "parentId": -1,
-      "title": "d",
-      "createDateTime": "2023-10-06T15:35:09.201Z",
+      "title": "تست چهار",
+      "createDateTime": "2023-10-06T18:06:10.583Z",
+      "status": true,
+      "priority": 1,
+      "hasChild": true,
+      "id": 4
+    },
+    {
+      "parentId": 4,
+      "title": "تست پنچ",
+      "createDateTime": "2023-10-06T18:06:21.727Z",
       "status": true,
       "priority": 1,
       "hasChild": false,
       "id": 5
-    },
-    {
-      "parentId": -1,
-      "title": "re",
-      "createDateTime": "2023-10-06T15:35:13.255Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": true,
-      "id": 6
-    },
-    {
-      "parentId": -1,
-      "title": "a",
-      "createDateTime": "2023-10-06T15:36:00.640Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": false,
-      "id": 7
-    },
-    {
-      "parentId": 6,
-      "title": "aa2",
-      "createDateTime": "2023-10-06T15:36:11.242Z",
-      "status": true,
-      "priority": 1,
-      "hasChild": false,
-      "id": 8
     }
   ],
   "subject": [
     {
-      "title": "تست 1",
-      "parentId": 1,
-      "categoryTitle": "تست 1",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-23T16:44:43.819Z",
-      "id": 24
-    },
-    {
-      "title": "تست 2",
-      "parentId": 1,
-      "categoryTitle": "تست 1",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-24T16:44:43.819Z",
-      "id": 25
-    },
-    {
-      "title": "تست 3",
-      "parentId": 1,
-      "categoryTitle": "تست 1",
-      "creatorUser": "test1",
-      "status": false,
-      "createDateTime": "2023-09-25T16:44:43.819Z",
-      "id": 26
-    },
-    {
-      "title": "1212",
-      "parentId": 5,
-      "categoryTitle": "تست 5",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-26T16:44:43.819Z",
-      "id": 27
-    },
-    {
-      "title": "1212",
-      "parentId": 5,
-      "categoryTitle": "تست 5",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-27T16:44:43.819Z",
-      "id": 29
-    },
-    {
-      "title": "wwww",
-      "parentId": 5,
-      "categoryTitle": "تست 5",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-28T16:44:43.819Z",
-      "id": 30
-    },
-    {
-      "title": "32323",
-      "parentId": 5,
-      "categoryTitle": "تست 5",
-      "creatorUser": "test1",
-      "status": true,
-      "createDateTime": "2023-09-23T16:44:43.819Z",
-      "id": 31
-    },
-    {
-      "title": "ewe",
+      "title": "تست یک",
       "parentId": 2,
       "categoryTitle": "تست دو",
       "creatorUser": "test1",
       "status": true,
-      "createDateTime": "2023-09-28T09:35:58.086Z",
-      "id": 32
+      "createDateTime": "2023-10-06T18:07:02.285Z",
+      "id": 1
+    },
+    {
+      "title": "تست دوم",
+      "parentId": 1,
+      "categoryTitle": "تست ی",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "2023-10-06T18:07:21.121Z",
+      "id": 2
+    },
+    {
+      "title": "تست اول",
+      "parentId": 1,
+      "categoryTitle": "تست ی",
+      "creatorUser": "test1",
+      "status": true,
+      "createDateTime": "2023-10-06T18:07:34.739Z",
+      "id": 3
     }
   ],
   "comment": [
     {
-      "subjectId": 24,
+      "subjectId": 2,
       "userName": "test1",
-      "content": "یییی",
+      "content": "تست یک",
       "status": 1,
-      "createDateTime": "2023-09-23T16:42:33.191Z",
+      "createDateTime": "2023-10-06T19:06:58.413Z",
       "id": 1
     },
     {
-      "subjectId": 25,
+      "subjectId": 2,
       "userName": "test1",
-      "content": "یسیسیسیسی",
-      "status": 1,
-      "createDateTime": "2023-09-23T16:44:43.819Z",
+      "content": "تست دو",
+      "status": 2,
+      "createDateTime": "2023-10-06T19:07:04.517Z",
       "id": 2
     },
     {
-      "subjectId": 25,
+      "subjectId": 1,
       "userName": "test1",
-      "content": "sdsdsdsd",
-      "status": 2,
-      "createDateTime": "2023-09-23T16:50:04.635Z",
+      "content": "ش",
+      "status": 1,
+      "createDateTime": "2023-10-06T19:08:43.090Z",
       "id": 3
-    },
-    {
-      "subjectId": 25,
-      "userName": "test1",
-      "content": "ddd",
-      "status": 1,
-      "createDateTime": "2023-09-23T18:11:13.314Z",
-      "id": 4
-    },
-    {
-      "subjectId": 25,
-      "userName": "test1",
-      "content": "c",
-      "status": 1,
-      "createDateTime": "2023-09-24T05:33:41.047Z",
-      "id": 5
-    },
-    {
-      "subjectId": 24,
-      "userName": "test1",
-      "content": "eeee",
-      "status": 1,
-      "createDateTime": "2023-09-24T08:20:58.133Z",
-      "id": 6
-    },
-    {
-      "subjectId": 25,
-      "userName": "test1",
-      "content": "dsdsdsd",
-      "status": 0,
-      "createDateTime": "2023-09-24T10:37:42.582Z",
-      "id": 7
-    },
-    {
-      "subjectId": "24",
-      "userName": "test1",
-      "content": "ffff",
-      "status": 0,
-      "createDateTime": "2023-10-01T16:15:14.434Z",
-      "id": 8
-    },
-    {
-      "subjectId": "24",
-      "userName": "test1",
-      "content": "grgrrgrgrg",
-      "status": 0,
-      "createDateTime": "2023-10-01T16:15:17.894Z",
-      "id": 9
-    },
-    {
-      "subjectId": "24",
-      "userName": "test3",
-      "content": "aaaa",
-      "status": 0,
-      "createDateTime": "2023-10-05T12:34:50.682Z",
-      "id": 10
     }
   ],
   "vote": [
     {
-      "subjectId": 25,
+      "subjectId": 2,
       "userName": "test1",
-      "createDateTime": "2023-09-28T19:58:03.256Z",
+      "createDateTime": "2023-10-06T19:07:05.533Z",
       "status": 0,
       "voteType": 0,
       "id": 1
     },
     {
-      "subjectId": 25,
-      "userName": "test21",
-      "createDateTime": "2023-09-28T19:58:03.256Z",
+      "subjectId": 1,
+      "userName": "test1",
+      "createDateTime": "2023-10-06T19:08:41.874Z",
       "status": 0,
       "voteType": 1,
       "id": 2
-    },
-    {
-      "subjectId": 24,
-      "userName": "test1",
-      "createDateTime": "2023-09-29T08:30:52.436Z",
-      "status": 0,
-      "voteType": 1,
-      "id": 3
-    },
-    {
-      "subjectId": 24,
-      "userName": "test3",
-      "createDateTime": "2023-10-05T12:34:33.280Z",
-      "status": 0,
-      "voteType": 0,
-      "id": 4
-    },
-    {
-      "subjectId": 25,
-      "userName": "test3",
-      "createDateTime": "2023-10-06T07:01:01.265Z",
-      "status": 0,
-      "voteType": 0,
-      "id": 5
     }
   ]
 }

@@ -17,7 +17,7 @@ export class ForumService {
       'http://localhost:3000/subject?parentId=' + `${a}`+'&status=true');
   }
   checkCommentId(): Observable<CommentModel[]> {
-    return this.http.get<CommentModel[]>('http://localhost:3000/comment');
+    return this.http.get<CommentModel[]>('http://localhost:3000/subject');
   }
   checkVote(subjectId:number| undefined,userName:string){
     return this.http.get<VoteModel[]>(
