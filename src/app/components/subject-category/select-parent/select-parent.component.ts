@@ -65,9 +65,7 @@ export class SelectParentComponent implements OnInit {
 
   selectParentClose() {
     const s = new SubjectCategoryModel();
-
     s.id = -1
-
     this.dialogRef.close(s)
 
   }
@@ -77,7 +75,7 @@ export class SelectParentComponent implements OnInit {
     const s = new SubjectCategoryModel();
     s.title = this.activeNode.item.title
     s.id = this.activeNode.item.id
-    console.log("id:", this.id)
+    // console.log("id:", this.id)
     this.dialogRef.close(s)
   }
 }

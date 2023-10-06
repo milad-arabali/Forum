@@ -22,20 +22,18 @@ import {MatMenuTrigger} from "@angular/material/menu";
   styleUrls: ['./manage-comments.component.css']
 })
 export class ManageCommentsComponent implements OnInit {
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  @ViewChild(MatPaginator) paginator !: MatPaginator;
+  @ViewChild(MatSort) sort !: MatSort;
   commentFormData: SubjectMangerModel[]=[];
   commentsForm: FormGroup;
   id: number;
-  allComment: CommentModel[] = [];
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
-  @ViewChild(MatSort) sort !: MatSort;
   displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showComment', 'status', 'actions'];
   dataSource = new MatTableDataSource();
   isLoading = false;
   pageSize = 5;
   currentPage = 0;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
   totalElements = 0;
-  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   contextMenuPosition= {x: '0px', y: '0px'}
   constructor(private fb: FormBuilder,
               private subjectManagerServices: SubjectService,

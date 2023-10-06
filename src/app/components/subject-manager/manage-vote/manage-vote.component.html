@@ -16,11 +16,11 @@
         <div class="row">
           <div>
             <span>{{'form.subject-title' | translate }}</span>
-            <mat-label *ngFor="let a of CommentDate">{{a.title}}</mat-label>
+            <mat-label *ngFor="let a of commentDate">{{a.title}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-creatorUser' | translate }}</span>
-            <mat-label *ngFor="let a of CommentDate">{{a.creatorUser}}</mat-label>
+            <mat-label *ngFor="let a of commentDate">{{a.creatorUser}}</mat-label>
           </div>
         </div>
       </div>
@@ -28,11 +28,11 @@
         <div class="row">
           <div>
             <span>{{'form.subject-category' | translate }}</span>
-            <mat-label *ngFor="let a of CommentDate">{{a.categoryTitle}}</mat-label>
+            <mat-label *ngFor="let a of commentDate">{{a.categoryTitle}}</mat-label>
           </div>
           <div>
             <span>{{'form.subject-createDateTime' | translate }}</span>
-            <mat-label *ngFor="let a of CommentDate">{{a.createDateTime | time}}</mat-label>
+            <mat-label *ngFor="let a of commentDate">{{a.createDateTime | time}}</mat-label>
           </div>
         </div>
       </div>

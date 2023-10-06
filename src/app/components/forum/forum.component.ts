@@ -4,7 +4,6 @@ import {SubjectMangerModel} from "../../shared/model/subject-manger.model";
 import {ForumService} from "./shared/services/forum.service";
 import {TranslateService} from "@ngx-translate/core";
 import {ApiService} from "../../shared/services/api.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {SelectCategoryComponent} from "./select-category/select-category.component";
 
 @Component({

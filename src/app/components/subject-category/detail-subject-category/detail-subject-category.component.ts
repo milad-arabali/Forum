@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, UrlSegment} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialog} from "@angular/material/dialog";
 import {TranslateService} from "@ngx-translate/core";
-import {DateAdapter} from "@angular/material/core";
 import {TreeSubjectService} from "../shared/services/tree-subject.service";
 import {SubjectCategoryService} from "../shared/services/subject-category.service";
 import {SelectParentComponent} from "../select-parent/select-parent.component";
@@ -27,6 +26,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   subjectModel = new SubjectCategoryModel();
   parentId: number;
   currentParentId: number;
+  changeParentId:number;
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -76,14 +76,13 @@ export class DetailSubjectCategoryComponent implements OnInit {
       parentId: [-1],
       parentTitle: [''],
       status: [true, Validators.required],
-      createDateTime: [Date()],
+      createDateTime: [new Date()],
       hasChild: [false],
       priority: [1, [Validators.required, Validators.min(1)]]
     })
   }
 
   ngOnInit() {
-
     if (this.formMode === 2 || this.formMode === 1) {
       this.subjectCategoryService.getSubjectByID(this.id)
         .subscribe(value => {
@@ -169,7 +168,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
         {
           parentId: -1,
           title: this.form.controls['title'].value,
-          createDateTime: new Date().toDateString(),
+          createDateTime: new Date(),
           status: this.form.controls['status'].value,
           priority: this.form.controls['priority'].value,
           hasChild: false
@@ -179,7 +178,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
       this.treeService.addSubject({
         parentId: this.form.controls['parentId'].value,
         title: this.form.controls['title'].value,
-        createDateTime: new Date().toDateString(),
+        createDateTime: new Date(),
         status: this.form.controls['status'].value,
         priority: this.form.controls['priority'].value,
         hasChild: false
@@ -215,7 +214,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
       })
         .subscribe()
     }
-    this.treeService.changeHasChild(this.form.controls['parentId'].value , { hasChild : true} )
+    this.treeService.changeHasChild(this.currentParentId , { hasChild : true} )
       .subscribe()
     this.subjectCategoryService.getSubjectList()
       .subscribe(result =>{
@@ -227,6 +226,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
             .subscribe()
         }
       })
+
     this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
       duration: 3000,
       horizontalPosition: "end",
@@ -235,115 +235,11 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.route.navigate(['/subject-category'])
   }
 
-
-//   onArticleEdit(){
-//     this.treeService.editArticle(this.currentNode ,this.articleForm.value)
-//       .subscribe()
-//     this.treeService.changeHasChild(this.articleForm.controls['parentId'].value , { hasChild : true} )
-//       .subscribe()
-//     this.articleCategoryService.getArticlList()
-//       .subscribe(result =>{
-//         const article = result.find((a : any) => {
-//           return a.parentId === this.currentParentId
-//         })
-//         if (!article){
-//           this.treeService.changeHasChild(this.currentParentId , {hasChild : false})
-//             .subscribe()
-//         }
-//       })
-//     this.router.navigate(['/article-category']).then()
-//     this.snackBar.open(this.translate.instant('successful-edit') , '' ,{duration : 2000 , panelClass : ['p']})
-//
-//   }
-// }
-
-  // editSubjectCategory() {
-  //   if (this.formMode === FormMode.ADD) {
-  //     if (this.form.controls['parentId'].value !== -1) {
-  //       let hasChild = new SubjectCategoryModel();
-  //       hasChild.hasChild = true;
-  //       this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].value).subscribe()
-  //     } else {
-  //       this.form.controls['parentId'].setValue(-1)
-  //
-  //     }
-  //     this.form.removeControl('parentTitle')
-  //     this.form.removeControl('currentParentId')
-  //     this.subjectModel = this.form.getRawValue()
-  //     let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
-  //       res => {
-  //         this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
-  //           duration: 3000,
-  //           horizontalPosition: "end",
-  //           verticalPosition: "top"
-  //         })
-  //       });
-  //     this.form.controls['parentId'].setValue(-1)
-  //     this.route.navigate(['/subject-category'])
-  //
-  //   } else if (this.formMode === FormMode.EDIT) {
-  //     let editSubject = new SubjectCategoryModel();
-  //     this.form.removeControl('parentTitle')
-  //     this.api.getAllSubjectCategory()
-  //       .subscribe(value => {
-  //         let subject = value.find((a: any) => {
-  //           return a.parentId === this.currentParentId
-  //         })
-  //         if (!subject) {
-  //           let subjectModel = new SubjectCategoryModel()
-  //           subjectModel.hasChild = true;
-  //           this.api.updateSubjectCategory(subjectModel, this.currentParentId)
-  //             .subscribe(value =>
-  //               console.log("true"))
-  //         } else if (subject) {
-  //           let subjectModel = new SubjectCategoryModel()
-  //           subjectModel.hasChild = false;
-  //           this.api.updateSubjectCategory(subjectModel, this.currentParentId)
-  //             .subscribe(value =>
-  //               console.log("true"))
-  //         }
-  //       })
-  //     if (this.form) {
-  //       if (this.form.controls['parentId'].value !== -1) {
-  //         const hasChild = new SubjectCategoryModel();
-  //         hasChild.hasChild = true;
-  //         this.form.removeControl('currentParentId')
-  //         this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
-  //           a => {
-  //             console.log("true")
-  //           }
-  //         )
-  //       } else if (this.form.controls['parentId'].value === this.form.controls['currentParentId'].value) {
-  //         const hasChild = new SubjectCategoryModel();
-  //         this.form.removeControl('currentParentId')
-  //         this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
-  //           a => {
-  //             console.log("true")
-  //           }
-  //         )
-  //       } else {
-  //         this.form.removeControl('currentParentId')
-  //         this.form.controls['parentId'].setValue(-1)
-  //       }
-  //       editSubject = this.form.getRawValue()
-  //       this.api.updateSubjectCategory(editSubject, this.id).subscribe(
-  //         res => {
-  //           this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
-  //             duration: 3000,
-  //             horizontalPosition: "end",
-  //             verticalPosition: "top"
-  //           })
-  //         }
-  //       )
-  //     }
-  //     this.route.navigate(['/subject-category'])
-  //   }
-  // }
-
   selectParent() {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
+      this.changeParentId=result.id
       this.form.controls['parentTitle'].setValue(result.title)
       if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
         this.snack.open(this.translate.instant('snackbar.child-error'), "", {
@@ -374,3 +270,107 @@ export class DetailSubjectCategoryComponent implements OnInit {
     this.form.controls['parentId'].setValue(-1)
   }
 }
+
+//   onArticleEdit(){
+//     this.treeService.editArticle(this.currentNode ,this.articleForm.value)
+//       .subscribe()
+//     this.treeService.changeHasChild(this.articleForm.controls['parentId'].value , { hasChild : true} )
+//       .subscribe()
+//     this.articleCategoryService.getArticlList()
+//       .subscribe(result =>{
+//         const article = result.find((a : any) => {
+//           return a.parentId === this.currentParentId
+//         })
+//         if (!article){
+//           this.treeService.changeHasChild(this.currentParentId , {hasChild : false})
+//             .subscribe()
+//         }
+//       })
+//     this.router.navigate(['/article-category']).then()
+//     this.snackBar.open(this.translate.instant('successful-edit') , '' ,{duration : 2000 , panelClass : ['p']})
+//
+//   }
+// }
+
+// editSubjectCategory() {
+//   if (this.formMode === FormMode.ADD) {
+//     if (this.form.controls['parentId'].value !== -1) {
+//       let hasChild = new SubjectCategoryModel();
+//       hasChild.hasChild = true;
+//       this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].value).subscribe()
+//     } else {
+//       this.form.controls['parentId'].setValue(-1)
+//
+//     }
+//     this.form.removeControl('parentTitle')
+//     this.form.removeControl('currentParentId')
+//     this.subjectModel = this.form.getRawValue()
+//     let s = this.api.addSubjectCategory(this.subjectModel).subscribe(
+//       res => {
+//         this.snack.open(this.translate.instant('snackbar.subject-save-value'), "", {
+//           duration: 3000,
+//           horizontalPosition: "end",
+//           verticalPosition: "top"
+//         })
+//       });
+//     this.form.controls['parentId'].setValue(-1)
+//     this.route.navigate(['/subject-category'])
+//
+//   } else if (this.formMode === FormMode.EDIT) {
+//     let editSubject = new SubjectCategoryModel();
+//     this.form.removeControl('parentTitle')
+//     this.api.getAllSubjectCategory()
+//       .subscribe(value => {
+//         let subject = value.find((a: any) => {
+//           return a.parentId === this.currentParentId
+//         })
+//         if (!subject) {
+//           let subjectModel = new SubjectCategoryModel()
+//           subjectModel.hasChild = true;
+//           this.api.updateSubjectCategory(subjectModel, this.currentParentId)
+//             .subscribe(value =>
+//               console.log("true"))
+//         } else if (subject) {
+//           let subjectModel = new SubjectCategoryModel()
+//           subjectModel.hasChild = false;
+//           this.api.updateSubjectCategory(subjectModel, this.currentParentId)
+//             .subscribe(value =>
+//               console.log("true"))
+//         }
+//       })
+//     if (this.form) {
+//       if (this.form.controls['parentId'].value !== -1) {
+//         const hasChild = new SubjectCategoryModel();
+//         hasChild.hasChild = true;
+//         this.form.removeControl('currentParentId')
+//         this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+//           a => {
+//             console.log("true")
+//           }
+//         )
+//       } else if (this.form.controls['parentId'].value === this.form.controls['currentParentId'].value) {
+//         const hasChild = new SubjectCategoryModel();
+//         this.form.removeControl('currentParentId')
+//         this.api.updateSubjectCategory(hasChild, this.form.controls['parentId'].getRawValue()).subscribe(
+//           a => {
+//             console.log("true")
+//           }
+//         )
+//       } else {
+//         this.form.removeControl('currentParentId')
+//         this.form.controls['parentId'].setValue(-1)
+//       }
+//       editSubject = this.form.getRawValue()
+//       this.api.updateSubjectCategory(editSubject, this.id).subscribe(
+//         res => {
+//           this.snack.open(this.translate.instant('snackbar.subject-edit-value'), "", {
+//             duration: 3000,
+//             horizontalPosition: "end",
+//             verticalPosition: "top"
+//           })
+//         }
+//       )
+//     }
+//     this.route.navigate(['/subject-category'])
+//   }
+// }

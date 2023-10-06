@@ -12,7 +12,6 @@ import {CookieService} from "ngx-cookie-service";
 import {SubjectMangerModel} from "../../../shared/model/subject-manger.model";
 
 
-
 @Component({
   selector: 'app-forum-comment',
   templateUrl: './forum-comment.component.html',
@@ -29,7 +28,7 @@ export class ForumCommentComponent implements OnInit {
   time;
   likeNumber: number = 0;
   dislikeNumber: number = 0;
-  likeId:number;
+  likeId: number;
   hasVote: boolean;
 
   constructor(private fb: FormBuilder,
@@ -56,14 +55,13 @@ export class ForumCommentComponent implements OnInit {
 
   ngOnInit() {
     this.loadSubjectData()
-this.checkLike()
+    this.checkLike()
     this.viewComments()
     this.likeNumberVote()
     this.disLikeNumberVote()
     this.router.url.subscribe((url: UrlSegment[]) => {
       this.checkSubject(Number(url[1].path))
     })
-
 
 
   }
@@ -123,7 +121,7 @@ this.checkLike()
   checkLike() {
     this.forumServices.checkVote(this.id, String(this.cookie.get('users'))).subscribe(value => {
       this.likeStatus = value[0].voteType;
-      this.likeId=value[0].id;
+      this.likeId = value[0].id;
       this.hasVote = true;
     })
   }
@@ -157,12 +155,12 @@ this.checkLike()
     addLike.userName = this.cookie.get('users')
     addLike.createDateTime = new Date()
     addLike.status = 0
-    if(this.hasVote){
+    if (this.hasVote) {
       let updateLike = new VoteModel();
-      updateLike.voteType=0
+      updateLike.voteType = 0
       // this.api.updateVote(25, 'test1',updateLike).subscribe()
 
-    }else {
+    } else {
       this.api.addVote(addLike).subscribe()
     }
     this.likeNumberVote()
@@ -176,11 +174,11 @@ this.checkLike()
     disLike.userName = this.cookie.get('users')
     disLike.createDateTime = new Date()
     disLike.status = 0
-    if(this.hasVote){
+    if (this.hasVote) {
       let updateLike = new VoteModel();
-      updateLike.voteType=1
+      updateLike.voteType = 1
       // this.api.updateVote(25, 'test1',updateLike).subscribe()
-    }else {
+    } else {
       this.api.addVote(disLike).subscribe()
     }
     this.disLikeNumberVote()
@@ -195,48 +193,48 @@ this.checkLike()
     Like.userName = this.cookie.get('users')
     Like.createDateTime = new Date()
     Like.status = 0
-   if (value == 'like'){
-     Like.voteType = 0;
-     if(this.hasVote){
-       let updateLike = new VoteModel();
-       updateLike.voteType=1
-       this.api.updateVote(this.likeId, {voteType :0}).subscribe(
-         ()=>{
-           this.disLikeNumberVote()
+    if (value == 'like') {
+      Like.voteType = 0;
+      if (this.hasVote) {
+        let updateLike = new VoteModel();
+        updateLike.voteType = 1
+        this.api.updateVote(this.likeId, {voteType: 0}).subscribe(
+          () => {
+            this.disLikeNumberVote()
 
-         }
-       )
-     }else {
-       this.api.addVote(Like).subscribe(
-         ()=>{
-           this.likeNumberVote()
-         }
-       )
-     }
-     this.likeNumberVote()
-     this.checkLike()
-   }else if(value == 'dislike'){
-     Like.voteType = 1;
-     if(this.hasVote){
-       let updateLike = new VoteModel();
-       updateLike.voteType=1
-       // this.api.updateVote(25,updateLike).subscribe()
-       this.api.updateVote(this.likeId, {voteType :1}).subscribe(
-         ()=>{
-           this.likeNumberVote()
-         }
-       )
-     }else {
-       this.api.addVote(Like).subscribe(
-         ()=>{
-           this.disLikeNumberVote()
-         }
-       )
-     }
-     this.disLikeNumberVote()
-     this.checkLike()
+          }
+        )
+      } else {
+        this.api.addVote(Like).subscribe(
+          () => {
+            this.likeNumberVote()
+          }
+        )
+      }
+      this.likeNumberVote()
+      this.checkLike()
+    } else if (value == 'dislike') {
+      Like.voteType = 1;
+      if (this.hasVote) {
+        let updateLike = new VoteModel();
+        updateLike.voteType = 1
+        // this.api.updateVote(25,updateLike).subscribe()
+        this.api.updateVote(this.likeId, {voteType: 1}).subscribe(
+          () => {
+            this.likeNumberVote()
+          }
+        )
+      } else {
+        this.api.addVote(Like).subscribe(
+          () => {
+            this.disLikeNumberVote()
+          }
+        )
+      }
+      this.disLikeNumberVote()
+      this.checkLike()
 
-   }
+    }
   }
 }
 

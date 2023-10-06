@@ -19,19 +19,16 @@ import {MatTableDataSource} from "@angular/material/table";
   styleUrls: ['./manage-vote.component.css']
 })
 export class ManageVoteComponent implements OnInit, AfterViewInit {
-  CommentDate: SubjectMangerModel[] = [];
-  commentsForm: FormGroup;
-  id: number;
-  allComment: CommentModel[] = [];
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+  commentDate: SubjectMangerModel[] = [];
+  commentsForm: FormGroup;
+  id: number;
   displayedColumns: string[] = ['id', 'creatorUser', 'createDateTimeComments', 'showVote'];
   dataSource = new MatTableDataSource();
   isLoading = false;
   pageSize = 5;
   currentPage = 0;
-  pageSizeOptions: number[] = [5, 10, 25, 100];
-  maxall = 100;
   totalElements = 0;
 
   constructor(private fb: FormBuilder,
@@ -92,7 +89,7 @@ export class ManageVoteComponent implements OnInit, AfterViewInit {
   loadSubjectData() {
     this.api.getSubject(this.id).subscribe(
       value => {
-        this.CommentDate.push(value)
+        this.commentDate.push(value)
       }
     )
   }

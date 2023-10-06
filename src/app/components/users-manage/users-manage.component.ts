@@ -265,11 +265,11 @@ export class UsersManageComponent implements OnInit {
 
   usersStatus(status: string) {
     if (status === 'Registered') {
-      return 'ثبت نام اولیه'
+      return this.translate.instant('form.register-users-title')
     } else if (status === 'confirm') {
-      return "تایید شده"
+      return this.translate.instant('form.confirm-users-title')
     } else {
-      return "لغو شده"
+      return this.translate.instant('form.reject-users-title')
     }
   }
 

@@ -24,9 +24,10 @@ import {MatMenuTrigger} from "@angular/material/menu";
   styleUrls: ['./subject-manager.component.css']
 })
 export class SubjectManagerComponent implements  OnInit {
-  form: FormGroup;
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
+  form: FormGroup;
   displayedColumns: string[] = ['id', 'title', 'categoryTitle', 'creatorUser', 'createDateTime', 'status', 'actions'];
   dataSource = new MatTableDataSource();
   search: string;
@@ -34,7 +35,7 @@ export class SubjectManagerComponent implements  OnInit {
   pageSize = 5;
   currentPage = 0;
   totalElements = 0;
-  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+
   contextMenuPosition= {x: '0px', y: '0px'}
   constructor(private Fb: FormBuilder,
               private dialog: MatDialog,
