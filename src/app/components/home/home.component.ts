@@ -37,18 +37,20 @@ export class HomeComponent implements OnInit {
   saveSubject: any;
   bayGroupList: any[] = [];
   bayGroupList1: any[] = [];
-  daysAgo = '';
+  daysAgo = new Date();
   daysAgo1 = '';
   daysAgo2 = '';
-  currentTime9 = moment().add(-9, 'days');
-  currentTime8 = moment().add(-8, 'days');
-  currentTime7 = moment().add(-7, 'days');
-  currentTime6 = moment().add(-6, 'days');
-  currentTime5 = moment().add(-5, 'days');
-  currentTime4 = moment().add(-4, 'days');
-  currentTime3 = moment().add(-3, 'days');
-  currentTime2 = moment().add(-2, 'days');
-  currentTime1 = moment().add(-1, 'days');
+  currentTime10 = moment().add(-9, 'days');
+  currentTime9 = moment().add(-8, 'days');
+  currentTime8 = moment().add(-7, 'days');
+  currentTime7 = moment().add(-6, 'days');
+  currentTime6 = moment().add(-5, 'days');
+  currentTime5 = moment().add(-4, 'days');
+  currentTime4 = moment().add(-3, 'days');
+  currentTime3 = moment().add(-2, 'days');
+  currentTime2 = moment().add(-1, 'days');
+  currentTime1 = moment().add(-0, 'days');
+  saveSubject10: number;
   saveSubject9: number;
   saveSubject8: number;
   saveSubject7: number;
@@ -67,6 +69,7 @@ export class HomeComponent implements OnInit {
   saveUsers7: number;
   saveUsers8: number;
   saveUsers9: number;
+  saveUsers10: number;
   saveVote1: number;
   saveVote2: number;
   saveVote3: number;
@@ -76,6 +79,7 @@ export class HomeComponent implements OnInit {
   saveVote7: number;
   saveVote8: number;
   saveVote9: number;
+  saveVote10: number;
   time: any;
 
   constructor(private chartServices: ChartService,
@@ -90,6 +94,8 @@ export class HomeComponent implements OnInit {
       this.bayGroupList1.push(this.daysAgo2)
     }
     // console.log("bayGroupList", this.bayGroupList);
+    // console.log("bayGroupList", this.bayGroupList1);
+    // console.log("bayGroupList", this.currentTime10);
 
   }
   ngOnInit() {
@@ -100,7 +106,7 @@ export class HomeComponent implements OnInit {
         }
       }
     )
-    this.dateConverter(new Date())
+    // this.dateConverter(new Date())
     const documentStyle1 = getComputedStyle(document.documentElement);
     const textColor1 = documentStyle1.getPropertyValue('--text-color');
     const textColorSecondary1 = documentStyle1.getPropertyValue('--text-color-secondary');
@@ -155,7 +161,11 @@ export class HomeComponent implements OnInit {
         this.usersStatusReject = value.length;
       }
     )
-
+    this.chartServices.getTimeDateSubject(this.currentTime10.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveSubject10 = value.length;
+      }
+    )
     this.chartServices.getTimeDateSubject(this.currentTime9.format('YYYY-MM-DD')).subscribe(
       value => {
         this.saveSubject9 = value.length;
@@ -241,6 +251,11 @@ export class HomeComponent implements OnInit {
         this.saveUsers8 = value.length;
       }
     )
+    this.chartServices.getTimeSaveUsers(this.currentTime10.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveUsers10 = value.length;
+      }
+    )
     this.chartServices.getTimeSaveUsers(this.currentTime9.format('YYYY-MM-DD')).subscribe(
       value => {
         this.saveUsers9 = value.length;
@@ -286,9 +301,15 @@ export class HomeComponent implements OnInit {
         this.saveVote8 = value.length;
       }
     )
+    // console.log("dsdsd", this.currentTime1.format('YYYY-MM-DD'));
     this.chartServices.getTimeDateComment(this.currentTime9.format('YYYY-MM-DD')).subscribe(
       value => {
         this.saveVote9 = value.length;
+      }
+    )
+    this.chartServices.getTimeDateComment(this.currentTime10.format('YYYY-MM-DD')).subscribe(
+      value => {
+        this.saveVote10 = value.length;
       }
     )
 
@@ -367,52 +388,67 @@ export class HomeComponent implements OnInit {
     }, 500)
     setTimeout(() => {
       this.saveSubject = {
-        labels: this.bayGroupList.reverse(),
+        labels: [
+          this.currentTime10.locale('fa').format('YYYY/M/D')
+          ,this.currentTime9.locale('fa').format('YYYY/M/D')
+          ,this.currentTime8.locale('fa').format('YYYY/M/D')
+          ,this.currentTime7.locale('fa').format('YYYY/M/D')
+          ,this.currentTime6.locale('fa').format('YYYY/M/D')
+          ,this.currentTime5.locale('fa').format('YYYY/M/D')
+          ,
+          this.currentTime4.locale('fa').format('YYYY/M/D')
+          ,this.currentTime3.locale('fa').format('YYYY/M/D')
+          ,this.currentTime2.locale('fa').format('YYYY/M/D')
+          ,this.currentTime1.locale('fa').format('YYYY/M/D')
+        ],
         datasets: [
           {
             type: 'bar',
             label: this.translate.instant('chart.save-category'),
             backgroundColor: documentStyle.getPropertyValue('--blue-500'),
             data: [
-              this.saveSubject1,
-              this.saveSubject2,
-              this.saveSubject3,
-              this.saveSubject4,
-              this.saveSubject5,
-              this.saveSubject6,
-              this.saveSubject7,
+              this.saveSubject10,
+              this.saveSubject9,
               this.saveSubject8,
-              this.saveSubject9]
+              this.saveSubject7,
+              this.saveSubject6,
+              this.saveSubject5,
+              this.saveSubject4,
+              this.saveSubject3,
+              this.saveSubject2,
+              this.saveSubject1]
           },
           {
             type: 'bar',
             label: this.translate.instant('chart.users-save') ,
             backgroundColor: documentStyle.getPropertyValue('--green-500'),
             data: [
-              this.saveUsers1,
-              this.saveUsers2,
-              this.saveUsers3,
-              this.saveUsers4,
-              this.saveUsers5,
-              this.saveUsers6,
-              this.saveUsers7,
+              this.saveUsers10,
+              this.saveUsers9,
               this.saveUsers8,
-              this.saveUsers9]
+              this.saveUsers7,
+              this.saveUsers6,
+              this.saveUsers5,
+              this.saveUsers4,
+              this.saveUsers3,
+              this.saveUsers2,
+              this.saveUsers1]
           },
           {
             type: 'bar',
             label: this.translate.instant('chart.votes-save'),
             backgroundColor: documentStyle.getPropertyValue('--red-500'),
             data: [
-              this.saveVote1,
-              this.saveVote2,
-              this.saveVote3,
-              this.saveVote4,
-              this.saveVote5,
-              this.saveVote6,
-              this.saveVote7,
+              this.saveVote10,
+              this.saveVote9,
               this.saveVote8,
-              this.saveVote9]
+              this.saveVote7,
+              this.saveVote6,
+              this.saveVote5,
+              this.saveVote4,
+              this.saveVote3,
+              this.saveVote2,
+              this.saveVote1]
           },
         ]
       };
@@ -464,16 +500,15 @@ export class HomeComponent implements OnInit {
     };
   }
 
-  dateConverter(dateIn) {
-    dateIn.setHours(12);
-    let dateIn10days = new Date(dateIn.setDate(dateIn.getDate() + 10));
-    let dateFor10days = new Date(dateIn.setDate(dateIn.getDate() - 20));
-    let strIn10Days =
-      dateIn10days.getFullYear() + '-' + ('0' + (dateIn10days.getMonth() + 1)).slice(-2) + '-' + ('0' + dateIn10days.getDate()).slice(-2);
-    let strFor10Days =
-      dateFor10days.getFullYear() + '-' + ('0' + (dateFor10days.getMonth() + 1)).slice(-2) + '-' + ('0' + dateFor10days.getDate()).slice(-2);
-    console.log("dsdsdsdsd", strFor10Days);
-    this.daysAgo = strFor10Days;
-  }
+  // dateConverter(dateIn) {
+  //   dateIn.setHours(12);
+  //   let dateIn10days = new Date(dateIn.setDate(dateIn.getDate() + 10));
+  //   let dateFor10days = new Date(dateIn.setDate(dateIn.getDate() - 20));
+  //   let strIn10Days =
+  //     dateIn10days.getFullYear() + '-' + ('0' + (dateIn10days.getMonth() + 1)).slice(-2) + '-' + ('0' + dateIn10days.getDate()).slice(-2);
+  //   let strFor10Days =
+  //     dateFor10days.getFullYear() + '-' + ('0' + (dateFor10days.getMonth() + 1)).slice(-2) + '-' + ('0' + dateFor10days.getDate()).slice(-2);
+  //   this.daysAgo = strFor10Days;
+  // }
 
 }

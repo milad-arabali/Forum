@@ -154,7 +154,7 @@ export class UsersManageComponent implements OnInit {
     let DateOfBirth = '';
 
     if (user) {
-      console.log("c", user);
+      // console.log("c", user);
       userName = `userName_like=${user}`
     } else {
       userName = `&`
@@ -188,11 +188,16 @@ export class UsersManageComponent implements OnInit {
         gender = `&`
       }
     }
-    if (searchModel.isAdmin) {
-      isAdmin = `isAdmin=${searchModel.isAdmin}`
-    } else {
+    if (searchModel.isAdmin===true) {
+
+      isAdmin = `isAdmin=true`
+    }else if (searchModel.isAdmin==false){
+      isAdmin = `isAdmin=false`
+    }else {
       isAdmin = `&`
     }
+
+
     if (time) {
       time = time._d;
       time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
@@ -278,7 +283,7 @@ export class UsersManageComponent implements OnInit {
   isAdminUsersStatus(status: Boolean) {
     if (status === true) {
       return this.translate.instant('form.true')
-    } else {
+    } else if (status === false) {
       return this.translate.instant('form.false')
     }
   }
