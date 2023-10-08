@@ -95,13 +95,11 @@ export class DetailSubjectCategoryComponent implements OnInit {
             createDateTime: '',
             hasChild: value.hasChild,
             priority: value.priority,
-
           })
         })
       setTimeout(() => {
         if (this.currentParentId === -1) {
           this.form.controls['parentTitle'].setValue('')
-
         } else {
           this.subjectCategoryService.getSubjectByID(this.currentParentId)
             .subscribe(result => {
@@ -109,7 +107,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
             })
         }
       }, 100)
-
     } else if (this.formMode === 0) {
       this.subjectCategoryService.getSubjectByID(this.id)
         .subscribe(value => {
@@ -119,7 +116,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
       setTimeout(() => {
         if (this.currentParentId === -1) {
           this.form.controls['parentTitle'].setValue('')
-
         } else {
           this.subjectCategoryService.getSubjectByID(this.currentParentId)
             .subscribe(result => {
@@ -147,7 +143,6 @@ export class DetailSubjectCategoryComponent implements OnInit {
         }
       })
   }
-
   checkAdmin() {
     let isAdmin;
     this.api.getIsAdmin(this.cookie.get('users')).subscribe(
@@ -196,33 +191,33 @@ export class DetailSubjectCategoryComponent implements OnInit {
   }
 
   editSubject() {
-    if (this.form.controls['parentId'].value === -1){
-      this.treeService.editSubject(this.id ,
+    if (this.form.controls['parentId'].value === -1) {
+      this.treeService.editSubject(this.id,
         {
-          parentId : -1 ,
-          title : this.form.controls['title'].value,
-          status : this.form.controls['status'].value,
-          priority : this.form.controls['priority'].value
+          parentId: -1,
+          title: this.form.controls['title'].value,
+          status: this.form.controls['status'].value,
+          priority: this.form.controls['priority'].value
         })
         .subscribe()
-    }else {
-      this.treeService.editSubject(this.id , {
-        parentId : this.form.controls['parentId'].value ,
-        title : this.form.controls['title'].value,
-        status : this.form.controls['status'].value,
-        priority : this.form.controls['priority'].value
+    } else {
+      this.treeService.editSubject(this.id, {
+        parentId: this.form.controls['parentId'].value,
+        title: this.form.controls['title'].value,
+        status: this.form.controls['status'].value,
+        priority: this.form.controls['priority'].value
       })
         .subscribe()
     }
-    this.treeService.changeHasChild(this.currentParentId , { hasChild : true} )
+    this.treeService.changeHasChild(this.form.controls['parentId'].value, {hasChild: true})
       .subscribe()
     this.subjectCategoryService.getSubjectList()
-      .subscribe(result =>{
-        const article = result.find((a : any) => {
+      .subscribe(result => {
+        const article = result.find((a: any) => {
           return a.parentId === this.currentParentId
         })
-        if (!article){
-          this.treeService.changeHasChild(this.currentParentId , {hasChild : false})
+        if (!article) {
+          this.treeService.changeHasChild(this.currentParentId, {hasChild: false})
             .subscribe()
         }
       })
@@ -239,7 +234,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
     const dialogRef = this.dialog.open(SelectParentComponent)
     dialogRef.afterClosed().subscribe(result => {
       this.form.controls['parentId'].setValue(result.id)
-      this.changeParentId=result.id
+      this.changeParentId = result.id
       this.form.controls['parentTitle'].setValue(result.title)
       if (this.form.controls['parentTitle'].value === this.form.controls['title'].value) {
         this.snack.open(this.translate.instant('snackbar.child-error'), "", {

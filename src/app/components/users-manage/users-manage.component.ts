@@ -15,6 +15,7 @@ import {CookieService} from "ngx-cookie-service";
 import {TranslateService} from "@ngx-translate/core";
 import {ManageAccessUsersComponent} from "./manage-access-users/manage-access-users.component";
 import {MenuItem} from "primeng/api";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-users-manage',
@@ -199,9 +200,9 @@ export class UsersManageComponent implements OnInit {
 
 
     if (time) {
-      time = time._d;
-      time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
-      DateOfBirth = `DateOfBirth_like=${time}`
+      // time = time._d;
+      // time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
+      DateOfBirth = `DateOfBirth_like=${formatDate(time, 'yyyy-MM-dd', 'en-US')}`
     } else {
       DateOfBirth = `&`
     }

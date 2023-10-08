@@ -184,6 +184,14 @@
       "status": 0,
       "voteType": 1,
       "id": 2
+    },
+    {
+      "subjectId": 3,
+      "userName": "test1",
+      "createDateTime": "2023-10-07T16:27:34.064Z",
+      "status": 0,
+      "voteType": 0,
+      "id": 3
     }
   ]
 }

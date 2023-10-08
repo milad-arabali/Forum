@@ -16,6 +16,7 @@ import {ApiService} from "../../shared/services/api.service";
 import {CookieService} from "ngx-cookie-service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatMenuTrigger} from "@angular/material/menu";
+import {formatDate} from "@angular/common";
 
 
 @Component({
@@ -159,9 +160,9 @@ export class SubjectManagerComponent implements  OnInit {
       creatorUser = `&`
     }
     if (time) {
-      time = time._d;
-      time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
-      createDateTime = `createDateTime_like=${time}`
+      // time = time._d;
+      // time = time.toISOString().substr(0, time.toISOString().indexOf('T'));
+      createDateTime = `createDateTime_like=${formatDate(time, 'yyyy-MM-dd', 'en-US')}`
 
     } else {
       createDateTime = `&`
