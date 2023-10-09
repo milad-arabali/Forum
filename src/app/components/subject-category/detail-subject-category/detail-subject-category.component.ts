@@ -26,7 +26,7 @@ export class DetailSubjectCategoryComponent implements OnInit {
   subjectModel = new SubjectCategoryModel();
   parentId: number;
   currentParentId: number;
-  changeParentId:number;
+  changeParentId: number;
 
   constructor(private router: ActivatedRoute,
               private http: HttpClient,
@@ -114,14 +114,12 @@ export class DetailSubjectCategoryComponent implements OnInit {
           this.form.controls['parentId'].setValue(value.id)
         })
       setTimeout(() => {
-        if (this.currentParentId === -1) {
-          this.form.controls['parentTitle'].setValue('')
-        } else {
-          this.subjectCategoryService.getSubjectByID(this.currentParentId)
-            .subscribe(result => {
-              this.form.controls['parentTitle'].setValue(result.title)
-            })
-        }
+
+        this.subjectCategoryService.getSubjectByID(this.id)
+          .subscribe(result => {
+            this.form.controls['parentTitle'].setValue(result.title)
+          })
+
       }, 100)
     }
   }

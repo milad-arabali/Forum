@@ -4,6 +4,8 @@ import {UserAccountInformationModel} from "../../../../../shared/model/user-acco
 import {HttpClient} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {TranslateService} from "@ngx-translate/core";
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,9 @@ export class ChangePasswordService {
     private api: ApiService,
     private httpClient: HttpClient,
     private snack: MatSnackBar,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private logOut: CookieService,
+    private route: Router ,
   ) {
   }
 
@@ -48,6 +52,8 @@ export class ChangePasswordService {
                 horizontalPosition: "end",
                 verticalPosition: "top"
               })
+          this.logOut.deleteAll();
+          this.route.navigate(['/signin'])
 
         } else {
           this.snack.open(this.translate.instant('snackbar.password-edit-valid-error'), "", {

@@ -53,7 +53,6 @@ export class ChangePasswordComponent {
     this.changePasswordUser.checkPassword(oldPassword,newPassword,this.username1)
     this.changePassword.reset();
     this._inputElement.nativeElement.focus();
-    this.logOut.deleteAll();
-    this.route.navigate(['/signin'])
+
   }
 }

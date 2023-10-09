@@ -24,11 +24,11 @@
       </mat-form-field>
       <mat-form-field class="mat-form">
         <mat-label> {{'form.passWord' | translate }}</mat-label>
-        <input type="password" matInput formControlName="Password">
+        <input type="password" matInput formControlName="Password"  (keyup)="onKeyUpEvent($event)">
         <mat-error>{{'form.passWord-error' | translate }}</mat-error>
       </mat-form-field>
       <div class="button">
-        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()">
+        <button mat-raised-button type="submit" color="primary" [disabled]="!form.valid" (click)="onSubmit()" #myBtn>
           {{'form.inputButton' | translate }}
         </button>
         <button mat-raised-button color="accent" [routerLink]="['/signup']">
@@ -41,6 +41,6 @@
       <img class="avatar" src="..\assets\img\angular.png">
       <p> {{'layout.projectName' | translate }}</p>
     </div>
-    <p> {{'layout.appVersion' | translate }}</p>
+    <p class="fontFamilyPersian"> {{'layout.appVersion' | translate }}</p>
   </div>
 </mat-card>

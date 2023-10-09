@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class SigninUserComponent implements OnInit {
   @ViewChild("myInput") private _inputElement: ElementRef;
+  @ViewChild("myBtn") private _myBtnElement: ElementRef;
   form: FormGroup;
   pending = true;
 
@@ -53,6 +54,7 @@ export class SigninUserComponent implements OnInit {
   onSubmit() {
 
     if (this.form.valid) {
+
       console.log(this.form.value)
       const name = this.form.value.username;
       const password: any = this.form.value.Password;
@@ -61,6 +63,50 @@ export class SigninUserComponent implements OnInit {
     }
     this.form.reset();
     this._inputElement.nativeElement.focus();
+
+  }
+
+
+  keypress() {
+
+    //   if (this.form.valid) {
+    //     console.log(this.form.value)
+    //     const name = this.form.value.username;
+    //     const password: any = this.form.value.Password;
+    //
+    //     this.usersAth.signOn(name, password);
+    //   }
+    //   this.form.reset();
+    //   this._inputElement.nativeElement.focus();
+    // }
+    console.log("fff");
+
+  }
+
+
+  keyup(event) {
+    if (event.key === "Enter")
+      console.log("dsdsd");
+  }
+
+  keyupEnter(event) {
+    console.log("dsdsd");
+  }
+
+  onKeyUpEvent(event: any) {
+    if(event.keyCode===13){
+      if (this.form.valid) {
+
+        console.log(this.form.value)
+        const name = this.form.value.username;
+        const password: any = this.form.value.Password;
+
+        this.usersAth.signOn(name, password);
+      }
+      this.form.reset();
+      this._inputElement.nativeElement.focus();
+
+    }
 
   }
 }
